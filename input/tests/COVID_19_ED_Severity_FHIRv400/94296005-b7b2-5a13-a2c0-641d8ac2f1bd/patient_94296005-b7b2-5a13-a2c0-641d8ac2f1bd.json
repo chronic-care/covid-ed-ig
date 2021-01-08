@@ -5,12 +5,31 @@
     {
       "resource": {
         "resourceType": "Patient",
-        "id": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc",
+        "id": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url" : "ombCategory",
+                "valueCoding" : {
+                  "system" : "urn:oid:2.16.840.1.113883.6.238",
+                  "code" : "2054-5",
+                  "display" : "Black or African American"
+                }
+              },
+              {
+                "url" : "text",
+                "valueString" : "Black or African American"
+              }
+            ]
+          }
+        ],
         "gender": "male",
-        "birthDate": "1950-06-01",
+        "birthDate": "1964-06-01",
         "name": [
           {
-            "text": "file: data/COVID mock patients.xlsx sheet:3"
+            "text": "file: data/COVID mock patients.xlsx sheet:4"
           }
         ]
       }
@@ -18,14 +37,15 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "211fed96-553b-58f1-8c78-d1d036c7b69e",
+        "id": "3a1d613a-223d-53d7-8d12-22525f219892",
         "status": "final",
         "effectiveDateTime": "2020-06-01T07:00:00-06:00",
         "code": {
           "coding": [
             {
-              "system": "http://snomed.info/sct",
-              "code": "364075005"
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
             }
           ]
         },
@@ -35,9 +55,9 @@
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -45,26 +65,27 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "ddc9a91c-5e91-562d-b657-bd0e42dfc0af",
+        "id": "8b35cb04-2640-54f3-9b26-2f9a08560709",
         "status": "final",
         "effectiveDateTime": "2020-06-01T08:00:00-06:00",
         "code": {
           "coding": [
             {
-              "system": "http://snomed.info/sct",
-              "code": "364075005"
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
             }
           ]
         },
         "valueQuantity": {
-          "value": 82.0,
+          "value": 110.0,
           "unit": "beats/minute",
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -72,26 +93,27 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "acbeaecd-6b99-54f9-b67b-5ec431cb719b",
+        "id": "3ad99d9a-02f2-5b27-81bb-2efb518a846e",
         "status": "final",
         "effectiveDateTime": "2020-06-01T09:00:00-06:00",
         "code": {
           "coding": [
             {
-              "system": "http://snomed.info/sct",
-              "code": "364075005"
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
             }
           ]
         },
         "valueQuantity": {
-          "value": 82.0,
+          "value": 90.0,
           "unit": "beats/minute",
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -99,7 +121,7 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "362d96b4-f0b5-52ed-a66f-56b841253892",
+        "id": "5461cc10-5546-5ec5-a83e-01b960eb426f",
         "status": "final",
         "effectiveDateTime": "2020-06-01T07:00:00-06:00",
         "code": {
@@ -116,9 +138,9 @@
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -126,7 +148,7 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "e466b2e1-4c23-5ab3-ac04-ca6e31170110",
+        "id": "6af9b0a1-d66f-5be8-9fdf-12b474f3eef8",
         "status": "final",
         "effectiveDateTime": "2020-06-01T08:00:00-06:00",
         "code": {
@@ -143,9 +165,9 @@
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -153,7 +175,7 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "81f54d85-2f66-599f-944e-b10b2e82a0d4",
+        "id": "7e2993eb-e908-520f-b6a3-96593ff62140",
         "status": "final",
         "effectiveDateTime": "2020-06-01T09:00:00-06:00",
         "code": {
@@ -170,9 +192,9 @@
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -180,24 +202,24 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "1d0192df-f78e-595d-a702-fc518772eed9",
+        "id": "6ea6cbe8-4183-5a43-b270-9bdd06a8956e",
         "status": "final",
         "effectiveDateTime": "2020-06-01T07:00:00-06:00",
         "code": {
           "coding": [
             {
-              "system": "http://snomed.info/sct",
-              "code": "103228002"
+              "system": "http://loinc.org",
+              "code": "2708-6"
             }
           ]
         },
         "valueQuantity": {
-          "value": 0.97
+          "value": 0.9
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -205,14 +227,39 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "2b854f79-a506-5629-bab6-2e661aa1ed59",
+        "id": "504bc414-c5f0-5e8e-956c-0897d25ca77c",
         "status": "final",
         "effectiveDateTime": "2020-06-01T08:00:00-06:00",
         "code": {
           "coding": [
             {
-              "system": "http://snomed.info/sct",
-              "code": "103228002"
+              "system": "http://loinc.org",
+              "code": "2708-6"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 0.91
+        },
+        "subject": {
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
+          "identifier": {
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
+          }
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "fa297428-ae45-5743-bcc6-04912e6f6979",
+        "status": "final",
+        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2708-6"
             }
           ]
         },
@@ -220,9 +267,9 @@
           "value": 0.97
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -230,32 +277,7 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "29065ddf-a3b7-5e3b-ad02-e34e4682f198",
-        "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
-        "code": {
-          "coding": [
-            {
-              "system": "http://snomed.info/sct",
-              "code": "103228002"
-            }
-          ]
-        },
-        "valueQuantity": {
-          "value": 0.99
-        },
-        "subject": {
-          "type": "Patient",
-          "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
-          }
-        }
-      }
-    },
-    {
-      "resource": {
-        "resourceType": "Observation",
-        "id": "9b17b241-c08b-5afe-a527-22659ba4c565",
+        "id": "3be9e348-6d7d-5017-a8b1-542f6294cfc0",
         "status": "final",
         "effectiveDateTime": "2020-06-01T07:00:00-06:00",
         "code": {
@@ -267,14 +289,14 @@
           ]
         },
         "valueQuantity": {
-          "value": 22.0,
+          "value": 25.0,
           "unit": "breaths/minute",
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -282,9 +304,36 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "d42349a0-ad93-525e-b95c-9adcd27d0c2f",
+        "id": "775a46ed-c202-596f-a4c2-b0fe618413e5",
         "status": "final",
         "effectiveDateTime": "2020-06-01T08:00:00-06:00",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 26.0,
+          "unit": "breaths/minute",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
+          "identifier": {
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
+          }
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "df577154-5b4a-594e-b336-346d6219cc7e",
+        "status": "final",
+        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -299,9 +348,9 @@
           "system": "http://unitsofmeasure.org"
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -309,49 +358,27 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "6ef91d0e-63aa-55b3-8e02-8e69771f6a26",
-        "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "9279-1"
-            }
-          ]
-        },
-        "valueQuantity": {
-          "value": 18.0,
-          "unit": "breaths/minute",
-          "system": "http://unitsofmeasure.org"
-        },
-        "subject": {
-          "type": "Patient",
-          "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
-          }
-        }
-      }
-    },
-    {
-      "resource": {
-        "resourceType": "Observation",
-        "id": "bb6f07fc-d740-5d04-87e7-bc2c9e2a364a",
+        "id": "ae44c365-b45b-50fc-9011-3e4b09d266c9",
         "status": "final",
         "effectiveDateTime": "2020-06-01T07:00:00-06:00",
         "code": {
           "coding": [
             {
               "system": "http://loinc.org",
-              "code": "2708-6"
+              "code": "3151-8",
+              "display": "Inhaled oxygen flow rate"
             }
           ]
         },
-        "valueString": "NC O2 (1-2)",
+        "valueQuantity": {
+          "value": 0.0,
+          "unit": "L/min",
+          "system": "http://unitsofmeasure.org"
+        },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -359,22 +386,27 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "203a6028-624f-5961-9f87-95040488daee",
+        "id": "a9d3d5e4-c305-5017-95a9-2c0fa716c578",
         "status": "final",
         "effectiveDateTime": "2020-06-01T08:00:00-06:00",
         "code": {
           "coding": [
             {
               "system": "http://loinc.org",
-              "code": "2708-6"
+              "code": "3151-8",
+              "display": "Inhaled oxygen flow rate"
             }
           ]
         },
-        "valueString": "NC O2 (1-2)",
+        "valueQuantity": {
+          "value": 2.0,
+          "unit": "L/min",
+          "system": "http://unitsofmeasure.org"
+        },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -382,22 +414,27 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "51f276c3-af1b-5bfc-ae1d-75ef32c9fec1",
+        "id": "be39d642-ee44-5b68-a239-7637f4624711",
         "status": "final",
         "effectiveDateTime": "2020-06-01T09:00:00-06:00",
         "code": {
           "coding": [
             {
               "system": "http://loinc.org",
-              "code": "2708-6"
+              "code": "3151-8",
+              "display": "Inhaled oxygen flow rate"
             }
           ]
         },
-        "valueString": "NC O2 (1-2)",
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "L/min",
+          "system": "http://unitsofmeasure.org"
+        },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -405,20 +442,41 @@
     {
       "resource": {
         "resourceType": "Condition",
-        "id": "49072c17-6ade-5904-b3a2-c94f824ae705",
+        "id": "25b162f1-8e01-5184-8d5f-90f27a9ca4dd",
         "onsetDateTime": "2020-06-01T07:00:00-06:00",
         "code": {
           "coding": [
             {
               "system": "http://snomed.info/sct",
-              "code": "13645005"
+              "code": "38341003"
             }
           ]
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
+          }
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "18d7b228-789f-5177-b456-49caecd283f3",
+        "onsetDateTime": "2020-06-01T07:00:00-06:00",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "90708001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
+          "identifier": {
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -426,9 +484,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "0a3315f8-dc3b-5ce5-9144-2d0263d11879",
+        "id": "b9b11c64-67a2-5f19-af69-a506118b92a2",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -441,9 +499,9 @@
           "value": 0.01
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -451,9 +509,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "38244534-93bc-5760-b716-d66c4824f0df",
+        "id": "e5a1c1b8-397f-533f-b19b-75dfb930ec6e",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -463,12 +521,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 0.1
+          "value": 2.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -476,9 +534,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "d146c392-a39a-5e46-aace-32d0b0835b10",
+        "id": "eca34fd5-ae8a-576a-91b3-92f13bb7f738",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -491,9 +549,9 @@
           "value": 1.4
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -501,9 +559,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "4afa6cbc-7fe1-5dfd-97fa-17e332a883c1",
+        "id": "c90c7280-e626-5992-9892-01b4a63820bc",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -516,9 +574,9 @@
           "value": 50.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -526,9 +584,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "58e854b6-1309-57c1-8f0d-c375ab964385",
+        "id": "d3c7dccc-3017-558e-bb4e-35a6fcb792a4",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -538,12 +596,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 16.0
+          "value": 30.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -551,9 +609,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "feb432fc-23d4-55be-965e-74fe85423d42",
+        "id": "f3af92a1-5315-50da-991e-6af02e16ed82",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -563,12 +621,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 56.0
+          "value": 60.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -576,9 +634,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "92151e03-75a2-5bdc-b2d0-5d4acdd8ff7f",
+        "id": "22ae2583-8551-507a-a597-5e9977955752",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -588,12 +646,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 10.0
+          "value": 8.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -601,9 +659,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "9ac0a7d7-8126-587f-b7a1-60232070532c",
+        "id": "b0cbce5a-6cf1-5c69-b8dd-10c887a3502e",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -613,12 +671,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 12.0
+          "value": 14.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -626,9 +684,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "55b883b0-ff21-53fe-901b-f972fa140fd8",
+        "id": "5bd11ed9-6bab-5262-8358-d855f7f1cc74",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -638,12 +696,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 3000.0
+          "value": 4000.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -651,9 +709,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "362a1386-2a2c-5a1d-ba53-a7ac04a4298e",
+        "id": "ddfe45cf-5d92-57ff-962b-ab4d491caa69",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -666,9 +724,9 @@
           "value": 250000.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -676,9 +734,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "f38c701d-5f46-513b-ad6d-a8ced70a5726",
+        "id": "c537acf5-f9eb-54ad-b4ec-99e7eec55e22",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -688,12 +746,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 40.0
+          "value": 35.0
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -701,9 +759,9 @@
     {
       "resource": {
         "resourceType": "Observation",
-        "id": "246a43aa-cd58-5cfb-b6c7-486beddb1215",
+        "id": "f66416a5-d97d-5952-8e94-859ed4dde2a8",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2020-06-01T10:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -713,12 +771,12 @@
           ]
         },
         "valueQuantity": {
-          "value": 1.4
+          "value": 1.1
         },
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -726,7 +784,7 @@
     {
       "resource": {
         "resourceType": "DiagnosticReport",
-        "id": "0bf33f65-881c-53c6-8fbf-450658675ba6",
+        "id": "bab962a0-5231-5865-8bd8-73a9867c0d02",
         "status": "final",
         "effectiveDateTime": "2020-06-01T09:00:00-06:00",
         "code": {
@@ -739,9 +797,9 @@
         },
         "conclusion": "Normal",
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }
@@ -749,7 +807,7 @@
     {
       "resource": {
         "resourceType": "DiagnosticReport",
-        "id": "078ace38-8612-5141-8dc5-ad3e8a482318",
+        "id": "c6eb9642-836a-59e2-b86f-5a16f4b38c2a",
         "status": "final",
         "effectiveDateTime": "2020-06-01T09:00:00-06:00",
         "code": {
@@ -762,9 +820,9 @@
         },
         "conclusion": "Normal",
         "subject": {
-          "type": "Patient",
+          "reference": "Patient/94296005-b7b2-5a13-a2c0-641d8ac2f1bd",
           "identifier": {
-            "value": "3d0439f7-2751-5c5d-8f1f-eda0be2de9fc"
+            "value": "94296005-b7b2-5a13-a2c0-641d8ac2f1bd"
           }
         }
       }

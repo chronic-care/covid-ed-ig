@@ -21,10 +21,16 @@ include COVID_19_Concepts version '1.0.0' called CC
 
 // # Parameters #
 
-// 12 months for test data, use '24 hours' in production?
+/*
+ * TODO For test data with 2 hour intervals of data, could create a test scenario driver that
+ *      runs CQL with progressively greater "current" date, 2 hour increments.
+ */
+
+// 12 months for test data, use '24 hours' as default in production?
+// Or, get current, active (?) Patient Encounter(s) and find Observations associated with those Encounters
 parameter VitalSignsLookbackPeriod default 12 months
 
-// 12 months for test data, use '2 days' in production?
+// 12 months for test data, use '2 days' as default in production?
 parameter LabResultsLookbackPeriod default 12 months
 
 // # CDS logic #
@@ -77,7 +83,9 @@ define "Last Heart Rate value":
   C3F.QuantityValue("Last Heart Rate")
 
 define "Heart Rate Observations":
-  C3F.Verified([Observation: CC."Heart rate"])
+  C3F.ObservationLookBack(
+    C3F.Verified([Observation: CC."Heart rate"]),
+    VitalSignsLookbackPeriod)
 
 define "Last SBP":
   C3F.MostRecent("Systolic Blood Pressure Readings")
@@ -86,7 +94,9 @@ define "Last SBP value":
   C3F.QuantityValue("Last SBP")
 
 define "Systolic Blood Pressure Readings":
-  C3F.Verified([Observation: CC."Systolic blood pressure"])
+  C3F.ObservationLookBack(
+    C3F.Verified([Observation: CC."Systolic blood pressure"]),
+    VitalSignsLookbackPeriod)
 
 // Use the following if Systolic and Diastolic are combined as components within one Observation.
 /*
@@ -104,15 +114,17 @@ define "Systolic Blood Pressure Readings":
 define "Last O2 Saturation":
   C3F.MostRecent("O2 Saturation Observations")
 
-define "Last O2 Saturation value":
-  C3F.QuantityValue("Last O2 Saturation").value
+define "Last O2 Saturation percent":
+  Round(C3F.QuantityValue("Last O2 Saturation").value * 100)
 
-// TODO lowest in what period?  24 hours before last value?
-define "Lowest O2 Saturation value":
-  C3F.LowestObservation("O2 Saturation Observations").value
+// TODO lowest in what period?  24 hours before last value?  In current Encounter(s)?
+define "Lowest O2 Saturation percent":
+  Round(C3F.LowestObservation("O2 Saturation Observations").value * 100)
 
 define "O2 Saturation Observations":
-  C3F.Verified([Observation: CC."Oxygen saturation"])
+  C3F.ObservationLookBack(
+    C3F.Verified([Observation: CC."Oxygen saturation"]),
+    VitalSignsLookbackPeriod)
 
 define "Last Respiratory Rate":
   C3F.MostRecent("Respiratory Rate Observations")
@@ -121,7 +133,9 @@ define "Last Respiratory Rate value":
   C3F.QuantityValue("Last Respiratory Rate").value
 
 define "Respiratory Rate Observations":
-  C3F.Verified([Observation: CC."Respiratory rate"])
+  C3F.ObservationLookBack(
+    C3F.Verified([Observation: CC."Respiratory rate"]),
+    VitalSignsLookbackPeriod)
 
 define "Last O2 Flow Rate":
   C3F.MostRecent("O2 Flow Rate Observations")
@@ -130,13 +144,9 @@ define "Last O2 Flow Rate value":
   C3F.QuantityValue("Last O2 Flow Rate").value
 
 define "O2 Flow Rate Observations":
-  C3F.Verified([Observation: CC."Inhaled oxygen flow rate"])
-
-define "Vital Signs Measurement Period":
-	LookBackInterval(VitalSignsLookbackPeriod)
-
-define function LookBackInterval(LookBack System.Quantity):
-  Interval[Now() - LookBack, Now()]
+  C3F.ObservationLookBack(
+    C3F.Verified([Observation: CC."Inhaled oxygen flow rate"]),
+    VitalSignsLookbackPeriod)
 
 /*
 * Calculate qCSI
@@ -146,8 +156,8 @@ define "qCSI Score":
   "O2 Saturation Score" + "Respiratory Rate Score" + "O2 Flow Rate Score"
 
 define "O2 Saturation Score":
-  if "Lowest O2 Saturation value" between 89 and 92 then 2
-  else if "Lowest O2 Saturation value" <= 88 then 5
+  if "Lowest O2 Saturation percent" between 89 and 92 then 2
+  else if "Lowest O2 Saturation percent" <= 88 then 5
   else 0
 
 define "Respiratory Rate Score":
@@ -155,6 +165,7 @@ define "Respiratory Rate Score":
   else if "Last Respiratory Rate value" >= 29 then 2
   else 0
 
+// TODO is flow rate always an integer value?
 define "O2 Flow Rate Score":
   if "Last O2 Flow Rate value" between 3 and 4 then 4
   else if "Last O2 Flow Rate value" > 4 then 5
@@ -180,7 +191,7 @@ define "Is Critical Risk":
 
 define "Is Severe Risk":
   if not "Is Critical Risk"
-    and ("Lowest O2 Saturation value" <= 88
+    and ("Lowest O2 Saturation percent" <= 88
       or "Last O2 Flow Rate value" >= 5
       or "qCSI Score" between 6 and 8)
     then true
@@ -189,7 +200,7 @@ define "Is Severe Risk":
 define "Is Moderate Risk":
   if not "Is Severe Risk" and not "Is Critical Risk"
     and ("Last Heart Rate value" >= 121
-      or "Lowest O2 Saturation value" between 89 and 92
+      or "Lowest O2 Saturation percent" between 89 and 92
       or "Last Respiratory Rate value" >= 29
       or "Last O2 Flow Rate value" between 3 and 4
       or "qCSI Score" between 3 and 5)
@@ -208,7 +219,7 @@ define "Is Mild At Risk":
 define "Is Mild Low Risk":
   if not "Is Severe Risk" and not "Is Critical Risk" and not "Is Moderate Risk" and not "Is Mild At Risk"
     and "Last Heart Rate value" <= 99
-    and "Lowest O2 Saturation value" >= 93
+    and "Lowest O2 Saturation percent" >= 93
     and "Last Respiratory Rate value" <= 22
     and "O2 Flow Rate Observations" is null
     and "qCSI Score" = 0
