@@ -47,7 +47,7 @@ context Patient
 define "Age 60 or older":
   AgeInYears() >= 60
 
-define "Patient is male":
+define "Patient is Male":
   Patient.gender = 'male'
 
 define "Patient is Black":
@@ -212,7 +212,8 @@ define "Is Mild At Risk":
     and ("Last Heart Rate value" between 100 and 120
       or "Last Respiratory Rate value" between 23 and 28
       or "Last O2 Flow Rate value" between 1 and 2
-      or "qCSI Score" between 1 and 2)
+      or "qCSI Score" between 1 and 2
+      or "Risk Factors count" >= 2)
     then true
   else false
 
@@ -223,14 +224,49 @@ define "Is Mild Low Risk":
     and "Last Respiratory Rate value" <= 22
     and "O2 Flow Rate Observations" is null
     and "qCSI Score" = 0
+    and "Risk Factors count" between 0 and 1
     then true
   else false
+
+/*
+ * Assess Risk Factors
+ */
+
+define "Risk Factors count":
+  (if "Patient is Male" then 1 else 0)
+    + (if "Patient is Black" then 1 else 0)
+    + (if "Age 60 or older" then 1 else 0)
+    + (if "Has Hypertension Risk Factor" then 1 else 0)
+    + (if "Has Malignancy Risk Factor" then 1 else 0)
+    + (if "Has Renal Disease Risk Factor" then 1 else 0)
+    // TODO remaining condition risks
+
+define "All Active Conditions":
+  C3F.Confirmed(C3F.ActiveOrRecurring([Condition]))
+
+// TODO Include remaining risk conditions based on value sets.
+// TODO LT Care Resident
+
+define "Has Hypertension Risk Factor":
+  Count("All Active Conditions" C
+    where C.code in CC."Hypertension Codes") > 0
+
+define "Has Malignancy Risk Factor":
+  Count("All Active Conditions" C
+    where C.code in CC."Malignancy Codes") > 0
+
+define "Has Renal Disease Risk Factor":
+  Count("All Active Conditions" C
+    where C.code in CC."Renal Disease Codes") > 0
 
 /*
  * Assess Symptoms
  */
 
-define "All active conditions":
-  C3F.Confirmed(C3F.ActiveOrRecurring([Condition]))
+// TODO Persistent dyspnea, Hemoptysis, Altered LOC
 
-// TODO select risk conditions for Covid based on value sets.
+/*
+ * Diagnostic Testing
+ */
+
+// TODO Retrieve and evaluate lab results

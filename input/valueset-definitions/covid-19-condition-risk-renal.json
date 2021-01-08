@@ -1,0 +1,46 @@
+{
+  "resourceType": "ValueSet",
+  "id": "covid-19-condition-risk-renal",
+  "url": "http://fhir.logicahealth.org/covid19/ValueSet/covid-19-condition-risk-renal",
+  "version": "0.5.0",
+  "name": "COVID19RiskFactorRenal",
+  "title": "COVID-19 Risk Factor Renal Conditions Value Set",
+  "status": "active",
+  "date": "2021-01-07T20:12:55+00:00",
+  "publisher": "Logica",
+  "contact": [
+    {
+      "name": "Logica",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://logicahealth.org/"
+        }
+      ]
+    }
+  ],
+  "description": "Patients with these underlying medical conditions might be at higher risk for severe illness from COVID-19.",
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          {
+            "code": "90708001",
+            "display": "Hypertensive disorder, systemic arterial (disorder)"
+          }
+        ]
+      },
+			{
+				"system": "http://snomed.info/sct",
+				"filter": [
+					{
+						"property": "concept",
+						"op": "is-a",
+						"value": "90708001"
+					}
+				]
+			}
+    ]
+  }
+}

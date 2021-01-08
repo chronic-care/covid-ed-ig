@@ -8,13 +8,13 @@ codesystem "Race": 'urn:oid:2.16.840.1.113883.6.238'
 
 // ## Value sets ##
 
-// Value sets not available in VSAC, included via expanded FHIR ValueSet resources
-
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.2074.1.1.3/expansion)
 valueset "Race Category": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.2074.1.1.3'
 
-// [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.464.1003.104.12.1016/expansion)
-valueset "Hypertension": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.104.12.1016'
+// Value sets not available in VSAC, included via expanded FHIR ValueSet resources
+valueset "Hypertension Codes": 'http://fhir.logicahealth.org/covid19/ValueSet/covid-19-condition-risk-hypertension'
+valueset "Malignancy Codes": 'http://fhir.logicahealth.org/covid19/ValueSet/covid-19-condition-risk-malignancy'
+valueset "Renal Disease Codes": 'http://fhir.logicahealth.org/covid19/ValueSet/covid-19-condition-risk-renal'
 
 // ## Individual codes ##
 
