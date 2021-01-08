@@ -14,8 +14,6 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1' called FHIRHelpers
 // The CDS Connect Commons for FHIRv400 library provides functions representing commonly used CDS logic and patterns.
 include CDS_Connect_Commons_for_FHIRv400 version '1.0.2' called C3F
-// The CDS_Reporting library provides common functions for summarizing and reporting clinical data
-include CDS_Reporting_FHIRv400 version '1.0.0' called RPT
 // The COVID-19 Concepts library provides terminology concepts used to identify data elements throughout the artifact.
 include COVID_19_Concepts version '1.0.0' called CC
 
