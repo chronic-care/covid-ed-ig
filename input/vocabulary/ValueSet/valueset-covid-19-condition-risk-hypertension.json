@@ -1,11 +1,34 @@
 {
     "resourceType": "ValueSet",
     "language": "en",
-    "url": "http://fhir.logicahealth.org/covid19/ValueSet/covid-19-condition-risk-hypertension",
+    "url": "http://logicahealth.org/fhir/uv/contentig/ValueSet/covid-19-condition-risk-hypertension",
     "version": "0.5.0",
     "name": "COVID19RiskFactorHypertension",
     "title": "COVID-19 Risk Factor Hypertension Value Set",
     "status": "active",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "concept": [
+            {
+              "code": "38341003",
+              "display": "Hypertensive disorder, systemic arterial (disorder)"
+            }
+          ]
+        },
+  			{
+  				"system": "http://snomed.info/sct",
+  				"filter": [
+  					{
+  						"property": "concept",
+  						"op": "is-a",
+  						"value": "38341003"
+  					}
+  				]
+  			}
+      ]
+    },
     "expansion": {
         "identifier": "77b1bca6-c375-4915-8584-b7ced1fb9625",
         "timestamp": "2021-01-09T03:25:48+10:00",

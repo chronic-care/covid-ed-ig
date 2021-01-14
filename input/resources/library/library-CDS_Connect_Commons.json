@@ -1,0 +1,23 @@
+{
+  "resourceType": "Library",
+  "id": "CDS_Connect_Commons",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "cqf-tooling"
+    }
+  } ],
+  "name": "CDS_Connect_Commons",
+  "title": "CQL Library - Common Logic for CDS",
+  "status": "active",
+  "experimental": true,
+  "type": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/library-type",
+      "code": "logic-library"
+    } ]
+  },
+  "content": [ {
+    "id": "ig-loader-CDS_Connect_Commons_for_FHIRv400.cql"
+  } ]
+}

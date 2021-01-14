@@ -1,0 +1,23 @@
+{
+  "resourceType": "Library",
+  "id": "COVID_19_ED_Severity",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "cqf-tooling"
+    }
+  } ],
+  "name": "COVID_19_ED_Severity",
+  "title": "CQL Library - COVID-19 ED Severity Classification and Disposition Logic",
+  "status": "active",
+  "experimental": true,
+  "type": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/library-type",
+      "code": "logic-library"
+    } ]
+  },
+  "content": [ {
+    "id": "ig-loader-COVID_19_ED_Severity_FHIRv400.cql"
+  } ]
+}

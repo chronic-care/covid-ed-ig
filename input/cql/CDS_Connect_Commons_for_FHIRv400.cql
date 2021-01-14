@@ -61,6 +61,7 @@ define function PeriodToInterval(period FHIR.Period):
  * @param quantity - a FHIR Quantity
  * @returns {System.Interval} a CQL Interval or null if null was passed in
  */
+/*
 define function QuantityToInterval(quantity FHIR.Quantity):
   if quantity is null then null else
     case quantity.comparator.value
@@ -87,7 +88,7 @@ define function QuantityToInterval(quantity FHIR.Quantity):
       else
         Interval[FHIRHelpers.ToQuantity(quantity), FHIRHelpers.ToQuantity(quantity)]
     end
-
+*/
 
 /**
  * Converts a FHIR Range to a CQL Interval.  FHIRHelpers provides a function for this, but
@@ -399,40 +400,6 @@ define function ServiceRequestLookBack(ServiceRequestList List<ServiceRequest>, 
 // -------------------------------------------------- MEDICATIONS ------------------------------------------------------
 
 /**
- * Filters MedicationStatements by a concept rather than by a ValueSet.  In CQL 1.3, this is built into the retrieve,
- * but for backwards compatibility, we keep this query where clause as an option.
- * @param Koncept - the concept to filter on (intentionally mispelled to avoid naming clashes)
- * @returns {List<MedicationStatement>} a list of MedicationStatement matching the concept, or null if null was passed in
- */
-define function MedicationStatementsByConcept(Koncept System.Concept):
-  [MedicationStatement] M where FHIRHelpers.ToConcept(M.medication as FHIR.CodeableConcept) ~ Koncept
-
-/**
- * Filters MedicationRequests by a concept rather than by a ValueSet.  In CQL 1.3, this is built into the retrieve,
- * but for backwards compatibility, we keep this query where clause as an option.
- * @param Koncept - the concept to filter on (intentionally mispelled to avoid naming clashes)
- * @returns {List<MedicationRequest>} a list of MedicationRequests matching the concept, or null if null was passed in
- */
-define function MedicationRequestsByConcept(Koncept System.Concept):
-  [MedicationRequest] M where FHIRHelpers.ToConcept(M.medication as FHIR.CodeableConcept) ~ Koncept
-
-/**
- * Medications that are active, according to a statement, but not necessarily verified via a prescription.  For example,
- * medications that a patient has self-reported to be taking.  This may, however, also represent medications that are
- * expected to be active after providing a prescription (e.g., clinician-reported). In FHIR R4, this is reflected by
- * MedicationStatement with status 'active' and no end date or an end date in the future.
- * TODO: Rename to Active once the execution engine supports overloaded functions.
- * @see http://hl7.org/fhir/R4/valueset-medication-statement-status.html
- * @param MedList - a list of MedicationStatements
- * @returns {List<MedicationStatement>} a list of active medication statements, or null if null was passed in
- */
-define function ActiveMedicationStatement(MedList List<MedicationStatement>):
-  MedList M
-    let EffectivePeriod: PeriodToInterval(M.effective as FHIR.Period)
-    where M.status.value = 'active'
-      and (end of EffectivePeriod is null or end of EffectivePeriod after Now())
-
-/**
 * Medication requests that are active.  In FHIR R4, this is reflected by MedicationRequest with status 'active'.
 * Note that in R4, the MedicationRequest Boundaries and Relationships now says: "When reporting on the usage of
 * a medication by a patient, the MedicationStatement resource should be used." It also indicates that:
@@ -464,22 +431,6 @@ define function ActiveOrCompletedMedicationRequest(MedList List<MedicationReques
       or M.status.value = 'completed'
 
 /**
- * Medications that are active or completed, according to a statement, but not necessarily verified via a prescription.
- * For example, medications that a patient has self-reported to be taking.  This may, however, also represent
- * medications that are expected to be active after providing a prescription (e.g., clinician-reported).  In FHIR R4,
- * this is reflected by MedicationStatement with status 'active' or 'completed'.
- * TODO: Rename to ActiveOrCompleted once the execution engine supports overloaded functions.
- * @see http://hl7.org/fhir/R4/valueset-medication-statement-status.html
- * @param MedList - a list of MedicationStatements
- * @returns {List<MedicationStatement>} a list of active or completed medication statements, or null if null was passed
- *   in
- */
-define function ActiveOrCompletedMedicationStatement(MedList List<MedicationStatement>):
-  MedList M
-    where M.status.value = 'active'
-      or M.status.value = 'completed'
-
-/**
 * Medication requests that are active, completed, or stopped, according to a prescription.  In FHIR R4, this is
 * reflected by MedicationRequest with status 'active', 'completed', or 'stopped'. See the note above
 * (in ActiveMedicationRequest) for more nuance regarding MedicationRequest vs. MedicationStatement.
@@ -506,20 +457,6 @@ define function MedicationRequestLookBack(MedList List<MedicationRequest>, LookB
     let LookBackInterval: Interval[Now() - LookBack, Now()]
     where M.authoredOn.value in LookBackInterval
     // DSTU2 also checked the dateEnded property of MedicationOrder, but this doesn't exist for MedicationRequest
-
-/**
-* Medication Statements that are issued in the specified "look back" period.
-* TODO: Rename to LookBack once the execution engine supports overloaded functions.
-* @param MedList - a list of Medications
-* @param LookBack - the lookback period for when the medication was prescribed
-* @returns {List<MedicationStatement>} a list of Medications prescribed in the look back period, or null if null
-* was passed in
-*/
-define function MedicationStatementLookBack(MedList List<MedicationStatement>, LookBack System.Quantity):
-  MedList M
-    let LookBackInterval: Interval[Now() - LookBack, Now()]
-    where (M.effective as FHIR.dateTime).value in LookBackInterval
-      or PeriodToInterval(M.effective as FHIR.Period) overlaps LookBackInterval
 
 // -------------------------------------------------- ENCOUNTERS ------------------------------------------------------
 

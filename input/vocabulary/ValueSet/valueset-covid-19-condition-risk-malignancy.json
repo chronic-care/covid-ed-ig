@@ -1,11 +1,34 @@
 {
     "resourceType": "ValueSet",
     "language": "en",
-    "url": "http://fhir.logicahealth.org/covid19/ValueSet/covid-19-condition-risk-malignancy",
+    "url": "http://logicahealth.org/fhir/uv/contentig/ValueSet/covid-19-condition-risk-malignancy",
     "version": "0.5.0",
     "name": "COVID19RiskFactorMalignancy",
     "title": "COVID-19 Risk Factor Malignancy Value Set",
     "status": "active",
+    "compose": {
+      "include": [
+        {
+          "system": "http://snomed.info/sct",
+          "concept": [
+            {
+              "code": "363346000",
+              "display": "Malignant neoplastic disease (disorder)"
+            }
+          ]
+        },
+  			{
+  				"system": "http://snomed.info/sct",
+  				"filter": [
+  					{
+  						"property": "concept",
+  						"op": "is-a",
+  						"value": "363346000"
+  					}
+  				]
+  			}
+      ]
+    },
     "expansion": {
         "identifier": "07285b96-ca5c-4c91-abbc-2fc190356984",
         "timestamp": "2021-01-09T02:31:24+10:00",

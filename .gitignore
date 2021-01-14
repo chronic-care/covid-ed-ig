@@ -3,10 +3,12 @@
 temp
 template
 output
+bundles
 
 # Don't commit this because it's so large #
 ###########################################
-/input-cache/org.hl7.fhir.publisher.jar
+#/input-cache/org.hl7.fhir.publisher.jar
+/input-cache
 
 # Windows generated files #
 ###########################

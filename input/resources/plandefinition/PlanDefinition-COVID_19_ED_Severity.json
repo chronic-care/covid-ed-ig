@@ -1,0 +1,107 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "COVID_19_ED_Severity",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition"
+    ]
+  },
+  "url": "http://logicahealth.org/fhir/uv/contentig/PlanDefinition/COVID_19_ED_Severity",
+  "identifier": [
+    {
+      "use": "official",
+      "value": "PlanDefinition_COVID_19_ED_Severity"
+    }
+  ],
+  "version": "0.1.0",
+  "name": "PlanDefinition_COVID_19_ED_Severity",
+  "title": "PlanDefinition - ACEP COVID-19 ED Severity Classification and Disposition Logic",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2021-01-14",
+  "publisher": "HL7 International - [Some] Work Group",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://hl7.org/Special/committees/[something]"
+        }
+      ]
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "001"
+        }
+      ]
+    }
+  ],
+  "copyright": "© Logica Health 2020+.",
+  "library": [
+    "http://logicahealth.org/fhir/uv/contentig/Library/COVID_19_ED_Severity"
+  ],
+  "action": [
+    {
+      "title": "COVID-19 ED Severity Classification and Disposition",
+      "description": "For adults presenting to the Emergency Department (ED) with possible or confirmed COVID-19, provide a Clinical Practice Guideline and decision support tool that helps classify patient disease severity and give guidance on appropriate disposition. This tool will be accessible by emergency physicians in a workflow-friendly manner to assist in management of their patients.",
+      "documentation": [
+        {
+          "type": "documentation",
+          "display": "ACEP COVID-19 ED Severity Classification and Disposition",
+          "url": "https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf"
+        }
+      ],
+      "trigger": [
+        {
+          "type": "named-event",
+          "name": "patient-view"
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql.identifier",
+            "expression": "Has Severity Classification"
+          }
+        }
+      ],
+      "dynamicValue": [
+        {
+          "path": "action.description",
+          "expression": {
+            "language": "text/cql.identifier",
+            "expression": "Get Severity Card Detail"
+          }
+        },
+        {
+          "path": "action.title",
+          "expression": {
+            "language": "text/cql.identifier",
+            "expression": "Get Severity Card Summary"
+          }
+        },
+        {
+          "path": "action.extension",
+          "expression": {
+            "language": "text/cql.identifier",
+            "expression": "Get Severity Card Indicator"
+          }
+        }
+      ]
+    }
+  ]
+}

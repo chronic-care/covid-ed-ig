@@ -39,8 +39,8 @@ context Patient
  * Demographics
  */
 
- define "Patient Age":
-   AgeInYears()
+define "Patient Age":
+ AgeInYears()
 
 define "Age 60 or older":
   AgeInYears() >= 60
@@ -75,12 +75,12 @@ define "Patient Race Text":
  */
 
 define "Last Heart Rate":
-  C3F.MostRecent("Heart Rate Observations")
+  C3F.MostRecent(HeartRateObservations)
 
 define "Last Heart Rate value":
   C3F.QuantityValue("Last Heart Rate")
 
-define "Heart Rate Observations":
+define HeartRateObservations:
   C3F.ObservationLookBack(
     C3F.Verified([Observation: CC."Heart rate"]),
     VitalSignsLookbackPeriod)
@@ -268,3 +268,21 @@ define "Has Renal Disease Risk Factor":
  */
 
 // TODO Retrieve and evaluate lab results
+
+/*
+ * Expressions for CDS Hook cards.
+ */
+
+// Used to trigger presentation of result
+define "Has Severity Classification":
+  "Severity Classification" is not null
+
+define "Get Severity Card Summary":
+  "Severity Classification" + ' COVID-19 Severity'
+
+define "Get Severity Card Detail":
+  'COVID-19 severity classification is ' + "Severity Classification" + ' with a qCSI score of ' + ToString("qCSI Score")
+
+define "Get Severity Card Indicator":
+  if "Is Critical Risk" then 'critical'
+  else 'warning'

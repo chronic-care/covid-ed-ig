@@ -3,7 +3,14 @@
   <a name="intro"> </a>
   <h3>Introduction</h3>
 	<p>
-    What is this IG about (in patient/non-expert friendly terms).
+    This implementation guide describes Clinical Decsion Support (CDS) for the American College of Emergency Physicians (ACEP)
+    Emergency Department COVID-19 Severity Classification guideline. This logic represents an initial Minimum Viable Product (MVP)
+    that implements a subset of the logic defined by ACEP. Refer to the <a href="https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf">ACEP Guideline</a>.
+  </p>
+  <p>
+    This MVP implementation is intended to align with, and eventually be replaced by, an equivalent logic library with substantially
+    expanded functionality that is generated from OMG Business Process Modeling (BPM+) decision and case models, using an
+    automated toolchain. Refer to the <a href="https://github.com/OpenCPG">Open Clinical Practice Guidelines</a> GitHub project.
   </p>
 	<a name="technical"> </a>
 	<h3>Technical Overview</h3>
