@@ -22,3 +22,11 @@ Thumbs.db
 # backup files #
 ################
 *.bak
+
+# Ruby Bundler files #
+######################
+/.bundle/
+/vendor/bundle
+
+/node_modules
+.jekyll-cache

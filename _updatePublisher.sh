@@ -32,10 +32,13 @@ done
 
 echo "Checking internet connection"
 case "$OSTYPE" in
-	linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 1000 >/dev/null ;;
-  darwin* )	ping tx.fhir.org -c 1 >/dev/null ;;
+  linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 30 ;;
+  darwin* )	ping tx.fhir.org -c 1 ;;
 	*) echo "unknown: $OSTYPE"; exit 1 ;;
 esac
+
+echo "\$? -ne 0: "
+echo $? -ne 0
 
 if [ $? -ne 0 ] ; then
   echo "Offline (or the terminology server is down), unable to update.  Exiting"
