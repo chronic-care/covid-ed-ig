@@ -1,14 +1,39 @@
 {
   "resourceType": "Library",
-  "id": "COVID_19_Concepts",
-  "extension": [ {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
-    "valueReference": {
-      "reference": "cqf-tooling"
+  "id": "COVID-19-Concepts",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-shareablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-publishablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "shareable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "computable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "publishable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "executable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+      "valueCode": "structured"
     }
-  } ],
+  ],
   "name": "COVID_19_Concepts",
-  "title": "CQL Library - COVID-19 Shared Concepts and Terminology",
+  "title": "COVID-19 Shared Concepts and Terminology",
+  "description": "COVID-19 Shared Concepts and Terminology imported by other CQL logic libraries.",
   "status": "active",
   "experimental": true,
   "type": {

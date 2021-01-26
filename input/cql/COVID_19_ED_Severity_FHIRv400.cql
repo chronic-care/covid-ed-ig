@@ -1,6 +1,6 @@
 // # Introduction
 
-// The Preventive Care logic library supports decision-making on preventive care screening for Prostate Cancer.
+// ACEP COVID-19 ED Severity Classification and Disposition Logic
 
 library COVID_19_ED_Severity_FHIRv400 version '1.0.0'
 
@@ -11,7 +11,7 @@ using FHIR version '4.0.1'
 // # Referenced libraries #
 
 // The FHIRHelpers library provides common functions for simplifying interaction w/ the FHIR R4 data model.
-include FHIRHelpers version '4.0.1' called FHIRHelpers
+include FHIRHelpers version '4.0.1'
 // The CDS Connect Commons for FHIRv400 library provides functions representing commonly used CDS logic and patterns.
 include CDS_Connect_Commons_for_FHIRv400 version '1.0.2' called C3F
 // The COVID-19 Concepts library provides terminology concepts used to identify data elements throughout the artifact.
@@ -68,7 +68,7 @@ define "Patient Race Text":
         return Extension.extension
   )) E
     where E.url = 'text'
-    return E.value)
+    return E.value as FHIR.string)
 
 /*
  * Assess Vital Signs
@@ -246,16 +246,16 @@ define "All Active Conditions":
 // TODO LT Care Resident
 
 define "Has Hypertension Risk Factor":
-  Count("All Active Conditions" C
-    where C.code in CC."Hypertension Codes") > 0
+  exists("All Active Conditions" C
+    where C.code in CC."Hypertension Codes")
 
 define "Has Malignancy Risk Factor":
-  Count("All Active Conditions" C
-    where C.code in CC."Malignancy Codes") > 0
+  exists("All Active Conditions" C
+    where C.code in CC."Malignancy Codes")
 
 define "Has Renal Disease Risk Factor":
-  Count("All Active Conditions" C
-    where C.code in CC."Renal Disease Codes") > 0
+  exists("All Active Conditions" C
+    where C.code in CC."Renal Disease Codes")
 
 /*
  * Assess Symptoms
@@ -268,21 +268,3 @@ define "Has Renal Disease Risk Factor":
  */
 
 // TODO Retrieve and evaluate lab results
-
-/*
- * Expressions for CDS Hook cards.
- */
-
-// Used to trigger presentation of result
-define "Has Severity Classification":
-  "Severity Classification" is not null
-
-define "Get Severity Card Summary":
-  "Severity Classification" + ' COVID-19 Severity'
-
-define "Get Severity Card Detail":
-  'COVID-19 severity classification is ' + "Severity Classification" + ' with a qCSI score of ' + ToString("qCSI Score")
-
-define "Get Severity Card Indicator":
-  if "Is Critical Risk" then 'critical'
-  else 'warning'

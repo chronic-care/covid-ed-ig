@@ -1,14 +1,39 @@
 {
   "resourceType": "Library",
-  "id": "CDS_Connect_Commons",
-  "extension": [ {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
-    "valueReference": {
-      "reference": "cqf-tooling"
+  "id": "CDS-Connect-Commons",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-shareablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-publishablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "shareable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "computable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "publishable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "executable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+      "valueCode": "structured"
     }
-  } ],
+  ],
   "name": "CDS_Connect_Commons",
-  "title": "CQL Library - Common Logic for CDS",
+  "title": "Common Logic for CDS",
+  "description": "CQL Common Logic for CDS providing shared helper functions.",
   "status": "active",
   "experimental": true,
   "type": {

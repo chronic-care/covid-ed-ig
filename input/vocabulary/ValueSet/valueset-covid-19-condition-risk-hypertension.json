@@ -1,10 +1,12 @@
 {
     "resourceType": "ValueSet",
+    "id": "covid-19-condition-risk-hypertension",
     "language": "en",
-    "url": "http://logicahealth.org/fhir/uv/contentig/ValueSet/covid-19-condition-risk-hypertension",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-hypertension",
     "version": "0.5.0",
     "name": "COVID19RiskFactorHypertension",
     "title": "COVID-19 Risk Factor Hypertension Value Set",
+    "description": "COVID-19 Risk Factor Hypertension Value Set",
     "status": "active",
     "compose": {
       "include": [

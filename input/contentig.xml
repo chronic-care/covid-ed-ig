@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Start by finding all references to "contentig" and updating to appropriate text for your IG, including changing realm -->
 <ImplementationGuide xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../input-cache/schemas/R5/fhir-single.xsd">
-  <id value="covid-ed.fhir.uv.contentig"/>
+  <id value="fhir.acep.covid19-ed-r4"/>
 <!--  <extension url="http://hl7.org/fhir/tools/StructureDefinition/igpublisher-spreadsheet">
     <valueString value="resources-spreadsheet.xml"/>
   </extension>-->
-  <url value="http://logicahealth.org/fhir/uv/contentig/ImplementationGuide/covid-ed.fhir.uv.contentig"/>
+  <url value="http://fhir.org/guides/acep/ImplementationGuide/fhir.acep.covid19-ed-r4"/>
   <!-- This version will propagate to all artifacts unless the "propagate-version" extension is overridden -->
   <version value="0.1.0"/>
   <name value="COVID19EDSeverityClassification"/>
   <title value="Emergency Department COVID-19 Severity Classification"/>
   <status value="draft"/>
   <experimental value="false"/>
-  <publisher value="HL7 International - [Some] Work Group"/>
+  <publisher value="Veterans Health Administration (VHA)"/>
   <contact>
     <telecom>
       <!-- Or whatever URL and/or email address(es) are appropriate -->
@@ -20,7 +20,7 @@
       <value value="http://hl7.org/Special/committees/[something]"/>
     </telecom>
   </contact>
-  <description value="A brief description of what ContentIG is about (probably the same text as in your readme)"/>
+  <description value="Implementation guide for an Emergency Department COVID-19 Severity Classification and Disposition guideline defined by the American College of Emergency Physicians (ACEP)"/>
   <jurisdiction>
     <!-- This will drive SNOMED release used -->
     <coding>
@@ -33,17 +33,17 @@
       -->
     </coding>
   </jurisdiction>
-  <packageId value="covid-ed.fhir.uv.contentig"/>
+  <packageId value="fhir.acep.covid19-ed-r4"/>
   <!-- This should be changed to 'not-open-source' or another license if appropriate for non-HL7-published content -->
-  <license value="CC0-1.0"/>
+  <license value="Apache-2.0"/>
   <!-- This is whatever FHIR version(s) the IG artifacts are targeting (not the version of this file, which should always be 'current release') -->
   <fhirVersion value="4.0.1"/>
-  <!-- Use dependsOn to include references to other implementation guides
-  <dependsOn>
-    <packageId value="example.fhir.uv.myig"/>
+  <!-- Use dependsOn to include references to other implementation guides -->
+  <dependsOn id="cpg">
+    <uri value="http://hl7.org/fhir/uv/cpg/ImplementationGuide/hl7.fhir.uv.cpg"/>
+    <packageId value="hl7.fhir.uv.cpg"/>
     <version value="dev"/>
   </dependsOn>
-  -->
   <definition>
     <!-- You don't need to define any groupings.  The IGPublisher will define them for you.  You only need to do so if your IG is 'special' and it's
       inappropriate to use the defaults.  Feel free to provide feedback about the defaults... -->
@@ -63,7 +63,7 @@
       <generation value="html"/>
       <page>
         <nameUrl value="index.html"/>
-        <title value="ContentIG Home Page"/>
+        <title value="COVID-19 ED Severity Classification"/>
         <generation value="html"/>
       </page>
       <page>
@@ -152,5 +152,9 @@
       <value value="true"/>
     </parameter>
   -->
+    <parameter>
+      <code value="path-suppressed-warnings"/>
+      <value value="input/ignoreWarnings.txt"/>
+    </parameter>
   </definition>
 </ImplementationGuide>

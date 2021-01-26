@@ -8,7 +8,7 @@
     that implements a subset of the logic defined by ACEP. Refer to the <a href="https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf">ACEP Guideline</a>.
   </p>
   <p>
-    This MVP implementation is intended to align with, and eventually be replaced by, an equivalent logic library with substantially
+    This MVP implementation is intended to align with an equivalent logic library with
     expanded functionality that is generated from OMG Business Process Modeling (BPM+) decision and case models, using an
     automated toolchain. Refer to the <a href="https://github.com/OpenCPG">Open Clinical Practice Guidelines</a> GitHub project.
   </p>

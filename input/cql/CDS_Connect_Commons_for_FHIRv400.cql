@@ -15,7 +15,7 @@ library CDS_Connect_Commons_for_FHIRv400 version '1.0.2'
 using FHIR version '4.0.1'
 
 // Include the FHIRHelpers library for simplifying interacton w/ the FHIR data model
-include FHIRHelpers version '4.0.1' called FHIRHelpers
+include FHIRHelpers version '4.0.1'
 
 codesystem "AIVERSTATUS": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-verification'
 codesystem "AICLINSTATUS": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical'

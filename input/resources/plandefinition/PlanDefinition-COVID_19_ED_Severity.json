@@ -1,12 +1,26 @@
 {
   "resourceType": "PlanDefinition",
-  "id": "COVID_19_ED_Severity",
+  "id": "COVID-19-ED-Severity",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition"
     ]
   },
-  "url": "http://logicahealth.org/fhir/uv/contentig/PlanDefinition/COVID_19_ED_Severity",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "shareable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "computable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "publishable"
+    }
+  ],
+  "url": "http://fhir.org/guides/acep/PlanDefinition/COVID-19-ED-Severity",
   "identifier": [
     {
       "use": "official",
@@ -14,8 +28,9 @@
     }
   ],
   "version": "0.1.0",
-  "name": "PlanDefinition_COVID_19_ED_Severity",
-  "title": "PlanDefinition - ACEP COVID-19 ED Severity Classification and Disposition Logic",
+  "name": "COVID_19_ED_Severity",
+  "title": "ACEP COVID-19 ED Severity Classification and Disposition",
+  "description": "CDS Hook definitions for ACEP COVID-19 ED Severity Classification and Disposition",
   "type": {
     "coding": [
       {
@@ -27,8 +42,8 @@
   },
   "status": "draft",
   "experimental": true,
-  "date": "2021-01-14",
-  "publisher": "HL7 International - [Some] Work Group",
+  "date": "2021-01-26",
+  "publisher": "Veterans Health Administration (VHA)",
   "contact": [
     {
       "telecom": [
@@ -49,9 +64,9 @@
       ]
     }
   ],
-  "copyright": "© Logica Health 2020+.",
+  "copyright": "© Veterans Health Administration 2020+.",
   "library": [
-    "http://logicahealth.org/fhir/uv/contentig/Library/COVID_19_ED_Severity"
+    "http://fhir.org/guides/acep/Library/COVID-19-ED-Severity-Hooks"
   ],
   "action": [
     {
