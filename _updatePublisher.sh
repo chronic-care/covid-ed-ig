@@ -32,9 +32,9 @@ done
 
 echo "Checking internet connection"
 case "$OSTYPE" in
-	linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 30 >/dev/null ;;
+  linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 30 >/dev/null ;;
   darwin* )	ping tx.fhir.org -c 1 >/dev/null ;;
-	*) echo "unknown: $OSTYPE"; exit 1 ;;
+  *) echo "unknown: $OSTYPE"; exit 1 ;;
 esac
 
 if [ $? -ne 0 ] ; then
