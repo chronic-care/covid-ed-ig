@@ -131,3 +131,21 @@ If you are publishing through [GitHub Actions](https://github.com/features/actio
 ### 7. Completion
 
 If every step was successful, then the `_publishToRepo` script should report that the package was published. You can now check your repository to verify that the new version of the package was published successfully.
+
+## Using the Published NPM Package
+
+Once the IG (implementation guide) has been [published to a package repository](#publishing-as-an-npm-package), it can be imported into your JavaScript application via its package manager.
+
+### Importing from GitHub Packages
+
+You will need:
+
+- [A personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+   - The token will need the `read:packages` and the `repo` permissions
+
+### Importing via NPM
+
+Either:
+
+   - Install from the command line, e.g. `npm install @chronic-care/covid-ed-ig@0.0.5`
+   - Or, add it to your project's `package.json`, e.g. `"@chronic-care/covid-ed-ig": "0.0.5"`
