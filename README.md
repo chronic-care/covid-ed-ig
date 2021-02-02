@@ -74,3 +74,51 @@ The next step in this walkthrough is to build the recommendation logic as expres
 ### Atom CQL Support
 
 To validate and test CQL, use the [Atom CQL Plugin](https://github.com/cqframework/atom_cql_support). Follow the instructions there to install the plugin, then open Atom on the root folder of this  content IG walkthrough.
+
+## Publishing as an NPM Package
+
+The IG can be packaged as an [`npm` package](https://docs.npmjs.com/packages-and-modules) for use in JavaScript applications.
+
+### Setup Before Publishing
+
+Please read the steps carefully before beginning. You may be able to skip many of them if you have already completed the [Setup and Build](#content-ig-walkthrough-setup-and-build) steps above.
+
+Note: Currently only supported for Linux/macOS.
+
+#### 1. Permissions for Publishing
+
+Verify that you are able to publish packages to your target repository. The specific steps will vary depending on where you are publishing the package.
+
+#### 2. Install `jekyll`
+
+1. Install [Ruby 2.X](https://www.ruby-lang.org/en/) if not already installed
+2. `gem install bundler` (installs `bundle` command)
+3. `bundle install` (installs `jekyll`)
+
+#### 3. IG Build
+
+1. Run `_updatePublisher`
+   - Example: `bash _updatePublisher.sh`
+   - Note: The script supports `--force` and `--yes` arguments for forcefully creating the `input-cache` and skipping all prompts, respectively.
+2. Run `_genonce`
+    - Example: `bash _genonce.sh`
+    - Note: You may be able to use the `_gencontinuous` script as an alternative after `_genonce` has been run at least once
+
+#### 4. Install `jsonfile`
+
+1. Install [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if not already installed
+2. `npm install jsonfile`
+
+#### 5. Update the package version
+
+1. Open `library-package.json` and increment the [semver](https://semver.org/) value in the `version` attribute
+    - e.g. `0.0.1` -> `0.0.2`
+
+#### 6. Publication
+
+1. Run the `_publishToRepo` script
+    - e.g. `bash _publishToRepo.sh`
+
+#### 7. Completion
+
+If every step was successful, then the `_publishToRepo` script should report that the package was published. You can now check your repository to verify that the new version of the package was published successfully.
