@@ -83,6 +83,12 @@ The IG can be packaged as an [`npm` package](https://docs.npmjs.com/packages-and
 
 Please read the steps carefully before beginning. You may be able to skip many of them if you have already completed the [Setup and Build](#content-ig-walkthrough-setup-and-build) steps above.
 
+Relevant documentation:
+
+- [Creating and publishing scoped public packages](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages)
+- [Publishing packages using GitHub Actions](https://docs.github.com/en/packages/guides/using-github-packages-with-github-actions)
+- [Configuring NPM for use with GitHub Packages](https://docs.github.com/en/packages/guides/configuring-npm-for-use-with-github-packages)
+
 Note: Currently only supported for Linux/macOS.
 
 #### 1. Permissions for Publishing
