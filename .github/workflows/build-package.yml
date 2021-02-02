@@ -40,7 +40,7 @@ jobs:
 
       - run: gem install bundler
       - run: bundle install # For Jekyll
-      - run: bash _updatePublisher.sh --force --yes
+      - run: bash _updatePublisher.sh --force --yes --skip-ping
       - run: bash _genonce.sh
       - run: npm install jsonfile
       - name: Bump semver of package
