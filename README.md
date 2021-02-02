@@ -81,7 +81,9 @@ The IG can be packaged as an [`npm` package](https://docs.npmjs.com/packages-and
 
 ### Setup Before Publishing
 
-Please read the steps carefully before beginning. You may be able to skip many of them if you have already completed the [Setup and Build](#content-ig-walkthrough-setup-and-build) steps above.
+Please read the steps carefully before beginning.
+
+You may be able to skip down to [Step 4. Install `jsonfile`](#4-install-jsonfile) if you have already completed the [Setup and Build](#content-ig-walkthrough-setup-and-build) steps above.
 
 Relevant documentation:
 
@@ -91,40 +93,41 @@ Relevant documentation:
 
 Note: Currently only supported for Linux/macOS.
 
-#### 1. Permissions for Publishing
+### 1. Permissions for Publishing
 
 Verify that you are able to publish packages to your target repository. The specific steps will vary depending on where you are publishing the package.
 
-#### 2. Install `jekyll`
+If you are publishing through [GitHub Actions](https://github.com/features/actions), you will need:
+
+- [A personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+    - The token will need both the `write:packages` permissions (including the `read:packages`) and most or all of the `repo` permissions
+
+### 2. Install `jekyll`
 
 1. Install [Ruby 2.X](https://www.ruby-lang.org/en/) if not already installed
 2. `gem install bundler` (installs `bundle` command)
 3. `bundle install` (installs `jekyll`)
 
-#### 3. IG Build
+### 3. IG Build
 
-1. Run `_updatePublisher`
-   - Example: `bash _updatePublisher.sh`
-   - Note: The script supports `--force` and `--yes` arguments for forcefully creating the `input-cache` and skipping all prompts, respectively.
-2. Run `_genonce`
-    - Example: `bash _genonce.sh`
-    - Note: You may be able to use the `_gencontinuous` script as an alternative after `_genonce` has been run at least once
+1. Update the IG Publisher: `bash _updatePublisher.sh --force --yes`
+   - `--force` and `--yes` are optional
+2. Generate the IG: `bash _genonce.sh`
 
-#### 4. Install `jsonfile`
+### 4. Install `jsonfile`
 
 1. Install [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if not already installed
 2. `npm install jsonfile`
 
-#### 5. Update the package version
+### 5. Update the package version
 
-1. Open `library-package.json` and increment the [semver](https://semver.org/) value in the `version` attribute
+1. Open `library-package.json` (at project root) and increment the [semver](https://semver.org/) value in the `version` attribute
     - e.g. `0.0.1` -> `0.0.2`
 
-#### 6. Publication
+### 6. Publication
 
-1. Run the `_publishToRepo` script
-    - e.g. `bash _publishToRepo.sh`
+1. Publish to the repository: `bash _publishToRepo.sh`
 
-#### 7. Completion
+### 7. Completion
 
 If every step was successful, then the `_publishToRepo` script should report that the package was published. You can now check your repository to verify that the new version of the package was published successfully.
