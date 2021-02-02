@@ -38,12 +38,17 @@ jobs:
         with:
           ruby-version: '2.7'
 
-      - run: gem install bundler
-      - run: bundle install # For Jekyll
-      - run: bash _updatePublisher.sh --force --yes --skip-ping
-      - run: bash _genonce.sh
-      - run: npm install jsonfile
-      - name: Bump semver of package
+      - name: Install Jekyll
+        run: |
+          gem install bundler
+          bundle install
+      - name: Update Publisher executable
+        run: bash _updatePublisher.sh --force --yes --skip-ping
+      - name: Generate Implementation Guide (IG)
+        run: bash _genonce.sh
+      - name: Install jsonfile package
+        run: npm install jsonfile
+      - name: Publish to Package Repository
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash _publishToRepo.sh
