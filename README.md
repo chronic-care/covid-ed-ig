@@ -147,5 +147,7 @@ You will need:
 
 Either:
 
-   - Install from the command line, e.g. `npm install @chronic-care/covid-ed-ig@0.0.5`
-   - Or, add it to your project's `package.json`, e.g. `"@chronic-care/covid-ed-ig": "0.0.5"`
+- Install from the command line, e.g. `npm install @chronic-care/covid-ed-ig@latest`
+- Or, add it to your project's `package.json`, e.g. `"@chronic-care/covid-ed-ig": "latest"`
+
+You can replace `latest` in either of the above with a specific version number (e.g. `0.0.5`) if desired.
