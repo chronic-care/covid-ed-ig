@@ -2,7 +2,8 @@ name: Build and Publish Packaged Release
 
 on:
   release:
-    types: [ published ]
+    # TODO: Which one or so of these do we need, specifically?
+    types: [ created, published, released ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
