@@ -40,4 +40,4 @@ jobs:
       - name: Publish to Package Repository
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash _publishToRepo.sh ${{ github.ref }}
+        run: bash _publishToRepo.sh --release-version ${{ github.ref }}

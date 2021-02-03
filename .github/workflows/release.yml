@@ -15,7 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Release
-        uses: actions/checkout@v2
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -24,4 +25,4 @@ jobs:
           draft: false
           prerelease: false
           body: |
-            Release ${{ github.ref }}
+            Tagged release ${{ github.ref }}

@@ -4,7 +4,7 @@ packageVersion=false
 
 while [ "$#" -gt 0 ]; do
     case $1 in
-    --package-version) packageVersion="$2" ;;
+    --release-version) packageVersion="$2" ;;
     esac
     shift
 done
