@@ -17,13 +17,13 @@ increase_patch_number () {
 
 get_latest_version_tag () {
   local latest_version_tag=$(git describe --tags --match="v*")
-  latest_version_tag=`echo $latest_version_tag | cut -f1-2 -d'-'`
+  latest_version_tag=`echo $latest_version_tag | cut -f1 -d'-'`
   echo $latest_version_tag
 }
 
 create_git_tag () {
-  echo git tag $1 $2
-  echo git push origin $1
+  git tag $1 $2
+  git push origin $1
 }
 
 current_version_tag=$(get_latest_version_tag)
