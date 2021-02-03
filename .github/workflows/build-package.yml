@@ -1,10 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  release:
+    types: [ created ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,17 +27,17 @@ jobs:
         with:
           ruby-version: '2.7'
 
-      - name: Install Jekyll
-        run: |
-          gem install bundler
-          bundle install
-      - name: Update Publisher executable
-        run: bash _updatePublisher.sh --force --yes --skip-ping
-      - name: Generate Implementation Guide (IG)
-        run: bash _genonce.sh
-      - name: Install jsonfile package
-        run: npm install jsonfile
-      - name: Publish to Package Repository
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash _publishToRepo.sh
+#      - name: Install Jekyll
+#        run: |
+#          gem install bundler
+#          bundle install
+#      - name: Update Publisher executable
+#        run: bash _updatePublisher.sh --force --yes --skip-ping
+#      - name: Generate Implementation Guide (IG)
+#        run: bash _genonce.sh
+#      - name: Install jsonfile package
+#        run: npm install jsonfile
+#      - name: Publish to Package Repository
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash _publishToRepo.sh ${{ github.ref }}
