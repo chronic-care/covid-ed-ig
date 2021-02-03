@@ -1,4 +1,4 @@
-name: Create Release from Tag
+name: Tag with New Patch Version
 
 on:
   push:
@@ -15,4 +15,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Tag with Incremented Patch Version
         id: tag_with_incremented_patch_version
-        run: bash ./scripts/tag_git_dev.sh
+        run: |
+          echo "Fetching git tags"
+          git fetch --prune --unshallow --tags
+          echo "Tagging with incremented patch number"
+          bash ./scripts/tag_git_dev.sh
