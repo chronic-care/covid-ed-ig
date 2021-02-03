@@ -30,7 +30,7 @@ const libraryConfig = jsonfile.readFileSync(libraryPackageJsonPath)
 console.log(`Updating ${libraryPackageJsonPath}`)
 
 config.name = libraryConfig.name
-config.version = libraryConfig.version
+config.version = packageTag
 config.dependencies = {}
 
 jsonfile.writeFileSync(packageJsonPath, config, { spaces: 2 })
