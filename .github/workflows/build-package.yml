@@ -2,17 +2,46 @@ name: Build and Publish Packaged Release
 
 on:
   push:
-    tags:
-      - 'v*'
-  create:
-    tags:
-      - 'v*'
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
+  tag-with-incremented-patch-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Tag with Incremented Patch Version
+        id: tag-with-incremented-patch-version
+        run: |
+          echo "Fetching git tags"
+          git fetch --prune --unshallow --tags
+          echo "Tagging with incremented patch number"
+          bash ./scripts/tag_git_dev.sh
+
+  create-release:
+    needs: tag-with-incremented-patch-version
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+          body: |
+            Tagged release ${{ github.ref }}
+
   build-and-publish:
+    needs: tag-with-incremented-patch-version
     runs-on: ubuntu-latest
 
     steps:
