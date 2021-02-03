@@ -11,6 +11,7 @@ done
 
 tar -zxf ./output/package.tgz -C ./output
 node updatePackage.js --release-tag $releaseTag
+cp ./output/*.cql ./output/package/ # Copy over original CQL
 cp ./output/*-2.json ./output/package/ # Copy over original json+eml
 node localizeLibraryPaths.js ./output/package/*-2.json
 echo "registry=https://npm.pkg.github.com/chronic-care" >> ./output/package/.npmrc
