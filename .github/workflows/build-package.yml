@@ -37,7 +37,7 @@ jobs:
 #        run: bash _genonce.sh
 #      - name: Install jsonfile package
 #        run: npm install jsonfile
-#      - name: Publish to Package Repository
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to Package Repository
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash _publishToRepo.sh ${{ github.ref }}
