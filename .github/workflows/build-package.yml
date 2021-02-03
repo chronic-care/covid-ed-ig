@@ -28,16 +28,16 @@ jobs:
         with:
           ruby-version: '2.7'
 
-#      - name: Install Jekyll
-#        run: |
-#          gem install bundler
-#          bundle install
-#      - name: Update Publisher executable
-#        run: bash _updatePublisher.sh --force --yes --skip-ping
-#      - name: Generate Implementation Guide (IG)
-#        run: bash _genonce.sh
-#      - name: Install jsonfile package
-#        run: npm install jsonfile
+      - name: Install Jekyll
+        run: |
+          gem install bundler
+          bundle install
+      - name: Update Publisher executable
+        run: bash _updatePublisher.sh --force --yes --skip-ping
+      - name: Generate Implementation Guide (IG)
+        run: bash _genonce.sh
+      - name: Install NPM modules
+        run: npm ci
       - name: Publish to Package Repository
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
