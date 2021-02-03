@@ -8,6 +8,9 @@ library COVID_19_ED_Severity_FHIRv400 version '1.0.0'
 
 using FHIR version '4.0.1'
 
+codesystem "LOINC": 'http://loinc.org'
+code "Heart rate": '8867-4' from "LOINC" display 'Heart rate'
+
 // # Referenced libraries #
 
 // The FHIRHelpers library provides common functions for simplifying interaction w/ the FHIR R4 data model.
@@ -73,6 +76,15 @@ define "Patient Race Text":
 /*
  * Assess Vital Signs
  */
+
+define function Verified(ObsList List<Observation>):
+  ObsList O where O.status.value in {'final', 'corrected', 'amended'}
+
+define "Heart Rates Test":
+    [Observation: "Heart rate"]
+
+define "Verified Heart Rate":
+    Verified([Observation: "Heart rate"])
 
 define "Last Heart Rate":
   C3F.MostRecent("Heart Rate Observations")
@@ -148,7 +160,7 @@ define "Lowest O2 Saturation percent":
    "Last O2 Saturation value"
   else
     // If reported as decimal .92, then multiply by 100.
-    Round("Last O2 Saturation value" * 100)
+    Round("Last O2 Saturation value")
 
 define "O2 Saturation Observations":
   C3F.ObservationLookBack(
@@ -199,63 +211,6 @@ define "O2 Flow Rate Score":
   if "Last O2 Flow Rate value" between 3 and 4 then 4
   else if "Last O2 Flow Rate value" > 4 then 5
   else 0
-
-/*
-* Determine Severity Classification
-*/
-
-define "Severity Classification":
-  if "Is Critical Risk" then 'Critical'
-  else if "Is Severe Risk" then 'Severe'
-  else if "Is Moderate Risk" then 'Moderate'
-  else if "Is Mild At Risk" then 'Mild At Risk'
-  else if "Is Mild Low Risk" then 'Mild Low Risk'
-  else null
-
-define "Is Critical Risk":
-  if "Last SBP value" < 90
-    or "qCSI Score" >= 9
-    then true
-  else false
-
-define "Is Severe Risk":
-  if not "Is Critical Risk"
-    and ("Lowest O2 Saturation percent" <= 88
-      or "Last O2 Flow Rate value" >= 5
-      or "qCSI Score" between 6 and 8)
-    then true
-  else false
-
-define "Is Moderate Risk":
-  if not "Is Severe Risk" and not "Is Critical Risk"
-    and ("Last Heart Rate value" >= 121
-      or "Lowest O2 Saturation percent" between 89 and 92
-      or "Last Respiratory Rate value" >= 29
-      or "Last O2 Flow Rate value" between 3 and 4
-      or "qCSI Score" between 3 and 5)
-    then true
-  else false
-
-define "Is Mild At Risk":
-  if not "Is Severe Risk" and not "Is Critical Risk" and not "Is Moderate Risk"
-    and ("Last Heart Rate value" between 100 and 120
-      or "Last Respiratory Rate value" between 23 and 28
-      or "Last O2 Flow Rate value" between 1 and 2
-      or "qCSI Score" between 1 and 2
-      or "Risk Factors count" >= 2)
-    then true
-  else false
-
-define "Is Mild Low Risk":
-  if not "Is Severe Risk" and not "Is Critical Risk" and not "Is Moderate Risk" and not "Is Mild At Risk"
-    and "Last Heart Rate value" <= 99
-    and "Lowest O2 Saturation percent" >= 93
-    and "Last Respiratory Rate value" <= 22
-    and "O2 Flow Rate Observations" is null
-    and "qCSI Score" = 0
-    and "Risk Factors count" between 0 and 1
-    then true
-  else false
 
 /*
  * Assess Risk Factors
