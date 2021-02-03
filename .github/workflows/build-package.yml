@@ -8,8 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  tag-with-incremented-patch-version:
+  build-and-publish-new-release:
     runs-on: ubuntu-latest
+
+    outputs:
+      tag: ${{ steps.tag-with-incremented-patch-version.outputs.TAG }}
 
     steps:
       - uses: actions/checkout@v2
@@ -21,31 +24,6 @@ jobs:
           echo "Tagging with incremented patch number"
           bash ./scripts/tag_git_dev.sh
 
-  create-release:
-    needs: tag-with-incremented-patch-version
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-          body: |
-            Tagged release ${{ github.ref }}
-
-  build-and-publish:
-    needs: tag-with-incremented-patch-version
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -64,13 +42,17 @@ jobs:
         run: |
           gem install bundler
           bundle install
+
       - name: Update Publisher executable
         run: bash _updatePublisher.sh --force --yes --skip-ping
+
       - name: Generate Implementation Guide (IG)
         run: bash _genonce.sh
+
       - name: Install NPM modules
         run: npm ci
+
       - name: Publish to Package Repository
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash _publishToRepo.sh --release-version ${{ github.ref }}
+        run: bash _publishToRepo.sh --release-version ${{ steps.tag-with-incremented-patch-version.outputs.TAG }}
