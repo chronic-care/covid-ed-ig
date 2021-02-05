@@ -145,11 +145,10 @@ define "Lowest O2 Saturation value":
 // TODO lowest in what period?  24 hours before last value?  In current Encounter(s)?
 define "Lowest O2 Saturation percent":
   // O2 Saturation should be reported as a percent, e.g. 92.
-  if "Lowest O2 Saturation value" >= 1 then
-   "Lowest O2 Saturation value"
-  else
-    // If reported as decimal .92, then multiply by 100.
-    Round("Lowest O2 Saturation value" * 100)
+  if "Lowest O2 Saturation value" >= 1 then "Lowest O2 Saturation value"
+  // If reported as decimal .92, then multiply by 100.
+  else if "Lowest O2 Saturation value" is not null then Round(100.0 * "Lowest O2 Saturation value")
+  else null
 
 define "O2 Saturation Observations":
   C3F.ObservationLookBack(
