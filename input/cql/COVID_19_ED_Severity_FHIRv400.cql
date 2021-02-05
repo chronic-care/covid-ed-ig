@@ -26,10 +26,10 @@ include COVID_19_Concepts version '1.0.0' called CC
 
 // 12 months for test data, use '24 hours' as default in production?
 // Or, get current, active (?) Patient Encounter(s) and find Observations associated with those Encounters
-parameter VitalSignsLookbackPeriod default 12 months
+parameter VitalSignsLookbackPeriod default 2 months
 
 // 12 months for test data, use '2 days' as default in production?
-parameter LabResultsLookbackPeriod default 12 months
+parameter LabResultsLookbackPeriod default 2 months
 
 // # CDS logic #
 
@@ -94,31 +94,29 @@ define "Last SBP value":
 define "Blood Pressure Observations":
  ("Blood Pressure Observation Components"
     union "Systolic Blood Pressure Observations")
-    //union "Diastolic Blood Pressure Observations")
 
 // Use when Systolic BP is reported as an independent Observation (not recommended)
 define "Systolic Blood Pressure Observations":
   (C3F.ObservationLookBack(
     C3F.Verified([Observation: CC."Systolic blood pressure"]),
     VitalSignsLookbackPeriod)) bp
+      let SystolicValue: Round((bp.value as FHIR.Quantity).value),
+          DiastolicValue: Round((MatchingDiastolic(bp).value as FHIR.Quantity).value)
     return {
       "Date": ObservationDate(bp),
-      "Systolic": ToString((bp.value as FHIR.Quantity).value),
-      "Diasystolic": null
+      "Systolic": SystolicValue,
+      "Diastolic": DiastolicValue,
+      "Display": Coalesce(ToString(SystolicValue), '-') + '/' + Coalesce(ToString(DiastolicValue), '-')
     }
     sort by Date asc
 
-// Use when Diastolic BP is reported as an independent Observation (not recommended)
-define "Diastolic Blood Pressure Observations":
+define function MatchingDiastolic(SystolicBP FHIR.Observation):
+  First(
   (C3F.ObservationLookBack(
     C3F.Verified([Observation: CC."Diastolic blood pressure"]),
     VitalSignsLookbackPeriod)) bp
-    return {
-      "Date": ObservationDate(bp),
-      "Systolic": null,
-      "Diasystolic": ToString((bp.value as FHIR.Quantity).value)
-    }
-    sort by Date asc
+      where (bp.effective as FHIR.dateTime) = (SystolicBP.effective as FHIR.dateTime)
+  )
 
 // TODO move into Commons library
 define function ComponentValue(Obs FHIR.Observation, code System.Code):
@@ -127,28 +125,31 @@ define function ComponentValue(Obs FHIR.Observation, code System.Code):
 
 // Use the following if Systolic and Diastolic are combined as components within one Observation.
 define "Blood Pressure Observation Components":
- (C3F.ObservationLookBack(C3F.Verified([Observation: CC."Blood pressure"]), VitalSignsLookbackPeriod)) bp
- return {
-   "Date": ObservationDate(bp),
-   "Systolic": ToString(ComponentValue(bp, CC."Systolic blood pressure").value),
-   "Diasystolic": ToString(ComponentValue(bp, CC."Diastolic blood pressure").value)
- }
- sort by Date asc
-
-define "Last O2 Saturation":
-  C3F.MostRecent("O2 Saturation Observations")
+  (C3F.ObservationLookBack(C3F.Verified([Observation: CC."Blood pressure"]), VitalSignsLookbackPeriod)) bp
+    let SystolicValue: Round(ComponentValue(bp, CC."Systolic blood pressure").value),
+        DiastolicValue: Round(ComponentValue(bp, CC."Diastolic blood pressure").value)
+   return {
+     "Date": ObservationDate(bp),
+     "Systolic": SystolicValue,
+     "Diastolic": DiastolicValue,
+     "Display": Coalesce(ToString(SystolicValue), '-') + '/' + Coalesce(ToString(DiastolicValue), '-')
+   }
+   sort by Date asc
 
 define "Last O2 Saturation value":
-  C3F.QuantityValue("Last O2 Saturation").value
+  C3F.QuantityValue(C3F.MostRecent("O2 Saturation Observations")).value
+
+define "Lowest O2 Saturation value":
+  C3F.LowestObservation("O2 Saturation Observations").value
 
 // TODO lowest in what period?  24 hours before last value?  In current Encounter(s)?
 define "Lowest O2 Saturation percent":
   // O2 Saturation should be reported as a percent, e.g. 92.
-  if "Last O2 Saturation value" >= 1 then
-   "Last O2 Saturation value"
+  if "Lowest O2 Saturation value" >= 1 then
+   "Lowest O2 Saturation value"
   else
     // If reported as decimal .92, then multiply by 100.
-    Round("Last O2 Saturation value" * 100)
+    Round("Lowest O2 Saturation value" * 100)
 
 define "O2 Saturation Observations":
   C3F.ObservationLookBack(
@@ -346,7 +347,7 @@ define function ReportObservations(ObsList List<Observation>):
     return {   // result decimal value
       Date:   ObservationDate(o),
       // Omit display name because observations are in a typed collection
-      //Name:   ConceptText(o.code),                              // display nanme
+      Name:   ConceptText(o.code),                                // display nanme
       Result: QuantityText(o.value as FHIR.Quantity),             // result value with units
       ResultValue: ToString((o.value as FHIR.Quantity).value)
     }

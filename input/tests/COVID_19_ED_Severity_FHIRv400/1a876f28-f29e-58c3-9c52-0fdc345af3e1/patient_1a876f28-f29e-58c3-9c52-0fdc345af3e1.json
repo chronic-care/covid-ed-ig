@@ -39,7 +39,7 @@
         "resourceType": "Observation",
         "id": "85560e17-3520-5ece-8c6d-a4cd932240ea",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T07:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T07:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -64,7 +64,7 @@
         "resourceType": "Observation",
         "id": "59b4f1b3-f7e4-52c9-9692-0a71fbd2d80f",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T08:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T08:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -92,7 +92,7 @@
         "resourceType": "Observation",
         "id": "f4227323-9e34-52b0-bccd-8fca6bd64beb",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -120,7 +120,7 @@
         "resourceType": "Observation",
         "id": "98ff1fb4-7291-5fc1-aef1-edbfe6311273",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T07:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T07:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -131,6 +131,33 @@
         },
         "valueQuantity": {
           "value": 120.0,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "reference": "Patient/1a876f28-f29e-58c3-9c52-0fdc345af3e1",
+          "identifier": {
+            "value": "1a876f28-f29e-58c3-9c52-0fdc345af3e1"
+          }
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "98ff1fb4-7291-5fc1-aef1-edbfe6311273-diastolic",
+        "status": "final",
+        "effectiveDateTime": "2021-01-31T07:00:00-06:00",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8462-4"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 85.0,
           "unit": "mmHg",
           "system": "http://unitsofmeasure.org"
         },
@@ -147,7 +174,7 @@
         "resourceType": "Observation",
         "id": "a53e3ee5-c337-57bd-bf9c-1adccce167fb",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T08:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T08:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -172,9 +199,36 @@
     {
       "resource": {
         "resourceType": "Observation",
+        "id": "a53e3ee5-c337-57bd-bf9c-1adccce167fb-diastolic",
+        "status": "final",
+        "effectiveDateTime": "2021-01-31T08:00:00-06:00",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8462-4"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 81,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "reference": "Patient/1a876f28-f29e-58c3-9c52-0fdc345af3e1",
+          "identifier": {
+            "value": "1a876f28-f29e-58c3-9c52-0fdc345af3e1"
+          }
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
         "id": "022e0426-f751-5017-a24a-32cb8417a350",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -201,7 +255,7 @@
         "resourceType": "Observation",
         "id": "1ca2ce2d-3ae2-55fd-b05e-962f6765a9e5",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T07:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T07:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -226,7 +280,7 @@
         "resourceType": "Observation",
         "id": "0858838d-7924-5af3-9cd1-394c0b754893",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T08:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T08:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -251,7 +305,7 @@
         "resourceType": "Observation",
         "id": "95c37404-688f-51c0-affc-73ea4ca0605c",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -276,7 +330,7 @@
         "resourceType": "Observation",
         "id": "a0a44f34-5299-5ed2-8691-9c835dcf1953",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T07:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T07:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -303,7 +357,7 @@
         "resourceType": "Observation",
         "id": "7c7d9f25-51e1-5cc4-8e69-d0441420f40f",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T08:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T08:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -330,7 +384,7 @@
         "resourceType": "Observation",
         "id": "34cfcbf5-3b2b-59e1-9ede-78c54051e506",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -357,7 +411,7 @@
         "resourceType": "Observation",
         "id": "244bb1c5-e3e0-5222-91e3-4cf4b140c379",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T08:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T08:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -385,7 +439,7 @@
         "resourceType": "Observation",
         "id": "f4cd00c7-ed39-583e-bdce-ecb0a6d6668a",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -412,7 +466,7 @@
       "resource": {
         "resourceType": "Condition",
         "id": "ea85008d-78c5-5400-8404-34f3daf8f2d6",
-        "onsetDateTime": "2020-06-01T07:00:00-06:00",
+        "onsetDateTime": "2021-01-31T07:00:00-06:00",
         "clinicalStatus": {
           "coding": [
             {
@@ -471,7 +525,7 @@
         "resourceType": "Observation",
         "id": "5790efd8-a0d1-573e-b494-a6bf5ea78c8c",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -496,7 +550,7 @@
         "resourceType": "Observation",
         "id": "6ff44b83-c457-5101-8ad7-9d62a12a9851",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -521,7 +575,7 @@
         "resourceType": "Observation",
         "id": "791244e6-8c19-52ae-9b45-c7e0237bbe1f",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -546,7 +600,7 @@
         "resourceType": "Observation",
         "id": "32765946-3b16-51fa-9837-5446bb83d8bf",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -571,7 +625,7 @@
         "resourceType": "Observation",
         "id": "adb7f430-50c1-5283-abe3-60b7278e22b4",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -596,7 +650,7 @@
         "resourceType": "Observation",
         "id": "7a0fa511-1b99-5682-8631-a033ffdbe9ca",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -621,7 +675,7 @@
         "resourceType": "Observation",
         "id": "c48a4e93-6f04-58c0-b5ae-b67ab9a414af",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -646,7 +700,7 @@
         "resourceType": "Observation",
         "id": "77bdb5c6-5cb9-51a4-a8ee-4a1d362027af",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -671,7 +725,7 @@
         "resourceType": "Observation",
         "id": "3bbdc35e-107b-57fe-b75f-d3579476a795",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -696,7 +750,7 @@
         "resourceType": "Observation",
         "id": "2f4ea06c-ef8d-5d1d-89c1-79fc71ea3883",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -721,7 +775,7 @@
         "resourceType": "Observation",
         "id": "77e59968-efc3-5114-a0ed-40ac40b56a46",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -746,7 +800,7 @@
         "resourceType": "Observation",
         "id": "af2d9959-be68-5cf9-acf1-e7a6d91b322d",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -771,7 +825,7 @@
         "resourceType": "DiagnosticReport",
         "id": "dce51834-3241-5912-aa01-1bc07996dc80",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {
@@ -794,7 +848,7 @@
         "resourceType": "DiagnosticReport",
         "id": "18def6f5-5535-52b2-8bf9-8023c01acd77",
         "status": "final",
-        "effectiveDateTime": "2020-06-01T09:00:00-06:00",
+        "effectiveDateTime": "2021-01-31T09:00:00-06:00",
         "code": {
           "coding": [
             {

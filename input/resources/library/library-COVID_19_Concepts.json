@@ -32,7 +32,7 @@
     }
   ],
   "name": "COVID_19_Concepts",
-  "title": "COVID-19 Shared Concepts and Terminology",
+  "title": "CQL Library - COVID-19 Shared Concepts and Terminology",
   "description": "COVID-19 Shared Concepts and Terminology imported by other CQL logic libraries.",
   "status": "active",
   "experimental": true,

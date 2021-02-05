@@ -29,7 +29,7 @@
   ],
   "version": "0.1.0",
   "name": "COVID_19_ED_Severity",
-  "title": "ACEP COVID-19 ED Severity Classification and Disposition",
+  "title": "PlanDefinition - ACEP COVID-19 ED Severity Classification and Disposition",
   "description": "CDS Hook definitions for ACEP COVID-19 ED Severity Classification and Disposition",
   "type": {
     "coding": [
