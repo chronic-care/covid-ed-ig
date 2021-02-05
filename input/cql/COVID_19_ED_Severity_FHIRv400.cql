@@ -26,10 +26,10 @@ include COVID_19_Concepts version '1.0.0' called CC
 
 // 12 months for test data, use '24 hours' as default in production?
 // Or, get current, active (?) Patient Encounter(s) and find Observations associated with those Encounters
-parameter VitalSignsLookbackPeriod default 12 months
+parameter VitalSignsLookbackPeriod default 2 months
 
 // 12 months for test data, use '2 days' as default in production?
-parameter LabResultsLookbackPeriod default 12 months
+parameter LabResultsLookbackPeriod default 2 months
 
 // # CDS logic #
 
@@ -75,49 +75,81 @@ define "Patient Race Text":
  */
 
 define "Last Heart Rate":
-  C3F.MostRecent(HeartRateObservations)
+  C3F.MostRecent("Heart Rate Observations")
 
 define "Last Heart Rate value":
   C3F.QuantityValue("Last Heart Rate")
 
-define HeartRateObservations:
+define "Heart Rate Observations":
   C3F.ObservationLookBack(
     C3F.Verified([Observation: CC."Heart rate"]),
     VitalSignsLookbackPeriod)
 
 define "Last SBP":
-  C3F.MostRecent("Systolic Blood Pressure Readings")
+  Last("Blood Pressure Observations" o where o.Systolic is not null)
 
 define "Last SBP value":
-  C3F.QuantityValue("Last SBP")
+  "Last SBP".Systolic
 
-define "Systolic Blood Pressure Readings":
-  C3F.ObservationLookBack(
+define "Blood Pressure Observations":
+ ("Blood Pressure Observation Components"
+    union "Systolic Blood Pressure Observations")
+
+// Use when Systolic BP is reported as an independent Observation (not recommended)
+define "Systolic Blood Pressure Observations":
+  (C3F.ObservationLookBack(
     C3F.Verified([Observation: CC."Systolic blood pressure"]),
-    VitalSignsLookbackPeriod)
+    VitalSignsLookbackPeriod)) bp
+      let SystolicValue: Round((bp.value as FHIR.Quantity).value),
+          DiastolicValue: Round((MatchingDiastolic(bp).value as FHIR.Quantity).value)
+    return {
+      "Date": ObservationDate(bp),
+      "Systolic": SystolicValue,
+      "Diastolic": DiastolicValue,
+      "Display": Coalesce(ToString(SystolicValue), '-') + '/' + Coalesce(ToString(DiastolicValue), '-')
+    }
+    sort by Date asc
+
+define function MatchingDiastolic(SystolicBP FHIR.Observation):
+  First(
+  (C3F.ObservationLookBack(
+    C3F.Verified([Observation: CC."Diastolic blood pressure"]),
+    VitalSignsLookbackPeriod)) bp
+      where (bp.effective as FHIR.dateTime) = (SystolicBP.effective as FHIR.dateTime)
+  )
+
+// TODO move into Commons library
+define function ComponentValue(Obs FHIR.Observation, code System.Code):
+  First(Obs.component c
+    where c.code ~ ToConcept(code)).value as FHIR.Quantity
 
 // Use the following if Systolic and Diastolic are combined as components within one Observation.
-/*
-define "Systolic Blood Pressure Readings":
-	[Observation: CC."Blood pressure"] BloodPressure
-	  where BloodPressure.status in {'final', 'amended'}
-     and BloodPressure.effective during "Vital Signs Measurement Period"
-	    // and not (GetEncounter(BloodPressure.encounter).class.code in { 'EMER', 'IMP', 'ACUTE', 'NONAC', 'PRENC', 'SS'})
-     and exists (
-       BloodPressure.component SystolicBP
-	        where SystolicBP.code ~ ToConcept(CC."Systolic blood pressure")
-     )
-*/
+define "Blood Pressure Observation Components":
+  (C3F.ObservationLookBack(C3F.Verified([Observation: CC."Blood pressure"]), VitalSignsLookbackPeriod)) bp
+    let SystolicValue: Round(ComponentValue(bp, CC."Systolic blood pressure").value),
+        DiastolicValue: Round(ComponentValue(bp, CC."Diastolic blood pressure").value)
+   return {
+     "Date": ObservationDate(bp),
+     "Systolic": SystolicValue,
+     "Diastolic": DiastolicValue,
+     "Display": Coalesce(ToString(SystolicValue), '-') + '/' + Coalesce(ToString(DiastolicValue), '-')
+   }
+   sort by Date asc
 
-define "Last O2 Saturation":
-  C3F.MostRecent("O2 Saturation Observations")
+define "Last O2 Saturation value":
+  C3F.QuantityValue(C3F.MostRecent("O2 Saturation Observations")).value
 
-define "Last O2 Saturation percent":
-  Round(C3F.QuantityValue("Last O2 Saturation").value * 100)
+define "Lowest O2 Saturation value":
+  C3F.LowestObservation("O2 Saturation Observations").value
 
 // TODO lowest in what period?  24 hours before last value?  In current Encounter(s)?
 define "Lowest O2 Saturation percent":
-  Round(C3F.LowestObservation("O2 Saturation Observations").value * 100)
+  // O2 Saturation should be reported as a percent, e.g. 92.
+  if "Lowest O2 Saturation value" >= 1 then
+   "Lowest O2 Saturation value"
+  else
+    // If reported as decimal .92, then multiply by 100.
+    Round("Lowest O2 Saturation value" * 100)
 
 define "O2 Saturation Observations":
   C3F.ObservationLookBack(
@@ -268,3 +300,78 @@ define "Has Renal Disease Risk Factor":
  */
 
 // TODO Retrieve and evaluate lab results
+
+
+/***
+ * TODO: Move these view object definitions to a separate CQL library.
+ */
+// SUMMARY
+
+// Returns the first-found display text for a CodeableConcept, looking first at the `text` attribute, then the
+// `display` on each `coding` until it finds a non-null value.
+// @param c - a FHIR CodeableConcept to get text from
+// @returns {System.String} the display text or null if none is found
+define function ConceptText(c FHIR.CodeableConcept):
+  Coalesce(c.text.value, Coalesce((c.coding) c2 return c2.display.value), Coalesce((c.coding) c3 return c3.code.value))
+
+// Returns a text representation of a Quantity with the Quantity's value and unit.
+// If the unit is {score}, then omit it (as it is not useful to display)
+// @param q - a FHIR Quantity to get text for
+// @returns {System.String} the text representation of the Quantity
+define function QuantityText(q FHIR.Quantity):
+  if (q is null) then null
+  else if (q.unit is not null and q.unit.value != '{score}') then ToString(q.value.value) + ' ' + q.unit.value
+  else if (q.code is not null and q.code.value != '{score}') then ToString(q.value.value) + ' ' + q.code.value
+  else ToString(q.value.value)
+
+// Returns a text representation of a date associated with an Observation, preferring `effectiveDateTime`, then
+// `effectivePeriod.start`, then `issued`.
+// @param o - a FHIR Observation to get the text date from
+// @returns {System.String} the text representation of a relevant date from the Observation
+define function ObservationDate(o FHIR.Observation):
+  Coalesce(
+    ToString((o.effective as FHIR.dateTime).value),
+    ToString((o.effective as FHIR.instant).value),
+    ToString(((o.effective as FHIR.Period)."start").value),
+    ToString(o.issued.value)
+  )
+
+define ReportPatientName:
+  Coalesce(Patient.name[0].text.value,
+    (Combine(Patient.name.given G return G.value, ' ') + ' ' + Combine(Patient.name.family F return F.value, ' '))
+  )
+
+// Returns a list of observation view Tuples.
+define function ReportObservations(ObsList List<Observation>):
+  ObsList o
+    return {   // result decimal value
+      Date:   ObservationDate(o),
+      // Omit display name because observations are in a typed collection
+      Name:   ConceptText(o.code),                                // display nanme
+      Result: QuantityText(o.value as FHIR.Quantity),             // result value with units
+      ResultValue: ToString((o.value as FHIR.Quantity).value)
+    }
+    sort by Date asc
+
+// The Summary object represents the full COVID-19 Risk Assessment to be displayed to the clinician.  All values are
+// returned as user-friendly text representations, but a robust user interface (UI) should be implemented to
+// display the data to the user in a friendly manner.
+
+define Summary: {
+  Patient: {
+    Name: ReportPatientName,
+    Gender: Patient.gender.value,
+    Age: AgeInYears(),
+    Race: "Patient Race Text"
+  },
+  ClinicalAssessment: {
+    HeartRate: ReportObservations("Heart Rate Observations"),
+    BloodPressure: "Blood Pressure Observations",
+    O2Saturation: ReportObservations("O2 Saturation Observations"),
+    RespiratoryRate: ReportObservations("Respiratory Rate Observations"),
+    O2FlowRate: ReportObservations("O2 Flow Rate Observations")
+  },
+  DiagnosticAssessment: {
+    // add lab results here
+  }
+}
