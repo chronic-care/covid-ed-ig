@@ -201,39 +201,6 @@ define "O2 Flow Rate Score":
   else 0
 
 /*
-* Vitals Severity Classification Columns
- */
-
-define "Last Heart Rate Severity Column":
-  if "Last Heart Rate value" <= 99 then 0
-  else if "Last Heart Rate value" between 100 and 120 then 1
-  else if "Last Heart Rate value" >= 121 then 2
-  else null
-
-define "Last Blood Pressure Severity Column":
-  if "Last SBP value" < 90 then 4
-  else null
-
-define "Lowest O2 Saturation Severity Column":
-  if "Lowest O2 Saturation percent" >= 93 then 0
-  else if "Lowest O2 Saturation percent" between 89 and 92 then 2
-  else if "Lowest O2 Saturation percent" < 88 then 3
-  else null
-
-define "Last Respiratory Rate Severity Column":
-  if "Last Respiratory Rate value" < 22 then 0
-  else if "Last Respiratory Rate value" between 23 and 28 then 1
-  else if "Last Respiratory Rate value" >= 29 then 2
-  else null
-
-define "Last O2 Flow Rate Severity Column":
-  if "Last O2 Flow Rate value" = 0 then 0
-  else if "Last O2 Flow Rate value" between 1 and 2 then 1
-  else if "Last O2 Flow Rate value" between 3 and 4 then 2
-  else if "Last O2 Flow Rate value" >= 5 then 3
-  else null
-
-/*
 * Determine Severity Classification
 */
 
