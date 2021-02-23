@@ -19,17 +19,29 @@ include COVID_19_Concepts version '1.0.0' called CC
 
 // # Parameters #
 
-/*
- * TODO For test data with 2 hour intervals of data, could create a test scenario driver that
- *      runs CQL with progressively greater "current" date, 2 hour increments.
- */
-
 // 12 months for test data, use '24 hours' as default in production?
 // Or, get current, active (?) Patient Encounter(s) and find Observations associated with those Encounters
-parameter VitalSignsLookbackPeriod default 2 months
+parameter VitalSignsLookbackPeriod default 12 months
 
 // 12 months for test data, use '2 days' as default in production?
-parameter LabResultsLookbackPeriod default 2 months
+parameter LabResultsLookbackPeriod default 12 months
+
+// Risk Factors as specified by clinical user, overrides Condition queries.
+parameter RiskFactors Tuple {
+  Cancer Boolean,
+  CardiovascularDisease Boolean,
+  ChronicRespiratoryDisease Boolean,
+  DiabetesType2 Boolean,
+  DownsSyndrome Boolean,
+  Hypertension Boolean,
+  Immunosuppression Boolean,
+  NeurologicDisease Boolean,
+  Obesity Boolean,
+  ObstructiveSleepApnea Boolean,
+  Pregnancy Boolean,
+  RenalDisease Boolean,
+  SteroidUsage Boolean
+}
 
 // # CDS logic #
 
@@ -177,6 +189,53 @@ define "O2 Flow Rate Observations":
     C3F.Verified([Observation: CC."Inhaled oxygen flow rate"]),
     VitalSignsLookbackPeriod)
 
+define "Last Body Temperature":
+  C3F.MostRecent("Body Temperature Observations")
+
+define "Last Body Temperature value":
+  ToMetric(C3F.QuantityValue("Last Body Temperature")).value
+
+define "Body Temperature Observations":
+  C3F.ObservationLookBack(
+    C3F.Verified([Observation: CC."Body temperature"]),
+    VitalSignsLookbackPeriod)
+
+define "Last Body Weight value":
+  ToMetric(C3F.QuantityValue(C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Body weight"]),
+      VitalSignsLookbackPeriod)
+  ))).value
+
+define "Last Body Height value":
+  ToMetric(C3F.QuantityValue(C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Body height"]),
+      VitalSignsLookbackPeriod)
+  ))).value
+
+define "Last BMI":
+	System.Quantity { value: Round("Last Body Weight value" / ("Last Body Height value" / 100) ^ 2), unit: 'kg/m2' }
+
+define function ToQuantity(quantity FHIR.Quantity):
+	System.Quantity {
+    	value: quantity.value.value,
+      	unit: quantity.code.value  // use UCUM 'code' instead of Quantity 'unit'
+    }
+
+define function ToMetric(qty System.Quantity):
+	case when qty.unit = '[lb_av]' then
+		System.Quantity { value: qty.value * 0.454, unit: 'kg' }
+	when qty.unit = 'g' then
+		System.Quantity { value: qty.value / 1000, unit: 'kg' }
+	when qty.unit = '[in_i]' then
+		System.Quantity { value: qty.value * 2.54, unit: 'cm' }
+	when qty.unit = '[degF]' then
+		System.Quantity { value: (qty.value - 32) * (5 / 9), unit: 'Cel' }
+	else
+		qty
+	end
+
 /*
 * Calculate qCSI
 */
@@ -265,28 +324,92 @@ define "Risk Factors count":
   (if "Patient is Male" then 1 else 0)
     + (if "Patient is Black" then 1 else 0)
     + (if "Age 60 or older" then 1 else 0)
+    + (if "Has Cancer Risk Factor" then 1 else 0)
+    + (if "Has Cardiovascular Disease Risk Factor" then 1 else 0)
+    + (if "Has Chronic Respiratory Disease Risk Factor" then 1 else 0)
+    + (if "Has Diabetes Type 2 Risk Factor" then 1 else 0)
+    + (if "Has Downs Syndrome Risk Factor" then 1 else 0)
     + (if "Has Hypertension Risk Factor" then 1 else 0)
-    + (if "Has Malignancy Risk Factor" then 1 else 0)
+    + (if "Has Immunosuppression Risk Factor" then 1 else 0)
+    + (if "Has Obstructive Sleep Apnea Risk Factor" then 1 else 0)
+    + (if "Has Obesity Risk Factor" then 1 else 0)
     + (if "Has Renal Disease Risk Factor" then 1 else 0)
-    // TODO remaining condition risks
+    + (if "Has Steroid Usage Risk Factor" then 1 else 0)
 
 define "All Active Conditions":
   C3F.Confirmed(C3F.ActiveOrRecurring([Condition]))
 
-// TODO Include remaining risk conditions based on value sets.
-// TODO LT Care Resident
+define "Has Cancer Risk Factor":
+  Coalesce(
+    RiskFactors.Cancer,
+    exists("All Active Conditions" C
+      where C.code in CC."Malignancy Codes")
+  )
+
+define "Has Cardiovascular Disease Risk Factor":
+  Coalesce(
+    RiskFactors.CardiovascularDisease,
+    exists("All Active Conditions" C
+      where C.code in CC."Cardiovascular Disease Codes")
+  )
+
+define "Has Chronic Respiratory Disease Risk Factor":
+  Coalesce(
+    RiskFactors.ChronicRespiratoryDisease,
+    exists("All Active Conditions" C
+      where C.code in CC."Chronic Respiratory Disease Codes")
+  )
+
+define "Has Diabetes Type 2 Risk Factor":
+  Coalesce(
+    RiskFactors.DiabetesType2,
+    exists("All Active Conditions" C
+      where C.code in CC."Diabetes Type 2 Codes")
+  )
+
+define "Has Downs Syndrome Risk Factor":
+  Coalesce(
+    RiskFactors.DownsSyndrome,
+    exists("All Active Conditions" C
+      where C.code in CC."Downs Syndrome Codes")
+  )
 
 define "Has Hypertension Risk Factor":
-  exists("All Active Conditions" C
-    where C.code in CC."Hypertension Codes")
+  Coalesce(
+    RiskFactors.Hypertension,
+    exists("All Active Conditions" C
+      where C.code in CC."Hypertension Codes")
+  )
 
-define "Has Malignancy Risk Factor":
-  exists("All Active Conditions" C
-    where C.code in CC."Malignancy Codes")
+define "Has Immunosuppression Risk Factor":
+  RiskFactors.Immunosuppression
+
+define "Has Obstructive Sleep Apnea Risk Factor":
+  Coalesce(
+    RiskFactors.ObstructiveSleepApnea,
+    exists("All Active Conditions" C
+      where C.code in CC."Obstructive Sleep Apnea Codes")
+  )
+
+define "Has Obesity Risk Factor":
+  Coalesce(
+    RiskFactors.Obesity,
+    (exists("All Active Conditions" C
+      where (C.code in CC."Obesity SNOMED Codes"
+        or C.code in CC."Obesity ICD10CM Codes"))
+     or "Last BMI".value > 30),
+    false
+  )
 
 define "Has Renal Disease Risk Factor":
-  exists("All Active Conditions" C
-    where C.code in CC."Renal Disease Codes")
+  Coalesce(
+    RiskFactors.RenalDisease,
+    exists("All Active Conditions" C
+      where C.code in CC."Renal Disease Codes")
+  )
+
+define "Has Steroid Usage Risk Factor":
+  RiskFactors.SteroidUsage
 
 /*
  * Assess Symptoms

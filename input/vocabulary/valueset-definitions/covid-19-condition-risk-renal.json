@@ -7,30 +7,21 @@
   "title": "COVID-19 Risk Factor Renal Conditions Value Set",
   "status": "active",
   "date": "2021-01-07T20:12:55+00:00",
-  "publisher": "Logica",
+  "publisher": "Veterans Health Administration (VHA)",
   "contact": [
     {
-      "name": "Logica",
+      "name": "Veterans Health Administration (VHA)",
       "telecom": [
         {
           "system": "url",
-          "value": "https://logicahealth.org/"
+          "value": "https://www.va.gov"
         }
       ]
     }
   ],
-  "description": "Patients with these underlying medical conditions might be at higher risk for severe illness from COVID-19.",
+  "description": "SNOMED CT all children of Kidney disease (disorder)",
   "compose": {
     "include": [
-      {
-        "system": "http://snomed.info/sct",
-        "concept": [
-          {
-            "code": "90708001",
-            "display": "Hypertensive disorder, systemic arterial (disorder)"
-          }
-        ]
-      },
 			{
 				"system": "http://snomed.info/sct",
 				"filter": [

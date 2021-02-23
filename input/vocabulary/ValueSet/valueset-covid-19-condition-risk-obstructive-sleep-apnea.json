@@ -1,0 +1,67 @@
+{
+    "resourceType": "ValueSet",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea",
+    "version": "0.5.0",
+    "name": "COVID19RiskFactorObstructiveSleepApnea",
+    "title": "COVID-19 Risk Factor Obstructive Sleep Apnea Conditions Value Set",
+    "description": "COVID-19 Risk Factor Obstructive Sleep Apnea Conditions Value Set",
+    "status": "active",
+    "expansion": {
+        "identifier": "25941b18-e89a-4350-ad5c-cda8cf23fe08",
+        "timestamp": "2021-02-20T05:50:11+10:00",
+        "total": 7,
+        "offset": 0,
+        "parameter": [
+            {
+                "name": "version",
+                "valueUri": "http://snomed.info/sct|http://snomed.info/sct/32506021000036107/version/20210204"
+            },
+            {
+                "name": "count",
+                "valueInteger": 2147483647
+            },
+            {
+                "name": "offset",
+                "valueInteger": 0
+            }
+        ],
+        "contains": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "16275741000119100",
+                "display": "Severe paediatric obstructive sleep apnoea"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "774068004",
+                "display": "AHDC1-related intellectual disability, obstructive sleep apnoea, mild dysmorphism syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "230493001",
+                "display": "Mixed sleep apnoea"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "1091000119108",
+                "display": "Obstructive sleep apnoea of child"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "1101000119103",
+                "display": "Obstructive sleep apnoea of adult"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "765751002",
+                "display": "Autoimmune encephalopathy with parasomnia and obstructive sleep apnoea"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "78275009",
+                "display": "Obstructive sleep apnoea"
+            }
+        ]
+    }
+}

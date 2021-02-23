@@ -1,0 +1,72 @@
+{
+    "resourceType": "ValueSet",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome",
+    "version": "0.5.0",
+    "name": "COVID19RiskFactorDownsSyndrome",
+    "title": "COVID-19 Risk Factor Downs Syndrome Conditions Value Set",
+    "description": "COVID-19 Risk Factor Downs Syndrome Conditions Value Set",
+    "status": "active",
+    "expansion": {
+        "identifier": "f3d77542-b753-48cd-81e8-42d201ca903b",
+        "timestamp": "2021-02-20T05:22:21+10:00",
+        "total": 8,
+        "offset": 0,
+        "parameter": [
+            {
+                "name": "version",
+                "valueUri": "http://snomed.info/sct|http://snomed.info/sct/32506021000036107/version/20210204"
+            },
+            {
+                "name": "count",
+                "valueInteger": 2147483647
+            },
+            {
+                "name": "offset",
+                "valueInteger": 0
+            }
+        ],
+        "contains": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "709469005",
+                "display": "Periodontitis co-occurrent with Down syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "840505007",
+                "display": "Down syndrome co-occurrent with leukaemoid reaction associated transient neonatal pustulosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "724644005",
+                "display": "Myeloid leukaemia co-occurrent with Down syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "724643004",
+                "display": "Transient abnormal myelopoiesis co-occurrent with Down syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "205615000",
+                "display": "Trisomy 21- meiotic nondisjunction"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "733194007",
+                "display": "Dementia co-occurrent and due to Down syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "125501000119105",
+                "display": "Fetal trisomy 21, Down syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "41040004",
+                "display": "Complete trisomy 21 syndrome"
+            }
+        ]
+    }
+}

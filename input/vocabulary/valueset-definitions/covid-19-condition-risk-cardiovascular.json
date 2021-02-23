@@ -1,0 +1,49 @@
+{
+  "resourceType": "ValueSet",
+  "id": "covid-19-condition-risk-cardiovascular",
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cardiovascular",
+  "version": "0.5.0",
+  "name": "COVID19RiskFactorCardiovascular",
+  "title": "COVID-19 Risk Factor Cardiovascular Disease Conditions Value Set",
+  "status": "active",
+  "date": "2021-02-15T20:12:55+00:00",
+  "publisher": "Veterans Health Administration (VHA)",
+  "contact": [
+    {
+      "name": "Veterans Health Administration (VHA)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.va.gov"
+        }
+      ]
+    }
+  ],
+  "description": "Includes all SNOMED CT codes for Cardiovascular Disease, excluding Hypertension (38341003) (which is a separate risk factor category in the ACEP guideline).",
+  "compose": {
+    "include": [
+			{
+				"system": "http://snomed.info/sct",
+				"filter": [
+					{
+						"property": "concept",
+						"op": "is-a",
+						"value": "49601007"
+					}
+				]
+			}
+    ],
+    "exclude": [
+      {
+				"system": "http://snomed.info/sct",
+				"filter": [
+					{
+						"property": "concept",
+						"op": "is-a",
+						"value": "38341003"
+					}
+				]
+      }
+    ]
+  }
+}

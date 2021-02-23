@@ -12,9 +12,18 @@ codesystem "Race": 'urn:oid:2.16.840.1.113883.6.238'
 valueset "Race Category": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.2074.1.1.3'
 
 // Value sets not available in VSAC, included via expanded FHIR ValueSet resources
+valueset "Cardiovascular Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cardiovascular'
+valueset "Chronic Respiratory Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-respiratory'
+valueset "Diabetes Type 2 Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-diabetes'
+valueset "Downs Syndrome Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome'
 valueset "Hypertension Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-hypertension'
 valueset "Malignancy Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-malignancy'
+valueset "Obstructive Sleep Apnea Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea'
 valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal'
+
+// Value sets from VSAC
+valueset "Obesity ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3091'
+valueset "Obesity SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6203'
 
 // ## Individual codes ##
 

@@ -1,10 +1,10 @@
 {
   "resourceType": "ValueSet",
-  "id": "covid-19-condition-risk-malignancy",
-  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-malignancy",
+  "id": "covid-19-condition-risk-respiratory",
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-respiratory",
   "version": "0.5.0",
-  "name": "COVID19RiskFactorMalignancy",
-  "title": "COVID-19 Risk Factor Malignancy Conditions Value Set",
+  "name": "COVID19RiskFactorChronicRespiratory",
+  "title": "COVID-19 Risk Factor Chronic Respiratory Disease Conditions Value Set",
   "status": "active",
   "date": "2021-01-07T20:12:55+00:00",
   "publisher": "Veterans Health Administration (VHA)",
@@ -19,7 +19,7 @@
       ]
     }
   ],
-  "description": "SNOMED CT all children of Malignant neoplastic disease (disorder)",
+  "description": "SNOMED CT all children of Chronic disease of respiratory system (disorder)",
   "compose": {
     "include": [
 			{
@@ -28,7 +28,7 @@
 					{
 						"property": "concept",
 						"op": "is-a",
-						"value": "363346000"
+						"value": "17097001"
 					}
 				]
 			}
