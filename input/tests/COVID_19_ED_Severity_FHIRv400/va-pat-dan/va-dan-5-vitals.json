@@ -163,7 +163,7 @@
           }
         ],
         "valueQuantity": {
-          "value": 182,
+          "value": 195,
           "unit": "lb",
           "system": "http://unitsofmeasure.org",
           "code": "[lb_av]"

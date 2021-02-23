@@ -1,0 +1,1037 @@
+{
+    "resourceType": "ValueSet",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-respiratory",
+    "version": "0.5.0",
+    "name": "COVID19RiskFactorChronicRespiratory",
+    "title": "COVID-19 Risk Factor Chronic Respiratory Disease Conditions Value Set",
+    "description": "COVID-19 Risk Factor Chronic Respiratory Disease Conditions Value Set",
+    "status": "active",
+    "expansion": {
+        "identifier": "d782bdef-0260-495e-9576-962fb0d8911e",
+        "timestamp": "2021-02-20T06:05:43+10:00",
+        "total": 201,
+        "offset": 0,
+        "parameter": [
+            {
+                "name": "version",
+                "valueUri": "http://snomed.info/sct|http://snomed.info/sct/32506021000036107/version/20210204"
+            },
+            {
+                "name": "count",
+                "valueInteger": 2147483647
+            },
+            {
+                "name": "offset",
+                "valueInteger": 0
+            }
+        ],
+        "contains": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195798007",
+                "display": "Chronic adenotonsillitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232420002",
+                "display": "Chronic adenoiditis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "47841006",
+                "display": "Chronic nasopharyngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "724500003",
+                "display": "Idiopathic chronic eosinophilic pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "164260005",
+                "display": "O/E - granular pharyngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "2365002",
+                "display": "Chronic granular pharyngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195771008",
+                "display": "Chronic ulcerative rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "196026004",
+                "display": "Chronic emphysema due to chemical fumes"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195958001",
+                "display": "Segmental bullous emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195811008",
+                "display": "Chronic simple laryngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195772001",
+                "display": "Chronic membranous rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195812001",
+                "display": "Chronic catarrhal laryngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "275376007",
+                "display": "Congenital syphilitic chronic coryza"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195959009",
+                "display": "Zonal bullous emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195773006",
+                "display": "Chronic fibrinous rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "60805002",
+                "display": "Haemolytic anaemia with emphysema AND cutis laxa"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195813006",
+                "display": "Chronic hyperplastic laryngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "77690003",
+                "display": "Interstitial emphysema of lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "66987001",
+                "display": "Congenital lobar emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "91928001",
+                "display": "Allergic rhinitis due to weed pollen"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "35923002",
+                "display": "Chronic maxillary sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "54287007",
+                "display": "Ozena laryngis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "69646003",
+                "display": "Ozena"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195769008",
+                "display": "Chronic atrophic rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232457008",
+                "display": "Laryngeal papillomatosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "73237007",
+                "display": "Chronic ethmoidal sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232397007",
+                "display": "Chronic frontoethmoidal sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "720009004",
+                "display": "Intractable diarrhoea with choanal atresia and eye anomaly syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "95239003",
+                "display": "Rhinitis medicamentosa"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233630006",
+                "display": "Obstructive bronchiectasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233762004",
+                "display": "Chronic silicosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195765002",
+                "display": "Chronic simple rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "599006",
+                "display": "Chronic pneumothorax"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232344001",
+                "display": "Rhinitis caseosa"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233677001",
+                "display": "Scar emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195770009",
+                "display": "Chronic infective rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "70756004",
+                "display": "Bronchial atresia with segmental pulmonary emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195779005",
+                "display": "Pharyngitis keratosa"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233631005",
+                "display": "Toxin-induced bronchiectasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "31898008",
+                "display": "Paraseptal emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232391008",
+                "display": "Recurrent acute sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233632003",
+                "display": "Bronchiectasis due to toxic aspiration"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "785736001",
+                "display": "Chronic bronchitis co-occurrent with wheeze"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "33325001",
+                "display": "Compensatory emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "24078009",
+                "display": "Gangosa of yaws"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232434002",
+                "display": "Chronic fungal laryngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "846637007",
+                "display": "Chronic pulmonary fibrosis caused by chemical vapours"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "36599006",
+                "display": "Chronic fibrosis of lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233633008",
+                "display": "Bronchiectasis due to toxic inhalation"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232430006",
+                "display": "Recurrent allergic croup"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "432958009",
+                "display": "Chronic rejection of lung transplant"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "716771000",
+                "display": "Chronic hiccups"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "68328006",
+                "display": "Centriacinar emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "314954002",
+                "display": "Local recurrence of malignant tumour of lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232394000",
+                "display": "Chronic posterior ethmoidal sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "133171000119105",
+                "display": "Chronic pharyngolaryngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232405008",
+                "display": "Chronic ulcerative pharyngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "293241000119100",
+                "display": "Acute exacerbation of chronic obstructive bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "425748003",
+                "display": "Acute exacerbation of chronic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "185086009",
+                "display": "Chronic obstructive bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "763829004",
+                "display": "Oculopharyngodistal myopathy"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "93447004",
+                "display": "Eosinophilic nonallergic rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "91927006",
+                "display": "Allergic rhinitis due to tree pollen"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "10692721000119102",
+                "display": "Chronic obstructive asthma co-occurrent with acute exacerbation of asthma"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "313299006",
+                "display": "Severe COPD"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "26427008",
+                "display": "Chronic pulmonary histoplasmosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "840351007",
+                "display": "Chronic obliterative bronchiolitis due to vapour"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "846635004",
+                "display": "Chronic respiratory condition due to vapours"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "84409004",
+                "display": "Fetid chronic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "18354001",
+                "display": "Chronic induration of lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "12310001",
+                "display": "Childhood bronchiectasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "771081007",
+                "display": "Distal hereditary motor neuropathy type 7"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "707534000",
+                "display": "Chronic lung disease due to surfactant disorder"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "413839001",
+                "display": "Chronic lung disease"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "10629231000119109",
+                "display": "Recurrent acute streptococcal tonsillitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195708003",
+                "display": "Recurrent upper respiratory tract infection"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "16358007",
+                "display": "Chronic disease of tonsils AND/OR adenoids"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "829976001",
+                "display": "Thunderstorm asthma"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "427909005",
+                "display": "Chronic recurrent sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195788001",
+                "display": "Recurrent sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233683003",
+                "display": "Hay fever with asthma"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "445427006",
+                "display": "Seasonal asthma"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "367498001",
+                "display": "Seasonal allergic rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "95240001",
+                "display": "Rhinitis sicca"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "46847001",
+                "display": "Chronic pulmonary oedema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "717231003",
+                "display": "Periodic fever and aphthous stomatitis with pharyngitis and cervical lymphadenitis syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "417688002",
+                "display": "Chronic progressive coccidioidal pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "28791000119105",
+                "display": "Chronic coccidioidomycotic pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "285381006",
+                "display": "Acute infective exacerbation of COPD"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195951007",
+                "display": "Acute exacerbation of COPD"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195780008",
+                "display": "Pharyngitis sicca"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233674008",
+                "display": "Pulmonary emphysema in alpha-1 PI deficiency"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233713004",
+                "display": "Seasonal cryptogenic organising pneumonia with biochemical cholestasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "10692761000119107",
+                "display": "Asthma-COPD overlap syndrome (ACOS)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "22951000119104",
+                "display": "Spasmodic croup"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195953005",
+                "display": "Mixed simple and mucopurulent chronic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "90979004",
+                "display": "Chronic tonsillitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "254621001",
+                "display": "Laryngotracheal papillomatosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "442025000",
+                "display": "Acute exacerbation of chronic asthmatic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195949008",
+                "display": "Chronic asthmatic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "86680006",
+                "display": "Ruptured emphysematous bleb of lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "57686001",
+                "display": "Emphysematous bleb of lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233675009",
+                "display": "Toxic emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "10672271000119100",
+                "display": "Acute on chronic hypoxemic respiratory failure"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195677001",
+                "display": "Recurrent acute tonsillitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "196049002",
+                "display": "Chronic pulmonary radiation disease"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195782000",
+                "display": "Chronic follicular pharyngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "783182004",
+                "display": "Chronic respiratory distress with surfactant metabolism deficiency"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "52571006",
+                "display": "Chronic tracheobronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "20091000175107",
+                "display": "Acute on chronic hypoxemic and hypercapnic respiratory failure"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "836477007",
+                "display": "Chronic emphysema due to vapour"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "196001008",
+                "display": "COPD with acute lower respiratory infection"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "89099002",
+                "display": "Chronic allergic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232393006",
+                "display": "Chronic anterior ethmoidal sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "51068008",
+                "display": "Adult bronchiectasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195768000",
+                "display": "Chronic hypertrophic rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "18121009",
+                "display": "Chronic berylliosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "1751000119100",
+                "display": "Acute exacerbation of COPD with asthma"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "77097004",
+                "display": "Oculopharyngeal muscular dystrophy"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "430969000",
+                "display": "Recurrent aspiration pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "713526000",
+                "display": "Recurrent bacterial pneumonia co-occurrent with HIV infection"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "426437004",
+                "display": "Familial idiopathic pulmonary fibrosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "61937009",
+                "display": "Simple chronic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "19325002",
+                "display": "Traction bronchiectasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "38961000",
+                "display": "Chronic sphenoidal sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "60130002",
+                "display": "Chronic frontal sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "74417001",
+                "display": "Mucopurulent chronic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232395004",
+                "display": "Chronic panethmoidal sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "713525001",
+                "display": "Recurrent bacterial pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "37180002",
+                "display": "Chronic nonspecific lung disease"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195756009",
+                "display": "Woakes' ethmoiditis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "42402006",
+                "display": "Kartagener syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232396003",
+                "display": "Chronic osteomeatal disease"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "240742009",
+                "display": "Chronic pulmonary African histoplasmosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "448739000",
+                "display": "Recurrent lower respiratory tract infection"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "707553005",
+                "display": "Chronic exogenous lipoid pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "266404004",
+                "display": "Chronic chemical respiratory disease"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "135836000",
+                "display": "End stage COPD"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "240747003",
+                "display": "Chronic pulmonary blastomycosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "708030004",
+                "display": "Pulmonary emphysema co-occurrent with fibrosis of lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232439007",
+                "display": "Relapsing polychondritis of larynx"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "428173007",
+                "display": "Chronic hypoxemic respiratory failure"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "23958009",
+                "display": "Vanishing lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "91926002",
+                "display": "Allergic rhinitis due to grass pollen"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "21719001",
+                "display": "Allergic rhinitis due to pollen"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "771306007",
+                "display": "Hereditary fibrosing poikiloderma, tendon contractures, myopathy, pulmonary fibrosis syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "232406009",
+                "display": "Chronic pharyngeal candidiasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "63866002",
+                "display": "Atrophic pharyngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "140004",
+                "display": "Chronic pharyngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "49691004",
+                "display": "Occupational bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "233615002",
+                "display": "Chronic pulmonary coccidioidomycosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "699014000",
+                "display": "Recurrent pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "472827002",
+                "display": "Recurrent respiratory papillomatosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "83271005",
+                "display": "Chronic laryngotracheitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "7457009",
+                "display": "Chronic tracheitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195810009",
+                "display": "Chronic laryngitis and laryngotracheitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "29951006",
+                "display": "Chronic laryngitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "789574002",
+                "display": "Acute exacerbation of idiopathic pulmonary fibrosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "700250006",
+                "display": "Idiopathic pulmonary fibrosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "704345008",
+                "display": "Chronic interstitial pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "102361000119104",
+                "display": "Chronic pneumonia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "2912004",
+                "display": "Cystic-bullous disease of the lung"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "430476004",
+                "display": "Diffuse panbronchiolitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "59454008",
+                "display": "Laryngitis sicca"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "733171006",
+                "display": "Chronic pulmonary aspergillosis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "733170007",
+                "display": "Chronic aspergillosis of paranasal sinus"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "313297008",
+                "display": "Moderate COPD"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "266356006",
+                "display": "Atrophic (senile) emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "266342009",
+                "display": "Chronic catarrhal rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "86094006",
+                "display": "Chronic rhinitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "266355005",
+                "display": "Bullous emphysema with collapse"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "123713005",
+                "display": "Chronic atelectasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "63841001",
+                "display": "Chronic pulmonary congestion"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "840350008",
+                "display": "Chronic obliterative bronchiolitis due to chemical fumes"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "47938003",
+                "display": "Chronic obliterative bronchiolitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "737180005",
+                "display": "Chronic bronchiolitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "846636003",
+                "display": "Chronic respiratory condition caused by chemical fumes"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "846634000",
+                "display": "Chronic respiratory condition caused by fumes"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "88850006",
+                "display": "Chronic pansinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "40055000",
+                "display": "Chronic sinusitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "7361000175106",
+                "display": "Acute on chronic hypercapnic respiratory failure"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "426896000",
+                "display": "Chronic hypercapnic respiratory failure"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "67905004",
+                "display": "Acute-on-chronic respiratory failure"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "39871006",
+                "display": "Chronic respiratory failure"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "427896006",
+                "display": "Chronic respiratory insufficiency"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195866009",
+                "display": "Laryngeal pachydermia"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "47895001",
+                "display": "Congenital emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "721076000",
+                "display": "Siegler Brewer Carey syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "106001000119101",
+                "display": "COPD co-occurrent with acute bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195984007",
+                "display": "Recurrent bronchiectasis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "16003001",
+                "display": "Giant bullous emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "195957006",
+                "display": "Chronic bullous emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "4981000",
+                "display": "Panacinar emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "16846004",
+                "display": "Obstructive emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87433001",
+                "display": "Pulmonary emphysema"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "702383005",
+                "display": "Distal myopathy 2"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "313296004",
+                "display": "Mild COPD"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "13645005",
+                "display": "COPD"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "735465007",
+                "display": "Protracted bronchitis caused by bacterium"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "63480004",
+                "display": "Chronic bronchitis"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "17097001",
+                "display": "Chronic disease of respiratory system"
+            }
+        ]
+    }
+}

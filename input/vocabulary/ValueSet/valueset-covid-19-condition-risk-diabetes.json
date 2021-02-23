@@ -1,0 +1,93 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-condition-risk-diabetes",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-diabetes",
+    "version": "0.5.0",
+    "name": "COVID19RiskFactorDiabetes",
+    "title": "COVID-19 Risk Factor Diabetes Type II Conditions Value Set",
+    "description": "COVID-19 Risk Factor Diabetes Type II Value Set",
+    "status": "active",
+    "expansion": {
+        "identifier": "d3c44289-dffc-4114-80d2-6e4167e34de3",
+        "timestamp": "2021-02-16T10:17:31+10:00",
+        "total": 12,
+        "offset": 0,
+        "parameter": [
+            {
+                "name": "version",
+                "valueUri": "http://snomed.info/sct|http://snomed.info/sct/32506021000036107/version/20210204"
+            },
+            {
+                "name": "count",
+                "valueInteger": 2147483647
+            },
+            {
+                "name": "offset",
+                "valueInteger": 0
+            }
+        ],
+        "contains": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "44054006",
+                "display": "Diabetes mellitus type 2 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "1481000119100",
+                "display": "Type 2 diabetes mellitus without retinopathy"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "237599002",
+                "display": "Insulin treated type 2 diabetes mellitus"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "609567009",
+                "display": "Pre-existing type 2 diabetes mellitus in pregnancy"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "199230006",
+                "display": "Pre-existing type 2 diabetes mellitus"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "237627000",
+                "display": "Pregnancy and type 2 diabetes mellitus"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "359642000",
+                "display": "Type 2 diabetes mellitus in nonobese"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "313436004",
+                "display": "Type 2 diabetes mellitus without complication"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "190389009",
+                "display": "Type 2 diabetes mellitus with ulcer"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "81531005",
+                "display": "Type 2 diabetes mellitus in obese"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "703138006",
+                "display": "Type 2 diabetes mellitus in remission"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "445353002",
+                "display": "Unstable type 2 diabetes mellitus"
+            }
+        ]
+    }
+}
