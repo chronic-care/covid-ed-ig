@@ -49,6 +49,14 @@ jobs:
       - name: Generate Implementation Guide (IG)
         run: bash _genonce.sh
 
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: chronic-care/chronic-care.github.io
+          destination_dir: covid-ed-ig
+          publish_dir: ./output
+
       - name: Install NPM modules
         run: npm ci
 
