@@ -45,5 +45,3 @@ code "Body temperature": '8310-5' from "LOINC" display 'Body temperature'
 code "Body height": '8302-2' from "LOINC" display 'Body height'
 code "Body weight": '29463-7' from "LOINC" display 'Body weight'
 code "Body mass index": '39156-5' from "LOINC" display 'Body mass index'
-
-code "Inhaled oxygen flow rate": '3151-8' from "LOINC" display 'Inhaled oxygen flow rate'

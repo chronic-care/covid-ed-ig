@@ -11,7 +11,7 @@
     },
     "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3091",
     "version": "20200717",
-    "name": "COVID19 ICD10CM Value Set for Obesity",
+    "name": "COVID19ICD10CMValueSetForObesity",
     "status": "active",
     "date": "2020-07-17T01:00:30-04:00",
     "publisher": "Clinical Architecture",

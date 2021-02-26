@@ -26,7 +26,33 @@ parameter VitalSignsLookbackPeriod default 12 months
 // 12 months for test data, use '2 days' as default in production?
 parameter LabResultsLookbackPeriod default 12 months
 
-// Risk Factors as specified by clinical user, overrides Condition queries.
+// Symptoms as observed by a clinical user, overrides Observation queries, if any.
+parameter Symptoms Tuple {
+  Fever Boolean,
+  Cough Boolean,
+  SoreThroat Boolean,
+  Malaise Boolean,
+  Headache Boolean,
+  MusclePain Boolean,
+  Nausea Boolean,
+  LossOfTasteAndSmell Boolean,
+  ShortnessOfBreath Boolean
+}
+
+parameter ClinicalAssessments Tuple {
+  Alertness String,               // Alert or Confused, as ValueSet
+  InspiredOxygen Boolean,
+  PerformanceStatus String,       // ValueSet with 5 codes
+  Dyspnea Boolean,
+  AbnormalChestImaging Boolean,
+  PaO2FiO2Ratio Decimal,          // e.g. 300
+  LungInfiltrates Decimal,        // Percent
+  RespiratoryFailure Boolean,
+  SepticShock Boolean,
+  MultiorganDysfunction Boolean
+}
+
+// Risk Factors as specified by a clinical user, overrides Condition queries, if any.
 parameter RiskFactors Tuple {
   Cancer Boolean,
   CardiovascularDisease Boolean,
@@ -53,15 +79,6 @@ context Patient
 
 define "Patient Age":
  AgeInYears()
-
-define "Age 60 or older":
-  AgeInYears() >= 60
-
-define "Patient is Male":
-  Patient.gender = 'male'
-
-define "Patient is Black":
-  "Patient Race" contains CC."Black or African American"
 
 define "Patient Race":
   (flatten (
@@ -151,15 +168,11 @@ define "Blood Pressure Observation Components":
 define "Last O2 Saturation value":
   C3F.QuantityValue(C3F.MostRecent("O2 Saturation Observations")).value
 
-define "Lowest O2 Saturation value":
-  C3F.LowestObservation("O2 Saturation Observations").value
-
-// TODO lowest in what period?  24 hours before last value?  In current Encounter(s)?
-define "Lowest O2 Saturation percent":
+define "Last O2 Saturation percent":
   // O2 Saturation should be reported as a percent, e.g. 92.
-  if "Lowest O2 Saturation value" >= 1 then "Lowest O2 Saturation value"
+  if "Last O2 Saturation value" >= 1 then "Last O2 Saturation value"
   // If reported as decimal .92, then multiply by 100.
-  else if "Lowest O2 Saturation value" is not null then Round(100.0 * "Lowest O2 Saturation value")
+  else if "Last O2 Saturation value" is not null then Round(100.0 * "Last O2 Saturation value")
   else null
 
 define "O2 Saturation Observations":
@@ -178,22 +191,14 @@ define "Respiratory Rate Observations":
     C3F.Verified([Observation: CC."Respiratory rate"]),
     VitalSignsLookbackPeriod)
 
-define "Last O2 Flow Rate":
-  C3F.MostRecent("O2 Flow Rate Observations")
-
-define "Last O2 Flow Rate value":
-  C3F.QuantityValue("Last O2 Flow Rate").value
-
-define "O2 Flow Rate Observations":
-  C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Inhaled oxygen flow rate"]),
-    VitalSignsLookbackPeriod)
-
 define "Last Body Temperature":
   C3F.MostRecent("Body Temperature Observations")
 
-define "Last Body Temperature value":
-  ToMetric(C3F.QuantityValue("Last Body Temperature")).value
+define "Last Body Temperature value in C":
+  TemperatureInC("Last Body Temperature".value).value
+
+define "Last Body Temperature value in F":
+  TemperatureInF("Last Body Temperature".value).value
 
 define "Body Temperature Observations":
   C3F.ObservationLookBack(
@@ -223,6 +228,22 @@ define function ToQuantity(quantity FHIR.Quantity):
       	unit: quantity.code.value  // use UCUM 'code' instead of Quantity 'unit'
     }
 
+define function TemperatureInC(qty System.Quantity):
+  case
+    when qty.unit = 'Cel' then qty
+  	when qty.unit = '[degF]' then
+  		System.Quantity { value: Round((qty.value - 32) * (5 / 9), 1), unit: 'Cel' }
+  	else null
+  end
+
+define function TemperatureInF(qty System.Quantity):
+  case
+    when qty.unit = '[degF]' then qty
+    when qty.unit = 'Cel' then
+      System.Quantity { value: Round((qty.value * (9/5)) + 32, 1), unit: '[degF]' }
+    else null
+  end
+
 define function ToMetric(qty System.Quantity):
 	case when qty.unit = '[lb_av]' then
 		System.Quantity { value: qty.value * 0.454, unit: 'kg' }
@@ -237,94 +258,159 @@ define function ToMetric(qty System.Quantity):
 	end
 
 /*
-* Calculate qCSI
-*/
-
-define "qCSI Score":
-  "O2 Saturation Score" + "Respiratory Rate Score" + "O2 Flow Rate Score"
-
-define "O2 Saturation Score":
-  if "Lowest O2 Saturation percent" between 89 and 92 then 2
-  else if "Lowest O2 Saturation percent" <= 88 then 5
-  else 0
-
-define "Respiratory Rate Score":
-  if "Last Respiratory Rate value" between 23 and 28 then 1
-  else if "Last Respiratory Rate value" >= 29 then 2
-  else 0
-
-// TODO is flow rate always an integer value?
-define "O2 Flow Rate Score":
-  if "Last O2 Flow Rate value" between 3 and 4 then 4
-  else if "Last O2 Flow Rate value" > 4 then 5
-  else 0
-
-/*
 * Determine Severity Classification
 */
 
 define "Severity Classification":
-  if "Is Critical Risk" then 'Critical'
-  else if "Is Severe Risk" then 'Severe'
-  else if "Is Moderate Risk" then 'Moderate'
-  else if "Is Mild At Risk" then 'Mild At Risk'
-  else if "Is Mild Low Risk" then 'Mild Low Risk'
+  if "Is Critical Severity" then 'CRITICAL'
+  else if "Is Severe Severity" then 'SEVERE'
+  else if "Is Moderate Severity" then 'MODERATE'
+  else if "Is Mild Severity" then 'MILD'
   else null
 
-define "Is Critical Risk":
-  if "Last SBP value" < 90
-    or "qCSI Score" >= 9
+define "Is Critical Severity":
+  if ClinicalAssessments.RespiratoryFailure
+    or ClinicalAssessments.SepticShock
+    or ClinicalAssessments.MultiorganDysfunction
     then true
   else false
 
-define "Is Severe Risk":
-  if not "Is Critical Risk"
-    and ("Lowest O2 Saturation percent" <= 88
-      or "Last O2 Flow Rate value" >= 5
-      or "qCSI Score" between 6 and 8)
+// TODO PaO2/FiO2 < 300
+// TODO Lung infiltrates > 50%
+define "Is Severe Severity":
+  if not "Is Critical Severity"
+    and ("Last O2 Saturation percent" < 94
+      or "Last Respiratory Rate value" > 30
+      or ClinicalAssessments.PaO2FiO2Ratio < 300
+      or ClinicalAssessments.LungInfiltrates > 50)
     then true
   else false
 
-define "Is Moderate Risk":
-  if not "Is Severe Risk" and not "Is Critical Risk"
-    and ("Last Heart Rate value" >= 121
-      or "Lowest O2 Saturation percent" between 89 and 92
-      or "Last Respiratory Rate value" >= 29
-      or "Last O2 Flow Rate value" between 3 and 4
-      or "qCSI Score" between 3 and 5)
+// TODO evidence of lower respiratory disease
+// TODO on room air (not Supplemental Oxygen)
+define "Is Moderate Severity":
+  if not "Is Severe Severity" and not "Is Critical Severity"
+    and ("Last O2 Saturation percent" >= 94
+        or Symptoms.ShortnessOfBreath
+        or ClinicalAssessments.Dyspnea
+        or ClinicalAssessments.AbnormalChestImaging
+    )
     then true
   else false
 
-define "Is Mild At Risk":
-  if not "Is Severe Risk" and not "Is Critical Risk" and not "Is Moderate Risk"
-    and ("Last Heart Rate value" between 100 and 120
-      or "Last Respiratory Rate value" between 23 and 28
-      or "Last O2 Flow Rate value" between 1 and 2
-      or "qCSI Score" between 1 and 2
-      or "Risk Factors count" >= 2)
+// TODO moved 3 parameters to Moderat as "evidence of lower respiratory disease"
+define "Is Mild Severity":
+  if not "Is Severe Severity" and not "Is Critical Severity" and not "Is Moderate Severity"
+    and (Symptoms.Fever or Symptoms.Cough or Symptoms.SoreThroat or Symptoms.Malaise
+          or Symptoms.Headache or Symptoms.MusclePain or Symptoms.Nausea or Symptoms.LossOfTasteAndSmell)
     then true
   else false
 
-define "Is Mild Low Risk":
-  if not "Is Severe Risk" and not "Is Critical Risk" and not "Is Moderate Risk" and not "Is Mild At Risk"
-    and "Last Heart Rate value" <= 99
-    and "Lowest O2 Saturation percent" >= 93
-    and "Last Respiratory Rate value" <= 22
-    and "O2 Flow Rate Observations" is null
-    and "qCSI Score" = 0
-    and "Risk Factors count" between 0 and 1
-    then true
-  else false
+/*
+* Risk Prognostication
+*/
+
+// TODO Alertness, InspiredOxygen, PerformanceStatus
+
+define "Total Risk Score":
+  "Respiratory Rate Risk Score" + "O2 Saturation Risk Score" + "Heart Rate Risk Score" + "Systolic BP Risk Score"
+    + "Temperature Risk Score" + "Sex Risk Score" + "Age Risk Score"
+
+define "Risk Percent":
+  case "Total Risk Score"
+    when null then null
+    when 0 then 1
+    when 1 then 1
+    when 2 then 2
+    when 3 then 2
+    when 4 then 3
+    when 5 then 9
+    when 6 then 15
+    when 7 then 18
+    when 8 then 22
+    when 9 then 26
+    when 10 then 29
+    when 11 then 34
+    when 12 then 38
+    when 13 then 46
+    when 14 then 48
+    when 15 then 50
+    when 16 then 55
+    else 66
+  end
+
+define "Respiratory Rate Risk Score":
+  case
+    when "Last Respiratory Rate value" between 12 and 20 then 0
+    when "Last Respiratory Rate value" between 9 and 11 then 1
+    when "Last Respiratory Rate value" between 21 and 24 then 2
+    when "Last Respiratory Rate value" < 9 then 3
+    when "Last Respiratory Rate value" > 24 then 3
+    else 0
+  end
+
+define "O2 Saturation Risk Score":
+  case
+    when "Last O2 Saturation percent" > 95 then 0
+    when "Last O2 Saturation percent" between 94 and 95 then 1
+    when "Last O2 Saturation percent" between 92 and 93 then 2
+    when "Last O2 Saturation percent" < 92 then 3
+    else 0
+  end
+
+define "Heart Rate Risk Score":
+  case
+    when "Last Heart Rate value" between 51 and 90 then 0
+    when "Last Heart Rate value" between 41 and 50 then 1
+    when "Last Heart Rate value" between 91 and 110 then 1
+    when "Last Heart Rate value" between 111 and 130 then 2
+    when "Last Heart Rate value" < 41 then 3
+    when "Last Heart Rate value" > 130 then 3
+    else 0
+  end
+
+define "Systolic BP Risk Score":
+  case
+    when "Last SBP value" between 111 and 219 then 0
+    when "Last SBP value" between 101 and 110 then 1
+    when "Last SBP value" between 91 and 100 then 2
+    when "Last SBP value" < 91 then 3
+    when "Last SBP value" > 219 then 3
+    else 0
+  end
+
+define "Temperature Risk Score":
+  case
+    when "Last Body Temperature value in C" between 36.1 and 38.0 then 0
+    when "Last Body Temperature value in C" between 35.1 and 36.0 then 1
+    when "Last Body Temperature value in C" between 38.1 and 39.0 then 1
+    when "Last Body Temperature value in C" > 39.0 then 2
+    when "Last Body Temperature value in C" < 35.1 then 3
+    else 0
+  end
+
+define "Sex Risk Score":
+  case
+    when Patient.gender = 'female' then 0
+    when Patient.gender = 'male' then 1
+    else 0
+  end
+
+define "Age Risk Score":
+  case
+    when AgeInYears() between 16 and 49 then 0
+    when AgeInYears() between 50 and 65 then 2
+    when AgeInYears() between 66 and 80 then 3
+    when AgeInYears() > 80 then 4
+    else 0
+  end
 
 /*
  * Assess Risk Factors
  */
 
 define "Risk Factors count":
-  (if "Patient is Male" then 1 else 0)
-    + (if "Patient is Black" then 1 else 0)
-    + (if "Age 60 or older" then 1 else 0)
-    + (if "Has Cancer Risk Factor" then 1 else 0)
+  (if "Has Cancer Risk Factor" then 1 else 0)
     + (if "Has Cardiovascular Disease Risk Factor" then 1 else 0)
     + (if "Has Chronic Respiratory Disease Risk Factor" then 1 else 0)
     + (if "Has Diabetes Type 2 Risk Factor" then 1 else 0)
@@ -384,6 +470,9 @@ define "Has Hypertension Risk Factor":
 define "Has Immunosuppression Risk Factor":
   RiskFactors.Immunosuppression
 
+define "Has Neurologic Disease Risk Factor":
+  RiskFactors.NeurologicDisease
+
 define "Has Obstructive Sleep Apnea Risk Factor":
   Coalesce(
     RiskFactors.ObstructiveSleepApnea,
@@ -401,6 +490,9 @@ define "Has Obesity Risk Factor":
     false
   )
 
+define "Has Pregnancy Risk Factor":
+  RiskFactors.Pregnancy
+
 define "Has Renal Disease Risk Factor":
   Coalesce(
     RiskFactors.RenalDisease,
@@ -410,12 +502,6 @@ define "Has Renal Disease Risk Factor":
 
 define "Has Steroid Usage Risk Factor":
   RiskFactors.SteroidUsage
-
-/*
- * Assess Symptoms
- */
-
-// TODO Persistent dyspnea, Hemoptysis, Altered LOC
 
 /*
  * Diagnostic Testing
@@ -476,8 +562,7 @@ define function ReportObservations(ObsList List<Observation>):
     sort by Date asc
 
 // The Summary object represents the full COVID-19 Risk Assessment to be displayed to the clinician.  All values are
-// returned as user-friendly text representations, but a robust user interface (UI) should be implemented to
-// display the data to the user in a friendly manner.
+// returned as user-friendly text representations.
 
 define Summary: {
   Patient: {
@@ -486,14 +571,57 @@ define Summary: {
     Age: AgeInYears(),
     Race: "Patient Race Text"
   },
+  Risk: {
+    SeverityClassification: "Severity Classification",
+    RiskScore: "Total Risk Score",
+    RiskPercent: "Risk Percent",
+    RiskFactors: "Risk Factors count"
+  },
+  Disposition: {
+
+  },
+  SmartPhrases: {
+    // TODO
+  },
+  ClinicalAssessment: {
+    RespiratoryRate: "Last Respiratory Rate value",
+    O2Saturation: "Last O2 Saturation percent",
+    HeartRate: "Last Heart Rate value",
+    BloodPressure: Last("Blood Pressure Observations").Display,
+    SystolicBloodPressure: "Last SBP value",
+    TemperatureC: "Last Body Temperature value in C",
+    TemperatureF: "Last Body Temperature value in F",
+    Alertness: null,
+    InspiredOxygen: null,
+    PerformanceStatue: null
+  },
+  RiskFactors: {
+    Cancer: "Has Cancer Risk Factor",
+    CardiovascularDisease: "Has Cardiovascular Disease Risk Factor",
+    ChronicRespiratoryDisease: "Has Chronic Respiratory Disease Risk Factor",
+    DiabetesType2: "Has Diabetes Type 2 Risk Factor",
+    DownsSyndrome: "Has Downs Syndrome Risk Factor",
+    Hypertension: "Has Hypertension Risk Factor",
+    Immunosuppression: "Has Immunosuppression Risk Factor",
+    NeurologicDisease: "Has Neurologic Disease Risk Factor",
+    Obesity: "Has Obesity Risk Factor",
+    ObstructiveSleepApnea: "Has Obstructive Sleep Apnea Risk Factor",
+    Pregnancy: "Has Pregnancy Risk Factor",
+    RenalDisease: "Has Renal Disease Risk Factor",
+    SteroidUsage: "Has Steroid Usage Risk Factor"
+  },
+  DiagnosticAssessment: {
+    // TODO add lab results here
+  }
+}
+
+/*
+define TrendData: {
   ClinicalAssessment: {
     HeartRate: ReportObservations("Heart Rate Observations"),
     BloodPressure: "Blood Pressure Observations",
     O2Saturation: ReportObservations("O2 Saturation Observations"),
-    RespiratoryRate: ReportObservations("Respiratory Rate Observations"),
-    O2FlowRate: ReportObservations("O2 Flow Rate Observations")
-  },
-  DiagnosticAssessment: {
-    // add lab results here
+    RespiratoryRate: ReportObservations("Respiratory Rate Observations")
   }
 }
+*/
