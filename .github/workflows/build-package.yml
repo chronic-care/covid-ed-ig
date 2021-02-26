@@ -54,6 +54,7 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: chronic-care/chronic-care.github.io
+          publish_branch: master
           destination_dir: covid-ed-ig
           publish_dir: ./output
 
