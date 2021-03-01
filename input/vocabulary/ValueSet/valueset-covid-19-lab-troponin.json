@@ -1,0 +1,67 @@
+{
+  "resourceType": "ValueSet",
+  "id": "covid-19-lab-troponin",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset" ]
+  },
+  "language": "en",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueString": "executable"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+    "valueString": "executable"
+  } ],
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-troponin",
+  "version": "0.5.0",
+  "name": "COVID19LabTroponin",
+  "title": "COVID-19 Laboratory Value Set for Troponin",
+  "status": "active",
+  "date": "2021-02-26T20:00:00+00:00",
+  "description": "COVID-19 Laboratory Value Set for Troponin",
+  "compose": {
+    "include": [ {
+      "system": "http://loinc.org",
+      "concept": [ {
+        "code": "16255-2"
+      }, {
+        "code": "10839-9"
+      }, {
+        "code": "49563-0"
+      }, {
+        "code": "89579-7"
+      }, {
+        "code": "89575-5"
+      }, {
+        "code": "6598-7"
+      }, {
+        "code": "67151-1"
+      } ]
+    } ]
+  },
+  "expansion": {
+    "timestamp": "2021-03-01T14:22:59-07:00",
+    "contains": [ {
+      "system": "http://loinc.org",
+      "code": "16255-2"
+    }, {
+      "system": "http://loinc.org",
+      "code": "10839-9"
+    }, {
+      "system": "http://loinc.org",
+      "code": "49563-0"
+    }, {
+      "system": "http://loinc.org",
+      "code": "89579-7"
+    }, {
+      "system": "http://loinc.org",
+      "code": "89575-5"
+    }, {
+      "system": "http://loinc.org",
+      "code": "6598-7"
+    }, {
+      "system": "http://loinc.org",
+      "code": "67151-1"
+    } ]
+  }
+}

@@ -507,8 +507,89 @@ define "Has Steroid Usage Risk Factor":
  * Diagnostic Testing
  */
 
-// TODO Retrieve and evaluate lab results
+define "Last ALT Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."ALT Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
 
+define "Last AST Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."AST Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last CRP Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."CRP Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Creatinine Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Creatinine Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last D-dimer Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."D-dimer Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Neutrophils Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Neutrophils Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Leukocyte Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Leukocyte Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Ferritin Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Ferritin Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Lymphocytes Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Lymphocytes Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Platelets Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Platelets Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last LDH Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."LDH Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Troponin Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Troponin Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
 
 /***
  * TODO: Move these view object definitions to a separate CQL library.
@@ -561,6 +642,49 @@ define function ReportObservations(ObsList List<Observation>):
     }
     sort by Date asc
 
+define function ReportLabObservation(o FHIR.Observation):
+  if (o is null) then null
+  else
+    {
+      Date:   ObservationDate(o),
+      Name:   ConceptText(o.code),                                // display nanme
+      ResultText: QuantityText(o.value as FHIR.Quantity),         // result value with units
+      ResultValue: ToString((o.value as FHIR.Quantity).value),
+      ResultUnits: (o.value as FHIR.Quantity).unit.value,
+      ReferenceRange: LabReferenceRange(o),
+      Interpretation: LabInterpretation(o),
+      Flag: LabReferenceRangeFlag(o)   // true if value out of range, else false
+    }
+
+define function LabReferenceRange(o FHIR.Observation):
+  if (o is null or o.referenceRange is null) then null
+  else
+    Coalesce(First(o.referenceRange.text),
+      ToString(LabReferenceRangeLow(o)) + '-' + ToString(LabReferenceRangeHigh(o))
+    )
+
+define function LabReferenceRangeLow(o FHIR.Observation):
+  First(o.referenceRange).low.value
+
+define function LabReferenceRangeHigh(o FHIR.Observation):
+  First(o.referenceRange).high.value
+
+define function LabReferenceRangeFlag(o FHIR.Observation):
+  if (o.value.value < LabReferenceRangeLow(o)
+      or o.value.value > LabReferenceRangeHigh(o)) then true
+  else false
+
+define function LabInterpretation(o FHIR.Observation):
+  if (o.interpretation is not null) then
+    Coalesce(First(o.interpretation.text), First(First(o.interpretation).coding.display))
+  else if o.referenceRange is not null then
+    // Derive interpretation from the reference range, return null if within normal range.
+    if o.value.value < LabReferenceRangeLow(o) then 'L'
+    else if o.value.value > LabReferenceRangeHigh(o) then 'H'
+    else null
+  else
+    null
+
 // The Summary object represents the full COVID-19 Risk Assessment to be displayed to the clinician.  All values are
 // returned as user-friendly text representations.
 
@@ -593,7 +717,7 @@ define Summary: {
     TemperatureF: "Last Body Temperature value in F",
     Alertness: null,
     InspiredOxygen: null,
-    PerformanceStatue: null
+    PerformanceStatus: null
   },
   RiskFactors: {
     Cancer: "Has Cancer Risk Factor",
@@ -611,17 +735,25 @@ define Summary: {
     SteroidUsage: "Has Steroid Usage Risk Factor"
   },
   DiagnosticAssessment: {
-    // TODO add lab results here
+    ALT: ReportLabObservation("Last ALT Lab Result"),
+    AST: ReportLabObservation("Last AST Lab Result"),
+    Creatinine: ReportLabObservation("Last Creatinine Lab Result"),
+    CRP: ReportLabObservation("Last CRP Lab Result"),
+    DDimer: ReportLabObservation("Last D-dimer Lab Result"),
+    Ferritin: ReportLabObservation("Last Ferritin Lab Result"),
+    LDH: ReportLabObservation("Last LDH Lab Result"),
+    Lymphopenia: ReportLabObservation("Last Lymphocytes Lab Result"),
+    Neutrophils: ReportLabObservation("Last Neutrophils Lab Result"),
+    Thrombocytopenia: ReportLabObservation("Last Platelets Lab Result"),
+    Troponin: ReportLabObservation("Last Troponin Lab Result"),
+    WBC: ReportLabObservation("Last Leukocyte Lab Result")
   }
 }
 
-/*
 define TrendData: {
-  ClinicalAssessment: {
-    HeartRate: ReportObservations("Heart Rate Observations"),
-    BloodPressure: "Blood Pressure Observations",
-    O2Saturation: ReportObservations("O2 Saturation Observations"),
-    RespiratoryRate: ReportObservations("Respiratory Rate Observations")
-  }
+  RespiratoryRate: ReportObservations("Respiratory Rate Observations"),
+  O2Saturation: ReportObservations("O2 Saturation Observations"),
+  HeartRate: ReportObservations("Heart Rate Observations"),
+  BloodPressure: "Blood Pressure Observations",
+  Temperature: "Body Temperature Observations"    // TODO convert all to degF
 }
-*/

@@ -1,0 +1,33 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-leukocyte",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-leukocyte",
+    "version": "0.5.0",
+    "date": "2021-02-26T20:00:00+00:00",
+    "name": "COVID19LabLeukocyte",
+    "title": "COVID-19 Laboratory Value Set for Leukocytes",
+    "description": "COVID-19 Laboratory Value Set for Leukocytes",
+    "status": "active",
+    "compose": {
+      "include": [
+  			{
+  				"system": "http://loinc.org",
+  				"concept": [
+  					{
+  						"code": "26464-8"
+  					},
+  					{
+  						"code": "6690-2"
+  					},
+  					{
+  						"code": "49498-9"
+  					},
+  					{
+  						"code": "804-5"
+  					}
+          ]
+  			}
+      ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-ast",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-ast",
+    "version": "0.5.0",
+    "date": "2021-02-26T20:00:00+00:00",
+    "name": "COVID19LabAST",
+    "title": "COVID-19 Laboratory Value Set for AST",
+    "description": "COVID-19 Laboratory Value Set for AST",
+    "status": "active",
+    "compose": {
+      "include": [
+  			{
+  				"system": "http://loinc.org",
+  				"concept": [
+  					{
+  						"code": "1920-8"
+  					},
+  					{
+  						"code": "88112-8"
+  					},
+  					{
+  						"code": "30239-8"
+  					},
+  					{
+  						"code": "44786-2"
+  					}
+          ]
+  			}
+      ]
+    }
+}

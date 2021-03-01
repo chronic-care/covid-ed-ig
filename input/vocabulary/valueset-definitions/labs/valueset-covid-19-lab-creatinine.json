@@ -1,0 +1,60 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-creatinine",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-creatinine",
+    "version": "0.5.0",
+    "date": "2021-02-26T20:00:00+00:00",
+    "name": "COVID19LabCreatinine",
+    "title": "COVID-19 Laboratory Value Set for Creatinine",
+    "description": "COVID-19 Laboratory Value Set for Creatinine",
+    "status": "active",
+    "compose": {
+      "include": [
+  			{
+  				"system": "http://loinc.org",
+  				"concept": [
+  					{
+  						"code": "2160-0"
+  					},
+  					{
+  						"code": "44784-7"
+  					},
+  					{
+  						"code": "35203-9"
+  					},
+  					{
+  						"code": "77140-2"
+  					},
+  					{
+  						"code": "14682-9"
+  					},
+  					{
+  						"code": "16188-5"
+  					},
+  					{
+  						"code": "16189-3"
+  					},
+  					{
+  						"code": "40248-7"
+  					},
+  					{
+  						"code": "40264-4"
+  					},
+  					{
+  						"code": "11041-1"
+  					},
+  					{
+  						"code": "51620-3"
+  					},
+  					{
+  						"code": "11042-9"
+  					},
+  					{
+  						"code": "51619-5"
+  					}
+          ]
+  			}
+      ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-ferritin",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-ferritin",
+    "version": "0.5.0",
+    "date": "2021-02-26T20:00:00+00:00",
+    "name": "COVID19LabFerritin",
+    "title": "COVID-19 Laboratory Value Set for Ferritin",
+    "description": "COVID-19 Laboratory Value Set for Ferritin",
+    "status": "active",
+    "compose": {
+      "include": [
+  			{
+  				"system": "http://loinc.org",
+  				"concept": [
+  					{
+  						"code": "2276-4"
+  					},
+  					{
+  						"code": "20567-4"
+  					},
+  					{
+  						"code": "35209-6"
+  					},
+  					{
+  						"code": "14723-1"
+  					}
+          ]
+  			}
+      ]
+    }
+}

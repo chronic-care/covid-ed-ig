@@ -28,8 +28,9 @@ define "Get Severity Card Summary":
   CovidED."Severity Classification" + ' COVID-19 Severity'
 
 define "Get Severity Card Detail":
-  'COVID-19 severity classification is ' + CovidED."Severity Classification" + ' with a qCSI score of ' + ToString(CovidED."qCSI Score")
+  'COVID-19 severity classification is ' + CovidED."Severity Classification" + ' with a risk score of ' + ToString(CovidED."Total Risk Score")
 
 define "Get Severity Card Indicator":
-  if CovidED."Is Critical Risk" then 'critical'
+  if CovidED."Severity Classification" = 'CRITICAL' or CovidED."Severity Classification" = 'SEVERE'
+    then 'critical'
   else 'warning'

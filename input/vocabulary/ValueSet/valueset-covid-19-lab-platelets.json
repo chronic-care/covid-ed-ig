@@ -1,0 +1,47 @@
+{
+  "resourceType": "ValueSet",
+  "id": "covid-19-lab-platelets",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset" ]
+  },
+  "language": "en",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueString": "executable"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+    "valueString": "executable"
+  } ],
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-platelets",
+  "version": "0.5.0",
+  "name": "COVID19LabBloodPlatelets",
+  "title": "COVID-19 Laboratory Value Set for Blood Platelets",
+  "status": "active",
+  "date": "2021-02-26T20:00:00+00:00",
+  "description": "COVID-19 Laboratory Value Set for Blood Platelets",
+  "compose": {
+    "include": [ {
+      "system": "http://loinc.org",
+      "concept": [ {
+        "code": "26515-7"
+      }, {
+        "code": "777-3"
+      }, {
+        "code": "778-1"
+      } ]
+    } ]
+  },
+  "expansion": {
+    "timestamp": "2021-03-01T14:22:59-07:00",
+    "contains": [ {
+      "system": "http://loinc.org",
+      "code": "26515-7"
+    }, {
+      "system": "http://loinc.org",
+      "code": "777-3"
+    }, {
+      "system": "http://loinc.org",
+      "code": "778-1"
+    } ]
+  }
+}

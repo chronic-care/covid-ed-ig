@@ -1,0 +1,57 @@
+{
+  "resourceType": "ValueSet",
+  "id": "covid-19-lab-alt",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset" ]
+  },
+  "language": "en",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueString": "executable"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+    "valueString": "executable"
+  } ],
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-alt",
+  "version": "0.5.0",
+  "name": "COVID19LabALT",
+  "title": "COVID-19 Laboratory Value Set for ALT",
+  "status": "active",
+  "date": "2021-02-26T20:00:00+00:00",
+  "description": "COVID-19 Laboratory Value Set for ALT",
+  "compose": {
+    "include": [ {
+      "system": "http://loinc.org",
+      "concept": [ {
+        "code": "77144-4"
+      }, {
+        "code": "1742-6"
+      }, {
+        "code": "1744-2"
+      }, {
+        "code": "1743-4"
+      }, {
+        "code": "44785-4"
+      } ]
+    } ]
+  },
+  "expansion": {
+    "timestamp": "2021-03-01T14:22:59-07:00",
+    "contains": [ {
+      "system": "http://loinc.org",
+      "code": "77144-4"
+    }, {
+      "system": "http://loinc.org",
+      "code": "1742-6"
+    }, {
+      "system": "http://loinc.org",
+      "code": "1744-2"
+    }, {
+      "system": "http://loinc.org",
+      "code": "1743-4"
+    }, {
+      "system": "http://loinc.org",
+      "code": "44785-4"
+    } ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "resourceType": "ValueSet",
+  "id": "covid-19-lab-leukocyte",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset" ]
+  },
+  "language": "en",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueString": "executable"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+    "valueString": "executable"
+  } ],
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-leukocyte",
+  "version": "0.5.0",
+  "name": "COVID19LabLeukocyte",
+  "title": "COVID-19 Laboratory Value Set for Leukocytes",
+  "status": "active",
+  "date": "2021-02-26T20:00:00+00:00",
+  "description": "COVID-19 Laboratory Value Set for Leukocytes",
+  "compose": {
+    "include": [ {
+      "system": "http://loinc.org",
+      "concept": [ {
+        "code": "26464-8"
+      }, {
+        "code": "6690-2"
+      }, {
+        "code": "49498-9"
+      }, {
+        "code": "804-5"
+      } ]
+    } ]
+  },
+  "expansion": {
+    "timestamp": "2021-03-01T14:22:59-07:00",
+    "contains": [ {
+      "system": "http://loinc.org",
+      "code": "26464-8"
+    }, {
+      "system": "http://loinc.org",
+      "code": "6690-2"
+    }, {
+      "system": "http://loinc.org",
+      "code": "49498-9"
+    }, {
+      "system": "http://loinc.org",
+      "code": "804-5"
+    } ]
+  }
+}

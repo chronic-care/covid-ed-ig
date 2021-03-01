@@ -1,0 +1,33 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-neutrophils",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-neutrophils",
+    "version": "0.5.0",
+    "date": "2021-02-26T20:00:00+00:00",
+    "name": "COVID19LabNeutrophils",
+    "title": "COVID-19 Laboratory Value Set for Neutrophils",
+    "description": "COVID-19 Laboratory Value Set for Neutrophils",
+    "status": "active",
+    "compose": {
+      "include": [
+  			{
+  				"system": "http://loinc.org",
+  				"concept": [
+  					{
+  						"code": "26499-4"
+  					},
+  					{
+  						"code": "751-8"
+  					},
+  					{
+  						"code": "752-6"
+  					},
+  					{
+  						"code": "753-4"
+  					}
+          ]
+  			}
+      ]
+    }
+}

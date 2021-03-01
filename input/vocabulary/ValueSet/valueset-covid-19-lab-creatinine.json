@@ -1,0 +1,97 @@
+{
+  "resourceType": "ValueSet",
+  "id": "covid-19-lab-creatinine",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset" ]
+  },
+  "language": "en",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueString": "executable"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+    "valueString": "executable"
+  } ],
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-creatinine",
+  "version": "0.5.0",
+  "name": "COVID19LabCreatinine",
+  "title": "COVID-19 Laboratory Value Set for Creatinine",
+  "status": "active",
+  "date": "2021-02-26T20:00:00+00:00",
+  "description": "COVID-19 Laboratory Value Set for Creatinine",
+  "compose": {
+    "include": [ {
+      "system": "http://loinc.org",
+      "concept": [ {
+        "code": "2160-0"
+      }, {
+        "code": "44784-7"
+      }, {
+        "code": "35203-9"
+      }, {
+        "code": "77140-2"
+      }, {
+        "code": "14682-9"
+      }, {
+        "code": "16188-5"
+      }, {
+        "code": "16189-3"
+      }, {
+        "code": "40248-7"
+      }, {
+        "code": "40264-4"
+      }, {
+        "code": "11041-1"
+      }, {
+        "code": "51620-3"
+      }, {
+        "code": "11042-9"
+      }, {
+        "code": "51619-5"
+      } ]
+    } ]
+  },
+  "expansion": {
+    "timestamp": "2021-03-01T14:22:59-07:00",
+    "contains": [ {
+      "system": "http://loinc.org",
+      "code": "2160-0"
+    }, {
+      "system": "http://loinc.org",
+      "code": "44784-7"
+    }, {
+      "system": "http://loinc.org",
+      "code": "35203-9"
+    }, {
+      "system": "http://loinc.org",
+      "code": "77140-2"
+    }, {
+      "system": "http://loinc.org",
+      "code": "14682-9"
+    }, {
+      "system": "http://loinc.org",
+      "code": "16188-5"
+    }, {
+      "system": "http://loinc.org",
+      "code": "16189-3"
+    }, {
+      "system": "http://loinc.org",
+      "code": "40248-7"
+    }, {
+      "system": "http://loinc.org",
+      "code": "40264-4"
+    }, {
+      "system": "http://loinc.org",
+      "code": "11041-1"
+    }, {
+      "system": "http://loinc.org",
+      "code": "51620-3"
+    }, {
+      "system": "http://loinc.org",
+      "code": "11042-9"
+    }, {
+      "system": "http://loinc.org",
+      "code": "51619-5"
+    } ]
+  }
+}

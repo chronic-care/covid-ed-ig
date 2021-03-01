@@ -21,6 +21,20 @@ valueset "Malignancy Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-cond
 valueset "Obstructive Sleep Apnea Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea'
 valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal'
 
+// Lab results
+valueset "ALT Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-alt'
+valueset "AST Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ast'
+valueset "CRP Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-crp'
+valueset "Creatinine Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-creatinine'
+valueset "D-dimer Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ddimer'
+valueset "Ferritin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ferritin'
+valueset "LDH Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ldh'
+valueset "Leukocyte Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-leukocyte'
+valueset "Lymphocytes Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-lymphocytes'
+valueset "Neutrophils Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-neutrophils'
+valueset "Platelets Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-platelets'
+valueset "Troponin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-troponin'
+
 // Value sets from VSAC
 valueset "Obesity ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3091'
 valueset "Obesity SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6203'

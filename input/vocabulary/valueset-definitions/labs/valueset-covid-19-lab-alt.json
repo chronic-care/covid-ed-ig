@@ -1,0 +1,36 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-alt",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-alt",
+    "version": "0.5.0",
+    "date": "2021-02-26T20:00:00+00:00",
+    "name": "COVID19LabALT",
+    "title": "COVID-19 Laboratory Value Set for ALT",
+    "description": "COVID-19 Laboratory Value Set for ALT",
+    "status": "active",
+    "compose": {
+      "include": [
+  			{
+  				"system": "http://loinc.org",
+  				"concept": [
+  					{
+  						"code": "77144-4"
+  					},
+  					{
+  						"code": "1742-6"
+  					},
+  					{
+  						"code": "1744-2"
+  					},
+  					{
+  						"code": "1743-4"
+  					},
+  					{
+  						"code": "44785-4"
+  					}
+          ]
+  			}
+      ]
+    }
+}
