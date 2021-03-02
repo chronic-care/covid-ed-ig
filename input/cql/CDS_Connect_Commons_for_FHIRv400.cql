@@ -175,7 +175,11 @@ define function MostRecent(ObsList List<Observation>):
  * @returns {System.Quantity} the Observation's value as a quantity, or null if there is no quantity value
  */
 define function QuantityValue(Obs Observation):
-  FHIRHelpers.ToQuantity(Obs.value as FHIR.Quantity)
+  case
+  when Obs.value as FHIR.Quantity = null then null
+  else
+    FHIRHelpers.ToQuantity(Obs.value as FHIR.Quantity)
+  end
 
 /**
  * Extracts the CodeableConcept value from an Observation, returning it as a CQL Concept
