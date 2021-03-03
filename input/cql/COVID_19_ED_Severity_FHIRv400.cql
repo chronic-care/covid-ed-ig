@@ -221,8 +221,8 @@ define "Last Body Height value":
 
 define "Last BMI":
   case
-    when "Last Body Weight value" = null then null
-    when "Last Body Height value" = null then null
+    when "Last Body Weight value" is null then null
+    when "Last Body Height value" is null then null
     else System.Quantity { value: Round("Last Body Weight value" / ("Last Body Height value" / 100) ^ 2), unit: 'kg/m2' }
   end
 
@@ -250,8 +250,8 @@ define function TemperatureInF(qty System.Quantity):
 
 define function ToMetric(qty System.Quantity):
   case
-  when qty = null then null
-  when qty.value = null then null
+  when qty is null then null
+  when qty.value is null then null
   when qty.unit = '[lb_av]' then
     System.Quantity { value: qty.value * 0.454, unit: 'kg' }
   when qty.unit = 'g' then

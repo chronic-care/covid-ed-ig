@@ -176,7 +176,8 @@ define function MostRecent(ObsList List<Observation>):
  */
 define function QuantityValue(Obs Observation):
   case
-  when Obs.value as FHIR.Quantity = null then null
+  when Obs is null then null
+  when Obs.value as FHIR.Quantity is null then null
   else
     FHIRHelpers.ToQuantity(Obs.value as FHIR.Quantity)
   end
