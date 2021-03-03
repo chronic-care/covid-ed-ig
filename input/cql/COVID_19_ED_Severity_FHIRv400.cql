@@ -220,7 +220,11 @@ define "Last Body Height value":
   ))).value
 
 define "Last BMI":
-	System.Quantity { value: Round("Last Body Weight value" / ("Last Body Height value" / 100) ^ 2), unit: 'kg/m2' }
+  case
+    when "Last Body Weight value" = null then null
+    when "Last Body Height value" = null then null
+    else System.Quantity { value: Round("Last Body Weight value" / ("Last Body Height value" / 100) ^ 2), unit: 'kg/m2' }
+  end
 
 define function ToQuantity(quantity FHIR.Quantity):
 	System.Quantity {
