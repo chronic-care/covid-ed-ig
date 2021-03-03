@@ -424,8 +424,10 @@ define "Risk Factors count":
     + (if "Has Downs Syndrome Risk Factor" then 1 else 0)
     + (if "Has Hypertension Risk Factor" then 1 else 0)
     + (if "Has Immunosuppression Risk Factor" then 1 else 0)
+    + (if "Has Neurologic Disease Risk Factor" then 1 else 0)
     + (if "Has Obstructive Sleep Apnea Risk Factor" then 1 else 0)
     + (if "Has Obesity Risk Factor" then 1 else 0)
+    + (if "Has Pregnancy Risk Factor" then 1 else 0)
     + (if "Has Renal Disease Risk Factor" then 1 else 0)
     + (if "Has Steroid Usage Risk Factor" then 1 else 0)
 
