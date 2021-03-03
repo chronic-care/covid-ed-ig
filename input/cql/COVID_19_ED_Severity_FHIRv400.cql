@@ -220,7 +220,11 @@ define "Last Body Height value":
   ))).value
 
 define "Last BMI":
-	System.Quantity { value: Round("Last Body Weight value" / ("Last Body Height value" / 100) ^ 2), unit: 'kg/m2' }
+  case
+    when "Last Body Weight value" is null then null
+    when "Last Body Height value" is null then null
+    else System.Quantity { value: Round("Last Body Weight value" / ("Last Body Height value" / 100) ^ 2), unit: 'kg/m2' }
+  end
 
 define function ToQuantity(quantity FHIR.Quantity):
 	System.Quantity {
@@ -245,17 +249,20 @@ define function TemperatureInF(qty System.Quantity):
   end
 
 define function ToMetric(qty System.Quantity):
-	case when qty.unit = '[lb_av]' then
-		System.Quantity { value: qty.value * 0.454, unit: 'kg' }
-	when qty.unit = 'g' then
-		System.Quantity { value: qty.value / 1000, unit: 'kg' }
-	when qty.unit = '[in_i]' then
-		System.Quantity { value: qty.value * 2.54, unit: 'cm' }
-	when qty.unit = '[degF]' then
-		System.Quantity { value: (qty.value - 32) * (5 / 9), unit: 'Cel' }
-	else
-		qty
-	end
+  case
+  when qty is null then null
+  when qty.value is null then null
+  when qty.unit = '[lb_av]' then
+    System.Quantity { value: qty.value * 0.454, unit: 'kg' }
+  when qty.unit = 'g' then
+    System.Quantity { value: qty.value / 1000, unit: 'kg' }
+  when qty.unit = '[in_i]' then
+    System.Quantity { value: qty.value * 2.54, unit: 'cm' }
+  when qty.unit = '[degF]' then
+    System.Quantity { value: (qty.value - 32) * (5 / 9), unit: 'Cel' }
+  else
+    qty
+  end
 
 /*
 * Determine Severity Classification
