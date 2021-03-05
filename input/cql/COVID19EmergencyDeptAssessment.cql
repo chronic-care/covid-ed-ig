@@ -40,6 +40,11 @@ parameter Symptoms Tuple {
 }
 
 parameter ClinicalAssessments Tuple {
+  RespiratoryRate Decimal,
+  O2Saturation Decimal,
+  HeartRate Decimal,
+  SystolicBloodPressure Decimal,
+  TemperatureF Decimal,
   Alertness String,               // Alert or Confused, from ValueSet
   InspiredOxygen Boolean,
   PerformanceStatus String,       // ValueSet with 5 codes
@@ -112,7 +117,8 @@ define "Last Heart Rate":
   C3F.MostRecent("Heart Rate Observations")
 
 define "Last Heart Rate value":
-  C3F.QuantityValue("Last Heart Rate").value
+  Coalesce(ClinicalAssessments.HeartRate,
+    C3F.QuantityValue("Last Heart Rate").value)
 
 define "Heart Rate Observations":
   C3F.ObservationLookBack(
@@ -123,7 +129,8 @@ define "Last SBP":
   Last("Blood Pressure Observations" o where o.Systolic is not null)
 
 define "Last SBP value":
-  "Last SBP".Systolic
+  Coalesce(ClinicalAssessments.SystolicBloodPressure,
+    "Last SBP".Systolic)
 
 define "Blood Pressure Observations":
  ("Blood Pressure Observation Components"
@@ -172,7 +179,8 @@ define "Blood Pressure Observation Components":
    sort by Date asc
 
 define "Last O2 Saturation value":
-  C3F.QuantityValue(C3F.MostRecent("O2 Saturation Observations")).value
+  Coalesce(ClinicalAssessments.O2Saturation,
+    C3F.QuantityValue(C3F.MostRecent("O2 Saturation Observations")).value)
 
 define "Last O2 Saturation percent":
   // O2 Saturation should be reported as a percent, e.g. 92.
@@ -190,7 +198,8 @@ define "Last Respiratory Rate":
   C3F.MostRecent("Respiratory Rate Observations")
 
 define "Last Respiratory Rate value":
-  C3F.QuantityValue("Last Respiratory Rate").value
+  Coalesce(ClinicalAssessments.RespiratoryRate,
+    C3F.QuantityValue("Last Respiratory Rate").value)
 
 define "Respiratory Rate Observations":
   C3F.ObservationLookBack(
@@ -201,10 +210,14 @@ define "Last Body Temperature":
   C3F.MostRecent("Body Temperature Observations")
 
 define "Last Body Temperature value in C":
-  TemperatureInC("Last Body Temperature".value).value
+  if ClinicalAssessments.TemperatureF is null then
+    TemperatureInC("Last Body Temperature".value).value
+  else
+    TemperatureInC( System.Quantity {value: ClinicalAssessments.TemperatureF, unit: '[degF]'} ).value
 
 define "Last Body Temperature value in F":
-  TemperatureInF("Last Body Temperature".value).value
+  Coalesce(ClinicalAssessments.TemperatureF,
+    TemperatureInF("Last Body Temperature".value).value)
 
 define "Body Temperature Observations":
   C3F.ObservationLookBack(
