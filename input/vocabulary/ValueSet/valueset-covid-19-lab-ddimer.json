@@ -7,10 +7,10 @@
   "language": "en",
   "extension": [ {
     "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
-    "valueString": "executable"
+    "valueCode": "executable"
   }, {
     "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
-    "valueString": "executable"
+    "valueCode": "executable"
   } ],
   "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-ddimer",
   "version": "0.5.0",

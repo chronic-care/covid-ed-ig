@@ -1,4 +1,4 @@
-library COVID_19_Concepts version '1.0.0'
+library COVID19Concepts version '1.0.0'
 
 // ## Code Systems ##ß
 

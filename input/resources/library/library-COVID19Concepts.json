@@ -1,6 +1,6 @@
 {
   "resourceType": "Library",
-  "id": "COVID-19-Concepts",
+  "id": "COVID19Concepts",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-shareablelibrary",
@@ -31,7 +31,7 @@
       "valueCode": "structured"
     }
   ],
-  "name": "COVID_19_Concepts",
+  "name": "COVID19Concepts",
   "title": "CQL Library - COVID-19 Shared Concepts and Terminology",
   "description": "COVID-19 Shared Concepts and Terminology imported by other CQL logic libraries.",
   "status": "active",
@@ -43,6 +43,6 @@
     } ]
   },
   "content": [ {
-    "id": "ig-loader-COVID_19_Concepts-1.0.0.cql"
+    "id": "ig-loader-COVID19Concepts.cql"
   } ]
 }

@@ -1,8 +1,8 @@
 // # Introduction
 
-// ACEP COVID-19 ED Severity Classification and Disposition Logic
+// ACEP Emergency Department COVID-19 Management Tool
 
-library COVID_19_ED_Severity_FHIRv400 version '1.0.0'
+library COVID19EmergencyDeptAssessment version '1.0.0'
 
 // # Data model #
 
@@ -10,12 +10,12 @@ using FHIR version '4.0.1'
 
 // # Referenced libraries #
 
+// The COVID-19 Concepts library provides terminology concepts used to identify data elements throughout the artifact.
+include COVID19Concepts version '1.0.0' called CC
+// The CDS Connect Commons for FHIRv400 library provides functions representing commonly used CDS logic and patterns.
+include CDSConnectCommons version '1.0.3' called C3F
 // The FHIRHelpers library provides common functions for simplifying interaction w/ the FHIR R4 data model.
 include FHIRHelpers version '4.0.1'
-// The CDS Connect Commons for FHIRv400 library provides functions representing commonly used CDS logic and patterns.
-include CDS_Connect_Commons_for_FHIRv400 version '1.0.2' called C3F
-// The COVID-19 Concepts library provides terminology concepts used to identify data elements throughout the artifact.
-include COVID_19_Concepts version '1.0.0' called CC
 
 // # Parameters #
 
@@ -40,7 +40,7 @@ parameter Symptoms Tuple {
 }
 
 parameter ClinicalAssessments Tuple {
-  Alertness String,               // Alert or Confused, as ValueSet
+  Alertness String,               // Alert or Confused, from ValueSet
   InspiredOxygen Boolean,
   PerformanceStatus String,       // ValueSet with 5 codes
   Dyspnea Boolean,
@@ -79,6 +79,11 @@ context Patient
 
 define "Patient Age":
  AgeInYears()
+
+define "Patient Birth Sex":
+  First(Patient.extension e
+      where e.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex'
+  ).value
 
 define "Patient Race":
   (flatten (
@@ -132,7 +137,8 @@ define "Systolic Blood Pressure Observations":
       let SystolicValue: Round((bp.value as FHIR.Quantity).value),
           DiastolicValue: Round((MatchingDiastolic(bp).value as FHIR.Quantity).value)
     return {
-      "Date": ObservationDate(bp),
+      //"Date": ObservationDate(bp),
+      "Date": ToString(C3F.FindDate(bp)),
       "Systolic": SystolicValue,
       "Diastolic": DiastolicValue,
       "Display": Coalesce(ToString(SystolicValue), '-') + '/' + Coalesce(ToString(DiastolicValue), '-')
@@ -158,7 +164,7 @@ define "Blood Pressure Observation Components":
     let SystolicValue: Round(ComponentValue(bp, CC."Systolic blood pressure").value),
         DiastolicValue: Round(ComponentValue(bp, CC."Diastolic blood pressure").value)
    return {
-     "Date": ObservationDate(bp),
+     "Date": ToString(C3F.FindDate(bp)),
      "Systolic": SystolicValue,
      "Diastolic": DiastolicValue,
      "Display": Coalesce(ToString(SystolicValue), '-') + '/' + Coalesce(ToString(DiastolicValue), '-')
@@ -398,8 +404,11 @@ define "Temperature Risk Score":
 
 define "Sex Risk Score":
   case
-    when Patient.gender = 'female' then 0
+    when "Patient Birth Sex" = 'M' then 1
+    when "Patient Birth Sex" = 'F' then 0
+    // if birth sex is UNK or not available, then use Administrative Gender
     when Patient.gender = 'male' then 1
+    when Patient.gender = 'female' then 0
     else 0
   end
 
@@ -495,8 +504,7 @@ define "Has Obesity Risk Factor":
     (exists("All Active Conditions" C
       where (C.code in CC."Obesity SNOMED Codes"
         or C.code in CC."Obesity ICD10CM Codes"))
-     or "Last BMI".value > 30),
-    false
+     or "Last BMI".value >= 35)
   )
 
 define "Has Pregnancy Risk Factor":
@@ -599,170 +607,3 @@ define "Last Troponin Lab Result":
       C3F.Verified([Observation: CC."Troponin Lab Results"]),
       LabResultsLookbackPeriod)
   )
-
-/***
- * TODO: Move these view object definitions to a separate CQL library.
- */
-// SUMMARY
-
-// Returns the first-found display text for a CodeableConcept, looking first at the `text` attribute, then the
-// `display` on each `coding` until it finds a non-null value.
-// @param c - a FHIR CodeableConcept to get text from
-// @returns {System.String} the display text or null if none is found
-define function ConceptText(c FHIR.CodeableConcept):
-  Coalesce(c.text.value, Coalesce((c.coding) c2 return c2.display.value), Coalesce((c.coding) c3 return c3.code.value))
-
-// Returns a text representation of a Quantity with the Quantity's value and unit.
-// If the unit is {score}, then omit it (as it is not useful to display)
-// @param q - a FHIR Quantity to get text for
-// @returns {System.String} the text representation of the Quantity
-define function QuantityText(q FHIR.Quantity):
-  if (q is null) then null
-  else if (q.unit is not null and q.unit.value != '{score}') then ToString(q.value.value) + ' ' + q.unit.value
-  else if (q.code is not null and q.code.value != '{score}') then ToString(q.value.value) + ' ' + q.code.value
-  else ToString(q.value.value)
-
-// Returns a text representation of a date associated with an Observation, preferring `effectiveDateTime`, then
-// `effectivePeriod.start`, then `issued`.
-// @param o - a FHIR Observation to get the text date from
-// @returns {System.String} the text representation of a relevant date from the Observation
-define function ObservationDate(o FHIR.Observation):
-  Coalesce(
-    ToString((o.effective as FHIR.dateTime).value),
-    ToString((o.effective as FHIR.instant).value),
-    ToString(((o.effective as FHIR.Period)."start").value),
-    ToString(o.issued.value)
-  )
-
-define ReportPatientName:
-  Coalesce(Patient.name[0].text.value,
-    (Combine(Patient.name.given G return G.value, ' ') + ' ' + Combine(Patient.name.family F return F.value, ' '))
-  )
-
-// Returns a list of observation view Tuples.
-define function ReportObservations(ObsList List<Observation>):
-  ObsList o
-    return {   // result decimal value
-      Date:   ObservationDate(o),
-      // Omit display name because observations are in a typed collection
-      Name:   ConceptText(o.code),                                // display nanme
-      Result: QuantityText(o.value as FHIR.Quantity),             // result value with units
-      ResultValue: ToString((o.value as FHIR.Quantity).value)
-    }
-    sort by Date asc
-
-define function ReportLabObservation(o FHIR.Observation):
-  if (o is null) then null
-  else
-    {
-      Date:   ObservationDate(o),
-      Name:   ConceptText(o.code),                                // display nanme
-      ResultText: QuantityText(o.value as FHIR.Quantity),         // result value with units
-      ResultValue: ToString((o.value as FHIR.Quantity).value),
-      ResultUnits: (o.value as FHIR.Quantity).unit.value,
-      ReferenceRange: LabReferenceRange(o),
-      Interpretation: LabInterpretation(o),
-      Flag: LabReferenceRangeFlag(o)   // true if value out of range, else false
-    }
-
-define function LabReferenceRange(o FHIR.Observation):
-  if (o is null or o.referenceRange is null) then null
-  else
-    Coalesce(First(o.referenceRange.text),
-      ToString(LabReferenceRangeLow(o)) + '-' + ToString(LabReferenceRangeHigh(o))
-    )
-
-define function LabReferenceRangeLow(o FHIR.Observation):
-  First(o.referenceRange).low.value
-
-define function LabReferenceRangeHigh(o FHIR.Observation):
-  First(o.referenceRange).high.value
-
-define function LabReferenceRangeFlag(o FHIR.Observation):
-  if (o.value.value < LabReferenceRangeLow(o)
-      or o.value.value > LabReferenceRangeHigh(o)) then true
-  else false
-
-define function LabInterpretation(o FHIR.Observation):
-  if (o.interpretation is not null) then
-    Coalesce(First(o.interpretation.text), First(First(o.interpretation).coding.display))
-  else if o.referenceRange is not null then
-    // Derive interpretation from the reference range, return null if within normal range.
-    if o.value.value < LabReferenceRangeLow(o) then 'L'
-    else if o.value.value > LabReferenceRangeHigh(o) then 'H'
-    else null
-  else
-    null
-
-// The Summary object represents the full COVID-19 Risk Assessment to be displayed to the clinician.  All values are
-// returned as user-friendly text representations.
-
-define Summary: {
-  Patient: {
-    Name: ReportPatientName,
-    Gender: Patient.gender.value,
-    Age: AgeInYears(),
-    Race: "Patient Race Text"
-  },
-  Risk: {
-    SeverityClassification: "Severity Classification",
-    RiskScore: "Total Risk Score",
-    RiskPercent: "Risk Percent",
-    RiskFactors: "Risk Factors count"
-  },
-  Disposition: {
-
-  },
-  SmartPhrases: {
-    // TODO
-  },
-  ClinicalAssessment: {
-    RespiratoryRate: "Last Respiratory Rate value",
-    O2Saturation: "Last O2 Saturation percent",
-    HeartRate: "Last Heart Rate value",
-    BloodPressure: Last("Blood Pressure Observations").Display,
-    SystolicBloodPressure: "Last SBP value",
-    TemperatureC: "Last Body Temperature value in C",
-    TemperatureF: "Last Body Temperature value in F",
-    Alertness: null,
-    InspiredOxygen: null,
-    PerformanceStatus: null
-  },
-  RiskFactors: {
-    Cancer: "Has Cancer Risk Factor",
-    CardiovascularDisease: "Has Cardiovascular Disease Risk Factor",
-    ChronicRespiratoryDisease: "Has Chronic Respiratory Disease Risk Factor",
-    DiabetesType2: "Has Diabetes Type 2 Risk Factor",
-    DownsSyndrome: "Has Downs Syndrome Risk Factor",
-    Hypertension: "Has Hypertension Risk Factor",
-    Immunosuppression: "Has Immunosuppression Risk Factor",
-    NeurologicDisease: "Has Neurologic Disease Risk Factor",
-    Obesity: "Has Obesity Risk Factor",
-    ObstructiveSleepApnea: "Has Obstructive Sleep Apnea Risk Factor",
-    Pregnancy: "Has Pregnancy Risk Factor",
-    RenalDisease: "Has Renal Disease Risk Factor",
-    SteroidUsage: "Has Steroid Usage Risk Factor"
-  },
-  DiagnosticAssessment: {
-    ALT: ReportLabObservation("Last ALT Lab Result"),
-    AST: ReportLabObservation("Last AST Lab Result"),
-    Creatinine: ReportLabObservation("Last Creatinine Lab Result"),
-    CRP: ReportLabObservation("Last CRP Lab Result"),
-    DDimer: ReportLabObservation("Last D-dimer Lab Result"),
-    Ferritin: ReportLabObservation("Last Ferritin Lab Result"),
-    LDH: ReportLabObservation("Last LDH Lab Result"),
-    Lymphopenia: ReportLabObservation("Last Lymphocytes Lab Result"),
-    Neutrophils: ReportLabObservation("Last Neutrophils Lab Result"),
-    Thrombocytopenia: ReportLabObservation("Last Platelets Lab Result"),
-    Troponin: ReportLabObservation("Last Troponin Lab Result"),
-    WBC: ReportLabObservation("Last Leukocyte Lab Result")
-  }
-}
-
-define TrendData: {
-  RespiratoryRate: ReportObservations("Respiratory Rate Observations"),
-  O2Saturation: ReportObservations("O2 Saturation Observations"),
-  HeartRate: ReportObservations("Heart Rate Observations"),
-  BloodPressure: "Blood Pressure Observations",
-  Temperature: "Body Temperature Observations"    // TODO convert all to degF
-}

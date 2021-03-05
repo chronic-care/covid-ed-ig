@@ -1,6 +1,6 @@
 {
   "resourceType": "PlanDefinition",
-  "id": "COVID-19-ED-Severity",
+  "id": "COVID19EmergencyDeptRecommendation",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition"
@@ -20,15 +20,9 @@
       "valueCode": "publishable"
     }
   ],
-  "url": "http://fhir.org/guides/acep/PlanDefinition/COVID-19-ED-Severity",
-  "identifier": [
-    {
-      "use": "official",
-      "value": "PlanDefinition_COVID_19_ED_Severity"
-    }
-  ],
+  "url": "http://fhir.org/guides/acep/PlanDefinition/COVID19EmergencyDeptRecommendation",
   "version": "0.1.0",
-  "name": "COVID_19_ED_Severity",
+  "name": "COVID19EmergencyDeptHooks",
   "title": "PlanDefinition - ACEP COVID-19 ED Severity Classification and Disposition",
   "description": "CDS Hook definitions for ACEP COVID-19 ED Severity Classification and Disposition",
   "type": {
@@ -42,7 +36,7 @@
   },
   "status": "draft",
   "experimental": true,
-  "date": "2021-01-26",
+  "date": "2021-03-04",
   "publisher": "Veterans Health Administration (VHA)",
   "contact": [
     {
@@ -66,16 +60,16 @@
   ],
   "copyright": "© Veterans Health Administration 2020+.",
   "library": [
-    "http://fhir.org/guides/acep/Library/COVID-19-ED-Severity-Hooks"
+    "http://fhir.org/guides/acep/Library/COVID19EmergencyDeptHooks"
   ],
   "action": [
     {
-      "title": "COVID-19 ED Severity Classification and Disposition",
+      "title": "ACEP Emergency Department COVID-19 Management",
       "description": "For adults presenting to the Emergency Department (ED) with possible or confirmed COVID-19, provide a Clinical Practice Guideline and decision support tool that helps classify patient disease severity and give guidance on appropriate disposition. This tool will be accessible by emergency physicians in a workflow-friendly manner to assist in management of their patients.",
       "documentation": [
         {
           "type": "documentation",
-          "display": "ACEP COVID-19 ED Severity Classification and Disposition",
+          "display": "ACEP Emergency Department COVID-19 Management Tool",
           "url": "https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf"
         }
       ],

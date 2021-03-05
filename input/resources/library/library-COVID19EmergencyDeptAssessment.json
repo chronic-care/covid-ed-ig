@@ -1,12 +1,27 @@
 {
   "resourceType": "Library",
-  "id": "COVID-19-ED-Severity-Hooks",
+  "id": "COVID19EmergencyDeptAssessment",
   "meta": {
     "profile": [
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-shareablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-publishablelibrary",
       "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary"
     ]
   },
   "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "shareable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "computable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueCode": "publishable"
+    },
     {
       "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
       "valueCode": "executable"
@@ -16,9 +31,9 @@
       "valueCode": "structured"
     }
   ],
-  "name": "COVID_19_ED_Severity_Hooks",
-  "title": "CQL Library - CDS Hooks for ACEP COVID-19 ED Severity Classification and Disposition Logic",
-  "description": "This library contains logic to support CDS Hooks for the ACEP COVID-19 ED Severity Classification and Disposition guideline, including caclculation of the qCDI score and severity.",
+  "name": "COVID19EmergencyDeptAssessment",
+  "title": "CQL Library - ACEP Emergency Department COVID-19 Management Tool Logic",
+  "description": "This library contains logic to support the ACEP Emergency Department COVID-19 Management Tool guideline, including caclculation of the risk score and severity.",
   "status": "active",
   "experimental": true,
   "type": {
@@ -49,7 +64,7 @@
   ],
   "content": [
     {
-      "id": "ig-loader-COVID_19_ED_Severity_Hooks.cql"
+      "id": "ig-loader-COVID19EmergencyDeptAssessment.cql"
     }
   ]
 }

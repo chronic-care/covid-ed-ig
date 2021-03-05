@@ -1,6 +1,6 @@
 {
   "resourceType": "Library",
-  "id": "CDS-Connect-Commons",
+  "id": "COVID19EmergencyDeptSummary",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-shareablelibrary",
@@ -31,18 +31,40 @@
       "valueCode": "structured"
     }
   ],
-  "name": "CDS_Connect_Commons",
-  "title": "CQL Library - Common Logic for CDS",
-  "description": "CQL Common Logic for CDS providing shared helper functions.",
+  "name": "COVID19EmergencyDeptSummary",
+  "title": "CQL Library - Summary of results for the ACEP Emergency Department COVID-19 Management Tool",
+  "description": "This library contains logic to support the ACEP Emergency Department COVID-19 Management Tool guideline, summarizing clinical assessment, risk factores, diagnostic tests, and risk scores.",
   "status": "active",
   "experimental": true,
   "type": {
-    "coding": [ {
-      "system": "http://terminology.hl7.org/CodeSystem/library-type",
-      "code": "logic-library"
-    } ]
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/library-type",
+        "code": "logic-library"
+      }
+    ]
   },
-  "content": [ {
-    "id": "ig-loader-CDS_Connect_Commons_for_FHIRv400.cql"
-  } ]
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "840539006",
+            "display": "Disease caused by Severe acute respiratory syndrome coronavirus 2 (disorder)"
+          }
+        ]
+      }
+    }
+  ],
+  "content": [
+    {
+      "id": "ig-loader-COVID19EmergencyDeptSummary.cql"
+    }
+  ]
 }

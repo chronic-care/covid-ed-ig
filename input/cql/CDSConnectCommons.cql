@@ -1,16 +1,6 @@
 // CDS Connect Commons for FHIRv400
-// Change log:
-// - 1.0.1
-//   - Fix logic for ActiveOrRecurring to use equivalence matching (instead of "in"
-//     which uses equality matching)
-//   - Add back ...ByConcept functions for backwards compatibility w/ libraries that
-//     might expect them
-//   - Consider effectiveInstant in ObservationLookBack
-// - 1.0.2
-//   - Updated to FHIR 4.0.1 (note did not change library name to ...v401, potentially confusing
-//     but not sure the best approach, given the FHIR version is in the library name...)
-//   - Updated FHIRHelpers functions based on FHIR 4.0.1
-library CDS_Connect_Commons_for_FHIRv400 version '1.0.2'
+
+library CDSConnectCommons version '1.0.3'
 
 using FHIR version '4.0.1'
 
