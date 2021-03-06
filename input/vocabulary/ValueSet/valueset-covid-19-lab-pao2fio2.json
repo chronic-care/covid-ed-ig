@@ -1,6 +1,6 @@
 {
   "resourceType": "ValueSet",
-  "id": "covid-19-lab-platelets",
+  "id": "covid-19-lab-pao2fio2",
   "meta": {
     "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset" ]
   },
@@ -12,22 +12,18 @@
     "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
     "valueCode": "executable"
   } ],
-  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-platelets",
+  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2",
   "version": "0.5.0",
-  "name": "COVID19LabBloodPlatelets",
-  "title": "COVID-19 Laboratory Value Set for Blood Platelets",
+  "name": "COVID19LabPaO2FiO2Ratio",
+  "title": "COVID-19 Laboratory Value Set for PaO2FiO2 Ratio",
   "status": "active",
   "date": "2021-02-26T20:00:00+00:00",
-  "description": "COVID-19 Laboratory Value Set for Blood Platelets",
+  "description": "COVID-19 Laboratory Value Set for PaO2FiO2 Ratio",
   "compose": {
     "include": [ {
       "system": "http://loinc.org",
       "concept": [ {
-        "code": "26515-7"
-      }, {
-        "code": "777-3"
-      }, {
-        "code": "778-1"
+        "code": "50984-4"
       } ]
     } ]
   },
@@ -35,13 +31,7 @@
     "timestamp": "2021-03-05T17:10:31-07:00",
     "contains": [ {
       "system": "http://loinc.org",
-      "code": "26515-7"
-    }, {
-      "system": "http://loinc.org",
-      "code": "777-3"
-    }, {
-      "system": "http://loinc.org",
-      "code": "778-1"
+      "code": "50984-4"
     } ]
   }
 }

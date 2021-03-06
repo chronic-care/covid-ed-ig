@@ -32,6 +32,7 @@ valueset "LDH Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-l
 valueset "Leukocyte Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-leukocyte'
 valueset "Lymphocytes Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-lymphocytes'
 valueset "Neutrophils Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-neutrophils'
+valueset "PaO2FiO2 Ratio Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
 valueset "Platelets Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-platelets'
 valueset "Troponin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-troponin'
 

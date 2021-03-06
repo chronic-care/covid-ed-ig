@@ -87,7 +87,10 @@ define DiagnosticSummary: {
   Neutrophils: ReportLabObservation(C19."Last Neutrophils Lab Result"),
   Thrombocytopenia: ReportLabObservation(C19."Last Platelets Lab Result"),
   Troponin: ReportLabObservation(C19."Last Troponin Lab Result"),
-  WBC: ReportLabObservation(C19."Last Leukocyte Lab Result")
+  WBC: ReportLabObservation(C19."Last Leukocyte Lab Result"),
+
+  // Not included in count of concerning labs; used for severity classification.
+  PaO2FiO2: ReportLabObservation(C19."Last PaO2FiO2 Ratio Lab Result")
 }
 
 define LabResultList: {

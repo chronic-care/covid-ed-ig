@@ -301,13 +301,11 @@ define "Is Critical Severity":
     then true
   else false
 
-// TODO PaO2/FiO2 < 300
-// TODO Lung infiltrates > 50%
 define "Is Severe Severity":
   if not "Is Critical Severity"
     and ("Last O2 Saturation percent" < 94
       or "Last Respiratory Rate value" > 30
-      or ClinicalAssessments.PaO2FiO2Ratio < 300
+      or "Last PaO2FiO2 Ratio Lab Result value" < 300
       or ClinicalAssessments.LungInfiltrates > 50)
     then true
   else false
@@ -598,6 +596,18 @@ define "Last Lymphocytes Lab Result":
     C3F.ObservationLookBack(
       C3F.Verified([Observation: CC."Lymphocytes Lab Results"]),
       LabResultsLookbackPeriod)
+  )
+
+define "Last PaO2FiO2 Ratio Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."PaO2FiO2 Ratio Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last PaO2FiO2 Ratio Lab Result value":
+  Coalesce(ClinicalAssessments.PaO2FiO2Ratio,
+    ("Last PaO2FiO2 Ratio Lab Result".value as FHIR.Quantity).value
   )
 
 define "Last Platelets Lab Result":
