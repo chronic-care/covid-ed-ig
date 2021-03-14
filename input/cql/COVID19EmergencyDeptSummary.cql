@@ -35,7 +35,8 @@ define RiskSummary: {
   RiskScore: C19."Total Risk Score",
   RiskPercent: C19."Risk Percent",
   RiskFactorCount: C19."Risk Factors count",
-  ConcerningLabCount: ConcerningLabCount
+  ConcerningLabCount: ConcerningLabCount,
+  ConcerningImaging: ConcerningImaging
 }
 
 define SmartPhrases: {
@@ -43,7 +44,12 @@ define SmartPhrases: {
 }
 
 define RecommendationSummary: {
-
+  ObtainDiagnostics: "Recommend Obtain Diagnostics",
+  DischargeHome: "Recommend Discharge Home",
+  ConsiderAdmission: "Recommend Consider Admission",
+  ConsiderDischargingHome: "Recommend Consider Discharging Home",
+  SevereAdmission: "Recommend Severe Admission",
+  CriticalAdmission: "Recommend Critical Admission"
 }
 
 define AssessmentSummary: {
@@ -108,8 +114,17 @@ define LabResultList: {
   DiagnosticSummary.WBC
 }
 
+define LabResultCount:
+  Count(LabResultList result where result is not null)
+
 define ConcerningLabCount:
   Count(LabResultList result where result.Flag is true)
+
+define ConcerningImaging:
+  C19.ClinicalAssessments.AbnormalChestImaging is true
+
+define ConcerningLabsOrImaging:
+  ConcerningLabCount >= 1 or ConcerningImaging
 
 /*
 define TrendData: {
@@ -120,6 +135,43 @@ define TrendData: {
   Temperature: C19."Body Temperature Observations"    // TODO convert all to degF
 }
 */
+
+/*
+ * Disposition Recommendations
+ */
+
+define "Recommend Obtain Diagnostics":
+  (C19."Is Critical Severity" or C19."Is Severe Severity" or C19."Is Moderate Severity"
+    or C19."Total Risk Score" >= 5
+    or C19."Risk Factors count" > 1)
+  and LabResultCount < 5                // TODO Need feedback on minimum number of labs
+
+define "Recommend Discharge Home":
+  C19."Is Mild Severity"
+    and C19."Total Risk Score" <= 4
+    and C19."Risk Factors count" <= 1
+
+define "Recommend Consider Discharging Home":
+  C19."Is Moderate Severity"
+    and C19."Total Risk Score" <= 4
+    and C19."Risk Factors count" <= 1
+    and ConcerningLabsOrImaging is false
+    and LabResultCount >= 1
+
+define "Recommend Consider Admission":
+  (C19."Is Mild Severity" or C19."Is Moderate Severity")
+    and (C19."Total Risk Score" >= 5
+      or C19."Risk Factors count" > 1
+      or ConcerningLabsOrImaging)
+    and LabResultCount >= 1
+
+define "Recommend Severe Admission":
+  C19."Is Severe Severity"
+    and LabResultCount >= 1
+
+define "Recommend Critical Admission":
+  C19."Is Critical Severity"
+    and LabResultCount >= 1
 
 /*
  * Helper functions for summary reporting.
