@@ -74,6 +74,9 @@ parameter RiskFactors Tuple {
   SteroidUsage Boolean
 }
 
+parameter IgnoreFallbackResourceValues Boolean
+
+
 // # CDS logic #
 
 context Patient
@@ -117,7 +120,8 @@ define "Last Heart Rate":
   C3F.MostRecent("Heart Rate Observations")
 
 define "Last Heart Rate value":
-  Coalesce(ClinicalAssessments.HeartRate,
+  if IgnoreFallbackResourceValues then ClinicalAssessments.HeartRate
+  else Coalesce(ClinicalAssessments.HeartRate,
     C3F.QuantityValue("Last Heart Rate").value)
 
 define "Heart Rate Observations":
@@ -129,7 +133,8 @@ define "Last SBP":
   Last("Blood Pressure Observations" o where o.Systolic is not null)
 
 define "Last SBP value":
-  Coalesce(ClinicalAssessments.SystolicBloodPressure,
+  if IgnoreFallbackResourceValues then ClinicalAssessments.SystolicBloodPressure
+  else Coalesce(ClinicalAssessments.SystolicBloodPressure,
     "Last SBP".Systolic)
 
 define "Blood Pressure Observations":
@@ -179,7 +184,8 @@ define "Blood Pressure Observation Components":
    sort by Date asc
 
 define "Last O2 Saturation value":
-  Coalesce(ClinicalAssessments.O2Saturation,
+  if IgnoreFallbackResourceValues then ClinicalAssessments.O2Saturation
+  else Coalesce(ClinicalAssessments.O2Saturation,
     C3F.QuantityValue(C3F.MostRecent("O2 Saturation Observations")).value)
 
 define "Last O2 Saturation percent":
@@ -198,7 +204,8 @@ define "Last Respiratory Rate":
   C3F.MostRecent("Respiratory Rate Observations")
 
 define "Last Respiratory Rate value":
-  Coalesce(ClinicalAssessments.RespiratoryRate,
+  if IgnoreFallbackResourceValues then ClinicalAssessments.RespiratoryRate
+  else Coalesce(ClinicalAssessments.RespiratoryRate,
     C3F.QuantityValue("Last Respiratory Rate").value)
 
 define "Respiratory Rate Observations":
@@ -210,13 +217,17 @@ define "Last Body Temperature":
   C3F.MostRecent("Body Temperature Observations")
 
 define "Last Body Temperature value in C":
-  if ClinicalAssessments.TemperatureF is null then
+  if IgnoreFallbackResourceValues then
+    if ClinicalAssessments.TemperatureF is null then null
+    else TemperatureInC( System.Quantity {value: ClinicalAssessments.TemperatureF, unit: '[degF]'} ).value
+  else if ClinicalAssessments.TemperatureF is null then
     TemperatureInC("Last Body Temperature".value).value
   else
     TemperatureInC( System.Quantity {value: ClinicalAssessments.TemperatureF, unit: '[degF]'} ).value
 
 define "Last Body Temperature value in F":
-  Coalesce(ClinicalAssessments.TemperatureF,
+  if IgnoreFallbackResourceValues then ClinicalAssessments.TemperatureF
+  else Coalesce(ClinicalAssessments.TemperatureF,
     TemperatureInF("Last Body Temperature".value).value)
 
 define "Body Temperature Observations":
@@ -319,10 +330,10 @@ define "Is Critical Severity":
 
 define "Is Severe Severity":
   if not "Is Critical Severity"
-    and ("Last O2 Saturation percent" < 94
-      or "Last Respiratory Rate value" > 30
-      or "Last PaO2FiO2 Ratio Lab Result value" < 300
-      or ClinicalAssessments.LungInfiltrates > 50)
+    and (("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" < 94)
+      or ("Last Respiratory Rate value" is not null and "Last Respiratory Rate value" > 30)
+      or ("Last PaO2FiO2 Ratio Lab Result value" is not null and "Last PaO2FiO2 Ratio Lab Result value" < 300)
+      or (ClinicalAssessments.LungInfiltrates is not null and ClinicalAssessments.LungInfiltrates > 50))
     then true
   else false
 
@@ -330,7 +341,7 @@ define "Is Severe Severity":
 // TODO on room air (not Supplemental Oxygen)
 define "Is Moderate Severity":
   if not "Is Severe Severity" and not "Is Critical Severity"
-    and ("Last O2 Saturation percent" >= 94
+    and (("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" >= 94)
         or Symptoms.ShortnessOfBreath
         or ClinicalAssessments.Dyspnea
         or ClinicalAssessments.AbnormalChestImaging
