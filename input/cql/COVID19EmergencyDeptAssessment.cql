@@ -74,6 +74,11 @@ parameter RiskFactors Tuple {
   SteroidUsage Boolean
 }
 
+parameter PatientData Tuple {
+  Gender String,
+  Age Decimal
+}
+
 parameter IgnoreFallbackResourceValues Boolean
 
 
@@ -442,23 +447,39 @@ define "Temperature Risk Score":
   end
 
 define "Sex Risk Score":
-  case
-    when "Patient Birth Sex" = 'M' then 1
-    when "Patient Birth Sex" = 'F' then 0
-    // if birth sex is UNK or not available, then use Administrative Gender
-    when Patient.gender = 'male' then 1
-    when Patient.gender = 'female' then 0
-    else 0
-  end
+  if IgnoreFallbackResourceValues then
+    case
+      when PatientData.Gender = 'male' then 1
+      when PatientData.Gender = 'female' then 0
+      else 0
+    end
+  else
+    case
+      when "Patient Birth Sex" = 'M' then 1
+      when "Patient Birth Sex" = 'F' then 0
+      // if birth sex is UNK or not available, then use Administrative Gender
+      when Patient.gender = 'male' then 1
+      when Patient.gender = 'female' then 0
+      else 0
+    end
 
 define "Age Risk Score":
-  case
-    when AgeInYears() between 16 and 49 then 0
-    when AgeInYears() between 50 and 65 then 2
-    when AgeInYears() between 66 and 80 then 3
-    when AgeInYears() > 80 then 4
-    else 0
-  end
+  if IgnoreFallbackResourceValues then
+    case
+    when PatientData.Age between 16 and 49 then 0
+    when PatientData.Age between 50 and 65 then 2
+    when PatientData.Age between 66 and 80 then 3
+    when PatientData.Age > 80 then 4
+      else 0
+    end
+  else
+    case
+      when AgeInYears() between 16 and 49 then 0
+      when AgeInYears() between 50 and 65 then 2
+      when AgeInYears() between 66 and 80 then 3
+      when AgeInYears() > 80 then 4
+      else 0
+    end
 
 define "Alertness Score":
   case "Alertness Assessment Code"
