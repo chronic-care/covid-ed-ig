@@ -45,9 +45,9 @@ parameter ClinicalAssessments Tuple {
   HeartRate Decimal,
   SystolicBloodPressure Decimal,
   TemperatureF Decimal,
-  Alertness String,               // Alert or Confused, from ValueSet
-  InspiredOxygen Boolean,
-  PerformanceStatus String,       // ValueSet with 5 codes
+  Alertness String,               // Code from value set "Alertness Scale Codes"
+  SupplementalOxygen Boolean,
+  PerformanceStatus String,       // Code from value set "WHO Performance Status Codes"
   Dyspnea Boolean,
   AbnormalChestImaging Boolean,
   PaO2FiO2Ratio Decimal,          // e.g. 300
@@ -284,6 +284,22 @@ define function ToMetric(qty System.Quantity):
   end
 
 /*
+ * Clinical Assessments
+ */
+
+// TODO: Enchancement - [Observation: "Glasgow Coma Scale"] score total > 15 = Confused
+define "Last Glasgow Coma Scale score":
+  null
+
+// Code from value set "Alertness Scale Codes"
+define "Alertness Assessment Code":
+  ClinicalAssessments.Alertness
+
+// Code from "WHO Performance Status Codes"
+define "Performance Status Code":
+  ClinicalAssessments.PerformanceStatus
+
+/*
 * Determine Severity Classification
 */
 
@@ -338,7 +354,8 @@ define "Is Mild Severity":
 
 define "Total Risk Score":
   "Respiratory Rate Risk Score" + "O2 Saturation Risk Score" + "Heart Rate Risk Score" + "Systolic BP Risk Score"
-    + "Temperature Risk Score" + "Sex Risk Score" + "Age Risk Score"
+    + "Temperature Risk Score" + "Alertness Score" + "Inspired Oxygen Score" + "Sex Risk Score"
+    + "Age Risk Score" + "Performance Status Score"
 
 define "Risk Percent":
   case "Total Risk Score"
@@ -431,6 +448,26 @@ define "Age Risk Score":
     when AgeInYears() > 80 then 4
     else 0
   end
+
+define "Alertness Score":
+  case "Alertness Assessment Code"
+    when CC."Confused".code then 3
+    else 0
+  end
+
+define "Performance Status Score":
+  case "Performance Status Code"
+    when CC."Performance Status 0".code then 0
+    when CC."Performance Status 1".code then 1
+    when CC."Performance Status 2".code then 2
+    when CC."Performance Status 3".code then 3
+    when CC."Performance Status 4".code then 4
+    else 0
+  end
+
+define "Inspired Oxygen Score":
+  if ClinicalAssessments.SupplementalOxygen then 2
+  else 0
 
 /*
  * Assess Risk Factors

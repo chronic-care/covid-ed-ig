@@ -60,9 +60,9 @@ define AssessmentSummary: {
   SystolicBloodPressure: C19."Last SBP value",
   TemperatureC: C19."Last Body Temperature value in C",
   TemperatureF: C19."Last Body Temperature value in F",
-  Alertness: null,
-  InspiredOxygen: null,
-  PerformanceStatus: null
+  SupplementalOxygen: C19.ClinicalAssessments.SupplementalOxygen,
+  Alertness: C19."Alertness Assessment Code",
+  PerformanceStatus: C19."Performance Status Code"
 }
 
 define RiskFactorSummary: {

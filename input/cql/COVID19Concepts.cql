@@ -6,6 +6,11 @@ codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMED-CT": 'http://snomed.info/sct'
 codesystem "Race": 'urn:oid:2.16.840.1.113883.6.238'
 
+// Several concepts needed by the COVID-19 CDS do not yet have standardized codes associated with them.
+// Until standardized codes are available, CDS implementors will need to map to
+// local codes (signified by the LOCAL code system below) or replace them with their own codes.
+codesystem "LOCAL": 'http://fhir.org/guides/acep'
+
 // ## Value sets ##
 
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.2074.1.1.3/expansion)
@@ -20,6 +25,9 @@ valueset "Hypertension Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-co
 valueset "Malignancy Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-malignancy'
 valueset "Obstructive Sleep Apnea Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea'
 valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal'
+
+valueset "Alertness Scale Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-obs-alertness'
+valueset "WHO Performance Status Codes": 'http://fhir.org/guides/acep/ValueSet/who-performance-status'
 
 // Lab results
 valueset "ALT Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-alt'
@@ -48,6 +56,16 @@ valueset "Obesity SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.
 
 code "Black or African American": '2054-5' from "Race" display 'Black or African American'
 code "White": '2106-3' from "Race" display 'White'
+
+// Code from Alertness Scale
+code "Confused": '130987000' from "SNOMED-CT" display 'Acute confusion (finding)'
+
+// Codes from WHO Performance Status scale
+code "Performance Status 0": '373803006' from "SNOMED-CT" display 'World Health Organization performance status grade 0 (finding)'
+code "Performance Status 1": '373804000' from "SNOMED-CT" display 'World Health Organization performance status grade 1 (finding)'
+code "Performance Status 2": '373805004' from "SNOMED-CT" display 'World Health Organization performance status grade 2 (finding)'
+code "Performance Status 3": '373806003' from "SNOMED-CT" display 'World Health Organization performance status grade 3 (finding)'
+code "Performance Status 4": '373807007' from "SNOMED-CT" display 'World Health Organization performance status grade 4 (finding)'
 
 code "Blood pressure": '85354-9' from "LOINC" display 'Blood pressure systolic and diastolic'
 code "Systolic blood pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
