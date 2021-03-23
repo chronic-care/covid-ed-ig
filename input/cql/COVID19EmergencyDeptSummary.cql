@@ -36,11 +36,18 @@ define RiskSummary: {
   RiskPercent: C19."Risk Percent",
   RiskFactorCount: C19."Risk Factors count",
   ConcerningLabCount: ConcerningLabCount,
-  ConcerningImaging: ConcerningImaging
+  ConcerningImagingCount: ConcerningImagingCount
 }
 
 define SmartPhrases: {
-  // TODO
+  Severity: 'Based on the criteria present at the time of evaluation, the patient was determined to have ' + RiskSummary.SeverityClassification + ' Severity.',
+  RiskPrognostication: 'Based on a PRIEST Score of ' + ToString(RiskSummary.RiskScore) + ' the patient is estimated to have a ' + ToString(RiskSummary.RiskPercent) + '% risk.',
+  RiskAssessment: case RiskSummary.RiskFactorCount
+    when null then null
+    when 0 then 'Patient did not have any additional risk factors based on those included within this tool.'
+    when 1 then 'Patient was noted to have an additional risk factor.'
+    else 'Patient was noted to have 2 (or more) additional risk factors.'
+    end
 }
 
 define RecommendationSummary: {
@@ -114,17 +121,24 @@ define LabResultList: {
   DiagnosticSummary.WBC
 }
 
+define ImagingResultList: {
+  C19.ClinicalAssessments.ChestXRayConcerning,
+  C19.ClinicalAssessments.UltrasoundConcerning,
+  C19.ClinicalAssessments.CTConcerning,
+  C19.ClinicalAssessments.LungInfiltratesOver50
+}
+
 define LabResultCount:
   Count(LabResultList result where result is not null)
 
 define ConcerningLabCount:
   Count(LabResultList result where result.Flag is true)
 
-define ConcerningImaging:
-  C19.ClinicalAssessments.AbnormalChestImaging is true
+define ConcerningImagingCount:
+  Count(ImagingResultList result where result is true)
 
 define ConcerningLabsOrImaging:
-  ConcerningLabCount >= 1 or ConcerningImaging
+  ConcerningLabCount >= 1 or ConcerningImagingCount >= 1
 
 /*
 define TrendData: {

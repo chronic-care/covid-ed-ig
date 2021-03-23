@@ -26,19 +26,24 @@ parameter VitalSignsLookbackPeriod default 12 months
 // 12 months for test data, use '2 days' as default in production?
 parameter LabResultsLookbackPeriod default 12 months
 
-// Symptoms as observed by a clinical user, overrides Observation queries, if any.
-parameter Symptoms Tuple {
-  Fever Boolean,
-  Cough Boolean,
-  SoreThroat Boolean,
-  Malaise Boolean,
-  Headache Boolean,
-  MusclePain Boolean,
-  Nausea Boolean,
-  LossOfTasteAndSmell Boolean,
-  ShortnessOfBreath Boolean
-}
+// This parameter instructs logic to always override corresponding FHIR data from EHR, including when parameter value is null.
+// TODO rename to AlwaysOverrideSourceData?
+// TODO replace with proposed Tuple structure for parameters {value Any, unknown Boolean}
+parameter IgnoreFallbackResourceValues Boolean default false
 
+/*
+ * Proposed parameter structure for unknown values, not currently used in the logic.
+ */
+parameter ClinicalAssessmentsProposed Tuple {
+  O2Saturation Tuple { value Any, unknown Boolean },
+  HeartRate Tuple { value Any, unknown Boolean }
+}
+  default {
+    O2Saturation: {value: 88, unknown: false},
+    HeartRate: {value: null, unknown: true}
+  }
+
+// Observations by a clinical user, overrides Observation queries, if any.
 parameter ClinicalAssessments Tuple {
   RespiratoryRate Decimal,
   O2Saturation Decimal,
@@ -49,9 +54,13 @@ parameter ClinicalAssessments Tuple {
   SupplementalOxygen Boolean,
   PerformanceStatus String,       // Code from value set "WHO Performance Status Codes"
   Dyspnea Boolean,
-  AbnormalChestImaging Boolean,
+  ShortnessOfBreath Boolean,
+  RespiratoryDiseaseSymptoms Boolean,
+  ChestXRayConcerning Boolean,
+  UltrasoundConcerning Boolean,
+  CTConcerning Boolean,
+  LungInfiltratesOver50 Boolean,
   PaO2FiO2Ratio Decimal,          // e.g. 300
-  LungInfiltrates Decimal,        // Percent
   RespiratoryFailure Boolean,
   SepticShock Boolean,
   MultiorganDysfunction Boolean
@@ -78,8 +87,6 @@ parameter PatientData Tuple {
   Gender String,
   Age Decimal
 }
-
-parameter IgnoreFallbackResourceValues Boolean
 
 
 // # CDS logic #
@@ -120,6 +127,14 @@ define "Patient Race Text":
 /*
  * Assess Vital Signs
  */
+
+define function DecimalValue(value Decimal, param Tuple{value Any, unknown Boolean}):
+  if param.unknown is true then null
+  else Coalesce(param.value as Decimal, value)
+
+define LastHeartRateValueProposed:
+  DecimalValue("Last Heart Rate value", ClinicalAssessmentsProposed.HeartRate)
+
 
 define "Last Heart Rate":
   C3F.MostRecent("Heart Rate Observations")
@@ -338,27 +353,28 @@ define "Is Severe Severity":
     and (("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" < 94)
       or ("Last Respiratory Rate value" is not null and "Last Respiratory Rate value" > 30)
       or ("Last PaO2FiO2 Ratio Lab Result value" is not null and "Last PaO2FiO2 Ratio Lab Result value" < 300)
-      or (ClinicalAssessments.LungInfiltrates is not null and ClinicalAssessments.LungInfiltrates > 50))
+      or ClinicalAssessments.LungInfiltratesOver50)
     then true
   else false
 
-// TODO evidence of lower respiratory disease
-// TODO on room air (not Supplemental Oxygen)
+// TODO O2 Sat on room air (not Supplemental Oxygen)
 define "Is Moderate Severity":
   if not "Is Severe Severity" and not "Is Critical Severity"
-    and (("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" >= 94)
-        or Symptoms.ShortnessOfBreath
+    and ("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" >= 94)
+    and (ClinicalAssessments.ShortnessOfBreath
         or ClinicalAssessments.Dyspnea
-        or ClinicalAssessments.AbnormalChestImaging
-    )
+        or ClinicalAssessments.ChestXRayConcerning
+        or ClinicalAssessments.UltrasoundConcerning
+        or ClinicalAssessments.CTConcerning)
     then true
   else false
 
 // TODO moved 3 parameters to Moderat as "evidence of lower respiratory disease"
 define "Is Mild Severity":
   if not "Is Severe Severity" and not "Is Critical Severity" and not "Is Moderate Severity"
-    and (Symptoms.Fever or Symptoms.Cough or Symptoms.SoreThroat or Symptoms.Malaise
-          or Symptoms.Headache or Symptoms.MusclePain or Symptoms.Nausea or Symptoms.LossOfTasteAndSmell)
+    and ClinicalAssessments.RespiratoryDiseaseSymptoms is false
+    /* and ClinicalAssessments.ShortnessOfBreath is false
+    and ClinicalAssessments.Dyspnea is false */
     then true
   else false
 
