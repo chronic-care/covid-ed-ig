@@ -114,6 +114,21 @@ parameter PatientData Tuple {
   Age Decimal
 }
 
+parameter LabResults Tuple {
+  ALT Boolean,
+  AST Boolean,
+  Creatinine Boolean,
+  CRP Boolean,
+  DDimer Boolean,
+  Ferritin Boolean,
+  LDH Boolean,
+  Lymphopenia Boolean,
+  Neutrophils Boolean,
+  Thrombocytopenia Boolean,
+  Troponin Boolean,
+  WBC Boolean
+}
+
 
 // # CDS logic #
 
