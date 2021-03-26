@@ -35,6 +35,7 @@ define RiskSummary: {
   RiskScore: C19."Total Risk Score",
   RiskPercent: C19."Risk Percent",
   RiskFactorCount: C19."Risk Factors count",
+  DiagnosticInterpretation: ConcerningLabCount + ConcerningImagingCount,
   ConcerningLabCount: ConcerningLabCount,
   ConcerningImagingCount: ConcerningImagingCount
 }
