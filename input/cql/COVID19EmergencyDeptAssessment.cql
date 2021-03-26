@@ -53,6 +53,7 @@ parameter ClinicalAssessments Tuple {
   Alertness String,               // Code from value set "Alertness Scale Codes"
   SupplementalOxygen Boolean,
   PerformanceStatus String,       // Code from value set "WHO Performance Status Codes"
+  AnyMildCOVIDSymptoms Boolean,
   Dyspnea Boolean,
   ShortnessOfBreath Boolean,
   RespiratoryDiseaseSymptoms Boolean,
@@ -65,6 +66,31 @@ parameter ClinicalAssessments Tuple {
   SepticShock Boolean,
   MultiorganDysfunction Boolean
 }
+/*
+  // Use for testing parameter inputs
+  default {
+    RespiratoryRate: 15.0,
+    O2Saturation: 96.0,
+    HeartRate: 70.0,
+    SystolicBloodPressure: 130.0,
+    TemperatureF: 99.0,
+    Alertness: '',
+    SupplementalOxygen: false,
+    PerformanceStatus: '',
+    AnyMildCOVIDSymptoms: true,
+    Dyspnea: false,
+    ShortnessOfBreath: false,
+    RespiratoryDiseaseSymptoms: false,
+    ChestXRayConcerning: false,
+    UltrasoundConcerning: false,
+    CTConcerning: false,
+    LungInfiltratesOver50: false,
+    PaO2FiO2Ratio: 400.0,
+    RespiratoryFailure: false,
+    SepticShock: false,
+    MultiorganDysfunction: false
+  }
+*/
 
 // Risk Factors as specified by a clinical user, overrides Condition queries, if any.
 parameter RiskFactors Tuple {
@@ -361,7 +387,8 @@ define "Is Severe Severity":
 define "Is Moderate Severity":
   if not "Is Severe Severity" and not "Is Critical Severity"
     and ("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" >= 94)
-    and (ClinicalAssessments.ShortnessOfBreath
+    and (ClinicalAssessments.RespiratoryDiseaseSymptoms
+        or ClinicalAssessments.ShortnessOfBreath
         or ClinicalAssessments.Dyspnea
         or ClinicalAssessments.ChestXRayConcerning
         or ClinicalAssessments.UltrasoundConcerning
@@ -372,6 +399,7 @@ define "Is Moderate Severity":
 // TODO moved 3 parameters to Moderat as "evidence of lower respiratory disease"
 define "Is Mild Severity":
   if not "Is Severe Severity" and not "Is Critical Severity" and not "Is Moderate Severity"
+    and ClinicalAssessments.AnyMildCOVIDSymptoms is true
     and ClinicalAssessments.RespiratoryDiseaseSymptoms is false
     /* and ClinicalAssessments.ShortnessOfBreath is false
     and ClinicalAssessments.Dyspnea is false */
@@ -392,7 +420,7 @@ define "Total Risk Score":
 define "Risk Percent":
   case "Total Risk Score"
     when null then null
-    when 0 then 1
+    when 0 then 0
     when 1 then 1
     when 2 then 2
     when 3 then 2

@@ -155,10 +155,9 @@ define TrendData: {
  */
 
 define "Recommend Obtain Diagnostics":
-  (C19."Is Critical Severity" or C19."Is Severe Severity" or C19."Is Moderate Severity"
-    or C19."Total Risk Score" >= 5
+  (C19."Total Risk Score" >= 5
     or C19."Risk Factors count" > 1)
-  and LabResultCount < 5                // TODO Need feedback on minimum number of labs
+  and LabResultCount < 1
 
 define "Recommend Discharge Home":
   C19."Is Mild Severity"
@@ -174,9 +173,7 @@ define "Recommend Consider Discharging Home":
 
 define "Recommend Consider Admission":
   (C19."Is Mild Severity" or C19."Is Moderate Severity")
-    and (C19."Total Risk Score" >= 5
-      or C19."Risk Factors count" > 1
-      or ConcerningLabsOrImaging)
+    and ConcerningLabsOrImaging is true
     and LabResultCount >= 1
 
 define "Recommend Severe Admission":
