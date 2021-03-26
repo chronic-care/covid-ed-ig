@@ -155,7 +155,8 @@ define TrendData: {
  */
 
 define "Recommend Obtain Diagnostics":
-  (C19."Total Risk Score" >= 5
+  RiskSummary.SeverityClassification is not null
+  and (C19."Total Risk Score" >= 5
     or C19."Risk Factors count" > 1)
   and LabResultCount < 1
 
