@@ -35,7 +35,7 @@ define RiskSummary: {
   RiskScore: C19."Total Risk Score",
   RiskPercent: C19."Risk Percent",
   RiskFactorCount: C19."Risk Factors count",
-  DiagnosticInterpretation: ConcerningLabCount + ConcerningImagingCount,
+  DiagnosticInterpretation: DiagnosticInterpretation,
   ConcerningLabCount: ConcerningLabCount,
   ConcerningImagingCount: ConcerningImagingCount
 }
@@ -140,6 +140,9 @@ define ConcerningImagingCount:
 
 define ConcerningLabsOrImaging:
   ConcerningLabCount >= 1 or ConcerningImagingCount >= 1
+
+define DiagnosticInterpretation:
+    ConcerningLabCount + ConcerningImagingCount
 
 /*
 define TrendData: {
