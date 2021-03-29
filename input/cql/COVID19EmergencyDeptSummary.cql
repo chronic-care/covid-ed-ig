@@ -134,8 +134,17 @@ define LabResultCount:
 define ConcerningLabCount:
   Count(LabResultList result where result.Flag is true)
 
+// TODO Always returns count of 0 or 1 in Javascript engine... Bug?
+/*
 define ConcerningImagingCount:
   Count(ImagingResultList result where result is true)
+*/
+
+define ConcerningImagingCount:
+  (if C19.ClinicalAssessments.ChestXRayConcerning is true then 1 else 0)
+    + (if C19.ClinicalAssessments.UltrasoundConcerning is true then 1 else 0)
+    + (if C19.ClinicalAssessments.CTConcerning is true then 1 else 0)
+    + (if C19.ClinicalAssessments.LungInfiltratesOver50 is true then 1 else 0)
 
 define ConcerningLabsOrImaging:
   ConcerningLabCount >= 1 or ConcerningImagingCount >= 1

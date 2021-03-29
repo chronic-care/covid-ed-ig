@@ -81,15 +81,15 @@ parameter ClinicalAssessments Tuple {
     Dyspnea: false,
     ShortnessOfBreath: false,
     RespiratoryDiseaseSymptoms: false,
-    ChestXRayConcerning: false,
-    UltrasoundConcerning: false,
-    CTConcerning: false,
+    ChestXRayConcerning: true,
+    UltrasoundConcerning: true,
+    CTConcerning: true,
     LungInfiltratesOver50: false,
     PaO2FiO2Ratio: 400.0,
     RespiratoryFailure: false,
     SepticShock: false,
     MultiorganDysfunction: false
-  }
+  )
 */
 
 // Risk Factors as specified by a clinical user, overrides Condition queries, if any.
