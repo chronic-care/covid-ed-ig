@@ -125,8 +125,7 @@ define LabResultList: {
 define ImagingResultList: {
   C19.ClinicalAssessments.ChestXRayConcerning,
   C19.ClinicalAssessments.UltrasoundConcerning,
-  C19.ClinicalAssessments.CTConcerning,
-  C19.ClinicalAssessments.LungInfiltratesOver50
+  C19.ClinicalAssessments.CTConcerning
 }
 
 define LabResultCount:
@@ -145,7 +144,6 @@ define ConcerningImagingCount:
   (if C19.ClinicalAssessments.ChestXRayConcerning is true then 1 else 0)
     + (if C19.ClinicalAssessments.UltrasoundConcerning is true then 1 else 0)
     + (if C19.ClinicalAssessments.CTConcerning is true then 1 else 0)
-    + (if C19.ClinicalAssessments.LungInfiltratesOver50 is true then 1 else 0)
 
 define ConcerningLabsOrImaging:
   ConcerningLabCount >= 1 or ConcerningImagingCount >= 1
