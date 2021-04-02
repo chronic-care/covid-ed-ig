@@ -57,6 +57,7 @@ parameter ClinicalAssessments Tuple {
   Dyspnea Boolean,
   ShortnessOfBreath Boolean,
   RespiratoryDiseaseSymptoms Boolean,
+  RespiratoryDiseaseImagingEvidence Boolean,
   ChestXRayConcerning Boolean,
   UltrasoundConcerning Boolean,
   CTConcerning Boolean,
@@ -81,6 +82,7 @@ parameter ClinicalAssessments Tuple {
     Dyspnea: false,
     ShortnessOfBreath: false,
     RespiratoryDiseaseSymptoms: false,
+    RespiratoryDiseaseImagingEvidence: true,
     ChestXRayConcerning: true,
     UltrasoundConcerning: true,
     CTConcerning: true,
@@ -388,11 +390,7 @@ define "Is Moderate Severity":
   if not "Is Severe Severity" and not "Is Critical Severity"
     and ("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" >= 94)
     and (ClinicalAssessments.RespiratoryDiseaseSymptoms
-        or ClinicalAssessments.ShortnessOfBreath
-        or ClinicalAssessments.Dyspnea
-        or ClinicalAssessments.ChestXRayConcerning
-        or ClinicalAssessments.UltrasoundConcerning
-        or ClinicalAssessments.CTConcerning)
+        or ClinicalAssessments.RespiratoryDiseaseImagingEvidence)
     then true
   else false
 
@@ -401,8 +399,6 @@ define "Is Mild Severity":
   if not "Is Severe Severity" and not "Is Critical Severity" and not "Is Moderate Severity"
     and ClinicalAssessments.AnyMildCOVIDSymptoms is true
     and ClinicalAssessments.RespiratoryDiseaseSymptoms is false
-    /* and ClinicalAssessments.ShortnessOfBreath is false
-    and ClinicalAssessments.Dyspnea is false */
     then true
   else false
 
