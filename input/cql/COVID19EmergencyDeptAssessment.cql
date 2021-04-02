@@ -416,7 +416,7 @@ define "Total Risk Score":
 define "Risk Percent":
   case "Total Risk Score"
     when null then null
-    when 0 then 0
+    when 0 then 1
     when 1 then 1
     when 2 then 2
     when 3 then 2
