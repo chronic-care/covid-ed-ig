@@ -192,11 +192,9 @@ define "Recommend Consider Admission":
 
 define "Recommend Severe Admission":
   C19."Is Severe Severity"
-    and LabResultCount >= 1
 
 define "Recommend Critical Admission":
   C19."Is Critical Severity"
-    and LabResultCount >= 1
 
 /*
  * Helper functions for summary reporting.
