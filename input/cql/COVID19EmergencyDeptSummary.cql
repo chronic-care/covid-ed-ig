@@ -132,7 +132,10 @@ define LabResultCount:
   Count(LabResultList result where result is not null)
 
 define ConcerningLabCount:
-  Count(LabResultList result where result.Flag is true)
+  Coalesce(
+    C19.ClinicalAssessments.ConcerningLabCount,
+    Count(LabResultList result where result.Flag is true)
+  )
 
 // TODO Always returns count of 0 or 1 in Javascript engine... Bug?
 /*

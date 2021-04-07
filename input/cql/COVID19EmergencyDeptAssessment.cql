@@ -65,7 +65,8 @@ parameter ClinicalAssessments Tuple {
   PaO2FiO2Ratio Decimal,          // e.g. 300
   RespiratoryFailure Boolean,
   SepticShock Boolean,
-  MultiorganDysfunction Boolean
+  MultiorganDysfunction Boolean,
+  ConcerningLabCount Decimal
 }
 /*
   // Use for testing parameter inputs
