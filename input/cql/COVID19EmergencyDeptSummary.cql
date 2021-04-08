@@ -244,7 +244,7 @@ define function ReportLabObservation(o FHIR.Observation):
       Date:   ToString(C3F.FindDate(o)),
       Name:   ConceptText(o.code),                                // display nanme
       ResultText: QuantityText(o.value as FHIR.Quantity),         // result value with units
-      ResultValue: ToString((o.value as FHIR.Quantity).value),
+      ResultValue: System.Quantity { value: (o.value as FHIR.Quantity).value}.value,
       ResultUnits: (o.value as FHIR.Quantity).unit.value,
       ReferenceRange: LabReferenceRange(o),
       Interpretation: LabInterpretation(o),
