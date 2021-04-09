@@ -131,6 +131,9 @@ define ImagingResultList: {
 define LabResultCount:
   Count(LabResultList result where result is not null)
 
+define ImagingResultCount:
+  Count(ImagingResultList result where result is not null)
+
 define ConcerningLabCount:
   Coalesce(
     C19.ClinicalAssessments.ConcerningLabCount,
@@ -191,7 +194,7 @@ define "Recommend Consider Admission":
     and (ConcerningLabsOrImaging is true
         or C19."Total Risk Score" > 4
         or C19."Risk Factors count" > 1)
-    and LabResultCount >= 1
+    and (LabResultCount >= 1 or ImagingResultCount >= 1)
 
 define "Recommend Severe Admission":
   C19."Is Severe Severity"
