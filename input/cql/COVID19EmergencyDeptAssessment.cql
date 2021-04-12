@@ -430,7 +430,7 @@ define "Risk Percent":
     when 10 then 29
     when 11 then 34
     when 12 then 38
-    when 13 then 46
+    when 13 then 47
     when 14 then 48
     when 15 then 50
     when 16 then 55
