@@ -1,4 +1,4 @@
-import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
+import { buildDefaultClinicalAssessmentParameters, buildDefaultPatientDataParameters } from '../helpers/builders';
 import { executeAssessmentCQLExpression } from '../helpers/cqlService';
 
 describe('risk score with parameter overrides', () => {
@@ -31,13 +31,13 @@ describe('risk score with parameter overrides', () => {
 
     test.each`
         o2SaturationRate | expectedScore
-        ${96}     | ${0}
-        ${null}   | ${0}
-        ${94}     | ${1}
-        ${95}     | ${1}
-        ${92}    | ${2}
-        ${93}    | ${2}
-        ${91}     | ${3}
+        ${96}            | ${0}
+        ${null}          | ${0}
+        ${94}            | ${1}
+        ${95}            | ${1}
+        ${92}            | ${2}
+        ${93}            | ${2}
+        ${91}            | ${3}
     `('returns score of $expectedScore for O2 saturation rate value of $o2SaturationRate', ({
         o2SaturationRate, expectedScore
     }) => {
@@ -116,8 +116,8 @@ describe('risk score with parameter overrides', () => {
         ${96.8}      | ${1}
         ${100.58}    | ${1}
         ${102.2}     | ${1}
-        ${102.3}    | ${2}
-        ${95}     | ${3}
+        ${102.3}     | ${2}
+        ${95}        | ${3}
     `('returns score of $expectedScore for temperature value of $temperatureF', ({
         temperatureF, expectedScore
     }) => {
@@ -131,5 +131,26 @@ describe('risk score with parameter overrides', () => {
         const temperatureScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Temperature Risk Score');
 
         expect(temperatureScore).toEqual(expectedScore);
+    });
+
+    test.each`
+        sex         | expectedScore
+        ${'male'}   | ${1}
+        ${'female'} | ${0}
+        ${null}     | ${0}
+        ${'other'}  | ${0}
+    `('returns score of $expectedScore for sex value of $sex', ({
+            sex, expectedScore
+        }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: buildDefaultPatientDataParameters({Gender: sex}),
+            RiskFactors: undefined,
+            ClinicalAssessments: undefined,
+        };
+
+        const sexScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Sex Risk Score');
+
+        expect(sexScore).toEqual(expectedScore);
     });
 });
