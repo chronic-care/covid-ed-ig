@@ -30,6 +30,31 @@ describe('risk score with parameter overrides', () => {
     });
 
     test.each`
+        o2SaturationRate | expectedScore
+        ${96}     | ${0}
+        ${null}   | ${0}
+        ${94}     | ${1}
+        ${95}     | ${1}
+        ${92}    | ${2}
+        ${93}    | ${2}
+        ${91}     | ${3}
+    `('returns score of $expectedScore for O2 saturation rate value of $o2SaturationRate', ({
+        o2SaturationRate, expectedScore
+    }) => {
+
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({O2Saturation: o2SaturationRate}),
+        };
+
+        const saturationRateScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'O2 Saturation Risk Score');
+
+        expect(saturationRateScore).toEqual(expectedScore);
+    });
+
+    test.each`
         heartRate | expectedScore
         ${51}     | ${0}
         ${90}     | ${0}
