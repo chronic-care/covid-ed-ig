@@ -8,6 +8,7 @@ describe('risk score with parameter overrides', () => {
         ${20}           | ${0}
         ${null}         | ${0}
         ${9}            | ${1}
+        ${10.5}         | ${1}
         ${11}           | ${1}
         ${21}           | ${2}
         ${24}           | ${2}
@@ -16,7 +17,6 @@ describe('risk score with parameter overrides', () => {
     `('returns score of $expectedScore for respiratory rate value of $respiratoryRate', ({
         respiratoryRate, expectedScore
     }) => {
-
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: undefined,
@@ -41,7 +41,6 @@ describe('risk score with parameter overrides', () => {
     `('returns score of $expectedScore for O2 saturation rate value of $o2SaturationRate', ({
         o2SaturationRate, expectedScore
     }) => {
-
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: undefined,
@@ -70,7 +69,6 @@ describe('risk score with parameter overrides', () => {
     `('returns score of $expectedScore for heart rate value of $heartRate', ({
         heartRate, expectedScore
     }) => {
-
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: undefined,
@@ -97,7 +95,6 @@ describe('risk score with parameter overrides', () => {
     `('returns score of $expectedScore for systolic blood pressure value of $systolicBloodPressure', ({
         systolicBloodPressure, expectedScore
     }) => {
-
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: undefined,
@@ -108,5 +105,31 @@ describe('risk score with parameter overrides', () => {
         const systolicBloodPressureScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Systolic BP Risk Score');
 
         expect(systolicBloodPressureScore).toEqual(expectedScore);
+    });
+
+    test.each`
+        temperatureF | expectedScore
+        ${96.98}     | ${0}
+        ${100.4}     | ${0}
+        ${null}      | ${0}
+        ${95.18}     | ${1}
+        ${96.8}      | ${1}
+        ${100.58}    | ${1}
+        ${102.2}     | ${1}
+        ${102.3}    | ${2}
+        ${95}     | ${3}
+    `('returns score of $expectedScore for temperature value of $temperatureF', ({
+        temperatureF, expectedScore
+    }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({TemperatureF: temperatureF}),
+        };
+
+        const temperatureScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Temperature Risk Score');
+
+        expect(temperatureScore).toEqual(expectedScore);
     });
 });
