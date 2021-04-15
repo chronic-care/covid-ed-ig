@@ -82,4 +82,31 @@ describe('risk score with parameter overrides', () => {
 
         expect(heartRateScore).toEqual(expectedScore);
     });
+
+    test.each`
+        systolicBloodPressure | expectedScore
+        ${111}                | ${0}
+        ${219}                | ${0}
+        ${null}               | ${0}
+        ${101}                | ${1}
+        ${110}                | ${1}
+        ${91}                 | ${2}
+        ${100}                | ${2}
+        ${90}                 | ${3}
+        ${220}                | ${3}
+    `('returns score of $expectedScore for systolic blood pressure value of $systolicBloodPressure', ({
+        systolicBloodPressure, expectedScore
+    }) => {
+
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({SystolicBloodPressure: systolicBloodPressure}),
+        };
+
+        const systolicBloodPressureScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Systolic BP Risk Score');
+
+        expect(systolicBloodPressureScore).toEqual(expectedScore);
+    });
 });
