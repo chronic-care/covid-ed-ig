@@ -153,4 +153,30 @@ describe('risk score with parameter overrides', () => {
 
         expect(sexScore).toEqual(expectedScore);
     });
+
+    test.each`
+        age         | expectedScore
+        ${0}        | ${0}
+        ${15}       | ${0}
+        ${16}       | ${0}
+        ${49}       | ${0}
+        ${50}       | ${2}
+        ${65}       | ${2}
+        ${66}       | ${3}
+        ${80}       | ${3}
+        ${81}       | ${4}
+    `('returns score of $expectedScore for age value of $age', ({
+        age, expectedScore
+    }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: buildDefaultPatientDataParameters({Age: age}),
+            RiskFactors: undefined,
+            ClinicalAssessments: undefined,
+        };
+
+        const ageScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Age Risk Score');
+
+        expect(ageScore).toEqual(expectedScore);
+    });
 });
