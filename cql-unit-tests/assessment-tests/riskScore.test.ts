@@ -179,4 +179,26 @@ describe('risk score with parameter overrides', () => {
 
         expect(ageScore).toEqual(expectedScore);
     });
+
+    test.each`
+        alertness       | expectedScore
+        ${'130987000'}  | ${3}
+        ${'none'}       | ${0}
+        ${'alert'}      | ${0}
+        ${null}         | ${0}
+        ${undefined}    | ${0}
+    `('returns score of $expectedScore for alertness value of $alertness', ({
+        alertness, expectedScore
+    }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({Alertness: alertness}),
+        };
+
+        const alertnessScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Alertness Score');
+
+        expect(alertnessScore).toEqual(expectedScore);
+    });
 });
