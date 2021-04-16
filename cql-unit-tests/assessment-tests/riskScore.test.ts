@@ -223,4 +223,24 @@ describe('risk score with parameter overrides', () => {
 
         expect(performanceStatusScore).toEqual(expectedScore);
     });
+
+    test.each`
+        supplementalOxygen  | expectedScore
+        ${true}             | ${2}
+        ${false}            | ${0}
+        ${null}             | ${0}
+    `('returns score of $expectedScore for supplemental oxygen value of $supplementalOxygen', ({
+        supplementalOxygen, expectedScore
+    }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({SupplementalOxygen: supplementalOxygen}),
+        };
+
+        const supplementalOxygenScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Inspired Oxygen Score');
+
+        expect(supplementalOxygenScore).toEqual(expectedScore);
+    });
 });
