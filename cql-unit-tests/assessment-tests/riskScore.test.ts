@@ -201,4 +201,26 @@ describe('risk score with parameter overrides', () => {
 
         expect(alertnessScore).toEqual(expectedScore);
     });
+
+    test.each`
+        performanceStatus | expectedScore
+        ${'373803006'}    | ${0}
+        ${'373804000'}    | ${1}
+        ${'373805004'}    | ${2}
+        ${'373806003'}    | ${3}
+        ${'373807007'}    | ${4}
+    `('returns score of $expectedScore for performance status value of $performanceStatus', ({
+        performanceStatus, expectedScore
+    }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({PerformanceStatus: performanceStatus}),
+        };
+
+        const performanceStatusScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Performance Status Score');
+
+        expect(performanceStatusScore).toEqual(expectedScore);
+    });
 });
