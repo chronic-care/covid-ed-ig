@@ -51,7 +51,7 @@ define SmartPhrases: {
     end
 }
 
-define RecommendationSummary: {
+define DispositionSummary: {
   ObtainDiagnostics: "Recommend Obtain Diagnostics",
   DischargeHome: "Recommend Discharge Home",
   ConsiderAdmission: "Recommend Consider Admission",
