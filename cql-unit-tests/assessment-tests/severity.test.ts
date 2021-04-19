@@ -1,4 +1,4 @@
-import { buildDefaultClinicalAssessmentParameters, buildDefaultPatientDataParameters } from "../helpers/builders";
+import { buildDefaultClinicalAssessmentParameters } from "../helpers/builders";
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('severity with parameter overrides', () => {
@@ -87,5 +87,31 @@ describe('severity with parameter overrides', () => {
         const isModerateSeverity = executeAssessmentCQLExpression(cqlExpressionParameters, 'Is Moderate Severity');
 
         expect(isModerateSeverity).toEqual(expectedModerateSeverity);
+    });
+
+    test.each`
+        anyMildCOVIDSymptoms | respiratoryDiseaseSymptoms | expectedMildSeverity
+        ${null}              | ${null}                    |  ${false}
+        ${false}             | ${false}                   |  ${false}
+        ${false}             | ${true}                    |  ${false}
+        ${true}              | ${true}                    |  ${false}
+        ${true}              | ${false}                   |  ${true}
+    `(`returns expectedMildSeverity=$expectedMildSeverity when values are:
+    anyMildCOVIDSymptoms=$anyMildCOVIDSymptoms, respiratoryDiseaseSymptoms=$respiratoryDiseaseSymptoms`, ({
+        anyMildCOVIDSymptoms, respiratoryDiseaseSymptoms, expectedMildSeverity
+    }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
+                AnyMildCOVIDSymptoms: anyMildCOVIDSymptoms,
+                RespiratoryDiseaseSymptoms: respiratoryDiseaseSymptoms,
+            }),
+        };
+
+        const isMildSeverity = executeAssessmentCQLExpression(cqlExpressionParameters, 'Is Mild Severity');
+
+        expect(isMildSeverity).toEqual(expectedMildSeverity);
     });
 });
