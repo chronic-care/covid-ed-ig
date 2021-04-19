@@ -33,13 +33,13 @@ describe('severity with parameter overrides', () => {
 
     test.each`
         o2Saturation   | respiratoryRate | paO2FiO2 | lungInfiltrates | expectedSevereSeverity
-        ${93}             | ${null}      | ${null}         | ${null}  |  ${true}
-        ${94}             | ${null}      | ${null}         | ${null}  |  ${false}
-        ${null}            | ${35}       | ${null}         | ${null}  | ${true}
-        ${null}            | ${30}       | ${null}         | ${null}  | ${false}
-        ${null}            | ${null}      | ${300}          | ${null} | ${false}
-        ${null}            | ${null}      | ${299}          | ${null} | ${true}
-        ${null}            | ${null}      | ${null}         | ${true} | ${true}
+        ${93}          | ${null}         | ${null}  | ${null}         |  ${true}
+        ${94}          | ${null}         | ${null}  | ${null}         |  ${false}
+        ${null}        | ${35}           | ${null}  | ${null}         | ${true}
+        ${null}        | ${30}           | ${null}  | ${null}         | ${false}
+        ${null}        | ${null}         | ${300}   | ${null}         | ${false}
+        ${null}        | ${null}         | ${299}   | ${null}         | ${true}
+        ${null}        | ${null}         | ${null}  | ${true}         | ${true}
     `(`returns expectedSevereSeverity=$expectedSevereSeverity when values are ,
     o2Saturation=$o2Saturation, respiratoryRate=$respiratoryRate, paO2FiO2=$paO2FiO2, lungInfiltrates=$lungInfiltrates`, ({
         o2Saturation, respiratoryRate, paO2FiO2, lungInfiltrates, expectedSevereSeverity
@@ -59,5 +59,33 @@ describe('severity with parameter overrides', () => {
         const isSevereSeverity = executeAssessmentCQLExpression(cqlExpressionParameters, 'Is Severe Severity');
 
         expect(isSevereSeverity).toEqual(expectedSevereSeverity);
+    });
+
+    test.each`
+        o2Saturation  | respiratoryDiseaseSymptoms | respiratoryDiseaseImagingEvidence | expectedModerateSeverity
+        ${93}         | ${null}                    | ${null}                           |  ${false}
+        ${94}         | ${null}                    | ${null}                           |  ${false}
+        ${94}         | ${true}                    | ${null}                           |  ${true}
+        ${94}         | ${null}                    | ${true}                           |  ${true}
+        ${94}         | ${false}                   | ${false}                          |  ${false}
+        ${93}         | ${true}                    | ${true}                           |  ${false}
+    `(`returns expectedModerateSeverity=$expectedModerateSeverity when values are: o2Saturation=$o2Saturation,
+    respiratoryDiseaseSymptoms=$respiratoryDiseaseSymptoms, respiratoryDiseaseImagingEvidence=$respiratoryDiseaseImagingEvidence`, ({
+        o2Saturation, respiratoryDiseaseSymptoms, respiratoryDiseaseImagingEvidence, expectedModerateSeverity
+    }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
+                O2Saturation: o2Saturation,
+                RespiratoryDiseaseSymptoms: respiratoryDiseaseSymptoms,
+                RespiratoryDiseaseImagingEvidence: respiratoryDiseaseImagingEvidence
+            }),
+        };
+
+        const isModerateSeverity = executeAssessmentCQLExpression(cqlExpressionParameters, 'Is Moderate Severity');
+
+        expect(isModerateSeverity).toEqual(expectedModerateSeverity);
     });
 });
