@@ -49,4 +49,33 @@ describe('diagnostic interpretation',() => {
 
         expect(CQLConcerningImagingCount).toEqual(expectedConcerningImagingCount);
     });
+
+    test.each`
+        chestXRayConcerning | ultrasoundConcerning | cTConcerning | concerningLabCount | expectedDiagnosticInterpretation
+        ${true}             | ${false}             | ${false}     | ${1}               | ${2}
+        ${true}             | ${true}              | ${false}     | ${2}               | ${4}
+        ${true}             | ${true}              | ${true}      | ${null}            | ${3}
+        ${true}             | ${true}              | ${true}      | ${3}               | ${6}
+        ${true}             | ${false}             | ${true}      | ${1}               | ${3}
+        ${false}            | ${false}             | ${true}      | ${null}            | ${1}
+     
+    `(`returns expectedDiagnosticInterpretation=$expectedDiagnosticInterpretation when values 
+    are chestXRayConcerning=$chestXRayConcerning, ultrasoundConcerning=$ultrasoundConcerning, 
+     cTConcerning=$cTConcerning`, ({ chestXRayConcerning, ultrasoundConcerning, cTConcerning, concerningLabCount, expectedDiagnosticInterpretation }) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: undefined,
+            RiskFactors: undefined,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
+                ConcerningLabCount: concerningLabCount,
+                ChestXRayConcerning: chestXRayConcerning,
+                UltrasoundConcerning: ultrasoundConcerning,
+                CTConcerning: cTConcerning
+            }),
+        };
+
+        const CQLDiagnosticInterpretation = executeSummaryCQLExpression(cqlExpressionParameters, 'DiagnosticInterpretation');
+
+        expect(CQLDiagnosticInterpretation).toEqual(expectedDiagnosticInterpretation);
+    });
 });
