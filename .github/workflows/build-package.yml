@@ -49,6 +49,9 @@ jobs:
       - name: Generate Implementation Guide (IG)
         run: bash _genonce.sh
 
+      - name: Run CQL Unit Tests using JavaScript Engine
+        run: cd cql-unit-tests && npm test
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
