@@ -1,5 +1,5 @@
 import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
-import { executeAssessmentCQLExpression, executeSummaryCQLExpression } from '../helpers/cqlService';
+import { executeSummaryCQLExpression } from '../helpers/cqlService';
 
 describe('diagnostic interpretation',() => {
     test.each`
