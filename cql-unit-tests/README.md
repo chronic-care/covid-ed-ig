@@ -1,17 +1,25 @@
 ## CQL Unit Tests
 
-The CQL Unit Tests are included in this repo as a separate module.
+The CQL Unit Tests are included in this repo as a companion JavaScript (TypeScript) module to the Covid-Ed-Ig CQL repository.
+These tests internally use the CQL-Exec-Fhir and CQL-Execution packages to run the CQL via the JavaScript engine.
 
 
-### Pre-requisite 
+### Pre-requisites 
 Preferably install both a java version manager and a ruby version manager.
-Install the following versions: 
-- java 1.8
-- ruby version 3.0.0 
+Install the following:
+- Java 1.8
+- Ruby 3.0.0 
 - Jekyll (https://jekyllrb.com/docs/)
 
-1. In the covid-ed-ig directory run `./_genonce.sh` script, if you get an 'ig publisher not found' message, run `bash _updatePublisher.sh --force --yes --skip-ping` script. Then run `./_genonce.sh` script to generate the ELM (json) of the CQL. This will add these files to the /output directory
-2. Run `node localizeLibraryPaths.js [PATH TO CQL LIBRARY JSON]` (for example: Library-COVID19EmergencyDeptAssessment-2.json) for each library being used in tests
-3. cd cql-unit-tests
-4. npm install to install this module's specific node_modules
-5. npm test to run all unit tests
+### Running Unit Tests
+
+To run the unit tests with the latest CQL code, you need to have the above dependencies installed on your machine.
+
+1. In the covid-ed-ig directory run `./_genonce.sh` script.
+   - If you get an 'ig publisher not found' message, run `bash _updatePublisher.sh --force --yes --skip-ping` script.
+     Then run `./_genonce.sh` script to generate the ELM (json) of the CQL. The output will be located in the `/output` directory
+2. Run `node localizeLibraryPaths.js [PATH TO CQL LIBRARY JSON]` (for example: `/output/Library-COVID19EmergencyDeptAssessment-2.json`) for each library being used in tests
+   - This will update (localize) the path values for the libraries that are included in CQL files
+3. Run `cd cql-unit-tests` to go into the unit test module
+4. Run `npm install` to install this module's specific packages
+5. Run `npm test` to run the unit tests
