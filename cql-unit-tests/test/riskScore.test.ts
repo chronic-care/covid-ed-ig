@@ -19,8 +19,8 @@ describe('risk score with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({RespiratoryRate: respiratoryRate}),
         };
 
@@ -43,8 +43,8 @@ describe('risk score with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({O2Saturation: o2SaturationRate}),
         };
 
@@ -71,8 +71,8 @@ describe('risk score with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({HeartRate: heartRate}),
         };
 
@@ -97,8 +97,8 @@ describe('risk score with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({SystolicBloodPressure: systolicBloodPressure}),
         };
 
@@ -123,8 +123,8 @@ describe('risk score with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({TemperatureF: temperatureF}),
         };
 
@@ -145,8 +145,8 @@ describe('risk score with parameter overrides', () => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: buildDefaultPatientDataParameters({Gender: sex}),
-            RiskFactors: undefined,
-            ClinicalAssessments: undefined,
+            RiskFactors: null,
+            ClinicalAssessments: null,
         };
 
         const sexScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Sex Risk Score');
@@ -171,8 +171,8 @@ describe('risk score with parameter overrides', () => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: buildDefaultPatientDataParameters({Age: age}),
-            RiskFactors: undefined,
-            ClinicalAssessments: undefined,
+            RiskFactors: null,
+            ClinicalAssessments: null,
         };
 
         const ageScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Age Risk Score');
@@ -186,14 +186,14 @@ describe('risk score with parameter overrides', () => {
         ${'none'}       | ${0}
         ${'alert'}      | ${0}
         ${null}         | ${0}
-        ${undefined}    | ${0}
+        ${null}    | ${0}
     `('returns score of $expectedScore for alertness value of $alertness', ({
         alertness, expectedScore
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({Alertness: alertness}),
         };
 
@@ -214,8 +214,8 @@ describe('risk score with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({PerformanceStatus: performanceStatus}),
         };
 
@@ -234,8 +234,8 @@ describe('risk score with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({SupplementalOxygen: supplementalOxygen}),
         };
 

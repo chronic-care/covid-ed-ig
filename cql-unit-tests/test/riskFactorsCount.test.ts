@@ -7,9 +7,9 @@ describe('risk assessment score', () => {
         const riskAssessmentScoreParameters = buildDefaultRiskAssessmentScoreParameters();
 
         const cqlParams: CQLExpressionParameters = {
-            ClinicalAssessments: undefined,
+            ClinicalAssessments: null,
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
+            PatientData: null,
             RiskFactors: riskAssessmentScoreParameters
         };
 
@@ -36,9 +36,9 @@ describe('risk assessment score', () => {
         };
 
         const cqlParams: CQLExpressionParameters = {
-            ClinicalAssessments: undefined,
+            ClinicalAssessments: null,
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
+            PatientData: null,
             RiskFactors: riskAssessmentScoreParameters
         };
 

@@ -17,8 +17,8 @@ describe('severity with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 SepticShock: septicShock,
                 RespiratoryFailure: respiratoryFailure,
@@ -46,8 +46,8 @@ describe('severity with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 O2Saturation: o2Saturation,
                 RespiratoryRate: respiratoryRate,
@@ -75,8 +75,8 @@ describe('severity with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 O2Saturation: o2Saturation,
                 RespiratoryDiseaseSymptoms: respiratoryDiseaseSymptoms,
@@ -102,8 +102,8 @@ describe('severity with parameter overrides', () => {
     }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 AnyMildCOVIDSymptoms: anyMildCOVIDSymptoms,
                 RespiratoryDiseaseSymptoms: respiratoryDiseaseSymptoms,

@@ -1,7 +1,8 @@
 import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
 import { executeSummaryCQLExpression } from '../helpers/cqlService';
+import { CQLExpressionParameters } from "../helpers/types";
 
-describe('diagnostic interpretation',() => {
+describe('diagnostic interpretation with parameter overrides',() => {
     test.each`
         concerningLabCount | expectedConcerningLabCount
         ${1}               | ${1}
@@ -11,8 +12,8 @@ describe('diagnostic interpretation',() => {
     are concerningLabCount=$concerningLabCount `, ({ concerningLabCount, expectedConcerningLabCount }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 ConcerningLabCount: concerningLabCount
             }),
@@ -36,8 +37,8 @@ describe('diagnostic interpretation',() => {
      cTConcerning=$cTConcerning`, ({ chestXRayConcerning, ultrasoundConcerning, cTConcerning, expectedConcerningImagingCount }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 ChestXRayConcerning: chestXRayConcerning,
                 UltrasoundConcerning: ultrasoundConcerning,
@@ -64,8 +65,8 @@ describe('diagnostic interpretation',() => {
      cTConcerning=$cTConcerning`, ({ chestXRayConcerning, ultrasoundConcerning, cTConcerning, concerningLabCount, expectedDiagnosticInterpretation }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
-            PatientData: undefined,
-            RiskFactors: undefined,
+            PatientData: null,
+            RiskFactors: null,
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 ConcerningLabCount: concerningLabCount,
                 ChestXRayConcerning: chestXRayConcerning,

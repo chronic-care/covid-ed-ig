@@ -49,8 +49,8 @@ export interface PatientRecommendationCalculationParameters {
 }
 
 export interface CQLExpressionParameters {
-    ClinicalAssessments?: ClinicalAssessmentsParameters | null,
-    PatientData?: PatientDataParameters | null,
-    RiskFactors?: RiskAssessmentScoreParameters | null,
+    ClinicalAssessments: ClinicalAssessmentsParameters | null,
+    PatientData: PatientDataParameters | null,
+    RiskFactors: RiskAssessmentScoreParameters | null,
     IgnoreFallbackResourceValues: boolean | null,
 }
