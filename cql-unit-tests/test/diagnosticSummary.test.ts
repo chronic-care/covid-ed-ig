@@ -140,4 +140,101 @@ describe('diagnostic interpretation with fhir resources', () => {
         expect(retrievedAlt!.ResultValue).toEqual(expectedLabResult.ResultValue);
         expect(Date.parse(retrievedAlt!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
+
+    test('obtains latest Creatinine Lab Result in Diagnostic Summary Section', () => {
+
+        const oldestSeconds = 10;
+
+        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
+        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
+        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
+        const referenceRange = [
+            {
+                "low" : {
+                    "code" : "mg/dL",
+                    "value" : 0.7,
+                    "system" : "http://unitsofmeasure.org",
+                    "unit" : "mg/dL"
+                },
+                "high" : {
+                    "code" : "mg/dL",
+                    "value" : 1.25,
+                    "system" : "http://unitsofmeasure.org",
+                    "unit" : "mg/dL"
+                }
+            }
+        ];
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "display" : "CREATININE",
+                "code" : "2160-0"
+            }
+        ]
+
+        const oldestLabResult: Resource = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .withValueQuantity({
+                "value" : 1.5,
+                "unit" : "mg/dL"
+            })
+            .withReferenceRanges(referenceRange)
+            .build();
+
+        const middleLabResult: Resource = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withValueQuantity({
+                "value" : 1.37,
+                "unit" : "mg/dL"
+            })
+            .withEffectiveDateTime(middleDate.toISOString())
+            .withReferenceRanges(referenceRange)
+            .build();
+
+        const newestLabResult: Resource = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withValueQuantity({
+                "value" : 1.1,
+                "unit" : "mg/dL"
+            })
+            .withEffectiveDateTime(newestDate.toISOString())
+            .withReferenceRanges(referenceRange)
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.resource.code.coding![0].display!,
+            ReferenceRange: "0.7 - 1.25",
+            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
+            ResultValue: newestLabResult.resource.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedAlt = diagnosticSummary.Creatinine;
+
+        expect(retrievedAlt).not.toBeNull();
+        expect(retrievedAlt!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedAlt!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedAlt!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedAlt!.ReferenceRange).toEqual(expectedLabResult.ReferenceRange);
+        expect(retrievedAlt!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(retrievedAlt!.ResultUnits).toEqual(expectedLabResult.ResultUnits);
+        expect(retrievedAlt!.ResultValue).toEqual(expectedLabResult.ResultValue);
+        expect(Date.parse(retrievedAlt!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+
 });
