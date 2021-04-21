@@ -547,5 +547,67 @@ describe('diagnostic interpretation with fhir resources', () => {
         expect(Date.parse(retrievedLymphopenia!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
+    test('obtains latest Neutrophils Lab Result in Diagnostic Summary Section', () => {
+
+        const oldestSeconds = 10;
+
+        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
+        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
+        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "code": "751-8",
+                "display": "Neutrophils [#/volume] in Blood by Automated count"
+            }
+        ]
+
+        const oldestLabResult: Resource = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult: Resource = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult: Resource = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.resource.code.coding![0].display!,
+            ReferenceRange: "",
+            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
+            ResultValue: newestLabResult.resource.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedNeutrophils = diagnosticSummary.Neutrophils;
+
+        expect(retrievedNeutrophils).not.toBeNull();
+        expect(retrievedNeutrophils!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedNeutrophils!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedNeutrophils!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedNeutrophils!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedNeutrophils!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+
 
 });
