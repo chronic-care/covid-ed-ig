@@ -609,5 +609,67 @@ describe('diagnostic interpretation with fhir resources', () => {
         expect(Date.parse(retrievedNeutrophils!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
+    test('obtains latest Thrombocytopenia Lab Result in Diagnostic Summary Section', () => {
+
+        const oldestSeconds = 10;
+
+        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
+        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
+        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "display" : "PLATELET COUNT",
+                "code" : "777-3"
+            }
+        ]
+
+        const oldestLabResult: Resource = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult: Resource = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult: Resource = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.resource.code.coding![0].display!,
+            ReferenceRange: "",
+            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
+            ResultValue: newestLabResult.resource.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedThrombocytopenia = diagnosticSummary.Thrombocytopenia;
+
+        expect(retrievedThrombocytopenia).not.toBeNull();
+        expect(retrievedThrombocytopenia!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedThrombocytopenia!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedThrombocytopenia!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedThrombocytopenia!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedThrombocytopenia!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+
 
 });
