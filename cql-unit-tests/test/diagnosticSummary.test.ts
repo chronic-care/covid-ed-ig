@@ -795,4 +795,65 @@ describe('diagnostic interpretation with fhir resources', () => {
         expect(Date.parse(retrievedWbc!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
+    test('obtains latest PaO2FiO2 Lab Result in Diagnostic Summary Section', () => {
+
+        const oldestSeconds = 10;
+
+        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
+        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
+        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "display" : "PaO2FiO2",
+                "code" : "50984-4"
+            }
+        ]
+
+        const oldestLabResult: Resource = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult: Resource = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult: Resource = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.resource.code.coding![0].display!,
+            ReferenceRange: "",
+            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
+            ResultValue: newestLabResult.resource.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedPaO2FiO2 = diagnosticSummary.PaO2FiO2;
+
+        expect(retrievedPaO2FiO2).not.toBeNull();
+        expect(retrievedPaO2FiO2!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedPaO2FiO2!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedPaO2FiO2!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedPaO2FiO2!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedPaO2FiO2!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
 });
