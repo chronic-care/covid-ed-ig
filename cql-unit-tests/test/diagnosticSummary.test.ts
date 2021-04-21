@@ -351,14 +351,76 @@ describe('diagnostic interpretation with fhir resources', () => {
         ) as DiagnosticSummary;
 
 
-        const retrievedCrp = diagnosticSummary.DDimer;
+        const retrievedDDimer = diagnosticSummary.DDimer;
 
-        expect(retrievedCrp).not.toBeNull();
-        expect(retrievedCrp!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedCrp!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedCrp!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedCrp!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(Date.parse(retrievedCrp!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+        expect(retrievedDDimer).not.toBeNull();
+        expect(retrievedDDimer!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedDDimer!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedDDimer!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedDDimer!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedDDimer!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+
+    test('obtains latest Ferritin Lab Result in Diagnostic Summary Section', () => {
+
+        const oldestSeconds = 10;
+
+        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
+        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
+        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "display" : "FERRITIN",
+                "code": "2276-4"
+            }
+        ]
+
+        const oldestLabResult: Resource = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult: Resource = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult: Resource = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.resource.code.coding![0].display!,
+            ReferenceRange: "",
+            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
+            ResultValue: newestLabResult.resource.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedFerritin = diagnosticSummary.Ferritin;
+
+        expect(retrievedFerritin).not.toBeNull();
+        expect(retrievedFerritin!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedFerritin!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedFerritin!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedFerritin!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedFerritin!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
 });
