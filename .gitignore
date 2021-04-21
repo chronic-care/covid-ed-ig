@@ -35,3 +35,6 @@ Thumbs.db
 # Intellij Generated files #
 ############################
 **.iml
+.idea/
+.java-version
+.ruby-version

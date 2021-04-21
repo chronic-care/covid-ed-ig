@@ -1,0 +1,61 @@
+import { Resource } from "../types/resource";
+import { LabResultBuilder } from "./builders/Observation/LabResult";
+import { Diagnostic, DiagnosticSummary } from "../types/summary";
+import { executeSummaryNoParams } from "../helpers/cqlService";
+
+describe('diagnostic interpretation with fhir resources', () => {
+    test('obtains latest ALT Lab Result in Diagnostic Summary Section', () => {
+
+        const oldestSeconds = 10;
+
+        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
+        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
+        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
+
+        const oldestLabResult: Resource = new LabResultBuilder()
+            .withId('oldie')
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult: Resource = new LabResultBuilder()
+            .withId('middle')
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult: Resource = new LabResultBuilder()
+            .withId('newer')
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.resource.code.coding![0].display!,
+            ReferenceRange: "9 - 46",
+            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
+            ResultValue: newestLabResult.resource.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedAlt = diagnosticSummary.ALT;
+
+        expect(retrievedAlt).not.toBeNull();
+        expect(retrievedAlt!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedAlt!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedAlt!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedAlt!.ReferenceRange).toEqual(expectedLabResult.ReferenceRange);
+        expect(retrievedAlt!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(retrievedAlt!.ResultUnits).toEqual(expectedLabResult.ResultUnits);
+        expect(retrievedAlt!.ResultValue).toEqual(expectedLabResult.ResultValue);
+        expect(Date.parse(retrievedAlt!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+});

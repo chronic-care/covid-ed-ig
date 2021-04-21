@@ -1,5 +1,5 @@
 import { buildDefaultRiskAssessmentScoreParameters } from "../helpers/builders";
-import { CQLExpressionParameters, RiskAssessmentScoreParameters } from "../helpers/types";
+import { CQLExpressionParameters, RiskAssessmentScoreParameters } from "../types/parameter";
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('risk assessment score', () => {

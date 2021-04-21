@@ -1,15 +1,17 @@
 import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
-import { executeSummaryCQLExpression } from '../helpers/cqlService';
-import { CQLExpressionParameters } from "../helpers/types";
+import { executeSummaryCQLExpression, executeSummaryNoParams } from '../helpers/cqlService';
+import { LabResultBuilder } from "./builders/Observation/LabResult";
+import { Diagnostic, DiagnosticSummary } from "../types/summary";
+import { Resource } from "../types/resource";
 
-describe('diagnostic interpretation with parameter overrides',() => {
+describe('diagnostic interpretation with parameter overrides', () => {
     test.each`
         concerningLabCount | expectedConcerningLabCount
         ${1}               | ${1}
         ${null}            | ${0}
         ${5}               | ${5}
     `(`returns expectedConcerningLabCount=$expectedConcerningLabCount when values 
-    are concerningLabCount=$concerningLabCount `, ({ concerningLabCount, expectedConcerningLabCount }) => {
+    are concerningLabCount=$concerningLabCount `, ({concerningLabCount, expectedConcerningLabCount}) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: null,

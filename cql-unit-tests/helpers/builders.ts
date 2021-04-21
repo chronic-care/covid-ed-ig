@@ -1,4 +1,4 @@
-import { ClinicalAssessmentsParameters, PatientDataParameters, RiskAssessmentScoreParameters } from "./types";
+import { ClinicalAssessmentsParameters, PatientDataParameters, RiskAssessmentScoreParameters } from "../types/parameter";
 
 export const buildWithOverrides = <T>(defaultObject: T, overrides: Partial<T>): T => Object.assign(defaultObject, overrides);
 
