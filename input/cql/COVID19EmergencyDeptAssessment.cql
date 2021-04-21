@@ -82,17 +82,18 @@ parameter ClinicalAssessments Tuple {
     AnyMildCOVIDSymptoms: true,
     Dyspnea: false,
     ShortnessOfBreath: false,
-    RespiratoryDiseaseSymptoms: false,
-    RespiratoryDiseaseImagingEvidence: true,
-    ChestXRayConcerning: true,
-    UltrasoundConcerning: true,
-    CTConcerning: true,
+    RespiratoryDiseaseSymptoms: true,
+    RespiratoryDiseaseImagingEvidence: false,
+    ChestXRayConcerning: false,
+    UltrasoundConcerning: false,
+    CTConcerning: false,
     LungInfiltratesOver50: false,
     PaO2FiO2Ratio: 400.0,
     RespiratoryFailure: false,
     SepticShock: false,
-    MultiorganDysfunction: false
-  )
+    MultiorganDysfunction: false,
+    ConcerningLabCount: 1.0
+  }
 */
 
 // Risk Factors as specified by a clinical user, overrides Condition queries, if any.

@@ -60,18 +60,14 @@ define DispositionSummary: {
   CriticalAdmission: "Recommend Critical Admission"
 }
 
-define HasAdmissionOrDischargeRecommentation:
-  DispositionSummary.ConsiderAdmission or DispositionSummary.SevereAdmission or DispositionSummary.CriticalAdmission
-  or DispositionSummary.DischargeHome or DispositionSummary.ConsiderDischargingHome
-
 // Value: use, do-not-use, insufficient-evidence, null
 define TreatmentSummary: {
-  NonPharmacologic: null,
-  Antibodies: null,
-  Anticoagulation: null,
-  Remdesivir: null,
-  Steroids: null,
-  SteroidsAndOrRemdesivir: null
+  NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
+  Antibodies: "Recommend Antibodies Treatment",
+  Anticoagulation: "Recommend Anticoagulation Treatment",
+  Remdesivir: "Recommend Remdesivir Treatment",
+  Steroids: "Recommend Steroids Treatment",
+  SteroidsAndOrRemdesivir: "Recommend SteroidsAndOrRemdesivir Treatment"
 }
 
 define AssessmentSummary: {
@@ -217,6 +213,47 @@ define "Recommend Severe Admission":
 
 define "Recommend Critical Admission":
   C19."Is Critical Severity"
+
+/*
+ * Treatment Recommendations
+ */
+// TODO is there a better CQL syntax for enum literals, e.g. for each code in a ValueSet?
+// Value: use, do-not-use, insufficient-evidence, null
+
+// DispositionSummary includes a recommendation, other than ObtainDiagnostics.
+define HasAdmissionOrDischargeRecommendation:
+  DispositionSummary.ConsiderAdmission or DispositionSummary.SevereAdmission or DispositionSummary.CriticalAdmission
+  or DispositionSummary.DischargeHome or DispositionSummary.ConsiderDischargingHome
+
+define "Recommend Non-Pharmacologic Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then null
+  else 'use'
+
+define "Recommend Antibodies Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then null
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'use'
+  else null
+
+define "Recommend Anticoagulation Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then null
+  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
+  else null
+
+define "Recommend Steroids Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then null
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'do-not-use'
+  else null
+
+define "Recommend Remdesivir Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then null
+  else if C19."Is Mild Severity" then 'insufficient-evidence'
+  else if C19."Is Moderate Severity" then 'use'
+  else null
+
+define "Recommend SteroidsAndOrRemdesivir Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then null
+  else if (C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
+  else null
 
 /*
  * Helper functions for summary reporting.
