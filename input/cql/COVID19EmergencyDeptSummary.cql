@@ -60,6 +60,20 @@ define DispositionSummary: {
   CriticalAdmission: "Recommend Critical Admission"
 }
 
+define HasAdmissionOrDischargeRecommentation:
+  DispositionSummary.ConsiderAdmission or DispositionSummary.SevereAdmission or DispositionSummary.CriticalAdmission
+  or DispositionSummary.DischargeHome or DispositionSummary.ConsiderDischargingHome
+
+// Value: use, do-not-use, insufficient-evidence, null
+define TreatmentSummary: {
+  NonPharmacologic: null,
+  Antibodies: null,
+  Anticoagulation: null,
+  Remdesivir: null,
+  Steroids: null,
+  SteroidsAndOrRemdesivir: null
+}
+
 define AssessmentSummary: {
   RespiratoryRate: C19."Last Respiratory Rate value",
   O2Saturation: C19."Last O2 Saturation percent",
