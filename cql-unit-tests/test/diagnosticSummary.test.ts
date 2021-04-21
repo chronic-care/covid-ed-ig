@@ -128,17 +128,17 @@ describe('diagnostic interpretation with fhir resources', () => {
         ) as DiagnosticSummary;
 
 
-        const retrievedAlt = diagnosticSummary.AST;
+        const retrievedAst = diagnosticSummary.AST;
 
-        expect(retrievedAlt).not.toBeNull();
-        expect(retrievedAlt!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedAlt!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedAlt!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedAlt!.ReferenceRange).toEqual(expectedLabResult.ReferenceRange);
-        expect(retrievedAlt!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(retrievedAlt!.ResultUnits).toEqual(expectedLabResult.ResultUnits);
-        expect(retrievedAlt!.ResultValue).toEqual(expectedLabResult.ResultValue);
-        expect(Date.parse(retrievedAlt!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+        expect(retrievedAst).not.toBeNull();
+        expect(retrievedAst!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedAst!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedAst!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedAst!.ReferenceRange).toEqual(expectedLabResult.ReferenceRange);
+        expect(retrievedAst!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(retrievedAst!.ResultUnits).toEqual(expectedLabResult.ResultUnits);
+        expect(retrievedAst!.ResultValue).toEqual(expectedLabResult.ResultValue);
+        expect(Date.parse(retrievedAst!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
     test('obtains latest Creatinine Lab Result in Diagnostic Summary Section', () => {
@@ -224,17 +224,17 @@ describe('diagnostic interpretation with fhir resources', () => {
         ) as DiagnosticSummary;
 
 
-        const retrievedAlt = diagnosticSummary.Creatinine;
+        const retrievedCreatinine = diagnosticSummary.Creatinine;
 
-        expect(retrievedAlt).not.toBeNull();
-        expect(retrievedAlt!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedAlt!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedAlt!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedAlt!.ReferenceRange).toEqual(expectedLabResult.ReferenceRange);
-        expect(retrievedAlt!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(retrievedAlt!.ResultUnits).toEqual(expectedLabResult.ResultUnits);
-        expect(retrievedAlt!.ResultValue).toEqual(expectedLabResult.ResultValue);
-        expect(Date.parse(retrievedAlt!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+        expect(retrievedCreatinine).not.toBeNull();
+        expect(retrievedCreatinine!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedCreatinine!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedCreatinine!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedCreatinine!.ReferenceRange).toEqual(expectedLabResult.ReferenceRange);
+        expect(retrievedCreatinine!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(retrievedCreatinine!.ResultUnits).toEqual(expectedLabResult.ResultUnits);
+        expect(retrievedCreatinine!.ResultValue).toEqual(expectedLabResult.ResultValue);
+        expect(Date.parse(retrievedCreatinine!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
 });
