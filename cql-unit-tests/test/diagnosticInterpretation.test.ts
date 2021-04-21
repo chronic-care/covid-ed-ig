@@ -82,3 +82,62 @@ describe('diagnostic interpretation with parameter overrides', () => {
         expect(CQLDiagnosticInterpretation).toEqual(expectedDiagnosticInterpretation);
     });
 });
+
+describe('diagnostic interpretation with fhir repsonses', () => {
+    const altLabResult = new LabResultBuilder().build();
+
+    const creatinineLabResult = new LabResultBuilder().withCoding([{
+        "system": "http://loinc.org",
+        "display" : "CREATININE",
+        "code" : "2160-0"
+    }]).build();
+
+    const ddimerLabResult = new LabResultBuilder().withCoding([
+        {
+            "system": "http://loinc.org",
+            "display" : "DDIMER",
+            "code": "7799-0"
+        }
+    ]).build();
+
+    const astLabResult = new LabResultBuilder().withCoding([
+        {
+            "system": "http://loinc.org",
+            "code": "1920-8",
+            "display": "AST"
+        }
+    ]).withReferenceRanges([{
+        "low" : {
+            "code" : "U/L",
+            "value" : 10.0,
+            "system" : "http://unitsofmeasure.org",
+            "unit" : "U/L"
+        },
+        "high" : {
+            "code" : "U/L",
+            "value" : 35.0,
+            "system" : "http://unitsofmeasure.org",
+            "unit" : "U/L"
+        }
+    }]).withValueQuantity({
+        "value" : 36.0,
+        "unit" : "U/L"
+    }).build();
+
+
+
+    test('Concerning lab count for diagnostic interpretation ',() => {
+
+
+        const concerningLabCount: DiagnosticSummary = executeSummaryNoParams('ConcerningLabCount', [
+            altLabResult,
+            creatinineLabResult,
+            ddimerLabResult,
+            astLabResult
+            ]
+        ) as DiagnosticSummary;
+
+        expect(concerningLabCount).toEqual(1);
+    })
+
+})

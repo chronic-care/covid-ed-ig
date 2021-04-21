@@ -3,7 +3,7 @@ import { LabResultBuilder } from "./builders/Observation/LabResult";
 import { Diagnostic, DiagnosticSummary } from "../types/summary";
 import { executeSummaryNoParams } from "../helpers/cqlService";
 
-describe('diagnostic interpretation with fhir resources', () => {
+describe('diagnostic summary with fhir resources', () => {
     test('obtains latest ALT Lab Result in Diagnostic Summary Section', () => {
 
         const oldestSeconds = 10;
