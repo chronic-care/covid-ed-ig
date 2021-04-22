@@ -65,6 +65,19 @@ export const executeAssessmentCQLExpression = (parameters: CQLExpressionParamete
     return expressions[expressionName];
 };
 
+export const executeAssessmentNoParams = (expressionName: string, observations: Resource[]): unknown => {
+    const expressionExecutor = new cql.Executor(assessmentLibrary, codeService);
+
+    const results = expressionExecutor.exec_expression(expressionName, createPatientSource(observations));
+
+    const patientResults = Object.keys(results.patientResults);
+    const firstPatientResult = patientResults[0];
+    const expressions = results.patientResults[firstPatientResult];
+
+    return expressions[expressionName];
+}
+
+
 export const executeSummaryCQLExpression = (parameters: CQLExpressionParameters, expressionName: string): unknown => {
     const expressionExecutor = new cql.Executor(summaryLibrary, codeService, parameters);
 

@@ -1,5 +1,9 @@
 import { buildDefaultClinicalAssessmentParameters, buildDefaultPatientDataParameters } from '../helpers/builders';
-import { executeAssessmentCQLExpression } from '../helpers/cqlService';
+import {
+    executeAssessmentCQLExpression,
+    executeAssessmentNoParams,
+} from '../helpers/cqlService';
+import RespiratoryRateBuilder from './builders/Observation/RespiratoryRateBuilder';
 
 describe('risk score with parameter overrides', () => {
     test.each`
@@ -242,5 +246,16 @@ describe('risk score with parameter overrides', () => {
         const supplementalOxygenScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Inspired Oxygen Score');
 
         expect(supplementalOxygenScore).toEqual(expectedScore);
+    });
+});
+
+describe('risk score with fhir responses', () => {
+    test('returns risk score for respiratory rate of 22',() => {
+        const expectedScore = 2;
+
+        const respiratoryRate = new RespiratoryRateBuilder().build();
+        const respiratoryRateScore = executeAssessmentNoParams('Respiratory Rate Risk Score', [respiratoryRate]);
+
+        expect(respiratoryRateScore).toEqual(expectedScore);
     });
 });

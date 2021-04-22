@@ -1,8 +1,7 @@
 import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
 import { executeSummaryCQLExpression, executeSummaryNoParams } from '../helpers/cqlService';
 import { LabResultBuilder } from "./builders/Observation/LabResult";
-import { Diagnostic, DiagnosticSummary } from "../types/summary";
-import { Resource } from "../types/resource";
+import { DiagnosticSummary } from "../types/summary";
 
 describe('diagnostic interpretation with parameter overrides', () => {
     test.each`
