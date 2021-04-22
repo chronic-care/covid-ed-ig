@@ -4,6 +4,7 @@ import {
     executeAssessmentNoParams,
 } from '../helpers/cqlService';
 import RespiratoryRateBuilder from './builders/Observation/RespiratoryRateBuilder';
+import OxygenSaturationBuilder from './builders/Observation/OxygenSaturationBuilder';
 
 describe('risk score with parameter overrides', () => {
     test.each`
@@ -257,5 +258,14 @@ describe('risk score with fhir responses', () => {
         const respiratoryRateScore = executeAssessmentNoParams('Respiratory Rate Risk Score', [respiratoryRate]);
 
         expect(respiratoryRateScore).toEqual(expectedScore);
+    });
+
+    test('returns risk score for O2 saturation rate of 94',() => {
+        const expectedScore = 1;
+
+        const O2SaturationRate = new OxygenSaturationBuilder().withOxygenSaturationValue(94).build();
+        const O2SaturationRateScore = executeAssessmentNoParams('O2 Saturation Risk Score', [O2SaturationRate]);
+
+        expect(O2SaturationRateScore).toEqual(expectedScore);
     });
 });
