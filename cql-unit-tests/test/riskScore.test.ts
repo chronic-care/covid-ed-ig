@@ -5,6 +5,8 @@ import {
 } from '../helpers/cqlService';
 import RespiratoryRateBuilder from './builders/Observation/RespiratoryRateBuilder';
 import OxygenSaturationBuilder from './builders/Observation/OxygenSaturationBuilder';
+import HeartRateBuilder from './builders/Observation/HeartRateBuilder';
+import BloodPressureBuilder from './builders/Observation/BloodPressureBuilder';
 
 describe('risk score with parameter overrides', () => {
     test.each`
@@ -263,9 +265,27 @@ describe('risk score with fhir responses', () => {
     test('returns risk score for O2 saturation rate of 94',() => {
         const expectedScore = 1;
 
-        const O2SaturationRate = new OxygenSaturationBuilder().withOxygenSaturationValue(94).build();
-        const O2SaturationRateScore = executeAssessmentNoParams('O2 Saturation Risk Score', [O2SaturationRate]);
+        const o2SaturationRate = new OxygenSaturationBuilder().withOxygenSaturationValue(94).build();
+        const o2SaturationRateScore = executeAssessmentNoParams('O2 Saturation Risk Score', [o2SaturationRate]);
 
-        expect(O2SaturationRateScore).toEqual(expectedScore);
+        expect(o2SaturationRateScore).toEqual(expectedScore);
+    });
+
+    test('returns risk score for heart rate of 120',() => {
+        const expectedScore = 2;
+
+        const heartRateRate = new HeartRateBuilder().withHeartRateValue(120).build();
+        const heartRateScore = executeAssessmentNoParams('Heart Rate Risk Score', [heartRateRate]);
+
+        expect(heartRateScore).toEqual(expectedScore);
+    });
+
+    test('returns risk score for systolic bp value of 105',() => {
+        const expectedScore = 1;
+
+        const bloodPressure = new BloodPressureBuilder().withSystolicValue(105).build();
+        const bloodPressureRateScore = executeAssessmentNoParams('Systolic BP Risk Score', [bloodPressure]);
+
+        expect(bloodPressureRateScore).toEqual(expectedScore);
     });
 });
