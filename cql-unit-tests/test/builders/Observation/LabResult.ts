@@ -51,9 +51,8 @@ export class LabResultBuilder {
         return this;
     }
 
-    public build = (): Resource => {
+    public build = (): LabResult => {
         return {
-            resource: {
                 category: [{
                     coding: [{
                         code: "laboratory",
@@ -74,7 +73,6 @@ export class LabResultBuilder {
                 },
                 valueQuantity: this.valueQuantity
             }
-        }
     }
 }
 

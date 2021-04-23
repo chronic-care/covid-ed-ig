@@ -1,4 +1,3 @@
-import { Resource } from "../types/resource";
 import { LabResultBuilder } from "./builders/Observation/LabResult";
 import { Diagnostic, DiagnosticSummary } from "../types/summary";
 import { executeSummaryNoParams } from "../helpers/cqlService";
@@ -12,17 +11,17 @@ describe('diagnostic summary with fhir resources', () => {
         const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
         const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withEffectiveDateTime(newestDate.toISOString())
             .build();
@@ -31,11 +30,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "9 - 46",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -88,21 +87,21 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .withReferenceRanges(referenceRange)
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .withReferenceRanges(referenceRange)
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -113,11 +112,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "10 - 35",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -172,7 +171,7 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
@@ -183,7 +182,7 @@ describe('diagnostic summary with fhir resources', () => {
             .withReferenceRanges(referenceRange)
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withValueQuantity({
@@ -194,7 +193,7 @@ describe('diagnostic summary with fhir resources', () => {
             .withReferenceRanges(referenceRange)
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withValueQuantity({
@@ -209,11 +208,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "0.7 - 1.25",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -252,19 +251,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -274,11 +273,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -314,19 +313,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -336,11 +335,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -376,19 +375,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -398,11 +397,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -438,19 +437,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -460,11 +459,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -500,19 +499,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -522,11 +521,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -562,19 +561,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -584,11 +583,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -624,19 +623,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -646,11 +645,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -686,19 +685,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -708,11 +707,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -748,19 +747,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -770,11 +769,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
@@ -810,19 +809,19 @@ describe('diagnostic summary with fhir resources', () => {
             }
         ]
 
-        const oldestLabResult: Resource = new LabResultBuilder()
+        const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
             .withCoding(coding)
             .withEffectiveDateTime(oldestDate.toISOString())
             .build();
 
-        const middleLabResult: Resource = new LabResultBuilder()
+        const middleLabResult = new LabResultBuilder()
             .withId('middle')
             .withCoding(coding)
             .withEffectiveDateTime(middleDate.toISOString())
             .build();
 
-        const newestLabResult: Resource = new LabResultBuilder()
+        const newestLabResult = new LabResultBuilder()
             .withId('newer')
             .withCoding(coding)
             .withEffectiveDateTime(newestDate.toISOString())
@@ -832,11 +831,11 @@ describe('diagnostic summary with fhir resources', () => {
             Date: newestDate.toISOString(),
             Flag: false,
             Interpretation: null,
-            Name: newestLabResult.resource.code.coding![0].display!,
+            Name: newestLabResult.code.coding![0].display!,
             ReferenceRange: "",
-            ResultText: `${newestLabResult.resource.valueQuantity!.value} ${newestLabResult.resource.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.resource.valueQuantity!.unit!,
-            ResultValue: newestLabResult.resource.valueQuantity!.value!
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
         }
 
         const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [

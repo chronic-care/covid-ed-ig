@@ -14,6 +14,7 @@ import FHIRHelpers from '../../output/Library-FHIRHelpers-4.0.1-2.json';
 import valueSetDB from '../../input/cql/valueset-db.json';
 import { IPatient, PatientGenderKind } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Resource } from "../types/resource";
+import { IObservation } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Observation";
 
 const summaryLibrary = new cql.Library(COVID19EDSummary, new cql.Repository({
     COVID19EmergencyDeptAssessment,
@@ -30,8 +31,12 @@ const assessmentLibrary = new cql.Library(COVID19EmergencyDeptAssessment, new cq
 
 const codeService = new cql.CodeService(valueSetDB);
 
-export const createPatientSource = (observations: Resource[]): unknown => {
+export const createPatientSource = (observations: IObservation[]): unknown => {
     const patientSource = cqlfhir.PatientSource.FHIRv401();
+
+    const resources = observations.map((observation) => {
+        return {resource: observation};
+    });
 
     const patient: IPatient = {
         gender: PatientGenderKind._male, id: "va-pat-dan", resourceType: "Patient"
@@ -40,7 +45,7 @@ export const createPatientSource = (observations: Resource[]): unknown => {
         {
             resource: patient,
         },
-        ...observations
+        ...resources
     ];
 
     patientSource.loadBundles([
@@ -65,7 +70,7 @@ export const executeAssessmentCQLExpression = (parameters: CQLExpressionParamete
     return expressions[expressionName];
 };
 
-export const executeAssessmentNoParams = (expressionName: string, observations: Resource[]): unknown => {
+export const executeAssessmentNoParams = (expressionName: string, observations: IObservation[]): unknown => {
     const expressionExecutor = new cql.Executor(assessmentLibrary, codeService);
 
     const results = expressionExecutor.exec_expression(expressionName, createPatientSource(observations));
@@ -90,7 +95,7 @@ export const executeSummaryCQLExpression = (parameters: CQLExpressionParameters,
     return expressions[expressionName];
 };
 
-export const executeSummaryNoParams = (expressionName: string, observations: Resource[]): unknown => {
+export const executeSummaryNoParams = (expressionName: string, observations: IObservation[]): unknown => {
     const expressionExecutor = new cql.Executor(summaryLibrary, codeService);
 
     const results = expressionExecutor.exec_expression(expressionName, createPatientSource(observations));

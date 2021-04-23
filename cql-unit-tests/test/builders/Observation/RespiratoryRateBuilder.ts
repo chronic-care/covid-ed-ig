@@ -1,5 +1,6 @@
 import { Resource } from '../../../types/resource';
 import ObservationBuilder from './ObservationBuilder';
+import { IObservation } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Observation";
 
 class RespiratoryRateBuilder extends ObservationBuilder {
   respiratoryRateValue = 22;
@@ -9,19 +10,10 @@ class RespiratoryRateBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build(): Resource {
+  public build(): IObservation {
     return {
-      resource: {
         resourceType: 'Observation',
         id: this.observationId,
-        meta:
-          {
-            versionId: '1',
-            lastUpdated:
-              '2021-02-04T20:43:02.000+00:00',
-            source:
-              '#bmxUXAKqXHWNaIXj',
-          },
         status: this.status,
         category:
           [
@@ -58,9 +50,7 @@ class RespiratoryRateBuilder extends ObservationBuilder {
             unit: '/min',
             system: 'http://unitsofmeasure.org',
             code: '/min',
-          }
-        ,
-      },
+          },
     };
   }
 }

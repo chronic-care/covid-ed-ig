@@ -1,6 +1,7 @@
 import { ObservationStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { defaultPatientId } from "../defaults";
 import { Resource } from "../../../types/resource";
+import { IObservation } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Observation";
 
 abstract class ObservationBuilder {
   observationId = '123';
@@ -31,7 +32,7 @@ abstract class ObservationBuilder {
     return this;
   }
 
-  public abstract build() : Resource
+  public abstract build() : IObservation
 }
 
 export default ObservationBuilder;

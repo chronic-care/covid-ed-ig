@@ -1,6 +1,7 @@
 import ObservationBuilder from './ObservationBuilder';
 import { Resource } from "../../../types/resource";
 import { NarrativeStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IObservation } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Observation";
 
 class BloodPressureBuilder extends ObservationBuilder {
   systolicValue = 120;
@@ -17,17 +18,10 @@ class BloodPressureBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build(): Resource {
+  public build(): IObservation {
     return {
-      resource: {
         resourceType: 'Observation',
         id: this.observationId,
-        meta: {
-          versionId: '1',
-          lastUpdated: '2021-02-03T21:13:27.000+00:00',
-          source: '#Yr0H3UOD8zsB4CIE',
-          profile: ['http://hl7.org/fhir/StructureDefinition/Observation'],
-        },
         text: { status: NarrativeStatusKind._generated, div: '<div xmlns="http://www.w3.org/1999/xhtml">Blood pressure</div>' },
         status: this.status,
         category: [{ coding: [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'vital-signs' }], text: 'Vital Signs' }],
@@ -47,7 +41,6 @@ class BloodPressureBuilder extends ObservationBuilder {
             value: this.diastolicValue, unit: 'mmHg', system: 'http://unitsofmeasure.org', code: 'mm[Hg]',
           },
         }],
-      },
     };
   }
 }

@@ -1,5 +1,6 @@
 import ObservationBuilder from './ObservationBuilder';
 import { Resource } from "../../../types/resource";
+import { IObservation } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Observation";
 
 class OxygenSaturationBuilder extends ObservationBuilder {
   oxygenSaturationValue = 96;
@@ -9,19 +10,10 @@ class OxygenSaturationBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build(): Resource {
+  public build(): IObservation {
     return {
-      resource: {
         resourceType: 'Observation',
         id: this.observationId,
-        meta: {
-          versionId: '1',
-          lastUpdated: '2021-02-04T18:02:27.000+00:00',
-          source: '#D7Yi1dW2FyEbJn5U',
-          profile: [
-            'http://hl7.org/fhir/StructureDefinition/vitalsigns',
-          ],
-        },
         status: this.status,
         category: [
           {
@@ -53,7 +45,6 @@ class OxygenSaturationBuilder extends ObservationBuilder {
           system: 'http://unitsofmeasure.org',
           code: '%',
         },
-      },
     };
   }
 }
