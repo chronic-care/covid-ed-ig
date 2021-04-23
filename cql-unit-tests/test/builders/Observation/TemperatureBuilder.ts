@@ -1,4 +1,5 @@
 import ObservationBuilder from './ObservationBuilder';
+import { Resource } from "../../../types/resource";
 
 class TemperatureBuilder extends ObservationBuilder {
   temperateValue = 103;
@@ -8,7 +9,7 @@ class TemperatureBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build() : unknown {
+  public build() : Resource {
     return {
       resource: {
         resourceType: 'Observation',

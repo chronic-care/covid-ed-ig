@@ -1,4 +1,5 @@
 import ObservationBuilder from './ObservationBuilder';
+import { Resource } from "../../../types/resource";
 
 class OxygenSaturationBuilder extends ObservationBuilder {
   oxygenSaturationValue = 96;
@@ -8,7 +9,7 @@ class OxygenSaturationBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build(): unknown {
+  public build(): Resource {
     return {
       resource: {
         resourceType: 'Observation',

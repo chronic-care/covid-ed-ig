@@ -1,9 +1,13 @@
+import { ObservationStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { defaultPatientId } from "../defaults";
+import { Resource } from "../../../types/resource";
+
 abstract class ObservationBuilder {
   observationId = '123';
 
-  status = 'final';
+  status = ObservationStatusKind._final;
 
-  patient = 'BILIBABY';
+  patient = defaultPatientId;
 
   effectiveDateTime = new Date().toISOString()
 
@@ -12,7 +16,7 @@ abstract class ObservationBuilder {
     return this;
   }
 
-  public withStatus(status: string): ObservationBuilder {
+  public withStatus(status: ObservationStatusKind): ObservationBuilder {
     this.status = status;
     return this;
   }
@@ -27,7 +31,7 @@ abstract class ObservationBuilder {
     return this;
   }
 
-  public abstract build() : unknown
+  public abstract build() : Resource
 }
 
 export default ObservationBuilder;
