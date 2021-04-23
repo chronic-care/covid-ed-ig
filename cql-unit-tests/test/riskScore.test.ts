@@ -8,6 +8,7 @@ import OxygenSaturationBuilder from './builders/Observation/OxygenSaturationBuil
 import HeartRateBuilder from './builders/Observation/HeartRateBuilder';
 import BloodPressureBuilder from './builders/Observation/BloodPressureBuilder';
 import TemperatureBuilder from './builders/Observation/TemperatureBuilder';
+import { Resource } from "../types/resource";
 
 describe('risk score with parameter overrides', () => {
     test.each`
@@ -257,7 +258,10 @@ describe('risk score with fhir responses', () => {
     test('returns risk score for respiratory rate of 22',() => {
         const expectedScore = 2;
 
-        const respiratoryRate = new RespiratoryRateBuilder().build();
+        const respiratoryRate = new RespiratoryRateBuilder()
+            .withRespiratoryRateValue(22)
+            .withObservationId('respiratoryId1')
+            .build();
         const respiratoryRateScore = executeAssessmentNoParams('Respiratory Rate Risk Score', [respiratoryRate]);
 
         expect(respiratoryRateScore).toEqual(expectedScore);
@@ -266,7 +270,9 @@ describe('risk score with fhir responses', () => {
     test('returns risk score for O2 saturation rate of 94',() => {
         const expectedScore = 1;
 
-        const o2SaturationRate = new OxygenSaturationBuilder().withOxygenSaturationValue(94).build();
+        const o2SaturationRate = new OxygenSaturationBuilder()
+            .withOxygenSaturationValue(94)
+            .build();
         const o2SaturationRateScore = executeAssessmentNoParams('O2 Saturation Risk Score', [o2SaturationRate]);
 
         expect(o2SaturationRateScore).toEqual(expectedScore);
@@ -275,7 +281,9 @@ describe('risk score with fhir responses', () => {
     test('returns risk score for heart rate of 120',() => {
         const expectedScore = 2;
 
-        const heartRateRate = new HeartRateBuilder().withHeartRateValue(120).build();
+        const heartRateRate = new HeartRateBuilder()
+            .withHeartRateValue(120)
+            .build();
         const heartRateScore = executeAssessmentNoParams('Heart Rate Risk Score', [heartRateRate]);
 
         expect(heartRateScore).toEqual(expectedScore);
@@ -284,7 +292,9 @@ describe('risk score with fhir responses', () => {
     test('returns risk score for systolic bp value of 105',() => {
         const expectedScore = 1;
 
-        const bloodPressure = new BloodPressureBuilder().withSystolicValue(105).build();
+        const bloodPressure = new BloodPressureBuilder()
+            .withSystolicValue(105)
+            .build();
         const bloodPressureRateScore = executeAssessmentNoParams('Systolic BP Risk Score', [bloodPressure]);
 
         expect(bloodPressureRateScore).toEqual(expectedScore);
@@ -293,7 +303,9 @@ describe('risk score with fhir responses', () => {
     test('returns risk score for temperature value of 103',() => {
         const expectedScore = 2;
 
-        const temperature = new TemperatureBuilder().build();
+        const temperature = new TemperatureBuilder()
+            .withTemperatureValue(103)
+            .build();
         const temperatureRateScore = executeAssessmentNoParams('Temperature Risk Score', [temperature]);
 
         expect(temperatureRateScore).toEqual(expectedScore);

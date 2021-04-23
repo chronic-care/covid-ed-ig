@@ -1,4 +1,5 @@
 import ObservationBuilder from './ObservationBuilder';
+import { Resource } from "../../../types/resource";
 
 class HeartRateBuilder extends ObservationBuilder {
   heartRateValue = 90;
@@ -8,7 +9,7 @@ class HeartRateBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build() : unknown {
+  public build() : Resource {
     return {
       resource: {
         resourceType: 'Observation',

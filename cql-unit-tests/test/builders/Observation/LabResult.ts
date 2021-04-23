@@ -2,11 +2,12 @@ import { IObservation, IObservation_ReferenceRange, ObservationStatusKind } from
 import { IQuantity } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Quantity";
 import { ICoding } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Coding";
 import { Resource } from "../../../types/resource";
+import { defaultPatientId } from "../defaults";
 
 export class LabResultBuilder {
     private id: string = "va-obs-dan-lab-alt";
     private status: ObservationStatusKind = ObservationStatusKind._final;
-    private subject: string = "Patient/va-pat-dan";
+    private patient: string = defaultPatientId;
     private effectiveDateTime: string = new Date().toISOString();
     private coding: ICoding[] = [{"system": "http://loinc.org","code": "1742-6","display": "ALT"}]
     private valueQuantity: IQuantity = {unit: "U/L", value: 25}
@@ -25,8 +26,8 @@ export class LabResultBuilder {
         return this;
     }
 
-    public withSubject = (subject: string) => {
-        this.subject = subject
+    public withPatient = (patient: string) => {
+        this.patient = patient
         return this;
     }
 
@@ -68,7 +69,9 @@ export class LabResultBuilder {
                 referenceRange: this.referenceRanges,
                 resourceType: "Observation",
                 status: this.status,
-                subject: {reference: this.subject},
+                subject: {
+                    reference: `Patient/${this.patient}`,
+                },
                 valueQuantity: this.valueQuantity
             }
         }

@@ -1,4 +1,6 @@
 import ObservationBuilder from './ObservationBuilder';
+import { Resource } from "../../../types/resource";
+import { NarrativeStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
 
 class BloodPressureBuilder extends ObservationBuilder {
   systolicValue = 120;
@@ -15,7 +17,7 @@ class BloodPressureBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build(): unknown {
+  public build(): Resource {
     return {
       resource: {
         resourceType: 'Observation',
@@ -26,7 +28,7 @@ class BloodPressureBuilder extends ObservationBuilder {
           source: '#Yr0H3UOD8zsB4CIE',
           profile: ['http://hl7.org/fhir/StructureDefinition/Observation'],
         },
-        text: { status: 'generated', div: '<div xmlns="http://www.w3.org/1999/xhtml">Blood pressure</div>' },
+        text: { status: NarrativeStatusKind._generated, div: '<div xmlns="http://www.w3.org/1999/xhtml">Blood pressure</div>' },
         status: this.status,
         category: [{ coding: [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'vital-signs' }], text: 'Vital Signs' }],
         code: { coding: [{ system: 'http://loinc.org', code: '85354-9', display: 'Blood pressure systolic and diastolic' }] },

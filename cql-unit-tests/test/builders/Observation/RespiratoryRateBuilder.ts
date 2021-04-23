@@ -1,3 +1,4 @@
+import { Resource } from '../../../types/resource';
 import ObservationBuilder from './ObservationBuilder';
 
 class RespiratoryRateBuilder extends ObservationBuilder {
@@ -8,7 +9,7 @@ class RespiratoryRateBuilder extends ObservationBuilder {
     return this;
   }
 
-  public build(): unknown {
+  public build(): Resource {
     return {
       resource: {
         resourceType: 'Observation',
