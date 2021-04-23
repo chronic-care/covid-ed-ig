@@ -49,14 +49,22 @@ jobs:
       - name: Generate Implementation Guide (IG)
         run: bash _genonce.sh
 
+      - name: Install NPM modules in root directory
+        run: npm ci
+
+      - name: Localize cql libraries
+        run: |
+          node localizeLibraryPaths.js ./output/Library-COVID19EmergencyDeptAssessment-2.json
+          node localizeLibraryPaths.js ./output/Library-COVID19EmergencyDeptSummary-2.json
+          node localizeLibraryPaths.js ./output/Library-CDSConnectCommons-2.json
+          node localizeLibraryPaths.js ./output/Library-COVID19Concepts-2.json
+          node localizeLibraryPaths.js ./output/Library-FHIRHelpers-4.0.1-2.json
+
       - name: Install NPM modules in cql-unit-test
         run: cd cql-unit-tests && npm ci
 
       - name: Run CQL Unit Tests using JavaScript Engine
-        run:  npm test
-
-      - name: Path to root directory
-        run: cd ../
+        run:  cd cql-unit-tests && npm test
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -66,9 +74,6 @@ jobs:
           publish_branch: master
           destination_dir: covid-ed-ig
           publish_dir: ./output
-
-      - name: Install NPM modules
-        run: npm ci
 
       - name: Publish to Package Repository
         env:
