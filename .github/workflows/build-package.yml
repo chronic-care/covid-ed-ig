@@ -54,11 +54,7 @@ jobs:
 
       - name: Localize cql libraries
         run: |
-          node localizeLibraryPaths.js ./output/Library-COVID19EmergencyDeptAssessment-2.json
-          node localizeLibraryPaths.js ./output/Library-COVID19EmergencyDeptSummary-2.json
-          node localizeLibraryPaths.js ./output/Library-CDSConnectCommons-2.json
-          node localizeLibraryPaths.js ./output/Library-COVID19Concepts-2.json
-          node localizeLibraryPaths.js ./output/Library-FHIRHelpers-4.0.1-2.json
+          node localizeLibraryPaths.js ./output/*-2.json
 
       - name: Install NPM modules in cql-unit-test
         run: cd cql-unit-tests && npm ci
