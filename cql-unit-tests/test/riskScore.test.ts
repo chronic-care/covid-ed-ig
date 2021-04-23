@@ -296,7 +296,6 @@ describe('risk score with fhir responses', () => {
         const temperature = new TemperatureBuilder().build();
         const temperatureRateScore = executeAssessmentNoParams('Temperature Risk Score', [temperature]);
 
-        console.log(temperatureRateScore)
         expect(temperatureRateScore).toEqual(expectedScore);
     });
 });
