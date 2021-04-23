@@ -151,3 +151,8 @@ Either:
 - Or, add it to your project's `package.json`, e.g. `"@chronic-care/covid-ed-ig": "latest"`
 
 You can replace `latest` in either of the above with a specific version number (e.g. `0.0.5`) if desired.
+
+### Testing
+There are a couple of ways to test the CQL.
+1. Atom Testing
+2. [Unit Testing](cql-unit-tests/README.md) via the JavaScript CQL Engine

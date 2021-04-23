@@ -29,5 +29,12 @@ Thumbs.db
 /.bundle/
 /vendor/bundle
 
-/node_modules
+**/node_modules/
 .jekyll-cache
+
+# Intellij Generated files #
+############################
+**.iml
+.idea/
+.java-version
+.ruby-version
