@@ -7,6 +7,7 @@ import RespiratoryRateBuilder from './builders/Observation/RespiratoryRateBuilde
 import OxygenSaturationBuilder from './builders/Observation/OxygenSaturationBuilder';
 import HeartRateBuilder from './builders/Observation/HeartRateBuilder';
 import BloodPressureBuilder from './builders/Observation/BloodPressureBuilder';
+import TemperatureBuilder from './builders/Observation/TemperatureBuilder';
 
 describe('risk score with parameter overrides', () => {
     test.each`
@@ -287,5 +288,15 @@ describe('risk score with fhir responses', () => {
         const bloodPressureRateScore = executeAssessmentNoParams('Systolic BP Risk Score', [bloodPressure]);
 
         expect(bloodPressureRateScore).toEqual(expectedScore);
+    });
+
+    test('returns risk score for temperature value of 103',() => {
+        const expectedScore = 2;
+
+        const temperature = new TemperatureBuilder().build();
+        const temperatureRateScore = executeAssessmentNoParams('Temperature Risk Score', [temperature]);
+
+        console.log(temperatureRateScore)
+        expect(temperatureRateScore).toEqual(expectedScore);
     });
 });
