@@ -1,7 +1,9 @@
 import {
     criticalPatientOverrides,
     mildPatientOverrides,
-    moderatePatientOverrides, moderatePatientOverridesWithNonObtainDiagnosticsRecommendation,
+    moderatePatientOverrides,
+    moderatePatientOverridesWithNonObtainDiagnosticsRecommendation,
+    severeAdmissionClinicalAssessmentOverrides,
     severePatientOverrides
 } from "./helpers";
 import { ClinicalAssessmentsParameters, RiskAssessmentScoreParameters } from "../types/parameter";
@@ -40,6 +42,25 @@ describe('disposition summary', () => {
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters(clinicalAssessmentOverrides),
         };
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Obtain Diagnostics');
+        expect(recommendNonPharma).toEqual(expectedRecommendation);
+    });
+
+    test.each([
+            ['mild, total risk score <= 4, risk factor count <= 1, ConcerningLabsorImaging is false', true, dischargeHomeClinicalAssessmentOverrides, {}],
+            ['severe', false, severeAdmissionClinicalAssessmentOverrides, {}],
+            ['mild, totalRiskScore 5', false, mildObtainDiagnosticsWithTotalRiskScore, {}],
+            ['mild, riskFactorCount 2', false, mildPatientOverrides, mildObtainDiagnosticsRiskFactorsCount],
+            ['mild, ConcerningLab 1', false, {...mildPatientOverrides, ConcerningLabCount: 1}, mildObtainDiagnosticsRiskFactorsCount],
+            ['mild, ConcerningImaging 1', false, {...mildPatientOverrides, ChestXRayConcerning: true}, mildObtainDiagnosticsRiskFactorsCount],
+        ]
+    )('For %p, Recommend Discharge Home is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: null,
+            RiskFactors: buildDefaultRiskAssessmentScoreParameters(riskAssessmentOverrides),
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters(clinicalAssessmentOverrides),
+        };
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Discharge Home');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 });

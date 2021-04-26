@@ -18,7 +18,7 @@ To run the unit tests with the latest CQL code, you need to have the above depen
 1. In the covid-ed-ig directory run `./_genonce.sh` script.
    - If you get an 'ig publisher not found' message, run `bash _updatePublisher.sh --force --yes --skip-ping` script.
      Then run `./_genonce.sh` script to generate the ELM (json) of the CQL. The output will be located in the `/output` directory
-2. Run `node localizeLibraryPaths.js [PATH TO CQL LIBRARY JSON]` (for example: `./output/Library-COVID19EmergencyDeptAssessment-2.json`) for each library being used in tests
+2. Run `node localizeLibraryPaths.js ./output/*-2.json`
    - This will update (localize) the path values for the libraries that are included in CQL files
 3. Run `cd cql-unit-tests` to go into the unit test module
 4. Run `npm install` to install this module's specific packages
