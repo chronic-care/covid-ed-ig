@@ -1,72 +1,34 @@
-import {buildDefaultClinicalAssessmentParameters, buildDefaultRiskAssessmentScoreParameters} from "../helpers/builders";
+import { buildDefaultClinicalAssessmentParameters, buildDefaultRiskAssessmentScoreParameters } from "../helpers/builders";
 import { executeSummaryCQLExpression } from "../helpers/cqlService";
 import {
     ClinicalAssessmentsParameters,
     CQLExpressionParameters,
     RiskAssessmentScoreParameters
 } from "../types/parameter";
-
-const mildPatientOverrides: Partial<ClinicalAssessmentsParameters> = {
-    AnyMildCOVIDSymptoms: true,
-    RespiratoryDiseaseSymptoms: false,
-};
-
-const moderatePatientOverrides: Partial<ClinicalAssessmentsParameters> = {
-    O2Saturation: 94,
-    RespiratoryDiseaseSymptoms: true,
-    ConcerningLabCount: 1,
-};
-
-const severePatientOverrides: Partial<ClinicalAssessmentsParameters> = {
-    O2Saturation: 90,
-};
-
-const criticalPatientOverrides: Partial<ClinicalAssessmentsParameters> = {
-    RespiratoryFailure: true,
-};
-
-
-const obtainDiagnosticsOverrides: Partial<ClinicalAssessmentsParameters> = mildPatientOverrides;
-const obtainDiagnosticsRiskAssessmentOverrides: Partial<RiskAssessmentScoreParameters> = {
-    SteroidUsage: true,
-    CardiovascularDisease: true,
-}
-const dischargeHomeOverrides: Partial<ClinicalAssessmentsParameters> = mildPatientOverrides;
-const considerDischargeHomeOverrides: Partial<ClinicalAssessmentsParameters> = {
-    O2Saturation: 94,
-    RespiratoryDiseaseSymptoms: true,
-    ConcerningLabCount: 0,
-    ChestXRayConcerning: false,
-};
-const considerAdmissionOverrides: Partial<ClinicalAssessmentsParameters> = {
-    AnyMildCOVIDSymptoms: true,
-    RespiratoryDiseaseSymptoms: false,
-    ConcerningLabCount: 1,
-};
-const considerAdmissionRiskAssessmentOverrides: Partial<RiskAssessmentScoreParameters> = {
-    Obesity: true,
-    RenalDisease: true,
-}
-const severeAdmissionOverrides: Partial<ClinicalAssessmentsParameters> = severePatientOverrides;
-const criticalAdmissionOverrides: Partial<ClinicalAssessmentsParameters> = criticalPatientOverrides;
-
-const buildCQLExpressionParameters = (clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>): CQLExpressionParameters => {
-   return {
-        IgnoreFallbackResourceValues: true,
-        PatientData: null,
-        RiskFactors: null,
-        ClinicalAssessments: buildDefaultClinicalAssessmentParameters(clinicalAssessmentOverrides),
-    };
-};
+import {
+    buildCQLExpressionParameters,
+    considerAdmissionClinicalAssessmentOverrides,
+    considerAdmissionRiskAssessmentOverrides,
+    considerDischargeHomeOverrides,
+    criticalAdmissionClinicalAssessmentOverrides,
+    criticalPatientOverrides,
+    dischargeHomeClinicalAssessmentOverrides,
+    mildPatientOverrides,
+    moderatePatientOverrides,
+    obtainDiagnosticsClinicalAssessmentOverrides,
+    obtainDiagnosticsRiskAssessmentOverrides,
+    severeAdmissionClinicalAssessmentOverrides,
+    severePatientOverrides
+} from "./helpers";
 
 describe('treatment summary', () => {
     test.each([
-        ['ObtainDiagnostics', false, obtainDiagnosticsOverrides, obtainDiagnosticsRiskAssessmentOverrides],
-        ['DischargeHome', true, dischargeHomeOverrides, {}],
+        ['ObtainDiagnostics', false, obtainDiagnosticsClinicalAssessmentOverrides, obtainDiagnosticsRiskAssessmentOverrides],
+        ['DischargeHome', true, dischargeHomeClinicalAssessmentOverrides, {}],
         ['ConsiderDischargeHome', true, considerDischargeHomeOverrides, {}],
-        ['ConsiderAdmission', true, considerAdmissionOverrides, considerAdmissionRiskAssessmentOverrides],
-        ['SevereAdmission', true, severeAdmissionOverrides, {}],
-        ['CriticalAdmission', true, criticalAdmissionOverrides, {}],
+        ['ConsiderAdmission', true, considerAdmissionClinicalAssessmentOverrides, considerAdmissionRiskAssessmentOverrides],
+        ['SevereAdmission', true, severeAdmissionClinicalAssessmentOverrides, {}],
+        ['CriticalAdmission', true, criticalAdmissionClinicalAssessmentOverrides, {}],
         ['none', false, {}, {}],
     ])('For %p disposition, HasAdmissionOrDischargeRecommendation is %p',
         (disposition: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
