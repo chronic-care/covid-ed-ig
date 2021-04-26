@@ -1,33 +1,24 @@
-import { buildDefaultClinicalAssessmentParameters, buildDefaultRiskAssessmentScoreParameters } from "../helpers/builders";
-import { executeSummaryCQLExpression } from "../helpers/cqlService";
 import {
-    ClinicalAssessmentsParameters,
-    RiskAssessmentScoreParameters
-} from "../types/parameter";
+    buildDefaultClinicalAssessmentParameters,
+    buildDefaultRiskAssessmentScoreParameters
+} from "../helpers/builders";
+import { executeSummaryCQLExpression } from "../helpers/cqlService";
+import { ClinicalAssessmentsParameters, RiskAssessmentScoreParameters } from "../types/parameter";
 import {
     buildCQLExpressionParameters,
-    considerAdmissionClinicalAssessmentOverrides,
     considerAdmissionRiskAssessmentOverrides,
-    considerDischargeHomeOverrides,
-    criticalAdmissionClinicalAssessmentOverrides,
-    criticalPatientOverrides,
-    dischargeHomeClinicalAssessmentOverrides,
-    mildPatientOverrides,
-    moderatePatientOverrides, moderatePatientOverridesWithNonObtainDiagnosticsRecommendation,
-    obtainDiagnosticsClinicalAssessmentOverrides,
-    obtainDiagnosticsRiskAssessmentOverrides,
-    severeAdmissionClinicalAssessmentOverrides,
-    severePatientOverrides
+    obtainDiagnosticsRiskAssessmentOverrides
 } from "./helpers";
+import { ClinicalAssessmentBuilder } from './builders/ClinicalAssessmentBuilder';
 
 describe('treatment summary', () => {
     test.each([
-        ['ObtainDiagnostics', false, obtainDiagnosticsClinicalAssessmentOverrides, obtainDiagnosticsRiskAssessmentOverrides],
-        ['DischargeHome', true, dischargeHomeClinicalAssessmentOverrides, {}],
-        ['ConsiderDischargeHome', true, considerDischargeHomeOverrides, {}],
-        ['ConsiderAdmission', true, considerAdmissionClinicalAssessmentOverrides, considerAdmissionRiskAssessmentOverrides],
-        ['SevereAdmission', true, severeAdmissionClinicalAssessmentOverrides, {}],
-        ['CriticalAdmission', true, criticalAdmissionClinicalAssessmentOverrides, {}],
+        ['ObtainDiagnostics', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), obtainDiagnosticsRiskAssessmentOverrides],
+        ['DischargeHome', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
+        ['ConsiderDischargeHome', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningLabOrImaging().build(), {}],
+        ['ConsiderAdmission', true, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(1).build(), considerAdmissionRiskAssessmentOverrides],
+        ['SevereAdmission', true, new ClinicalAssessmentBuilder().withSevereSeverity().build(), {}],
+        ['CriticalAdmission', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build(), {}],
         ['none', false, {}, {}],
     ])('For %p disposition, HasAdmissionOrDischargeRecommendation is %p',
         (disposition: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
@@ -42,10 +33,10 @@ describe('treatment summary', () => {
     });
 
     test.each([
-          ['mild', 'use', mildPatientOverrides],
-          ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
-          ['severe', 'use', severePatientOverrides],
-          ['critical', 'use', criticalPatientOverrides],
+          ['mild', 'use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
+          ['moderate', 'use', new ClinicalAssessmentBuilder().withConcerningLab(1).withMildSeverity().build()],
+          ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+          ['critical', 'use', new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
           ['none', null, {}],
         ]
     )('For %p severity, Recommend Non-Pharmacologic Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
@@ -54,10 +45,10 @@ describe('treatment summary', () => {
     });
 
     test.each([
-            ['mild', 'use', mildPatientOverrides],
-            ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
-            ['severe', null, severePatientOverrides],
-            ['critical', null, criticalPatientOverrides],
+            ['mild', 'use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
+            ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+            ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Antibodies Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
@@ -66,10 +57,10 @@ describe('treatment summary', () => {
     });
 
     test.each([
-            ['mild', null, mildPatientOverrides],
-            ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
-            ['severe', 'use', severePatientOverrides],
-            ['critical', 'use', criticalPatientOverrides],
+            ['mild', null, new ClinicalAssessmentBuilder().withMildSeverity().build()],
+            ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+            ['critical', 'use', new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Anticoagulation Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
@@ -78,10 +69,10 @@ describe('treatment summary', () => {
     });
 
     test.each([
-            ['mild', 'do-not-use', mildPatientOverrides],
-            ['moderate', 'do-not-use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
-            ['severe', null, severePatientOverrides],
-            ['critical', null, criticalPatientOverrides],
+            ['mild', 'do-not-use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
+            ['moderate', 'do-not-use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+            ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Steroids Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
@@ -90,10 +81,10 @@ describe('treatment summary', () => {
     });
 
     test.each([
-            ['mild', 'insufficient-evidence', mildPatientOverrides],
-            ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
-            ['severe', null, severePatientOverrides],
-            ['critical', null, criticalPatientOverrides],
+            ['mild', 'insufficient-evidence', new ClinicalAssessmentBuilder().withMildSeverity().build()],
+            ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+            ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Remdesivir Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
@@ -102,10 +93,10 @@ describe('treatment summary', () => {
     });
 
     test.each([
-            ['mild', null, mildPatientOverrides],
-            ['moderate', null, moderatePatientOverrides],
-            ['severe', 'use', severePatientOverrides],
-            ['critical', 'use', criticalPatientOverrides],
+            ['mild', null, new ClinicalAssessmentBuilder().withMildSeverity().build()],
+            ['moderate', null, new ClinicalAssessmentBuilder().withModerateSeverity().build()],
+            ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+            ['critical', 'use', new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
     )('For %p severity, Recommend SteroidsAndOrRemdesivir Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
