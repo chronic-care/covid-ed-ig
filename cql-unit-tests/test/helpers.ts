@@ -3,13 +3,17 @@ import {
     CQLExpressionParameters,
     RiskAssessmentScoreParameters
 } from "../types/parameter";
-import {buildDefaultClinicalAssessmentParameters} from "../helpers/builders";
+import { buildDefaultClinicalAssessmentParameters } from "../helpers/builders";
 
 export const mildPatientOverrides: Partial<ClinicalAssessmentsParameters> = {
     AnyMildCOVIDSymptoms: true,
     RespiratoryDiseaseSymptoms: false,
 };
 export const moderatePatientOverrides: Partial<ClinicalAssessmentsParameters> = {
+    O2Saturation: 94,
+    RespiratoryDiseaseSymptoms: true,
+};
+export const moderatePatientOverridesWithNonObtainDiagnosticsRecommendation: Partial<ClinicalAssessmentsParameters> = {
     O2Saturation: 94,
     RespiratoryDiseaseSymptoms: true,
     ConcerningLabCount: 1,

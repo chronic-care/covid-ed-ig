@@ -2,7 +2,6 @@ import { buildDefaultClinicalAssessmentParameters, buildDefaultRiskAssessmentSco
 import { executeSummaryCQLExpression } from "../helpers/cqlService";
 import {
     ClinicalAssessmentsParameters,
-    CQLExpressionParameters,
     RiskAssessmentScoreParameters
 } from "../types/parameter";
 import {
@@ -14,7 +13,7 @@ import {
     criticalPatientOverrides,
     dischargeHomeClinicalAssessmentOverrides,
     mildPatientOverrides,
-    moderatePatientOverrides,
+    moderatePatientOverrides, moderatePatientOverridesWithNonObtainDiagnosticsRecommendation,
     obtainDiagnosticsClinicalAssessmentOverrides,
     obtainDiagnosticsRiskAssessmentOverrides,
     severeAdmissionClinicalAssessmentOverrides,
@@ -44,7 +43,7 @@ describe('treatment summary', () => {
 
     test.each([
           ['mild', 'use', mildPatientOverrides],
-          ['moderate', 'use', moderatePatientOverrides],
+          ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
           ['severe', 'use', severePatientOverrides],
           ['critical', 'use', criticalPatientOverrides],
           ['none', null, {}],
@@ -56,7 +55,7 @@ describe('treatment summary', () => {
 
     test.each([
             ['mild', 'use', mildPatientOverrides],
-            ['moderate', 'use', moderatePatientOverrides],
+            ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
             ['severe', null, severePatientOverrides],
             ['critical', null, criticalPatientOverrides],
             ['none', null, {}],
@@ -68,7 +67,7 @@ describe('treatment summary', () => {
 
     test.each([
             ['mild', null, mildPatientOverrides],
-            ['moderate', 'use', moderatePatientOverrides],
+            ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
             ['severe', 'use', severePatientOverrides],
             ['critical', 'use', criticalPatientOverrides],
             ['none', null, {}],
@@ -80,7 +79,7 @@ describe('treatment summary', () => {
 
     test.each([
             ['mild', 'do-not-use', mildPatientOverrides],
-            ['moderate', 'do-not-use', moderatePatientOverrides],
+            ['moderate', 'do-not-use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
             ['severe', null, severePatientOverrides],
             ['critical', null, criticalPatientOverrides],
             ['none', null, {}],
@@ -92,7 +91,7 @@ describe('treatment summary', () => {
 
     test.each([
             ['mild', 'insufficient-evidence', mildPatientOverrides],
-            ['moderate', 'use', moderatePatientOverrides],
+            ['moderate', 'use', moderatePatientOverridesWithNonObtainDiagnosticsRecommendation],
             ['severe', null, severePatientOverrides],
             ['critical', null, criticalPatientOverrides],
             ['none', null, {}],
