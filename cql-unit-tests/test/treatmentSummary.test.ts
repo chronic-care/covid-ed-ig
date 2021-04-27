@@ -1,7 +1,3 @@
-import {
-    buildDefaultClinicalAssessmentParameters,
-    buildDefaultRiskAssessmentScoreParameters
-} from "../helpers/builders";
 import { executeSummaryCQLExpression } from "../helpers/cqlService";
 import { ClinicalAssessmentsParameters, RiskAssessmentScoreParameters } from "../types/parameter";
 import {
@@ -22,12 +18,7 @@ describe('treatment summary', () => {
         ['none', false, {}, {}],
     ])('For %p disposition, HasAdmissionOrDischargeRecommendation is %p',
         (disposition: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
-        const cqlExpressionParameters = {
-            IgnoreFallbackResourceValues: true,
-            PatientData: null,
-            RiskFactors: buildDefaultRiskAssessmentScoreParameters(riskAssessmentOverrides),
-            ClinicalAssessments: buildDefaultClinicalAssessmentParameters(clinicalAssessmentOverrides),
-        };
+            const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
         const hasAdmissionsOrDischargeRecommendation = executeSummaryCQLExpression(cqlExpressionParameters, 'HasAdmissionOrDischargeRecommendation');
         expect(hasAdmissionsOrDischargeRecommendation).toEqual(expectedRecommendation);
     });
@@ -40,7 +31,8 @@ describe('treatment summary', () => {
           ['none', null, {}],
         ]
     )('For %p severity, Recommend Non-Pharmacologic Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
-        const recommendNonPharma = executeSummaryCQLExpression(buildCQLExpressionParameters(clinicalAssessmentOverrides), 'Recommend Non-Pharmacologic Treatment');
+        const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Non-Pharmacologic Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
@@ -52,7 +44,8 @@ describe('treatment summary', () => {
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Antibodies Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
-        const recommendNonPharma = executeSummaryCQLExpression(buildCQLExpressionParameters(clinicalAssessmentOverrides), 'Recommend Antibodies Treatment');
+        const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Antibodies Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
@@ -64,7 +57,8 @@ describe('treatment summary', () => {
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Anticoagulation Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
-        const recommendNonPharma = executeSummaryCQLExpression(buildCQLExpressionParameters(clinicalAssessmentOverrides), 'Recommend Anticoagulation Treatment');
+        const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Anticoagulation Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
@@ -76,7 +70,8 @@ describe('treatment summary', () => {
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Steroids Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
-        const recommendNonPharma = executeSummaryCQLExpression(buildCQLExpressionParameters(clinicalAssessmentOverrides), 'Recommend Steroids Treatment');
+        const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Steroids Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
@@ -88,7 +83,8 @@ describe('treatment summary', () => {
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Remdesivir Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
-        const recommendNonPharma = executeSummaryCQLExpression(buildCQLExpressionParameters(clinicalAssessmentOverrides), 'Recommend Remdesivir Treatment');
+        const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Remdesivir Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
@@ -100,7 +96,8 @@ describe('treatment summary', () => {
             ['none', null, {}],
         ]
     )('For %p severity, Recommend SteroidsAndOrRemdesivir Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
-        const recommendNonPharma = executeSummaryCQLExpression(buildCQLExpressionParameters(clinicalAssessmentOverrides), 'Recommend SteroidsAndOrRemdesivir Treatment');
+        const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend SteroidsAndOrRemdesivir Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 });
