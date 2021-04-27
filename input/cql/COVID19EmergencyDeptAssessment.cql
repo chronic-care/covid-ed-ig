@@ -569,7 +569,8 @@ define "Has Cancer Risk Factor":
   Coalesce(
     RiskFactors.Cancer,
     exists("All Active Conditions" C
-      where C.code in CC."Malignancy Codes")
+      where (C.code in CC."Cancer SNOMED Codes"
+        or C.code in CC."Cancer ICD10CM Codes"))
   )
 
 define "Has Cardiovascular Disease Risk Factor":
@@ -590,7 +591,8 @@ define "Has Diabetes Type 2 Risk Factor":
   Coalesce(
     RiskFactors.DiabetesType2,
     exists("All Active Conditions" C
-      where C.code in CC."Diabetes Type 2 Codes")
+      where (C.code in CC."Diabetes SNOMED Codes"
+        or C.code in CC."Diabetes ICD10CM Codes"))
   )
 
 define "Has Downs Syndrome Risk Factor":
@@ -604,7 +606,8 @@ define "Has Hypertension Risk Factor":
   Coalesce(
     RiskFactors.Hypertension,
     exists("All Active Conditions" C
-      where C.code in CC."Hypertension Codes")
+      where (C.code in CC."Hypertension SNOMED Codes"
+        or C.code in CC."Hypertension ICD10CM Codes"))
   )
 
 define "Has Immunosuppression Risk Factor":
@@ -636,7 +639,8 @@ define "Has Renal Disease Risk Factor":
   Coalesce(
     RiskFactors.RenalDisease,
     exists("All Active Conditions" C
-      where C.code in CC."Renal Disease Codes")
+      where (C.code in CC."Kidney Disease SNOMED Codes"
+        or C.code in CC."Kidney Disease ICD10CM Codes"))
   )
 
 define "Has Steroid Usage Risk Factor":

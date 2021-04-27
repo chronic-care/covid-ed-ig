@@ -19,12 +19,8 @@ valueset "Race Category": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.11388
 // Value sets not available in VSAC, included via expanded FHIR ValueSet resources
 valueset "Cardiovascular Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cardiovascular'
 valueset "Chronic Respiratory Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-respiratory'
-valueset "Diabetes Type 2 Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-diabetes'
 valueset "Downs Syndrome Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome'
-valueset "Hypertension Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-hypertension'
-valueset "Malignancy Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-malignancy'
 valueset "Obstructive Sleep Apnea Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea'
-valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal'
 
 valueset "Alertness Scale Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-obs-alertness'
 valueset "WHO Performance Status Codes": 'http://fhir.org/guides/acep/ValueSet/who-performance-status'
@@ -45,6 +41,14 @@ valueset "Platelets Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19
 valueset "Troponin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-troponin'
 
 // Value sets from VSAC
+valueset "Cancer ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3028'
+valueset "Cancer SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6048'
+valueset "Diabetes ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3153'
+valueset "Diabetes SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6100'
+valueset "Hypertension ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3174'
+valueset "Hypertension SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6152'
+valueset "Kidney Disease ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3102'
+valueset "Kidney Disease SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6064'
 valueset "Obesity ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3091'
 valueset "Obesity SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6203'
 

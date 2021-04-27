@@ -1,0 +1,582 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.3616.200.110.102.6100",
+    "meta": {
+        "versionId": "9",
+        "lastUpdated": "2020-12-22T01:00:33.000-05:00"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h3>Value Set Contents</h3><p>This value set contains 91 concepts</p><p>All codes from system <code>http://snomed.info/sct</code></p><table class=\"codes\"><tr><td><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-105401000119101\"> </a>105401000119101</td><td>Diabetes mellitus due to pancreatic injury (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-111307005\"> </a>111307005</td><td>Leprechaunism syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-111552007\"> </a>111552007</td><td>Diabetes mellitus without complication (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-123763000\"> </a>123763000</td><td>Houssay's syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-127012008\"> </a>127012008</td><td>Lipoatrophic diabetes (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-1481000119100\"> </a>1481000119100</td><td>Diabetes mellitus type 2 without retinopathy (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190368000\"> </a>190368000</td><td>Type I diabetes mellitus with ulcer (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190372001\"> </a>190372001</td><td>Type I diabetes mellitus maturity onset (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190389009\"> </a>190389009</td><td>Type II diabetes mellitus with ulcer (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190407009\"> </a>190407009</td><td>Malnutrition-related diabetes mellitus with renal complications (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190410002\"> </a>190410002</td><td>Malnutrition-related diabetes mellitus with peripheral circulatory complications (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190412005\"> </a>190412005</td><td>Malnutrition-related diabetes mellitus without complications (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190416008\"> </a>190416008</td><td>Steroid-induced diabetes mellitus without complication (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-190447002\"> </a>190447002</td><td>Steroid-induced diabetes (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-199229001\"> </a>199229001</td><td>Pre-existing type 1 diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-199230006\"> </a>199230006</td><td>Pre-existing type 2 diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-199231005\"> </a>199231005</td><td>Pre-existing malnutrition-related diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-23045005\"> </a>23045005</td><td>Insulin dependent diabetes mellitus type IA (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237599002\"> </a>237599002</td><td>Insulin treated type 2 diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237600004\"> </a>237600004</td><td>Malnutrition-related diabetes mellitus - fibrocalculous (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237601000\"> </a>237601000</td><td>Secondary endocrine diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237604008\"> </a>237604008</td><td>Maturity onset diabetes of the young, type 2 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237612000\"> </a>237612000</td><td>Photomyoclonus, diabetes mellitus, deafness, nephropathy and cerebral dysfunction (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237613005\"> </a>237613005</td><td>Hyperproinsulinemia (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237617006\"> </a>237617006</td><td>Megaloblastic anemia, thiamine-responsive, with diabetes mellitus and sensorineural deafness (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237619009\"> </a>237619009</td><td>Diabetes-deafness syndrome maternally transmitted (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237651005\"> </a>237651005</td><td>Insulin resistance - type A (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-237652003\"> </a>237652003</td><td>Insulin resistance - type B (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-24203005\"> </a>24203005</td><td>Extreme insulin resistance with acanthosis nigricans, hirsutism AND abnormal insulin receptors (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-2751001\"> </a>2751001</td><td>Fibrocalculous pancreatic diabetes (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-28032008\"> </a>28032008</td><td>Insulin dependent diabetes mellitus type IB (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-31321000119102\"> </a>31321000119102</td><td>Diabetes mellitus type 1 without retinopathy (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-313435000\"> </a>313435000</td><td>Type I diabetes mellitus without complication (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-313436004\"> </a>313436004</td><td>Type II diabetes mellitus without complication (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-33559001\"> </a>33559001</td><td>Pineal hyperplasia AND diabetes mellitus syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-359642000\"> </a>359642000</td><td>Diabetes mellitus type 2 in nonobese (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-367391000119102\"> </a>367391000119102</td><td>Diabetes mellitus caused by drug without complication (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-368101000119109\"> </a>368101000119109</td><td>Periodontal disease co-occurrent and due to diabetes mellitus type 2 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-368521000119107\"> </a>368521000119107</td><td>Disorder of nerve co-occurrent and due to type 1 diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-408539000\"> </a>408539000</td><td>Insulin autoimmune syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-408540003\"> </a>408540003</td><td>Diabetes mellitus caused by non-steroid drugs (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-413183008\"> </a>413183008</td><td>Diabetes mellitus caused by non-steroid drugs without complication (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-426705001\"> </a>426705001</td><td>Diabetes mellitus co-occurrent and due to cystic fibrosis (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-426875007\"> </a>426875007</td><td>Latent autoimmune diabetes mellitus in adult (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-427089005\"> </a>427089005</td><td>Diabetes mellitus due to cystic fibrosis (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-42954008\"> </a>42954008</td><td>Diabetes mellitus associated with receptor abnormality (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-44054006\"> </a>44054006</td><td>Diabetes mellitus type 2 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-445260006\"> </a>445260006</td><td>Posttransplant diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-46635009\"> </a>46635009</td><td>Diabetes mellitus type 1 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-51002006\"> </a>51002006</td><td>Diabetes mellitus associated with pancreatic disease (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-530558861000132104\"> </a>530558861000132104</td><td>Atypical diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-5368009\"> </a>5368009</td><td>Drug-induced diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-57886004\"> </a>57886004</td><td>Protein-deficient diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-59079001\"> </a>59079001</td><td>Diabetes mellitus associated with hormonal etiology (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-5969009\"> </a>5969009</td><td>Diabetes mellitus associated with genetic syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609561005\"> </a>609561005</td><td>Maturity-onset diabetes of the young (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609562003\"> </a>609562003</td><td>Maturity onset diabetes of the young, type 1 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609565001\"> </a>609565001</td><td>Permanent neonatal diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609568004\"> </a>609568004</td><td>Diabetes mellitus due to genetic defect in beta cell function (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609569007\"> </a>609569007</td><td>Diabetes mellitus due to genetic defect in insulin action (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609570008\"> </a>609570008</td><td>Maturity-onset diabetes of the young, type 3 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609571007\"> </a>609571007</td><td>Maturity-onset diabetes of the young, type 4 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609572000\"> </a>609572000</td><td>Maturity-onset diabetes of the young, type 5 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609573005\"> </a>609573005</td><td>Maturity-onset diabetes of the young, type 6 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609574004\"> </a>609574004</td><td>Maturity-onset diabetes of the young, type 7 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609575003\"> </a>609575003</td><td>Maturity-onset diabetes of the young, type 8 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609576002\"> </a>609576002</td><td>Maturity-onset diabetes of the young, type 9 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609577006\"> </a>609577006</td><td>Maturity-onset diabetes of the young, type 10 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-609578001\"> </a>609578001</td><td>Maturity-onset diabetes of the young, type 11 (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-703136005\"> </a>703136005</td><td>Diabetes mellitus in remission (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-703137001\"> </a>703137001</td><td>Type I diabetes mellitus in remission (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-703138006\"> </a>703138006</td><td>Type II diabetes mellitus in remission (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-70694009\"> </a>70694009</td><td>Diabetes mellitus AND insipidus with optic atrophy AND deafness (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-720519003\"> </a>720519003</td><td>Atherosclerosis, deafness, diabetes, epilepsy, nephropathy syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-721088003\"> </a>721088003</td><td>Developmental delay, epilepsy, neonatal diabetes syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-722206009\"> </a>722206009</td><td>Pancreatic hypoplasia, diabetes mellitus, congenital heart disease syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-722454003\"> </a>722454003</td><td>Intellectual disability, craniofacial dysmorphism, hypogonadism, diabetes mellitus syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-724067006\"> </a>724067006</td><td>Permanent neonatal diabetes mellitus with cerebellar agenesis syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-73211009\"> </a>73211009</td><td>Diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-733072002\"> </a>733072002</td><td>Alaninuria, microcephaly, dwarfism, enamel hypoplasia, diabetes mellitus syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-734022008\"> </a>734022008</td><td>Wolfram-like syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-737212004\"> </a>737212004</td><td>Diabetes mellitus caused by chemical (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-75524006\"> </a>75524006</td><td>Malnutrition related diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-75682002\"> </a>75682002</td><td>Diabetes mellitus caused by insulin receptor antibodies (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-782755007\"> </a>782755007</td><td>Primary microcephaly, mild intellectual disability, young-onset diabetes syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-782825008\"> </a>782825008</td><td>Primary microcephaly, epilepsy, permanent neonatal diabetes syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-783722008\"> </a>783722008</td><td>Myopathy and diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-81531005\"> </a>81531005</td><td>Diabetes mellitus type 2 in obese (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-816067005\"> </a>816067005</td><td>Diabetes, hypogonadism, deafness, intellectual disability syndrome (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-8801005\"> </a>8801005</td><td>Secondary diabetes mellitus (disorder)</td></tr><tr><td><a name=\"http---snomed.info-sct-731000124108-91352004\"> </a>91352004</td><td>Diabetes mellitus due to structurally abnormal insulin (disorder)</td></tr></table></div>"
+    },
+    "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6100",
+    "version": "20201222",
+    "name": "COVID19 SNOMED Value Set for Diabetes Mellitus",
+    "status": "active",
+    "date": "2020-12-22T01:00:34-05:00",
+    "publisher": "Clinical Architecture",
+    "expansion": {
+        "identifier": "urn:uuid:dce858bb-f552-446d-8c00-fbcc21cc5c52",
+        "timestamp": "2021-04-27T11:55:31-04:00",
+        "total": 91,
+        "offset": 0,
+        "parameter": [
+            {
+                "name": "count",
+                "valueInteger": 1000
+            },
+            {
+                "name": "offset",
+                "valueInteger": 0
+            }
+        ],
+        "contains": [
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "105401000119101",
+                "display": "Diabetes mellitus due to pancreatic injury (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "111307005",
+                "display": "Leprechaunism syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "111552007",
+                "display": "Diabetes mellitus without complication (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "123763000",
+                "display": "Houssay's syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "127012008",
+                "display": "Lipoatrophic diabetes (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "1481000119100",
+                "display": "Diabetes mellitus type 2 without retinopathy (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190368000",
+                "display": "Type I diabetes mellitus with ulcer (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190372001",
+                "display": "Type I diabetes mellitus maturity onset (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190389009",
+                "display": "Type II diabetes mellitus with ulcer (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190407009",
+                "display": "Malnutrition-related diabetes mellitus with renal complications (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190410002",
+                "display": "Malnutrition-related diabetes mellitus with peripheral circulatory complications (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190412005",
+                "display": "Malnutrition-related diabetes mellitus without complications (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190416008",
+                "display": "Steroid-induced diabetes mellitus without complication (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "190447002",
+                "display": "Steroid-induced diabetes (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "199229001",
+                "display": "Pre-existing type 1 diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "199230006",
+                "display": "Pre-existing type 2 diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "199231005",
+                "display": "Pre-existing malnutrition-related diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "23045005",
+                "display": "Insulin dependent diabetes mellitus type IA (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237599002",
+                "display": "Insulin treated type 2 diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237600004",
+                "display": "Malnutrition-related diabetes mellitus - fibrocalculous (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237601000",
+                "display": "Secondary endocrine diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237604008",
+                "display": "Maturity onset diabetes of the young, type 2 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237612000",
+                "display": "Photomyoclonus, diabetes mellitus, deafness, nephropathy and cerebral dysfunction (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237613005",
+                "display": "Hyperproinsulinemia (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237617006",
+                "display": "Megaloblastic anemia, thiamine-responsive, with diabetes mellitus and sensorineural deafness (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237619009",
+                "display": "Diabetes-deafness syndrome maternally transmitted (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237651005",
+                "display": "Insulin resistance - type A (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "237652003",
+                "display": "Insulin resistance - type B (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "24203005",
+                "display": "Extreme insulin resistance with acanthosis nigricans, hirsutism AND abnormal insulin receptors (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "2751001",
+                "display": "Fibrocalculous pancreatic diabetes (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "28032008",
+                "display": "Insulin dependent diabetes mellitus type IB (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "31321000119102",
+                "display": "Diabetes mellitus type 1 without retinopathy (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "313435000",
+                "display": "Type I diabetes mellitus without complication (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "313436004",
+                "display": "Type II diabetes mellitus without complication (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "33559001",
+                "display": "Pineal hyperplasia AND diabetes mellitus syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "359642000",
+                "display": "Diabetes mellitus type 2 in nonobese (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "367391000119102",
+                "display": "Diabetes mellitus caused by drug without complication (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "368101000119109",
+                "display": "Periodontal disease co-occurrent and due to diabetes mellitus type 2 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "368521000119107",
+                "display": "Disorder of nerve co-occurrent and due to type 1 diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "408539000",
+                "display": "Insulin autoimmune syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "408540003",
+                "display": "Diabetes mellitus caused by non-steroid drugs (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "413183008",
+                "display": "Diabetes mellitus caused by non-steroid drugs without complication (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "426705001",
+                "display": "Diabetes mellitus co-occurrent and due to cystic fibrosis (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "426875007",
+                "display": "Latent autoimmune diabetes mellitus in adult (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "427089005",
+                "display": "Diabetes mellitus due to cystic fibrosis (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "42954008",
+                "display": "Diabetes mellitus associated with receptor abnormality (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "44054006",
+                "display": "Diabetes mellitus type 2 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "445260006",
+                "display": "Posttransplant diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "46635009",
+                "display": "Diabetes mellitus type 1 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "51002006",
+                "display": "Diabetes mellitus associated with pancreatic disease (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "530558861000132104",
+                "display": "Atypical diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "5368009",
+                "display": "Drug-induced diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "57886004",
+                "display": "Protein-deficient diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "59079001",
+                "display": "Diabetes mellitus associated with hormonal etiology (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "5969009",
+                "display": "Diabetes mellitus associated with genetic syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609561005",
+                "display": "Maturity-onset diabetes of the young (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609562003",
+                "display": "Maturity onset diabetes of the young, type 1 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609565001",
+                "display": "Permanent neonatal diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609568004",
+                "display": "Diabetes mellitus due to genetic defect in beta cell function (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609569007",
+                "display": "Diabetes mellitus due to genetic defect in insulin action (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609570008",
+                "display": "Maturity-onset diabetes of the young, type 3 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609571007",
+                "display": "Maturity-onset diabetes of the young, type 4 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609572000",
+                "display": "Maturity-onset diabetes of the young, type 5 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609573005",
+                "display": "Maturity-onset diabetes of the young, type 6 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609574004",
+                "display": "Maturity-onset diabetes of the young, type 7 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609575003",
+                "display": "Maturity-onset diabetes of the young, type 8 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609576002",
+                "display": "Maturity-onset diabetes of the young, type 9 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609577006",
+                "display": "Maturity-onset diabetes of the young, type 10 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "609578001",
+                "display": "Maturity-onset diabetes of the young, type 11 (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "703136005",
+                "display": "Diabetes mellitus in remission (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "703137001",
+                "display": "Type I diabetes mellitus in remission (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "703138006",
+                "display": "Type II diabetes mellitus in remission (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "70694009",
+                "display": "Diabetes mellitus AND insipidus with optic atrophy AND deafness (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "720519003",
+                "display": "Atherosclerosis, deafness, diabetes, epilepsy, nephropathy syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "721088003",
+                "display": "Developmental delay, epilepsy, neonatal diabetes syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "722206009",
+                "display": "Pancreatic hypoplasia, diabetes mellitus, congenital heart disease syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "722454003",
+                "display": "Intellectual disability, craniofacial dysmorphism, hypogonadism, diabetes mellitus syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "724067006",
+                "display": "Permanent neonatal diabetes mellitus with cerebellar agenesis syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "73211009",
+                "display": "Diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "733072002",
+                "display": "Alaninuria, microcephaly, dwarfism, enamel hypoplasia, diabetes mellitus syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "734022008",
+                "display": "Wolfram-like syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "737212004",
+                "display": "Diabetes mellitus caused by chemical (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "75524006",
+                "display": "Malnutrition related diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "75682002",
+                "display": "Diabetes mellitus caused by insulin receptor antibodies (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "782755007",
+                "display": "Primary microcephaly, mild intellectual disability, young-onset diabetes syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "782825008",
+                "display": "Primary microcephaly, epilepsy, permanent neonatal diabetes syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "783722008",
+                "display": "Myopathy and diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "81531005",
+                "display": "Diabetes mellitus type 2 in obese (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "816067005",
+                "display": "Diabetes, hypogonadism, deafness, intellectual disability syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "8801005",
+                "display": "Secondary diabetes mellitus (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "2021-03",
+                "code": "91352004",
+                "display": "Diabetes mellitus due to structurally abnormal insulin (disorder)"
+            }
+        ]
+    }
+}

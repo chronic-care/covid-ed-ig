@@ -1,0 +1,180 @@
+{
+    "resourceType": "ValueSet",
+    "id": "2.16.840.1.113883.3.3616.200.110.102.3174",
+    "meta": {
+        "versionId": "5",
+        "lastUpdated": "2020-08-18T10:21:27.000-04:00"
+    },
+    "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h3>Value Set Contents</h3><p>This value set contains 24 concepts</p><p>All codes from system <code>http://hl7.org/fhir/sid/icd-10-cm</code></p><table class=\"codes\"><tr><td><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I10\"> </a>I10</td><td>Essential (primary) hypertension</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I10-I16\"> </a>I10-I16</td><td>Hypertensive diseases (I10-I16)</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I11\"> </a>I11</td><td>Hypertensive heart disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I11.0\"> </a>I11.0</td><td>Hypertensive heart disease with heart failure</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I11.9\"> </a>I11.9</td><td>Hypertensive heart disease without heart failure</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I12\"> </a>I12</td><td>Hypertensive chronic kidney disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I12.0\"> </a>I12.0</td><td>Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I12.9\"> </a>I12.9</td><td>Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I13\"> </a>I13</td><td>Hypertensive heart and chronic kidney disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I13.0\"> </a>I13.0</td><td>Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I13.1\"> </a>I13.1</td><td>Hypertensive heart and chronic kidney disease without heart failure</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I13.10\"> </a>I13.10</td><td>Hypertensive heart and chronic kidney disease without heart failure, with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I13.11\"> </a>I13.11</td><td>Hypertensive heart and chronic kidney disease without heart failure, with stage 5 chronic kidney disease, or end stage renal disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I13.2\"> </a>I13.2</td><td>Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I15\"> </a>I15</td><td>Secondary hypertension</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I15.0\"> </a>I15.0</td><td>Renovascular hypertension</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I15.1\"> </a>I15.1</td><td>Hypertension secondary to other renal disorders</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I15.2\"> </a>I15.2</td><td>Hypertension secondary to endocrine disorders</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I15.8\"> </a>I15.8</td><td>Other secondary hypertension</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I15.9\"> </a>I15.9</td><td>Secondary hypertension, unspecified</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I16\"> </a>I16</td><td>Hypertensive crisis</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I16.0\"> </a>I16.0</td><td>Hypertensive urgency</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I16.1\"> </a>I16.1</td><td>Hypertensive emergency</td></tr><tr><td><a name=\"http---hl7.org-fhir-sid-icd-10-cm-I16.9\"> </a>I16.9</td><td>Hypertensive crisis, unspecified</td></tr></table></div>"
+    },
+    "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3174",
+    "version": "20200715",
+    "name": "COVID19 ICD10CM Value Set for Hypertension",
+    "status": "active",
+    "date": "2020-07-15T01:00:26-04:00",
+    "publisher": "Clinical Architecture",
+    "expansion": {
+        "identifier": "urn:uuid:0e1a53a4-5723-45c2-94a4-9cfb1fd81b3a",
+        "timestamp": "2021-04-27T12:31:47-04:00",
+        "total": 24,
+        "offset": 0,
+        "parameter": [
+            {
+                "name": "count",
+                "valueInteger": 1000
+            },
+            {
+                "name": "offset",
+                "valueInteger": 0
+            }
+        ],
+        "contains": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I10",
+                "display": "Essential (primary) hypertension"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I10-I16",
+                "display": "Hypertensive diseases (I10-I16)"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I11",
+                "display": "Hypertensive heart disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I11.0",
+                "display": "Hypertensive heart disease with heart failure"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I11.9",
+                "display": "Hypertensive heart disease without heart failure"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I12",
+                "display": "Hypertensive chronic kidney disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I12.0",
+                "display": "Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I12.9",
+                "display": "Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I13",
+                "display": "Hypertensive heart and chronic kidney disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I13.0",
+                "display": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I13.1",
+                "display": "Hypertensive heart and chronic kidney disease without heart failure"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I13.10",
+                "display": "Hypertensive heart and chronic kidney disease without heart failure, with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I13.11",
+                "display": "Hypertensive heart and chronic kidney disease without heart failure, with stage 5 chronic kidney disease, or end stage renal disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I13.2",
+                "display": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I15",
+                "display": "Secondary hypertension"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I15.0",
+                "display": "Renovascular hypertension"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I15.1",
+                "display": "Hypertension secondary to other renal disorders"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I15.2",
+                "display": "Hypertension secondary to endocrine disorders"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I15.8",
+                "display": "Other secondary hypertension"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I15.9",
+                "display": "Secondary hypertension, unspecified"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I16",
+                "display": "Hypertensive crisis"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I16.0",
+                "display": "Hypertensive urgency"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I16.1",
+                "display": "Hypertensive emergency"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "version": "2021",
+                "code": "I16.9",
+                "display": "Hypertensive crisis, unspecified"
+            }
+        ]
+    }
+}
