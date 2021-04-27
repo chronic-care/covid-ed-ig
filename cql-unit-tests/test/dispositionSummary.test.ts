@@ -5,14 +5,14 @@ import { buildCQLExpressionParameters, riskFactorsCountOfTwo } from "./helpers";
 
 describe('disposition summary', () => {
     test.each([
-            ['mild and total risk score >= 5', true, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().build(), {}],
-            ['mild and risk factors count > 1', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), riskFactorsCountOfTwo],
+            ['mild, total risk score >= 5', true, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().build(), {}],
+            ['mild, risk factors count > 1', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), riskFactorsCountOfTwo],
             ['moderate', true, new ClinicalAssessmentBuilder().withModerateSeverity().build(), {}],
             ['severe', true, new ClinicalAssessmentBuilder().withSevereSeverity().build(), {}],
             ['critical', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build(), {}],
             ['lab results count >= 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build(), {}],
             ['imaging result count >= 1', false, new ClinicalAssessmentBuilder().withConcerningImagingOfOne().build(), {}],
-            ['mild and risk score not >= 5 or risk factors not >1', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
+            ['mild and risk score < 5 or risk factors <= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
         ]
     )('For %p, Recommend Obtain Diagnostics is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
