@@ -57,7 +57,7 @@ export class ClinicalAssessmentBuilder  {
 
     public withRiskScoreOfFive = () => {
         this.respiratoryRate = 25;
-        this.o2Saturation =  92;
+        this.systolicBloodPressure = 91;
         return this;
     }
 

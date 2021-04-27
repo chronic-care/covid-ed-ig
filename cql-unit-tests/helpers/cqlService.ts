@@ -13,7 +13,6 @@ import COVID19Concepts from '../../output/Library-COVID19Concepts-2.json';
 import FHIRHelpers from '../../output/Library-FHIRHelpers-4.0.1-2.json';
 import valueSetDB from '../../input/cql/valueset-db.json';
 import { IPatient, PatientGenderKind } from "@ahryman40k/ts-fhir-types/lib/R4";
-import { Resource } from "../types/resource";
 import { IObservation } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Observation";
 
 const summaryLibrary = new cql.Library(COVID19EDSummary, new cql.Repository({
