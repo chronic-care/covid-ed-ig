@@ -408,12 +408,21 @@ define "Is Mild Severity":
 * Risk Prognostication
 */
 
-// TODO Alertness, InspiredOxygen, PerformanceStatus
+define "Risk Score Components": {
+  "Respiratory Rate Risk Score",
+  "O2 Saturation Risk Score",
+  "Heart Rate Risk Score",
+  "Systolic BP Risk Score",
+  "Temperature Risk Score",
+  "Alertness Score",
+  "Inspired Oxygen Score",
+  "Sex Risk Score",
+  "Age Risk Score",
+  "Performance Status Score"
+}
 
 define "Total Risk Score":
-  "Respiratory Rate Risk Score" + "O2 Saturation Risk Score" + "Heart Rate Risk Score" + "Systolic BP Risk Score"
-    + "Temperature Risk Score" + "Alertness Score" + "Inspired Oxygen Score" + "Sex Risk Score"
-    + "Age Risk Score" + "Performance Status Score"
+  Sum("Risk Score Components" score where score is not null)
 
 define "Risk Percent":
   case "Total Risk Score"
@@ -445,7 +454,7 @@ define "Respiratory Rate Risk Score":
     when "Last Respiratory Rate value" between 21 and 24 then 2
     when "Last Respiratory Rate value" < 9 then 3
     when "Last Respiratory Rate value" > 24 then 3
-    else 0
+    else null
   end
 
 define "O2 Saturation Risk Score":
@@ -454,7 +463,7 @@ define "O2 Saturation Risk Score":
     when "Last O2 Saturation percent" between 94 and 95 then 1
     when "Last O2 Saturation percent" between 92 and 93 then 2
     when "Last O2 Saturation percent" < 92 then 3
-    else 0
+    else null
   end
 
 define "Heart Rate Risk Score":
@@ -465,7 +474,7 @@ define "Heart Rate Risk Score":
     when "Last Heart Rate value" between 111 and 130 then 2
     when "Last Heart Rate value" < 41 then 3
     when "Last Heart Rate value" > 130 then 3
-    else 0
+    else null
   end
 
 define "Systolic BP Risk Score":
@@ -475,7 +484,7 @@ define "Systolic BP Risk Score":
     when "Last SBP value" between 91 and 100 then 2
     when "Last SBP value" < 91 then 3
     when "Last SBP value" > 219 then 3
-    else 0
+    else null
   end
 
 define "Temperature Risk Score":
@@ -485,7 +494,7 @@ define "Temperature Risk Score":
     when "Last Body Temperature value in C" between 38.1 and 39.0 then 1
     when "Last Body Temperature value in C" > 39.0 then 2
     when "Last Body Temperature value in C" < 35.1 then 3
-    else 0
+    else null
   end
 
 define "Sex Risk Score":
@@ -493,7 +502,7 @@ define "Sex Risk Score":
     case
       when PatientData.Gender = 'male' then 1
       when PatientData.Gender = 'female' then 0
-      else 0
+      else null
     end
   else
     case
@@ -502,7 +511,7 @@ define "Sex Risk Score":
       // if birth sex is UNK or not available, then use Administrative Gender
       when Patient.gender = 'male' then 1
       when Patient.gender = 'female' then 0
-      else 0
+      else null
     end
 
 define "Age Risk Score":
@@ -512,7 +521,7 @@ define "Age Risk Score":
     when PatientData.Age between 50 and 65 then 2
     when PatientData.Age between 66 and 80 then 3
     when PatientData.Age > 80 then 4
-      else 0
+      else null
     end
   else
     case
@@ -520,13 +529,13 @@ define "Age Risk Score":
       when AgeInYears() between 50 and 65 then 2
       when AgeInYears() between 66 and 80 then 3
       when AgeInYears() > 80 then 4
-      else 0
+      else null
     end
 
 define "Alertness Score":
   case "Alertness Assessment Code"
     when CC."Confused".code then 3
-    else 0
+    else null
   end
 
 define "Performance Status Score":
@@ -536,12 +545,12 @@ define "Performance Status Score":
     when CC."Performance Status 2".code then 2
     when CC."Performance Status 3".code then 3
     when CC."Performance Status 4".code then 4
-    else 0
+    else null
   end
 
 define "Inspired Oxygen Score":
   if ClinicalAssessments.SupplementalOxygen then 2
-  else 0
+  else null
 
 /*
  * Assess Risk Factors
