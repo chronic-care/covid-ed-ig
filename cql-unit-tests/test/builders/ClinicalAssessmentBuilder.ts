@@ -36,6 +36,7 @@ export class ClinicalAssessmentBuilder  {
     public withMildSeverity = () => {
         this.anyMildCOVIDSymptoms = true;
         this.respiratoryDiseaseSymptoms = false;
+        this.respiratoryRate = 12; //to make risk score = 0
         return this;
     }
 
