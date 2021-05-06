@@ -15,7 +15,7 @@ describe('risk score with parameter overrides', () => {
         respiratoryRate | expectedScore
         ${12}           | ${0}
         ${20}           | ${0}
-        ${null}         | ${0}
+        ${null}         | ${null}
         ${9}            | ${1}
         ${10.5}         | ${1}
         ${11}           | ${1}
@@ -41,7 +41,7 @@ describe('risk score with parameter overrides', () => {
     test.each`
         o2SaturationRate | expectedScore
         ${96}            | ${0}
-        ${null}          | ${0}
+        ${null}          | ${null}
         ${94}            | ${1}
         ${95}            | ${1}
         ${92}            | ${2}
@@ -66,7 +66,7 @@ describe('risk score with parameter overrides', () => {
         heartRate | expectedScore
         ${51}     | ${0}
         ${90}     | ${0}
-        ${null}   | ${0}
+        ${null}   | ${null}
         ${41}     | ${1}
         ${50}     | ${1}
         ${91}     | ${1}
@@ -94,7 +94,7 @@ describe('risk score with parameter overrides', () => {
         systolicBloodPressure | expectedScore
         ${111}                | ${0}
         ${219}                | ${0}
-        ${null}               | ${0}
+        ${null}               | ${null}
         ${101}                | ${1}
         ${110}                | ${1}
         ${91}                 | ${2}
@@ -120,7 +120,7 @@ describe('risk score with parameter overrides', () => {
         temperatureF | expectedScore
         ${96.98}     | ${0}
         ${100.4}     | ${0}
-        ${null}      | ${0}
+        ${null}      | ${null}
         ${95.18}     | ${1}
         ${96.8}      | ${1}
         ${100.58}    | ${1}
@@ -146,8 +146,8 @@ describe('risk score with parameter overrides', () => {
         sex         | expectedScore
         ${'male'}   | ${1}
         ${'female'} | ${0}
-        ${null}     | ${0}
-        ${'other'}  | ${0}
+        ${null}     | ${null}
+        ${'other'}  | ${null}
     `('returns score of $expectedScore for sex value of $sex', ({
             sex, expectedScore
         }) => {
@@ -165,8 +165,8 @@ describe('risk score with parameter overrides', () => {
 
     test.each`
         age         | expectedScore
-        ${0}        | ${0}
-        ${15}       | ${0}
+        ${0}        | ${null}
+        ${15}       | ${null}
         ${16}       | ${0}
         ${49}       | ${0}
         ${50}       | ${2}
@@ -192,10 +192,9 @@ describe('risk score with parameter overrides', () => {
     test.each`
         alertness       | expectedScore
         ${'130987000'}  | ${3}
-        ${'none'}       | ${0}
-        ${'alert'}      | ${0}
-        ${null}         | ${0}
-        ${null}    | ${0}
+        ${'none'}       | ${null}
+        ${'alert'}      | ${null}
+        ${null}         | ${null}
     `('returns score of $expectedScore for alertness value of $alertness', ({
         alertness, expectedScore
     }) => {
@@ -236,8 +235,8 @@ describe('risk score with parameter overrides', () => {
     test.each`
         supplementalOxygen  | expectedScore
         ${true}             | ${2}
-        ${false}            | ${0}
-        ${null}             | ${0}
+        ${false}            | ${null}
+        ${null}             | ${null}
     `('returns score of $expectedScore for supplemental oxygen value of $supplementalOxygen', ({
         supplementalOxygen, expectedScore
     }) => {
@@ -251,6 +250,25 @@ describe('risk score with parameter overrides', () => {
         const supplementalOxygenScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Inspired Oxygen Score');
 
         expect(supplementalOxygenScore).toEqual(expectedScore);
+    });
+
+    test.each`
+        overrides                                       | expectedScore
+        ${{}}                                           | ${null}
+        ${{RespiratoryRate: 11}}                        | ${1}
+        ${{O2Saturation: 92}}                           | ${2}
+        ${{RespiratoryRate: 11, O2Saturation: 92}}      | ${3}
+    `('returns total risk score of $expectedScore with different risk scores passed in', ({overrides, expectedScore}) => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: null,
+            RiskFactors: null,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters(overrides),
+        };
+
+        const totalRiskScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Total Risk Score');
+
+        expect(totalRiskScore).toEqual(expectedScore);
     });
 });
 
