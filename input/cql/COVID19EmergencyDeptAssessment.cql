@@ -222,7 +222,9 @@ define function ComponentValue(Obs FHIR.Observation, code System.Code):
 
 // Use the following if Systolic and Diastolic are combined as components within one Observation.
 define "Blood Pressure Observation Components":
-  (C3F.ObservationLookBack(C3F.Verified([Observation: CC."Blood pressure"]), VitalSignsLookbackPeriod)) bp
+  (C3F.ObservationLookBack(C3F.Verified(
+        [Observation: CC."Blood pressure"] union [Observation: CC."Blood pressure, deprecated"]
+      ), VitalSignsLookbackPeriod)) bp
     let SystolicValue: Round(ComponentValue(bp, CC."Systolic blood pressure").value),
         DiastolicValue: Round(ComponentValue(bp, CC."Diastolic blood pressure").value)
    return {

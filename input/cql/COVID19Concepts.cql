@@ -72,6 +72,7 @@ code "Performance Status 3": '373806003' from "SNOMED-CT" display 'World Health 
 code "Performance Status 4": '373807007' from "SNOMED-CT" display 'World Health Organization performance status grade 4 (finding)'
 
 code "Blood pressure": '85354-9' from "LOINC" display 'Blood pressure systolic and diastolic'
+code "Blood pressure, deprecated": '55284-4' from "LOINC" display 'Blood pressure systolic and diastolic'
 code "Systolic blood pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
 code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
 
