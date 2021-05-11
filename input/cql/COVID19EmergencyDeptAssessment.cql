@@ -115,7 +115,7 @@ parameter RiskFactors Tuple {
 
 parameter PatientData Tuple {
   Gender String,
-  Age Decimal
+  Age Integer
 }
 
 
@@ -410,7 +410,7 @@ define "Is Mild Severity":
 * Risk Prognostication
 */
 
-define "Risk Score Components": {
+define "Risk Score Components": List {
   "Respiratory Rate Risk Score",
   "O2 Saturation Risk Score",
   "Heart Rate Risk Score",
@@ -424,7 +424,7 @@ define "Risk Score Components": {
 }
 
 define "Total Risk Score":
-  Sum("Risk Score Components" score where score is not null)
+  Sum("Risk Score Components")
 
 define "Risk Percent":
   case "Total Risk Score"
@@ -450,42 +450,50 @@ define "Risk Percent":
   end
 
 define "Respiratory Rate Risk Score":
-  case
-    when "Last Respiratory Rate value" between 12 and 20 then 0
-    when "Last Respiratory Rate value" between 9 and 11 then 1
-    when "Last Respiratory Rate value" between 21 and 24 then 2
-    when "Last Respiratory Rate value" < 9 then 3
-    when "Last Respiratory Rate value" > 24 then 3
+  "Last Respiratory Rate value" respRate
+    let value: Floor(Round(respRate))    // valid values should be Integer
+  return case
+    when value between 12 and 20 then 0
+    when value between 9 and 11 then 1
+    when value between 21 and 24 then 2
+    when value < 9 then 3
+    when value > 24 then 3
     else null
   end
 
 define "O2 Saturation Risk Score":
-  case
-    when "Last O2 Saturation percent" > 95 then 0
-    when "Last O2 Saturation percent" between 94 and 95 then 1
-    when "Last O2 Saturation percent" between 92 and 93 then 2
-    when "Last O2 Saturation percent" < 92 then 3
+  "Last O2 Saturation percent" o2Sat
+    let value: Floor(Round(o2Sat))    // valid values should be Integer
+  return case
+    when value > 95 then 0
+    when value between 94 and 95 then 1
+    when value between 92 and 93 then 2
+    when value < 92 then 3
     else null
   end
 
 define "Heart Rate Risk Score":
-  case
-    when "Last Heart Rate value" between 51 and 90 then 0
-    when "Last Heart Rate value" between 41 and 50 then 1
-    when "Last Heart Rate value" between 91 and 110 then 1
-    when "Last Heart Rate value" between 111 and 130 then 2
-    when "Last Heart Rate value" < 41 then 3
-    when "Last Heart Rate value" > 130 then 3
+  "Last Heart Rate value" heartRate
+    let value: Floor(Round(heartRate))    // valid values should be Integer
+  return case
+    when value between 51 and 90 then 0
+    when value between 41 and 50 then 1
+    when value between 91 and 110 then 1
+    when value between 111 and 130 then 2
+    when value < 41 then 3
+    when value > 130 then 3
     else null
   end
 
 define "Systolic BP Risk Score":
-  case
-    when "Last SBP value" between 111 and 219 then 0
-    when "Last SBP value" between 101 and 110 then 1
-    when "Last SBP value" between 91 and 100 then 2
-    when "Last SBP value" < 91 then 3
-    when "Last SBP value" > 219 then 3
+  "Last SBP value" bp
+    let value: Floor(Round(bp))    // valid values should be Integer
+  return case
+    when value between 111 and 219 then 0
+    when value between 101 and 110 then 1
+    when value between 91 and 100 then 2
+    when value < 91 then 3
+    when value > 219 then 3
     else null
   end
 
