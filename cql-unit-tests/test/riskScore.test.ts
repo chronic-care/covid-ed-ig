@@ -8,7 +8,21 @@ import OxygenSaturationBuilder from './builders/Observation/OxygenSaturationBuil
 import HeartRateBuilder from './builders/Observation/HeartRateBuilder';
 import BloodPressureBuilder from './builders/Observation/BloodPressureBuilder';
 import TemperatureBuilder from './builders/Observation/TemperatureBuilder';
-import { Resource } from "../types/resource";
+
+describe.skip('risk score with all null parameters', () => {
+    const cqlExpressionParameters = {
+        IgnoreFallbackResourceValues: true,
+        PatientData: null,
+        RiskFactors: null,
+        ClinicalAssessments: buildDefaultClinicalAssessmentParameters({}),
+    };
+
+    const actualScore = executeAssessmentCQLExpression(cqlExpressionParameters, 'Total Risk Score');
+    const riskPercentage = executeAssessmentCQLExpression(cqlExpressionParameters, 'Risk Percent');
+
+    expect(riskPercentage).toEqual(null);
+    expect(actualScore).toEqual(null);
+});
 
 describe('risk score with parameter overrides', () => {
     test.each`
