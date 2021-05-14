@@ -427,25 +427,27 @@ define "Total Risk Score":
   Sum("Risk Score Components")
 
 define "Risk Percent":
-  case "Total Risk Score"
-    when null then null
-    when 0 then 1
-    when 1 then 1
-    when 2 then 2
-    when 3 then 2
-    when 4 then 3
-    when 5 then 9
-    when 6 then 15
-    when 7 then 18
-    when 8 then 22
-    when 9 then 26
-    when 10 then 29
-    when 11 then 34
-    when 12 then 38
-    when 13 then 47
-    when 14 then 48
-    when 15 then 50
-    when 16 then 55
+  "Total Risk Score" totalRiskScore
+    let riskScore: totalRiskScore as Integer
+  return case
+    when riskScore is null then null
+    when riskScore = 0 then 1
+    when riskScore = 1 then 1
+    when riskScore = 2 then 2
+    when riskScore = 3 then 2
+    when riskScore = 4 then 3
+    when riskScore = 5 then 9
+    when riskScore = 6 then 15
+    when riskScore = 7 then 18
+    when riskScore = 8 then 22
+    when riskScore = 9 then 26
+    when riskScore = 10 then 29
+    when riskScore = 11 then 34
+    when riskScore = 12 then 38
+    when riskScore = 13 then 47
+    when riskScore = 14 then 48
+    when riskScore = 15 then 50
+    when riskScore = 16 then 55
     else 66
   end
 
