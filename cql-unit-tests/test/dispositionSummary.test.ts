@@ -1,7 +1,8 @@
 import { ClinicalAssessmentsParameters, RiskAssessmentScoreParameters } from "../types/parameter";
-import { executeSummaryCQLExpression } from "../helpers/cqlService";
+import { executeAssessmentCQLExpression, executeSummaryCQLExpression } from "../helpers/cqlService";
 import { ClinicalAssessmentBuilder } from './builders/ClinicalAssessmentBuilder';
 import { buildCQLExpressionParameters, riskFactorsCountOfTwo } from "./helpers";
+import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
 
 describe('disposition summary', () => {
     test.each([
