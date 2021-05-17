@@ -1,9 +1,29 @@
-import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
-import { executeSummaryCQLExpression, executeSummaryNoParams } from '../helpers/cqlService';
+import {
+    buildDefaultClinicalAssessmentParameters,
+    buildDefaultRiskAssessmentScoreParameters
+} from '../helpers/builders';
+import {
+    executeAssessmentCQLExpression,
+    executeSummaryCQLExpression,
+    executeSummaryNoParams
+} from '../helpers/cqlService';
 import { LabResultBuilder } from "./builders/Observation/LabResult";
 import { DiagnosticSummary } from "../types/summary";
 
 describe('diagnostic interpretation with parameter overrides', () => {
+    it.skip('return null when all inputs are null', () => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: null,
+            RiskFactors: null,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({}),
+        };
+
+        const results = executeAssessmentCQLExpression(cqlExpressionParameters, 'ConcerningLabCount');
+
+        expect(results).toBe(null);
+    });
+
     test.each`
         concerningLabCount | expectedConcerningLabCount
         ${1}               | ${1}
