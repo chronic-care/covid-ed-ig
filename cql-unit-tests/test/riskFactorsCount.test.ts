@@ -3,6 +3,35 @@ import { CQLExpressionParameters, RiskAssessmentScoreParameters } from "../types
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('risk assessment score', () => {
+    it('return null when all inputs are null', () => {
+        const riskAssessmentScoreParameters = buildDefaultRiskAssessmentScoreParameters({
+            Cancer: null,
+            CardiovascularDisease: null,
+            ChronicRespiratoryDisease: null,
+            DiabetesType2: null,
+            DownsSyndrome: null,
+            Hypertension: null,
+            Immunosuppression: null,
+            NeurologicDisease: null,
+            Obesity: null,
+            ObstructiveSleepApnea: null,
+            Pregnancy: null,
+            RenalDisease: null,
+            SteroidUsage: null,
+        });
+
+        const cqlParams: CQLExpressionParameters = {
+            ClinicalAssessments: null,
+            IgnoreFallbackResourceValues: true,
+            PatientData: null,
+            RiskFactors: riskAssessmentScoreParameters
+        };
+
+        const results = executeAssessmentCQLExpression(cqlParams, 'Risk Factors count');
+
+        expect(results).toBe(null);
+    });
+
     it('return 0 as the risk assessment score when all values are false', () => {
         const riskAssessmentScoreParameters = buildDefaultRiskAssessmentScoreParameters();
 
