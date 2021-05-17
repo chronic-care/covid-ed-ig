@@ -6,8 +6,22 @@ import {
     obtainDiagnosticsRiskAssessmentOverrides
 } from "./helpers";
 import { ClinicalAssessmentBuilder } from './builders/ClinicalAssessmentBuilder';
+import { buildAllNullRiskAssessmentScoreParameters } from '../helpers/builders';
 
 describe('treatment summary', () => {
+    it.each([
+        ['Recommend Non-Pharmacologic Treatment'],
+        ['Recommend Antibodies Treatment'],
+        ['Recommend Anticoagulation Treatment'],
+        ['Recommend Steroids Treatment'],
+        ['Recommend Remdesivir Treatment'],
+        ['Recommend SteroidsAndOrRemdesivir Treatment'],
+        ])( '%p returns null when all inputs are null', (expressionName: string ) => {
+        const cqlExpressionParameters = buildCQLExpressionParameters({}, buildAllNullRiskAssessmentScoreParameters());
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, expressionName);
+        expect(recommendNonPharma).toEqual(null);
+    })
+
     test.each([
         ['ObtainDiagnostics', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), obtainDiagnosticsRiskAssessmentOverrides],
         ['DischargeHome', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
