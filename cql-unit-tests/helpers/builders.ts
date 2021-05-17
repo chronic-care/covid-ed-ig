@@ -56,3 +56,23 @@ export const buildDefaultRiskAssessmentScoreParameters = (overrides: Partial<Ris
 
     return buildWithOverrides(riskAssessmentScoreParameters, overrides);
 };
+
+export const buildAllNullRiskAssessmentScoreParameters = (): RiskAssessmentScoreParameters => {
+    const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
+        Cancer: null,
+        CardiovascularDisease: null,
+        ChronicRespiratoryDisease: null,
+        DiabetesType2: null,
+        DownsSyndrome: null,
+        Hypertension: null,
+        Immunosuppression: null,
+        NeurologicDisease: null,
+        Obesity: null,
+        ObstructiveSleepApnea: null,
+        Pregnancy: null,
+        RenalDisease: null,
+        SteroidUsage: null,
+    };
+
+    return buildWithOverrides(riskAssessmentScoreParameters, {});
+};

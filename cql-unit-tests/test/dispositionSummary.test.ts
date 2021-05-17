@@ -2,9 +2,30 @@ import { ClinicalAssessmentsParameters, RiskAssessmentScoreParameters } from "..
 import { executeAssessmentCQLExpression, executeSummaryCQLExpression } from "../helpers/cqlService";
 import { ClinicalAssessmentBuilder } from './builders/ClinicalAssessmentBuilder';
 import { buildCQLExpressionParameters, riskFactorsCountOfTwo } from "./helpers";
-import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
+import {
+    buildAllNullRiskAssessmentScoreParameters,
+    buildDefaultClinicalAssessmentParameters
+} from '../helpers/builders';
 
 describe('disposition summary', () => {
+    describe.skip('when all inputs are null', () => {
+        test.each([
+            'Recommend Obtain Diagnostics',
+            'Recommend Discharge Home',
+            'Recommend Consider Discharging Home',
+            'Recommend Consider Admission',
+            'Recommend Severe Admission',
+            'Recommend Critical Admission',
+        ])('%p returns null', (expressionName: string) => {
+            const cqlExpressionParameters = buildCQLExpressionParameters(
+                {},
+                buildAllNullRiskAssessmentScoreParameters(),
+            );
+            const disposition = executeSummaryCQLExpression(cqlExpressionParameters, expressionName);
+            expect(disposition).toEqual(null);
+        });
+    });
+
     test.each([
             ['mild, total risk score >= 5', true, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().build(), {}],
             ['mild, risk factors count > 1', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), riskFactorsCountOfTwo],

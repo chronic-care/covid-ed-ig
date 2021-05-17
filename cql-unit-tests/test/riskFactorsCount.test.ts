@@ -1,24 +1,13 @@
-import { buildDefaultRiskAssessmentScoreParameters } from "../helpers/builders";
+import {
+    buildAllNullRiskAssessmentScoreParameters,
+    buildDefaultRiskAssessmentScoreParameters
+} from "../helpers/builders";
 import { CQLExpressionParameters, RiskAssessmentScoreParameters } from "../types/parameter";
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('risk assessment score', () => {
     it.skip('return null when all inputs are null', () => {
-        const riskAssessmentScoreParameters = buildDefaultRiskAssessmentScoreParameters({
-            Cancer: null,
-            CardiovascularDisease: null,
-            ChronicRespiratoryDisease: null,
-            DiabetesType2: null,
-            DownsSyndrome: null,
-            Hypertension: null,
-            Immunosuppression: null,
-            NeurologicDisease: null,
-            Obesity: null,
-            ObstructiveSleepApnea: null,
-            Pregnancy: null,
-            RenalDisease: null,
-            SteroidUsage: null,
-        });
+        const riskAssessmentScoreParameters = buildAllNullRiskAssessmentScoreParameters();
 
         const cqlParams: CQLExpressionParameters = {
             ClinicalAssessments: null,
