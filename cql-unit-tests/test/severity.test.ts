@@ -2,6 +2,18 @@ import { buildDefaultClinicalAssessmentParameters } from "../helpers/builders";
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('severity with parameter overrides', () => {
+    it('returns null when all inputs are null', () => {
+        const cqlExpressionParameters = {
+            IgnoreFallbackResourceValues: true,
+            PatientData: null,
+            RiskFactors: null,
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({}),
+        };
+
+        const severity = executeAssessmentCQLExpression(cqlExpressionParameters, 'Severity Classification');
+        expect(severity).toEqual(null);
+    });
+
     test.each`
         respiratoryFailure  | septicShock   | multiOrganDysfunction | expectedCriticalSeverity
         ${true}             | ${false}      | ${false}              | ${true}
