@@ -15,6 +15,8 @@ Install the following:
 
 To run the unit tests with the latest CQL code, you need to have the above dependencies installed on your machine.
 
+From the covid-ed-ig root directory, run the command `npm run test:with-setup`. This will run the following commands:
+
 1. In the covid-ed-ig directory run `./_genonce.sh` script.
    - If you get an 'ig publisher not found' message, run `bash _updatePublisher.sh --force --yes --skip-ping` script.
      Then run `./_genonce.sh` script to generate the ELM (json) of the CQL. The output will be located in the `/output` directory
