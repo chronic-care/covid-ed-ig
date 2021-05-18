@@ -138,13 +138,17 @@ define ImagingResultList: {
   C19.ClinicalAssessments.CTConcerning
 }
 
+// Returns null if all lab results are null
 define LabResultCount:
   if (C19.ClinicalAssessments.ConcerningLabCount is not null and C19.ClinicalAssessments.ConcerningLabCount = 0) then 1
   else if (C19.ClinicalAssessments.ConcerningLabCount is not null) then C19.ClinicalAssessments.ConcerningLabCount
+  else if not exists LabResultList then null
   else Count(LabResultList result where result is not null)
 
+// Returns null if all imaging results are null
 define ImagingResultCount:
-  Count(ImagingResultList result where result is not null)
+  if not exists ImagingResultList then null
+  else Count(ImagingResultList result where result is not null)
 
 // TODO Always returns count of 0 or 1 in Javascript engine... Bug?
 /*
@@ -152,12 +156,18 @@ define ConcerningImagingCount:
   Count(ImagingResultList result where result is true)
 */
 
+// Returns null if all imaging results are null
 define ConcerningImagingCount:
+  if not exists ImagingResultList then null
+  else
   (if C19.ClinicalAssessments.ChestXRayConcerning is true then 1 else 0)
     + (if C19.ClinicalAssessments.UltrasoundConcerning is true then 1 else 0)
     + (if C19.ClinicalAssessments.CTConcerning is true then 1 else 0)
 
+// Returns null if all lab results are null
 define ConcerningLabCount:
+  if (not exists LabResultList and C19.ClinicalAssessments.ConcerningLabCount is null) then null
+  else
   Coalesce(
     C19.ClinicalAssessments.ConcerningLabCount,
     Count(LabResultList result where result.Flag is true)

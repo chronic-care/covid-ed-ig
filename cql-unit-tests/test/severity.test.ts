@@ -2,7 +2,7 @@ import { buildDefaultClinicalAssessmentParameters } from "../helpers/builders";
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('severity with parameter overrides', () => {
-    it.skip('returns null when all inputs are null', () => {
+    it('returns null when all inputs are null', () => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: null,

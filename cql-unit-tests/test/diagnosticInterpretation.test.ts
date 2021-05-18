@@ -11,7 +11,7 @@ import { LabResultBuilder } from "./builders/Observation/LabResult";
 import { DiagnosticSummary } from "../types/summary";
 
 describe('diagnostic interpretation with parameter overrides', () => {
-    it.skip('return null when all inputs are null', () => {
+    it('return null when all inputs are null', () => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: null,
@@ -29,7 +29,7 @@ describe('diagnostic interpretation with parameter overrides', () => {
         ${1}               | ${1}
         ${null}            | ${0}
         ${5}               | ${5}
-    `(`returns expectedConcerningLabCount=$expectedConcerningLabCount when values 
+    `(`returns expectedConcerningLabCount=$expectedConcerningLabCount when values
     are concerningLabCount=$concerningLabCount `, ({concerningLabCount, expectedConcerningLabCount}) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
@@ -52,9 +52,9 @@ describe('diagnostic interpretation with parameter overrides', () => {
         ${true}             | ${true}              | ${true}      | ${3}
         ${true}             | ${false}             | ${true}      | ${2}
         ${false}            | ${false}             | ${true}      | ${1}
-     
-    `(`returns expectedConcerningImagingCount=$expectedConcerningImagingCount when values 
-    are chestXRayConcerning=$chestXRayConcerning, ultrasoundConcerning=$ultrasoundConcerning, 
+
+    `(`returns expectedConcerningImagingCount=$expectedConcerningImagingCount when values
+    are chestXRayConcerning=$chestXRayConcerning, ultrasoundConcerning=$ultrasoundConcerning,
      cTConcerning=$cTConcerning`, ({ chestXRayConcerning, ultrasoundConcerning, cTConcerning, expectedConcerningImagingCount }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
@@ -80,9 +80,9 @@ describe('diagnostic interpretation with parameter overrides', () => {
         ${true}             | ${true}              | ${true}      | ${3}               | ${6}
         ${true}             | ${false}             | ${true}      | ${1}               | ${3}
         ${false}            | ${false}             | ${true}      | ${null}            | ${1}
-     
-    `(`returns expectedDiagnosticInterpretation=$expectedDiagnosticInterpretation when values 
-    are chestXRayConcerning=$chestXRayConcerning, ultrasoundConcerning=$ultrasoundConcerning, 
+
+    `(`returns expectedDiagnosticInterpretation=$expectedDiagnosticInterpretation when values
+    are chestXRayConcerning=$chestXRayConcerning, ultrasoundConcerning=$ultrasoundConcerning,
      cTConcerning=$cTConcerning`, ({ chestXRayConcerning, ultrasoundConcerning, cTConcerning, concerningLabCount, expectedDiagnosticInterpretation }) => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
