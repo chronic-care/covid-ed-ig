@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test:with-setup": "./cql-unit-tests/bin/test-setup.sh"
+  },
   "devDependencies": {
     "jsonfile": "^6.1.0",
     "minimist": "^1.2.5"
