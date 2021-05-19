@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "test:with-setup": "./cql-unit-tests/bin/test-setup.sh"
+    "test:initial-setup": "cql-unit-tests/bin/setup-tests.sh",
+    "test": "cql-unit-tests/bin/run-tests.sh",
+    "test:rerun": "cd cql-unit-tests && npm test"
   },
   "devDependencies": {
     "jsonfile": "^6.1.0",
