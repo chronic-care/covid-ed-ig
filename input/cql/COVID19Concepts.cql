@@ -78,8 +78,10 @@ code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood 
 
 code "Heart rate": '8867-4' from "LOINC" display 'Heart rate'
 code "Oxygen saturation": '2708-6' from "LOINC" display 'Oxygen saturation'
+code "Pulse oximetry": '59408-5' from LOINC display 'Oxygen saturation in Arterial blood by Pulse oximetry'
 code "Respiratory rate": '9279-1' from "LOINC" display 'Respiratory rate'
 code "Body temperature": '8310-5' from "LOINC" display 'Body temperature'
 code "Body height": '8302-2' from "LOINC" display 'Body height'
 code "Body weight": '29463-7' from "LOINC" display 'Body weight'
 code "Body mass index": '39156-5' from "LOINC" display 'Body mass index'
+code "Inhaled oxygen flow rate": '3151-8' from "LOINC" display 'Inhaled oxygen flow rate'
