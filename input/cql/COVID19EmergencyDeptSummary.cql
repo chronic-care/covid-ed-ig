@@ -54,6 +54,7 @@ define SmartPhrases: {
 define DispositionSummary: {
   ObtainDiagnostics: "Recommend Obtain Diagnostics",
   DischargeHome: "Recommend Discharge Home",
+  DischargeHomeElevatedRisk: "Recommend Discharge Home Elevated Risk",
   ConsiderAdmission: "Recommend Consider Admission",
   ConsiderDischargingHome: "Recommend Consider Discharging Home",
   SevereAdmission: "Recommend Severe Admission",
@@ -205,6 +206,14 @@ define "Recommend Discharge Home":
   then true
   else false
 
+define "Recommend Discharge Home Elevated Risk":
+  if C19."Is Mild Severity"
+    and (C19."Total Risk Score" > 4
+        or C19."Risk Factors count" > 1)
+    and ConcerningLabsOrImaging is false
+  then true
+  else false
+
 define "Recommend Consider Discharging Home":
   if C19."Is Moderate Severity"
     and C19."Total Risk Score" <= 4
@@ -215,11 +224,16 @@ define "Recommend Consider Discharging Home":
   else false
 
 define "Recommend Consider Admission":
-  if (C19."Is Mild Severity" or C19."Is Moderate Severity")
-    and (ConcerningLabsOrImaging is true
-        or C19."Total Risk Score" > 4
-        or C19."Risk Factors count" > 1)
-    and (LabResultCount >= 1 or ImagingResultCount >= 1)
+  if (C19."Is Mild Severity"
+      and ConcerningLabsOrImaging is true
+      and (LabResultCount >= 1 or ImagingResultCount >= 1)
+    )
+    or (C19."Is Moderate Severity"
+        and (ConcerningLabsOrImaging is true
+            or C19."Total Risk Score" > 4
+            or C19."Risk Factors count" > 1)
+        and (LabResultCount >= 1 or ImagingResultCount >= 1)
+      )
   then true
   else false
 
