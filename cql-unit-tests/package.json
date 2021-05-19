@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@ahryman40k/ts-fhir-types": "^4.0.34",
-    "@chronic-care/fhirclient": "2.3.14",
     "cql-exec-fhir": "^2.0.0",
     "cql-execution": "^2.2.0"
   },
