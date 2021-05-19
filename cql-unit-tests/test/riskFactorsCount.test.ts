@@ -6,7 +6,7 @@ import { CQLExpressionParameters, RiskAssessmentScoreParameters } from "../types
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('risk assessment score', () => {
-    it('return null when all inputs are null', () => {
+    it.skip('return null when all inputs are null', () => {
         const riskAssessmentScoreParameters = buildAllNullRiskAssessmentScoreParameters();
 
         const cqlParams: CQLExpressionParameters = {

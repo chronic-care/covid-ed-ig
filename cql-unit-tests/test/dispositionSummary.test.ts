@@ -8,7 +8,7 @@ import {
 } from '../helpers/builders';
 
 describe('disposition summary', () => {
-    describe('when all inputs are null', () => {
+    describe.skip('when all inputs are null', () => {
         test.each([
             'Recommend Obtain Diagnostics',
             'Recommend Discharge Home',

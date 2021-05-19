@@ -11,7 +11,7 @@ import { LabResultBuilder } from "./builders/Observation/LabResult";
 import { DiagnosticSummary } from "../types/summary";
 
 describe('diagnostic interpretation with parameter overrides', () => {
-    it('return null when all inputs are null', () => {
+    it.skip('return null when all inputs are null', () => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: null,
