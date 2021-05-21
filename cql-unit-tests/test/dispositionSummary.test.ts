@@ -72,8 +72,8 @@ describe('disposition summary', () => {
 
     test.each([
             ['mild, concerning lab, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(1).build(), {}],
-            ['mild, Total Risk Score > 4, ImagingResultCount >= 1', true, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().withNoConcerningImaging().build(), {}],
-            ['mild, Risk Factors Count > 1, ImagingResultCount >= 1', true, new ClinicalAssessmentBuilder().withMildSeverity().withNoConcerningImaging().build(), riskFactorsCountOfTwo],
+            ['mild, Total Risk Score > 4, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().withNoConcerningImaging().build(), {}],
+            ['mild, Risk Factors Count > 1, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withNoConcerningImaging().build(), riskFactorsCountOfTwo],
             ['moderate, concerning lab, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build(), {}],
             ['moderate, Total Risk Score > 4, ImagingResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withRiskScoreOfFive().withNoConcerningImaging().build(), {}],
             ['moderate, Risk Factors Count > 1, ImagingResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningImaging().build(), riskFactorsCountOfTwo],
