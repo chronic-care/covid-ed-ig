@@ -1,26 +1,26 @@
 import { ClinicalAssessmentsParameters } from '../../types/parameter';
 
 export class ClinicalAssessmentBuilder  {
-    private anyMildCOVIDSymptoms = null;
-    private respiratoryRate = null;
-    private o2Saturation = null;
-    private heartRate = null;
-    private systolicBloodPressure = null;
-    private temperatureF = null;
-    private alertness = null;
-    private supplementalOxygen = null;
-    private performanceStatus = null;
-    private respiratoryDiseaseSymptoms = null;
-    private chestXRayConcerning = null;
-    private ultrasoundConcerning = null;
-    private cTConcerning = null;
-    private lungInfiltratesOver50 = null;
-    private respiratoryDiseaseImagingEvidence = null;
-    private paO2FiO2Ratio =  null;
-    private respiratoryFailure = null;
-    private septicShock = null;
-    private multiorganDysfunction = null;
-    private concerningLabCount = null;
+    private anyMildCOVIDSymptoms: boolean | null = null;
+    private respiratoryRate: number | null = null;
+    private o2Saturation: number | null = null;
+    private heartRate: number | null = null;
+    private systolicBloodPressure: number | null = null;
+    private temperatureF: number | null = null;
+    private alertness: string | null = null;
+    private supplementalOxygen: boolean | null = null;
+    private performanceStatus: string | null = null;
+    private respiratoryDiseaseSymptoms: boolean | null = null;
+    private chestXRayConcerning: boolean | null = null;
+    private ultrasoundConcerning: boolean | null = null;
+    private cTConcerning: boolean | null = null;
+    private lungInfiltratesOver50: boolean | null = null;
+    private respiratoryDiseaseImagingEvidence: boolean | null = null;
+    private paO2FiO2Ratio: number | null =  null;
+    private respiratoryFailure: boolean | null = null;
+    private septicShock: boolean | null = null;
+    private multiorganDysfunction: boolean | null = null;
+    private concerningLabCount: number | null = null;
 
     public withConcerningLab = (concerningLabCount: number) => {
         this.concerningLabCount = concerningLabCount;

@@ -10,6 +10,7 @@ describe('disposition summary', () => {
     it.each([
         'Recommend Obtain Diagnostics',
         'Recommend Discharge Home',
+        'Recommend Discharge Home Elevated Risk',
         'Recommend Consider Discharging Home',
         'Recommend Consider Admission',
         'Recommend Severe Admission',
@@ -33,7 +34,7 @@ describe('disposition summary', () => {
             ['imaging result count >= 1', false, new ClinicalAssessmentBuilder().withConcerningImagingOfOne().build(), {}],
             ['mild and risk score < 5 or risk factors <= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
         ]
-    )('For %p, Recommend Obtain Diagnostics is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
+    )('For %p, Recommend Obtain Diagnostics is %p', (title: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Obtain Diagnostics');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
@@ -42,12 +43,12 @@ describe('disposition summary', () => {
     it.each([
             ['mild, total risk score <= 4, risk factor count <= 1, ConcerningLabsorImaging is false', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
             ['severe', false, new ClinicalAssessmentBuilder().withSevereSeverity().build(), {}],
-            ['mild, totalRiskScore 5', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive(), {}],
+            ['mild, totalRiskScore 5', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().build(), {}],
             ['mild, riskFactorCount 2', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), riskFactorsCountOfTwo],
             ['mild, ConcerningLab 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(1).build(), riskFactorsCountOfTwo],
             ['mild, ConcerningImaging 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningImagingOfOne().build(), riskFactorsCountOfTwo],
         ]
-    )('For %p, Recommend Discharge Home is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
+    )('For %p, Recommend Discharge Home is %p', (title: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Discharge Home');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
@@ -57,11 +58,11 @@ describe('disposition summary', () => {
             ['moderate', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningImaging().build(), {}],
             ['mild, total risk score <= 4, risk factor count <= 1, ConcerningLabsorImaging is false', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
             ['moderate, totalRiskScore 5', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().build(), {}],
-            ['moderate, riskFactorCount 2', false, new ClinicalAssessmentBuilder().withModerateSeverity(), riskFactorsCountOfTwo],
-            ['moderate, ConcerningLab 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1), {}],
-            ['moderate, ConcerningImaging 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningImagingOfOne(), {}],
+            ['moderate, riskFactorCount 2', false, new ClinicalAssessmentBuilder().withModerateSeverity().build(), riskFactorsCountOfTwo],
+            ['moderate, ConcerningLab 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build(), {}],
+            ['moderate, ConcerningImaging 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningImagingOfOne().build(), {}],
         ]
-    )('For %p, Recommend Consider Discharging Home is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
+    )('For %p, Recommend Consider Discharging Home is %p', (title: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Consider Discharging Home');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
@@ -76,10 +77,10 @@ describe('disposition summary', () => {
             ['moderate, Risk Factors Count > 1, ImagingResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningImaging().build(), riskFactorsCountOfTwo],
             ['severe', false, new ClinicalAssessmentBuilder().withSevereSeverity().build(), {}],
             ['critical', false, new ClinicalAssessmentBuilder().withCriticalSeverity().build(), {}],
-            ['mild, no concerning labs/imaging, Risk Score <= 4, Risk Factors Count <= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withNoConcerningLabOrImaging(), {}],
-            ['moderate, no concerning labs/imaging, Risk Score <= 4, Risk Factors Count <= 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningLabOrImaging(), {}],
+            ['mild, no concerning labs/imaging, Risk Score <= 4, Risk Factors Count <= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withNoConcerningLabOrImaging().build(), {}],
+            ['moderate, no concerning labs/imaging, Risk Score <= 4, Risk Factors Count <= 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningLabOrImaging().build(), {}],
         ]
-    )('For %p, Recommend Consider Admission is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
+    )('For %p, Recommend Consider Admission is %p', (title: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Consider Admission');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
@@ -91,7 +92,7 @@ describe('disposition summary', () => {
             ['moderate severity', false, new ClinicalAssessmentBuilder().withModerateSeverity().build()],
             ['critical severity', false, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
         ]
-    )('For %p, Recommend Severe Admission is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
+    )('For %p, Recommend Severe Admission is %p', (title: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Severe Admission');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
@@ -103,7 +104,7 @@ describe('disposition summary', () => {
             ['moderate severity', false, new ClinicalAssessmentBuilder().withModerateSeverity().build()],
             ['severe severity', false, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
         ]
-    )('For %p, Recommend Critical Admission is %p', (title: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
+    )('For %p, Recommend Critical Admission is %p', (title: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Critical Admission');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
