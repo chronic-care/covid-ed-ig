@@ -2,7 +2,7 @@ import { buildDefaultClinicalAssessmentParameters } from "../helpers/builders";
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('risk percent returns correct values', () => {
-    it.skip('risk percent returns null when riskScore is null', () => {
+    test('risk percent returns null when riskScore is null', () => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: null,

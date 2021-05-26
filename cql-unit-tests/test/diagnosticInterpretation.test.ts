@@ -1,30 +1,23 @@
-import {
-    buildDefaultClinicalAssessmentParameters,
-    buildDefaultRiskAssessmentScoreParameters
-} from '../helpers/builders';
-import {
-    executeAssessmentCQLExpression,
-    executeSummaryCQLExpression,
-    executeSummaryNoParams
-} from '../helpers/cqlService';
+import { buildDefaultClinicalAssessmentParameters } from '../helpers/builders';
+import { executeSummaryCQLExpression, executeSummaryNoParams } from '../helpers/cqlService';
 import { LabResultBuilder } from "./builders/Observation/LabResult";
 import { DiagnosticSummary } from "../types/summary";
 
 describe('diagnostic interpretation with parameter overrides', () => {
-    it.skip('return null when all inputs are null', () => {
+    it('returns 0 when all inputs are null', () => {
         const cqlExpressionParameters = {
             IgnoreFallbackResourceValues: true,
             PatientData: null,
             RiskFactors: null,
-            ClinicalAssessments: buildDefaultClinicalAssessmentParameters({}),
+            ClinicalAssessments: buildDefaultClinicalAssessmentParameters(),
         };
 
-        const results = executeAssessmentCQLExpression(cqlExpressionParameters, 'ConcerningLabCount');
+        const results = executeSummaryCQLExpression(cqlExpressionParameters, 'ConcerningLabCount');
 
-        expect(results).toBe(null);
+        expect(results).toBe(0);
     });
 
-    test.each`
+    it.each`
         concerningLabCount | expectedConcerningLabCount
         ${1}               | ${1}
         ${null}            | ${0}
@@ -45,7 +38,7 @@ describe('diagnostic interpretation with parameter overrides', () => {
         expect(CQLConcerningLabCount).toEqual(expectedConcerningLabCount);
     });
 
-    test.each`
+    it.each`
         chestXRayConcerning | ultrasoundConcerning | cTConcerning | expectedConcerningImagingCount
         ${true}             | ${false}             | ${false}     | ${1}
         ${true}             | ${true}              | ${false}     | ${2}
@@ -72,7 +65,7 @@ describe('diagnostic interpretation with parameter overrides', () => {
         expect(CQLConcerningImagingCount).toEqual(expectedConcerningImagingCount);
     });
 
-    test.each`
+    it.each`
         chestXRayConcerning | ultrasoundConcerning | cTConcerning | concerningLabCount | expectedDiagnosticInterpretation
         ${true}             | ${false}             | ${false}     | ${1}               | ${2}
         ${true}             | ${true}              | ${false}     | ${2}               | ${4}
@@ -145,9 +138,7 @@ describe('diagnostic interpretation with fhir repsonses', () => {
 
 
 
-    test('Concerning lab count for diagnostic interpretation ',() => {
-
-
+    it('return 1 for Concerning lab count in diagnostic interpretation ',() => {
         const concerningLabCount: DiagnosticSummary = executeSummaryNoParams('ConcerningLabCount', [
             altLabResult,
             creatinineLabResult,

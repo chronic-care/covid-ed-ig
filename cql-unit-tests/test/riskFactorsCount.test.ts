@@ -6,7 +6,7 @@ import { CQLExpressionParameters, RiskAssessmentScoreParameters } from "../types
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 
 describe('risk assessment score', () => {
-    it.skip('return null when all inputs are null', () => {
+    it('returns 0 when all inputs are null', () => {
         const riskAssessmentScoreParameters = buildAllNullRiskAssessmentScoreParameters();
 
         const cqlParams: CQLExpressionParameters = {
@@ -18,10 +18,10 @@ describe('risk assessment score', () => {
 
         const results = executeAssessmentCQLExpression(cqlParams, 'Risk Factors count');
 
-        expect(results).toBe(null);
+        expect(results).toBe(0);
     });
 
-    it('return 0 as the risk assessment score when all values are false', () => {
+    it('returns 0 as the risk assessment score when all values are false', () => {
         const riskAssessmentScoreParameters = buildDefaultRiskAssessmentScoreParameters();
 
         const cqlParams: CQLExpressionParameters = {
@@ -36,7 +36,7 @@ describe('risk assessment score', () => {
         expect(results).toBe(0);
     });
 
-    it('return 13 as the risk assessment score when all values are true', () => {
+    it('returns 13 as the risk assessment score when all values are true', () => {
         const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
             Cancer: true,
             CardiovascularDisease: true,

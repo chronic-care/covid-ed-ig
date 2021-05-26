@@ -1,32 +1,29 @@
 import { ClinicalAssessmentsParameters, RiskAssessmentScoreParameters } from "../types/parameter";
-import { executeAssessmentCQLExpression, executeSummaryCQLExpression } from "../helpers/cqlService";
+import { executeSummaryCQLExpression } from "../helpers/cqlService";
 import { ClinicalAssessmentBuilder } from './builders/ClinicalAssessmentBuilder';
 import { buildCQLExpressionParameters, riskFactorsCountOfTwo } from "./helpers";
 import {
-    buildAllNullRiskAssessmentScoreParameters,
-    buildDefaultClinicalAssessmentParameters
+    buildAllNullRiskAssessmentScoreParameters
 } from '../helpers/builders';
 
 describe('disposition summary', () => {
-    describe.skip('when all inputs are null', () => {
-        test.each([
-            'Recommend Obtain Diagnostics',
-            'Recommend Discharge Home',
-            'Recommend Consider Discharging Home',
-            'Recommend Consider Admission',
-            'Recommend Severe Admission',
-            'Recommend Critical Admission',
-        ])('%p returns null', (expressionName: string) => {
-            const cqlExpressionParameters = buildCQLExpressionParameters(
-                {},
-                buildAllNullRiskAssessmentScoreParameters(),
-            );
-            const disposition = executeSummaryCQLExpression(cqlExpressionParameters, expressionName);
-            expect(disposition).toEqual(null);
-        });
+    it.each([
+        'Recommend Obtain Diagnostics',
+        'Recommend Discharge Home',
+        'Recommend Consider Discharging Home',
+        'Recommend Consider Admission',
+        'Recommend Severe Admission',
+        'Recommend Critical Admission',
+    ])('when all inputs are null, %p returns false', (expressionName: string) => {
+        const cqlExpressionParameters = buildCQLExpressionParameters(
+            {},
+            buildAllNullRiskAssessmentScoreParameters(),
+        );
+        const disposition = executeSummaryCQLExpression(cqlExpressionParameters, expressionName);
+        expect(disposition).toEqual(false);
     });
 
-    test.each([
+    it.each([
             ['mild, total risk score >= 5', true, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().build(), {}],
             ['mild, risk factors count > 1', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), riskFactorsCountOfTwo],
             ['moderate', true, new ClinicalAssessmentBuilder().withModerateSeverity().build(), {}],
@@ -42,7 +39,7 @@ describe('disposition summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['mild, total risk score <= 4, risk factor count <= 1, ConcerningLabsorImaging is false', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
             ['severe', false, new ClinicalAssessmentBuilder().withSevereSeverity().build(), {}],
             ['mild, totalRiskScore 5', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive(), {}],
@@ -56,7 +53,7 @@ describe('disposition summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['moderate', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningImaging().build(), {}],
             ['mild, total risk score <= 4, risk factor count <= 1, ConcerningLabsorImaging is false', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
             ['moderate, totalRiskScore 5', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().build(), {}],
@@ -70,7 +67,7 @@ describe('disposition summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['mild, concerning lab, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(1).build(), {}],
             ['mild, Total Risk Score > 4, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().withNoConcerningImaging().build(), {}],
             ['mild, Risk Factors Count > 1, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withNoConcerningImaging().build(), riskFactorsCountOfTwo],
@@ -88,7 +85,7 @@ describe('disposition summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['severe severity', true, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
             ['mild severity', false, new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate severity', false, new ClinicalAssessmentBuilder().withModerateSeverity().build()],
@@ -100,7 +97,7 @@ describe('disposition summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['critical severity', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['mild severity', false, new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate severity', false, new ClinicalAssessmentBuilder().withModerateSeverity().build()],
