@@ -86,16 +86,17 @@ describe('disposition summary', () => {
     });
 
     it.each([
-            ['mild, concerning lab, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(1).build(), {}],
-            ['mild, Total Risk Score > 4, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().withNoConcerningImaging().build(), {}],
-            ['mild, Risk Factors Count > 1, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withNoConcerningImaging().build(), riskFactorsCountOfTwo],
-            ['moderate, concerning lab, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build(), {}],
+            ['mild, concerning lab = 1, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(1).build(), {}],
+            ['mild, concerning lab =  0, concerning imaging = 0', false, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(0).withNoConcerningImaging().build(), {}],
+            ['moderate, concerning lab = 1, concerning imaging = 0, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).withNoConcerningImaging().build(), {}],
+            ['moderate, concerning lab = 0, concerning imaging = 1, LabResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(0).withConcerningImagingOfOne().build(), {}],
             ['moderate, Total Risk Score > 4, ImagingResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withRiskScoreOfFive().withNoConcerningImaging().build(), {}],
             ['moderate, Risk Factors Count > 1, ImagingResultCount >= 1', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningImaging().build(), riskFactorsCountOfTwo],
+            ['moderate, no concerning labs/imaging, Risk Score <= 4, Risk Factors Count <= 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningLabOrImaging().build(), riskFactorsCountOfOne],
+            ['moderate, Risk Score <= 4, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningImaging().build(), {}],
+            ['moderate, Risk Factors Count <= 1, ImagingResultCount >= 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningImaging().build(), riskFactorsCountOfOne],
             ['severe', false, new ClinicalAssessmentBuilder().withSevereSeverity().build(), {}],
             ['critical', false, new ClinicalAssessmentBuilder().withCriticalSeverity().build(), {}],
-            ['mild, no concerning labs/imaging, Risk Score <= 4, Risk Factors Count <= 1', false, new ClinicalAssessmentBuilder().withMildSeverity().withNoConcerningLabOrImaging().build(), {}],
-            ['moderate, no concerning labs/imaging, Risk Score <= 4, Risk Factors Count <= 1', false, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningLabOrImaging().build(), {}],
         ]
     )('For %p, Recommend Consider Admission is %p', (title: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
