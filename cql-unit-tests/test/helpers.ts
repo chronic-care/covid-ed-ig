@@ -13,6 +13,11 @@ export const considerAdmissionRiskAssessmentOverrides: Partial<RiskAssessmentSco
     Obesity: true,
     RenalDisease: true,
 }
+
+export const riskFactorsCountOfOne: Partial<RiskAssessmentScoreParameters> = {
+    CardiovascularDisease: true,
+}
+
 export const riskFactorsCountOfTwo: Partial<RiskAssessmentScoreParameters> = {
     CardiovascularDisease: true,
     DownsSyndrome: true,

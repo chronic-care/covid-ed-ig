@@ -62,6 +62,12 @@ export class ClinicalAssessmentBuilder  {
         return this;
     }
 
+    public withRiskScoreOfFour = () => {
+        this.respiratoryRate = 22;
+        this.systolicBloodPressure = 91;
+        return this;
+    }
+
     public withConcerningImagingOfOne = () => {
         this.chestXRayConcerning = true;
         return this;
