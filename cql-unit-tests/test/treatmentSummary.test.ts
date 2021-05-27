@@ -22,7 +22,7 @@ describe('treatment summary', () => {
         expect(recommendNonPharma).toEqual(null);
     })
 
-    test.each([
+    it.each([
         ['ObtainDiagnostics', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), obtainDiagnosticsRiskAssessmentOverrides],
         ['DischargeHome', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
         ['ConsiderDischargeHome', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningLabOrImaging().build(), {}],
@@ -31,13 +31,13 @@ describe('treatment summary', () => {
         ['CriticalAdmission', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build(), {}],
         ['none', false, {}, {}],
     ])('For %p disposition, HasAdmissionOrDischargeRecommendation is %p',
-        (disposition: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
+        (disposition: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
             const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
         const hasAdmissionsOrDischargeRecommendation = executeSummaryCQLExpression(cqlExpressionParameters, 'HasAdmissionOrDischargeRecommendation');
         expect(hasAdmissionsOrDischargeRecommendation).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
           ['mild', 'use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
           ['moderate', 'use', new ClinicalAssessmentBuilder().withConcerningLab(1).withMildSeverity().build()],
           ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
@@ -50,7 +50,7 @@ describe('treatment summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['mild', 'use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
@@ -63,7 +63,7 @@ describe('treatment summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['mild', null, new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
@@ -76,7 +76,7 @@ describe('treatment summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['mild', 'do-not-use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate', 'do-not-use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
@@ -89,7 +89,7 @@ describe('treatment summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['mild', 'insufficient-evidence', new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
@@ -102,7 +102,7 @@ describe('treatment summary', () => {
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
-    test.each([
+    it.each([
             ['mild', null, new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate', null, new ClinicalAssessmentBuilder().withModerateSeverity().build()],
             ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
