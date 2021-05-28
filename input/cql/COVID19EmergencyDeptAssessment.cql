@@ -620,7 +620,7 @@ define "Risk Factors count":
     + (if "Has Steroid Usage Risk Factor" then 1 else 0)
 
 define "All Active Conditions":
-  C3F.Confirmed(C3F.ActiveOrRecurring([Condition]))
+  C3F.ActiveOrRecurring([Condition])
 
 define "Has Cancer Risk Factor":
   Coalesce(
