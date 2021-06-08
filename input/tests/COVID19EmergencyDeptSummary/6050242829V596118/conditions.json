@@ -1,0 +1,1118 @@
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 18,
+  "link": [
+    {
+      "relation": "first",
+      "url": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition?category=problem-list-item&patient=6050242829V596118&_count=30&page=1"
+    },
+    {
+      "relation": "self",
+      "url": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition?category=problem-list-item&patient=6050242829V596118&_count=30&page=1"
+    },
+    {
+      "relation": "last",
+      "url": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition?category=problem-list-item&patient=6050242829V596118&_count=30&page=1"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-TMRVWCRYBCFQ5OBVDA46IQ45WA000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-TMRVWCRYBCFQ5OBVDA46IQ45WA000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "I11.0",
+              "display": "Hypertensive heart disease with heart failure"
+            }
+          ],
+          "text": "Hypertensive heart disease with heart failure"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1960-03-25T03:42:52Z",
+        "recordedDate": "1960-03-24",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-PXUR7HRI6FGBYIYNMDLPS6VTWM000000",
+          "display": "DR. JOHN248 SMITH811 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-3ZBH7SJ7QYYJURYTX7QBNFHGPE000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-3ZBH7SJ7QYYJURYTX7QBNFHGPE000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "E10.9",
+              "display": "Type 1 diabetes mellitus without complications"
+            }
+          ],
+          "text": "Type 1 diabetes mellitus without complications"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1960-03-25T03:42:52Z",
+        "recordedDate": "1960-03-24"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-OIJW7XNS2PFEBB725M7ZWKOD7U000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-OIJW7XNS2PFEBB725M7ZWKOD7U000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "7200002",
+              "display": "Alcoholism"
+            }
+          ],
+          "text": "Alcoholism"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1960-03-25T03:42:52Z",
+        "recordedDate": "1960-03-24",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-PXUR7HRI6FGBYIYNMDLPS6VTWM000000",
+          "display": "DR. JOHN248 SMITH811 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-FGHTPA2H4OXQTHCKJ4NS4XFISQ000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-FGHTPA2H4OXQTHCKJ4NS4XFISQ000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "302870006",
+              "display": "Hypertriglyceridemia (disorder)"
+            }
+          ],
+          "text": "Hypertriglyceridemia (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1963-03-29T03:42:52Z",
+        "recordedDate": "1963-03-28"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-TOZKKMTS575BZERRRUSAH67ZPQ000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-TOZKKMTS575BZERRRUSAH67ZPQ000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "N18.1",
+              "display": "Chronic kidney disease, stage 1"
+            }
+          ],
+          "text": "Chronic kidney disease, stage 1"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1965-05-21T02:42:52Z",
+        "recordedDate": "1965-05-20"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-Q6X3HRKESVI3J4OL44NU5WE6SU000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-Q6X3HRKESVI3J4OL44NU5WE6SU000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "127013003",
+              "display": "Diabetic renal disease (disorder)"
+            }
+          ],
+          "text": "Diabetic renal disease (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1965-05-21T02:42:52Z",
+        "recordedDate": "1965-05-20",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-PXUR7HRI6FGBYIYNMDLPS6VTWM000000",
+          "display": "DR. JOHN248 SMITH811 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-HSUFUW3MDRXTJSP7M2T2RK3YPE000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-HSUFUW3MDRXTJSP7M2T2RK3YPE000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "431856006",
+              "display": "Chronic kidney disease stage 2 (disorder)"
+            }
+          ],
+          "text": "Chronic kidney disease stage 2 (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1966-09-16T02:42:52Z",
+        "recordedDate": "1966-09-15",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-HA4SMVA7UWQFBSXNA27HHQS7ZE000000",
+          "display": "DR. THOMAS359 REYNOLDS206 PHD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-5IF56L4YIFD4V2WF67N4OHF32E000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-5IF56L4YIFD4V2WF67N4OHF32E000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "90781000119102",
+              "display": "Microalbuminuria due to type 2 diabetes mellitus (disorder)"
+            }
+          ],
+          "text": "Microalbuminuria due to type 2 diabetes mellitus (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1966-09-16T02:42:52Z",
+        "recordedDate": "1966-09-15"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-CXMFFUAGSAVIM3RLVF4657VSZM000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-CXMFFUAGSAVIM3RLVF4657VSZM000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "80394007",
+              "display": "Hyperglycemia (disorder)"
+            }
+          ],
+          "text": "Hyperglycemia (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1967-12-08T03:42:52Z",
+        "recordedDate": "1967-12-07",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-DBBL6FFRELZQJ64PWDI7FIVXIU000000",
+          "display": "DR. JANE460 DOE922 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-RHA5ILRQUCUSR2WMV2RFDENQ4Y000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-RHA5ILRQUCUSR2WMV2RFDENQ4Y000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "E11.8",
+              "display": "Type 2 diabetes mellitus with unspecified complications"
+            }
+          ],
+          "text": "Type 2 diabetes mellitus with unspecified complications"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1967-12-08T03:42:52Z",
+        "recordedDate": "1967-12-07",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-DBBL6FFRELZQJ64PWDI7FIVXIU000000",
+          "display": "DR. JANE460 DOE922 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-DTCJX5UYW2MALY6HENIH4IKT5Y000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-DTCJX5UYW2MALY6HENIH4IKT5Y000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "M18.11",
+              "display": "Unilateral primary osteoarthritis of first carpometacarpal joint, right hand"
+            }
+          ],
+          "text": "Unilateral primary osteoarthritis of first carpometacarpal joint, right hand"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1977-12-26T03:42:52Z",
+        "recordedDate": "1977-12-25",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-PXUR7HRI6FGBYIYNMDLPS6VTWM000000",
+          "display": "DR. JOHN248 SMITH811 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-5CAAMYLFKP4RBL2OL5LFSJERAU000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-5CAAMYLFKP4RBL2OL5LFSJERAU000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "E10.8",
+              "display": "Type 1 diabetes mellitus with unspecified complications"
+            }
+          ],
+          "text": "Type 1 diabetes mellitus with unspecified complications"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1985-12-27T03:42:52Z",
+        "recordedDate": "1985-12-25",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-DBBL6FFRELZQJ64PWDI7FIVXIU000000",
+          "display": "DR. JANE460 DOE922 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-NTE5BT5MIC2WDNZGRVF5H7TTEI000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-NTE5BT5MIC2WDNZGRVF5H7TTEI000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "G30.9",
+              "display": "Alzheimer's disease, unspecified"
+            }
+          ],
+          "text": "Alzheimer's disease, unspecified"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "1996-04-20T02:42:52Z",
+        "recordedDate": "1996-04-25"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-TTMWQL5JLAHXM2333QKA6HKTUM000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-TTMWQL5JLAHXM2333QKA6HKTUM000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "162573006",
+              "display": "Suspected lung cancer (situation)"
+            }
+          ],
+          "text": "Suspected lung cancer (situation)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "2001-04-29T02:42:52Z",
+        "recordedDate": "2001-04-28",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-HA4SMVA7UWQFBSXNA27HHQS7ZE000000",
+          "display": "DR. THOMAS359 REYNOLDS206 PHD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-QNVPLGQGBJEF2IZG6UFKGFKEGQ000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-QNVPLGQGBJEF2IZG6UFKGFKEGQ000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "254637007",
+              "display": "Non-small cell lung cancer (disorder)"
+            }
+          ],
+          "text": "Non-small cell lung cancer (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "2001-05-08T02:42:52Z",
+        "recordedDate": "2001-05-07",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-HA4SMVA7UWQFBSXNA27HHQS7ZE000000",
+          "display": "DR. THOMAS359 REYNOLDS206 PHD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-3WQTX4IT7O7ALEFI4HT2VTCYEE000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-3WQTX4IT7O7ALEFI4HT2VTCYEE000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "424132000",
+              "display": "Non-small cell carcinoma of lung  TNM stage 1 (disorder)"
+            }
+          ],
+          "text": "Non-small cell carcinoma of lung  TNM stage 1 (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "2001-05-09T02:42:52Z",
+        "recordedDate": "2001-05-08",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-DBBL6FFRELZQJ64PWDI7FIVXIU000000",
+          "display": "DR. JANE460 DOE922 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-2IOSN57WVOV6ITL7HI7BQOASG4000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-2IOSN57WVOV6ITL7HI7BQOASG4000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "53741008",
+              "display": "Coronary Heart Disease"
+            }
+          ],
+          "text": "Coronary Heart Disease"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "2004-11-05T03:42:52Z",
+        "recordedDate": "2004-11-04",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-HA4SMVA7UWQFBSXNA27HHQS7ZE000000",
+          "display": "DR. THOMAS359 REYNOLDS206 PHD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Condition/I2-PF42IPT545ZHRHT7Q52YBXMIOA000000",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "I2-PF42IPT545ZHRHT7Q52YBXMIOA000000",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "resolved",
+              "display": "Resolved"
+            }
+          ],
+          "text": "Resolved"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/R4/codesystem-condition-ver-status.html",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ],
+          "text": "Unconfirmed"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "444814009",
+              "display": "Viral sinusitis (disorder)"
+            }
+          ],
+          "text": "Viral sinusitis (disorder)"
+        },
+        "subject": {
+          "reference": "Patient/6050242829V596118",
+          "display": "Mrs. Sheba703 Harris789"
+        },
+        "onsetDateTime": "2005-10-18T02:42:52Z",
+        "abatementDateTime": "2005-11-01T03:42:52Z",
+        "recordedDate": "2005-10-17",
+        "asserter": {
+          "reference": "https://sandbox-api.va.gov/services/clinical-fhir/v0/r4/Practitioner/I2-PXUR7HRI6FGBYIYNMDLPS6VTWM000000",
+          "display": "DR. JOHN248 SMITH811 MD"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

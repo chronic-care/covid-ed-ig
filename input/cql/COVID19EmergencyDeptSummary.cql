@@ -323,7 +323,7 @@ define function ReportObservations(ObsList List<Observation>):
     sort by Date asc
 
 define function ReportLabObservation(o FHIR.Observation):
-  if (o is null) then null
+  if (o is null or o.value is null or o.value.value is null) then null
   else
     {
       Date:   ToString(C3F.FindDate(o)),
