@@ -252,7 +252,7 @@ define "Recommend Critical Admission":
 // DispositionSummary includes a recommendation, other than ObtainDiagnostics.
 define HasAdmissionOrDischargeRecommendation:
   DispositionSummary.ConsiderAdmission or DispositionSummary.SevereAdmission or DispositionSummary.CriticalAdmission
-  or DispositionSummary.DischargeHome or DispositionSummary.ConsiderDischargingHome
+  or DispositionSummary.DischargeHome or DispositionSummary.ConsiderDischargingHome or DispositionSummary.DischargeHomeElevatedRisk
 
 define "Recommend Non-Pharmacologic Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null

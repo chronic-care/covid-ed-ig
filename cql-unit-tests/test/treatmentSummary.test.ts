@@ -23,9 +23,10 @@ describe('treatment summary', () => {
     })
 
     it.each([
-        ['ObtainDiagnostics', false, new ClinicalAssessmentBuilder().withMildSeverity().build(), obtainDiagnosticsRiskAssessmentOverrides],
+        ['ObtainDiagnostics', false, new ClinicalAssessmentBuilder().withModerateSeverity().build(), obtainDiagnosticsRiskAssessmentOverrides],
         ['DischargeHome', true, new ClinicalAssessmentBuilder().withMildSeverity().build(), {}],
         ['ConsiderDischargeHome', true, new ClinicalAssessmentBuilder().withModerateSeverity().withNoConcerningLabOrImaging().build(), {}],
+        ['DischargeHomeElevatedRisk', true, new ClinicalAssessmentBuilder().withMildSeverity().withRiskScoreOfFive().withNoConcerningImaging().build(), {}],
         ['ConsiderAdmission', true, new ClinicalAssessmentBuilder().withMildSeverity().withConcerningLab(1).build(), considerAdmissionRiskAssessmentOverrides],
         ['SevereAdmission', true, new ClinicalAssessmentBuilder().withSevereSeverity().build(), {}],
         ['CriticalAdmission', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build(), {}],
@@ -33,8 +34,8 @@ describe('treatment summary', () => {
     ])('For %p disposition, HasAdmissionOrDischargeRecommendation is %p',
         (disposition: string, expectedRecommendation: boolean, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides: Partial<RiskAssessmentScoreParameters>) => {
             const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, riskAssessmentOverrides);
-        const hasAdmissionsOrDischargeRecommendation = executeSummaryCQLExpression(cqlExpressionParameters, 'HasAdmissionOrDischargeRecommendation');
-        expect(hasAdmissionsOrDischargeRecommendation).toEqual(expectedRecommendation);
+            const hasAdmissionsOrDischargeRecommendation = executeSummaryCQLExpression(cqlExpressionParameters, 'HasAdmissionOrDischargeRecommendation');
+            expect(hasAdmissionsOrDischargeRecommendation).toEqual(expectedRecommendation);
     });
 
     it.each([
