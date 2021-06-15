@@ -26,6 +26,18 @@
         "code": "7799-0"
       }, {
         "code": "3246-6"
+      }, {
+        "code": "91556-1"
+      }, {
+        "code": "48058-2"
+      }, {
+        "code": "48066-5"
+      }, {
+        "code": "71427-9"
+      }, {
+        "code": "48065-7"
+      }, {
+        "code": "48067-3"
       } ]
     } ]
   },
@@ -37,6 +49,24 @@
     }, {
       "system": "http://loinc.org",
       "code": "3246-6"
+    }, {
+      "system": "http://loinc.org",
+      "code": "91556-1"
+    }, {
+      "system": "http://loinc.org",
+      "code": "48058-2"
+    }, {
+      "system": "http://loinc.org",
+      "code": "48066-5"
+    }, {
+      "system": "http://loinc.org",
+      "code": "71427-9"
+    }, {
+      "system": "http://loinc.org",
+      "code": "48065-7"
+    }, {
+      "system": "http://loinc.org",
+      "code": "48067-3"
     } ]
   }
 }

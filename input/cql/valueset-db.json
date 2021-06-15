@@ -37400,6 +37400,30 @@
       {
         "code": "3246-6",
         "system": "http://loinc.org"
+      },
+      {
+        "code": "91556-1",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "48058-2",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "48066-5",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "71427-9",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "48065-7",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "48067-3",
+        "system": "http://loinc.org"
       }
     ]
   },
