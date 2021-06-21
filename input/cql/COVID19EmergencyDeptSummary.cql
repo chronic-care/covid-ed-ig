@@ -275,8 +275,7 @@ define "Recommend Steroids Treatment":
 
 define "Recommend Remdesivir Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if C19."Is Mild Severity" then 'insufficient-evidence'
-  else if C19."Is Moderate Severity" then 'use'
+  else if C19."Is Mild Severity" or C19."Is Moderate Severity" then 'insufficient-evidence'
   else null
 
 define "Recommend SteroidsAndOrRemdesivir Treatment":

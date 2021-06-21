@@ -92,7 +92,7 @@ describe('treatment summary', () => {
 
     it.each([
             ['mild', 'insufficient-evidence', new ClinicalAssessmentBuilder().withMildSeverity().build()],
-            ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['moderate', 'insufficient-evidence', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
             ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
