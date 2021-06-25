@@ -30,7 +30,7 @@ export interface ClinicalAssessmentsParameters {
     CTConcerning: boolean | null,
     LungInfiltratesOver50: boolean | null,
     RespiratoryDiseaseImagingEvidence: boolean | null,
-    PaO2FiO2Ratio: number | null,
+    PaO2FiO2RatioLessThan300: boolean | null,
     RespiratoryFailure: boolean | null,
     SepticShock: boolean | null,
     MultiorganDysfunction: boolean | null,

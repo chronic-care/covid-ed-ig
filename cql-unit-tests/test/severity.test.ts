@@ -49,8 +49,8 @@ describe('severity with parameter overrides', () => {
         ${94}          | ${null}         | ${null}  | ${null}         |  ${false}
         ${null}        | ${35}           | ${null}  | ${null}         | ${true}
         ${null}        | ${30}           | ${null}  | ${null}         | ${false}
-        ${null}        | ${null}         | ${300}   | ${null}         | ${false}
-        ${null}        | ${null}         | ${299}   | ${null}         | ${true}
+        ${null}        | ${null}         | ${false} | ${null}         | ${false}
+        ${null}        | ${null}         | ${true}  | ${null}         | ${true}
         ${null}        | ${null}         | ${null}  | ${true}         | ${true}
     `(`returns expectedSevereSeverity=$expectedSevereSeverity when values are ,
     o2Saturation=$o2Saturation, respiratoryRate=$respiratoryRate, paO2FiO2=$paO2FiO2, lungInfiltrates=$lungInfiltrates`, ({
@@ -63,7 +63,7 @@ describe('severity with parameter overrides', () => {
             ClinicalAssessments: buildDefaultClinicalAssessmentParameters({
                 O2Saturation: o2Saturation,
                 RespiratoryRate: respiratoryRate,
-                PaO2FiO2Ratio: paO2FiO2,
+                PaO2FiO2RatioLessThan300: paO2FiO2,
                 LungInfiltratesOver50: lungInfiltrates
             }),
         };

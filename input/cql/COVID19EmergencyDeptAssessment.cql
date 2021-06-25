@@ -62,7 +62,7 @@ parameter ClinicalAssessments Tuple {
   UltrasoundConcerning Boolean,
   CTConcerning Boolean,
   LungInfiltratesOver50 Boolean,
-  PaO2FiO2Ratio Decimal,          // e.g. 300
+  PaO2FiO2RatioLessThan300 Boolean,
   RespiratoryFailure Boolean,
   SepticShock Boolean,
   MultiorganDysfunction Boolean,
@@ -88,7 +88,7 @@ parameter ClinicalAssessments Tuple {
     UltrasoundConcerning: false,
     CTConcerning: false,
     LungInfiltratesOver50: false,
-    PaO2FiO2Ratio: 400.0,
+    PaO2FiO2RatioLessThan300: false,
     RespiratoryFailure: false,
     SepticShock: false,
     MultiorganDysfunction: false,
@@ -399,7 +399,7 @@ define "Is Severe Severity":
   if not "Is Critical Severity"
     and (("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" < 94)
       or ("Last Respiratory Rate value" is not null and "Last Respiratory Rate value" > 30)
-      or ("Last PaO2FiO2 Ratio Lab Result value" is not null and "Last PaO2FiO2 Ratio Lab Result value" < 300)
+      or ("Last PaO2FiO2 Ratio Lab Result Less Than 300" is not null and "Last PaO2FiO2 Ratio Lab Result Less Than 300" is true)
       or ClinicalAssessments.LungInfiltratesOver50)
     then true
   else false
@@ -777,9 +777,9 @@ define "Last PaO2FiO2 Ratio Lab Result":
       LabResultsLookbackPeriod)
   )
 
-define "Last PaO2FiO2 Ratio Lab Result value":
-  Coalesce(ClinicalAssessments.PaO2FiO2Ratio,
-    ("Last PaO2FiO2 Ratio Lab Result".value as FHIR.Quantity).value
+define "Last PaO2FiO2 Ratio Lab Result Less Than 300":
+  Coalesce(ClinicalAssessments.PaO2FiO2RatioLessThan300,
+    ("Last PaO2FiO2 Ratio Lab Result".value as FHIR.Quantity).value < 300
   )
 
 define "Last Platelets Lab Result":

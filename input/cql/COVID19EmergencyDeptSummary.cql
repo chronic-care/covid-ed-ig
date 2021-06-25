@@ -115,7 +115,7 @@ define DiagnosticSummary: {
   WBC: ReportLabObservation(C19."Last Leukocyte Lab Result"),
 
   // Not included in count of concerning labs; used for severity classification.
-  PaO2FiO2: ReportLabObservation(C19."Last PaO2FiO2 Ratio Lab Result")
+  PaO2FiO2: C19."Last PaO2FiO2 Ratio Lab Result Less Than 300"
 }
 
 define LabResultList: {
