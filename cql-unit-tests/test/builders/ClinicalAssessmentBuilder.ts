@@ -16,7 +16,7 @@ export class ClinicalAssessmentBuilder  {
     private cTConcerning: boolean | null = null;
     private lungInfiltratesOver50: boolean | null = null;
     private respiratoryDiseaseImagingEvidence: boolean | null = null;
-    private paO2FiO2Ratio: number | null =  null;
+    private paO2FiO2RatioLessThan300: boolean| null =  null;
     private respiratoryFailure: boolean | null = null;
     private septicShock: boolean | null = null;
     private multiorganDysfunction: boolean | null = null;
@@ -95,7 +95,7 @@ export class ClinicalAssessmentBuilder  {
             CTConcerning: this.cTConcerning,
             LungInfiltratesOver50: this.lungInfiltratesOver50,
             RespiratoryDiseaseImagingEvidence: this.respiratoryDiseaseImagingEvidence,
-            PaO2FiO2Ratio: this.paO2FiO2Ratio,
+            PaO2FiO2RatioLessThan300: this.paO2FiO2RatioLessThan300,
             RespiratoryFailure: this.respiratoryFailure,
             SepticShock: this.septicShock,
             MultiorganDysfunction: this.multiorganDysfunction,

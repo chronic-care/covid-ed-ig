@@ -11,7 +11,7 @@ export interface DiagnosticSummary {
     Thrombocytopenia: Diagnostic | null,
     Troponin: Diagnostic | null,
     WBC: Diagnostic | null,
-    PaO2FiO2: boolean | null
+    PaO2FiO2LessThan300: boolean | null
 }
 
 export interface Diagnostic {
