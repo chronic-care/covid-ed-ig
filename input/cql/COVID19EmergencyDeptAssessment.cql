@@ -536,9 +536,6 @@ define "Sex Risk Score":
     case
       when "Patient Birth Sex" = 'M' then 1
       when "Patient Birth Sex" = 'F' then 0
-      // if birth sex is UNK or not available, then use Administrative Gender
-      when Patient.gender = 'male' then 1
-      when Patient.gender = 'female' then 0
       else null
     end
 
