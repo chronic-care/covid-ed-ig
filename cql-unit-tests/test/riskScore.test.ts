@@ -235,7 +235,7 @@ describe('risk score with parameter overrides', () => {
     test.each`
         supplementalOxygen  | expectedScore
         ${true}             | ${2}
-        ${false}            | ${null}
+        ${false}            | ${0}
         ${null}             | ${null}
     `('returns score of $expectedScore for supplemental oxygen value of $supplementalOxygen', ({
         supplementalOxygen, expectedScore

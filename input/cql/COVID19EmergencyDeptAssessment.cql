@@ -575,6 +575,7 @@ define "Performance Status Score":
 
 define "Inspired Oxygen Score":
   if "Has Supplemental Oxygen" then 2
+  else if "Has Supplemental Oxygen" is false then 0
   else null
 
 /*
