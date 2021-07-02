@@ -63,6 +63,7 @@ code "White": '2106-3' from "Race" display 'White'
 
 // Code from Alertness Scale
 code "Confused": '130987000' from "SNOMED-CT" display 'Acute confusion (finding)'
+code "Alert": '365933000' from "SNOMED-CT" display 'Mental alertness (finding)'
 
 // Codes from WHO Performance Status scale
 code "Performance Status 0": '373803006' from "SNOMED-CT" display 'World Health Organization performance status grade 0 (finding)'

@@ -560,6 +560,7 @@ define "Age Risk Score":
 define "Alertness Score":
   case "Alertness Assessment Code"
     when CC."Confused".code then 3
+    when CC."Alert".code then 0
     else null
   end
 

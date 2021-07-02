@@ -192,6 +192,7 @@ describe('risk score with parameter overrides', () => {
     test.each`
         alertness       | expectedScore
         ${'130987000'}  | ${3}
+        ${'365933000'}  | ${0}
         ${'none'}       | ${null}
         ${'alert'}      | ${null}
         ${null}         | ${null}
