@@ -142,11 +142,12 @@ describe('risk score with parameter overrides', () => {
     });
 
     test.each`
-        sex         | expectedScore
-        ${'male'}   | ${1}
-        ${'female'} | ${0}
-        ${null}     | ${null}
-        ${'other'}  | ${null}
+        sex             | expectedScore
+        ${'male'}       | ${1}
+        ${'female'}     | ${0}
+        ${'non-male'}   | ${0}
+        ${null}         | ${null}
+        ${'other'}      | ${null}
     `('returns score of $expectedScore for sex value of $sex', ({
             sex, expectedScore
         }) => {

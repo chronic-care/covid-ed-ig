@@ -529,6 +529,7 @@ define "Sex Risk Score":
     case
       when PatientData.Gender = 'male' then 1
       when PatientData.Gender = 'female' then 0
+      when PatientData.Gender = 'non-male' then 0
       else null
     end
   else
