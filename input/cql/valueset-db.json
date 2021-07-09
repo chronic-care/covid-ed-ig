@@ -37424,6 +37424,10 @@
       {
         "code": "48067-3",
         "system": "http://loinc.org"
+      },
+      {
+        "code": "30240-6",
+        "system": "http://loinc.org"
       }
     ]
   },
