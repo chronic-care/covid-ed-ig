@@ -12,7 +12,7 @@ import CDSConnectCommons from '../../output/Library-CDSConnectCommons-2.json';
 import COVID19Concepts from '../../output/Library-COVID19Concepts-2.json';
 import FHIRHelpers from '../../output/Library-FHIRHelpers-4.0.1-2.json';
 import valueSetDB from '../../input/cql/valueset-db.json';
-import { IPatient, PatientGenderKind } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { ICondition, IPatient, PatientGenderKind } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { IObservation } from "@ahryman40k/ts-fhir-types/lib/R4/Resource/RTTI_Observation";
 
 const summaryLibrary = new cql.Library(COVID19EDSummary, new cql.Repository({
@@ -30,11 +30,15 @@ const assessmentLibrary = new cql.Library(COVID19EmergencyDeptAssessment, new cq
 
 const codeService = new cql.CodeService(valueSetDB);
 
-export const createPatientSource = (observations: IObservation[]): unknown => {
+export const createPatientSource = (observations: IObservation[], conditions: ICondition[]): unknown => {
     const patientSource = cqlfhir.PatientSource.FHIRv401();
 
-    const resources = observations.map((observation) => {
+    const observationResources = observations.map((observation) => {
         return {resource: observation};
+    });
+
+    const conditionResources = conditions.map((condition) => {
+        return {resource: condition};
     });
 
     const patient: IPatient = {
@@ -44,7 +48,8 @@ export const createPatientSource = (observations: IObservation[]): unknown => {
         {
             resource: patient,
         },
-        ...resources
+        ...observationResources,
+        ...conditionResources
     ];
 
     patientSource.loadBundles([
@@ -57,10 +62,10 @@ export const createPatientSource = (observations: IObservation[]): unknown => {
     return patientSource;
 }
 
-export const executeAssessmentCQLExpression = (parameters: CQLExpressionParameters, expressionName: string): unknown => {
+export const executeAssessmentCQLExpression = (parameters: CQLExpressionParameters, expressionName: string, conditions: ICondition[] = []): unknown => {
     const expressionExecutor = new cql.Executor(assessmentLibrary, codeService, parameters);
 
-    const results = expressionExecutor.exec_expression(expressionName, createPatientSource([]));
+    const results = expressionExecutor.exec_expression(expressionName, createPatientSource([], conditions));
 
     const patientResults = Object.keys(results.patientResults);
     const firstPatientResult = patientResults[0];
@@ -72,7 +77,7 @@ export const executeAssessmentCQLExpression = (parameters: CQLExpressionParamete
 export const executeAssessmentNoParams = (expressionName: string, observations: IObservation[]): unknown => {
     const expressionExecutor = new cql.Executor(assessmentLibrary, codeService);
 
-    const results = expressionExecutor.exec_expression(expressionName, createPatientSource(observations));
+    const results = expressionExecutor.exec_expression(expressionName, createPatientSource(observations, []));
 
     const patientResults = Object.keys(results.patientResults);
     const firstPatientResult = patientResults[0];
@@ -85,7 +90,7 @@ export const executeAssessmentNoParams = (expressionName: string, observations: 
 export const executeSummaryCQLExpression = (parameters: CQLExpressionParameters, expressionName: string): unknown => {
     const expressionExecutor = new cql.Executor(summaryLibrary, codeService, parameters);
 
-    const results = expressionExecutor.exec_expression(expressionName, createPatientSource([]));
+    const results = expressionExecutor.exec_expression(expressionName, createPatientSource([], []));
 
     const patientResults = Object.keys(results.patientResults);
     const firstPatientResult = patientResults[0];
@@ -97,7 +102,7 @@ export const executeSummaryCQLExpression = (parameters: CQLExpressionParameters,
 export const executeSummaryNoParams = (expressionName: string, observations: IObservation[]): unknown => {
     const expressionExecutor = new cql.Executor(summaryLibrary, codeService);
 
-    const results = expressionExecutor.exec_expression(expressionName, createPatientSource(observations));
+    const results = expressionExecutor.exec_expression(expressionName, createPatientSource(observations, []));
 
     const patientResults = Object.keys(results.patientResults);
     const firstPatientResult = patientResults[0];
