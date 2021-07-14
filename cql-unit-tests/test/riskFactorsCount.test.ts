@@ -64,4 +64,155 @@ describe('risk assessment score', () => {
 
         expect(results).toBe(13);
     });
+
+    describe('Cancer', () => {
+       describe('given that the patient has at least one condition with a code for the given condition type', () => {
+           describe('when initially calculating their risk factor count', () => {
+               test.todo('then include that condition type in their total risk factor count');
+           });
+
+           describe('when the Cancer parameter is set to true', () => {
+               test.todo('then include that condition type in their total risk factor count');
+           });
+
+           describe('when the Cancer parameter is set to false', () => {
+               test.todo('then do not include that condition type in their total risk factor count');
+           });
+
+           describe('when the Cancer parameter is set to null', () => {
+               test.todo('then do not include that condition type in their total risk factor count');
+           });
+       });
+
+       describe('given that the patient does not have any conditions with a code for the given condition type', () => {
+           describe('when initially calculating their risk factor count', () => {
+               test.todo('then do not include that condition type in their total risk factor count');
+           });
+
+           describe('when the Cancer parameter is set to true', () => {
+               test('then the calculated risk factor should be true', () => {
+                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
+                       Cancer: true,
+                       CardiovascularDisease: null,
+                       ChronicRespiratoryDisease: null,
+                       DiabetesType2: null,
+                       DownsSyndrome: null,
+                       Hypertension: null,
+                       Immunosuppression: null,
+                       NeurologicDisease: null,
+                       Obesity: null,
+                       ObstructiveSleepApnea: null,
+                       Pregnancy: null,
+                       RenalDisease: null,
+                       SteroidUsage: null,
+                   };
+
+                   const cqlParams: CQLExpressionParameters = {
+                       ClinicalAssessments: null,
+                       IgnoreFallbackResourceValues: true,
+                       PatientData: null,
+                       RiskFactors: riskAssessmentScoreParameters
+                   };
+
+                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor');
+
+                   expect(results).toEqual(true);
+               });
+           });
+
+           describe('when the Cancer parameter is set to false', () => {
+               test('then the calculated risk factor should be null', () => {
+                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
+                       Cancer: false,
+                       CardiovascularDisease: null,
+                       ChronicRespiratoryDisease: null,
+                       DiabetesType2: null,
+                       DownsSyndrome: null,
+                       Hypertension: null,
+                       Immunosuppression: null,
+                       NeurologicDisease: null,
+                       Obesity: null,
+                       ObstructiveSleepApnea: null,
+                       Pregnancy: null,
+                       RenalDisease: null,
+                       SteroidUsage: null,
+                   };
+
+                   const cqlParams: CQLExpressionParameters = {
+                       ClinicalAssessments: null,
+                       IgnoreFallbackResourceValues: true,
+                       PatientData: null,
+                       RiskFactors: riskAssessmentScoreParameters
+                   };
+
+                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor');
+
+                   expect(results).toEqual(false);
+               });
+           });
+
+           describe('when the Cancer parameter is set to null', () => {
+               test('then the calculated risk factor should be null', () => {
+                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
+                       Cancer: null,
+                       CardiovascularDisease: null,
+                       ChronicRespiratoryDisease: null,
+                       DiabetesType2: null,
+                       DownsSyndrome: null,
+                       Hypertension: null,
+                       Immunosuppression: null,
+                       NeurologicDisease: null,
+                       Obesity: null,
+                       ObstructiveSleepApnea: null,
+                       Pregnancy: null,
+                       RenalDisease: null,
+                       SteroidUsage: null,
+                   };
+
+                   const cqlParams: CQLExpressionParameters = {
+                       ClinicalAssessments: null,
+                       IgnoreFallbackResourceValues: true,
+                       PatientData: null,
+                       RiskFactors: riskAssessmentScoreParameters
+                   };
+
+                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor');
+
+                   expect(results).toEqual(null);
+               });
+           });
+       });
+    });
+
+    // Given that the patient has a condition with a Cancer code
+    // When the score is calculated initially
+    // Then include Cancer when counting the risk factors
+
+    // Given that the patient does not have a condition with a Cancer code
+    // When the score is calculated initially
+    // Then do not include Cancer when counting the risk factors
+
+    // Given that the patient has a condition with a Cancer code
+    // When the clinician sets the Cancer parameter to true
+    // Then include Cancer when counting the risk factors
+
+    // Given that the patient has a condition with a Cancer code
+    // When the clinician sets the Cancer parameter to false
+    // Then do not include Cancer when counting the risk factors
+
+    // Given that the patient has a condition with a Cancer code
+    // When the clinician sets the Cancer parameter to null
+    // Then do not include Cancer when counting the risk factors
+
+    // Given that the patient does not have a condition with a Cancer code
+    // When the clinician sets the Cancer parameter to true
+    // Then include Cancer when counting the risk factors
+
+    // Given that the patient does not have a condition with a Cancer code
+    // When the clinician sets the Cancer parameter to false
+    // Then do not include Cancer when counting the risk factors
+
+    // Given that the patient does not have a condition with a Cancer code
+    // When the clinician sets the Cancer parameter to null
+    // Then do not include Cancer when counting the risk factors
 });

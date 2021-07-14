@@ -622,12 +622,25 @@ define "Risk Factors count":
 define "All Active Conditions":
   C3F.ActiveOrRecurring([Condition])
 
+define function DoesExistElseNull(CondList List<Condition>):
+  if exists(CondList) then
+    true
+  else
+    null
+
+define function HasConditionWithOverride(
+  CondList List<Condition>,
+  OverridingValue Boolean
+):
+  if IgnoreFallbackResourceValues then OverridingValue
+  else DoesExistElseNull(CondList)
+
 define "Has Cancer Risk Factor":
-  Coalesce(
-    RiskFactors.Cancer,
-    exists("All Active Conditions" C
-      where (C.code in CC."Cancer SNOMED Codes"
-        or C.code in CC."Cancer ICD10CM Codes"))
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+          where (C.code in CC."Cancer SNOMED Codes"
+            or C.code in CC."Cancer ICD10CM Codes")),
+    RiskFactors.Cancer
   )
 
 define "Has Cardiovascular Disease Risk Factor":
