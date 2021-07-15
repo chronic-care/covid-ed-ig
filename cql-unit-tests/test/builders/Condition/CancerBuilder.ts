@@ -5,12 +5,6 @@ class CancerBuilder {
     displayName = "High grade astrocytoma of brain (disorder)";
     codesystem = "http://snomed.info/sct";
 
-    public withCancerCode(code: string, displayName: string, codesystem: string): CancerBuilder {
-        this.code = code;
-        this.displayName = displayName;
-        return this;
-    }
-
     public build(): ICondition {
         return {
             "resourceType": "Condition",
