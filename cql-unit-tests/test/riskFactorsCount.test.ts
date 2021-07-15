@@ -107,6 +107,7 @@ describe('risk assessment score', () => {
         [
             { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', conditionBuilder: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)") },
             { conditionType: 'CardiovascularDisease', cqlExpression: 'Has Cardiovascular Disease Risk Factor', conditionBuilder: new ConditionBuilder("722890004", "Heart disease co-occurrent and due to chronic Chagas disease") },
+            { conditionType: 'ChronicRespiratoryDisease', cqlExpression: 'Has Chronic Respiratory Disease Risk Factor', conditionBuilder: new ConditionBuilder("195798007", "Chronic adenotonsillitis") },
         ].forEach(({conditionType, cqlExpression, conditionBuilder}) => {
             describe(conditionType, () => {
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
