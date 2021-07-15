@@ -1,9 +1,15 @@
 import { ICondition } from "@ahryman40k/ts-fhir-types/lib/R4";
 
-class CardiovascularDiseaseBuilder {
-    code = "698816006";
-    displayName = "Chronic occlusion of artery of extremity";
-    codesystem = "http://snomed.info/sct";
+class ConditionBuilder {
+    code: string;
+    displayName: string;
+    codeSystem: string;
+
+    constructor(code: string, displayName: string) {
+        this.code = code;
+        this.displayName = displayName;
+        this.codeSystem = "http://snomed.info/sct";
+    }
 
     public build(): ICondition {
         return {
@@ -32,7 +38,7 @@ class CardiovascularDiseaseBuilder {
             "code": {
                 "coding": [
                     {
-                        "system": this.codesystem,
+                        "system": this.codeSystem,
                         "code": this.code,
                         "display": this.displayName
                     }
@@ -47,4 +53,4 @@ class CardiovascularDiseaseBuilder {
     }
 }
 
-export default CardiovascularDiseaseBuilder;
+export default ConditionBuilder;

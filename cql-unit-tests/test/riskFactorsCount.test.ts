@@ -5,15 +5,14 @@ import {
 import { CQLExpressionParameters, RiskAssessmentScoreParameters } from "../types/parameter";
 import { executeAssessmentCQLExpression } from "../helpers/cqlService";
 import { ICondition } from "@ahryman40k/ts-fhir-types/lib/R4";
-import CancerBuilder from "./builders/Condition/CancerBuilder";
-import CardiovascularDiseaseBuilder from './builders/Condition/CardiovascularDiseaseBuilder';
+import ConditionBuilder from './builders/Condition/ConditionBuilder';
 
 const testValueOverrideViaParameter = (hasCondition: boolean,
                                        conditionType: string,
                                        cqlExpression: string,
                                        cqlParameter: boolean | null,
                                        expected: boolean | null,
-                                       builder: any) => {
+                                       conditionBuilder: ConditionBuilder) => {
     const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
         Cancer: null,
         CardiovascularDisease: null,
@@ -31,7 +30,7 @@ const testValueOverrideViaParameter = (hasCondition: boolean,
         [conditionType]: cqlParameter,
     };
 
-    const conditions: ICondition[] = hasCondition ? [ new builder().build() ] : [];
+    const conditions: ICondition[] = hasCondition ? [ conditionBuilder.build() ] : [];
 
     const cqlParams: CQLExpressionParameters = {
         ClinicalAssessments: null,
@@ -106,27 +105,27 @@ describe('risk assessment score', () => {
 
     describe('overriding original values with parameters', () => {
         [
-            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', builder: CancerBuilder },
-            { conditionType: 'CardiovascularDisease', cqlExpression: 'Has Cardiovascular Disease Risk Factor', builder: CardiovascularDiseaseBuilder },
-        ].forEach(({conditionType, cqlExpression, builder}) => {
+            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', conditionBuilder: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)") },
+            { conditionType: 'CardiovascularDisease', cqlExpression: 'Has Cardiovascular Disease Risk Factor', conditionBuilder: new ConditionBuilder("TODO", "TODO") },
+        ].forEach(({conditionType, cqlExpression, conditionBuilder}) => {
             describe(conditionType, () => {
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
-                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, conditionBuilder);
                 });
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
-                    testValueOverrideViaParameter(true, conditionType, cqlExpression, false, false, builder);
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, false, false, conditionBuilder);
                 });
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
-                    testValueOverrideViaParameter(true, conditionType, cqlExpression, null, null, builder);
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, null, null, conditionBuilder);
                 });
                 test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
-                    testValueOverrideViaParameter(false, conditionType, cqlExpression, true, true, builder);
+                    testValueOverrideViaParameter(false, conditionType, cqlExpression, true, true, conditionBuilder);
                 });
                 test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
-                    testValueOverrideViaParameter(false, conditionType, cqlExpression, false, false, builder);
+                    testValueOverrideViaParameter(false, conditionType, cqlExpression, false, false, conditionBuilder);
                 });
                 test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
-                    testValueOverrideViaParameter(false, conditionType, cqlExpression, null, null, builder);
+                    testValueOverrideViaParameter(false, conditionType, cqlExpression, null, null, conditionBuilder);
                 });
             });
         });
