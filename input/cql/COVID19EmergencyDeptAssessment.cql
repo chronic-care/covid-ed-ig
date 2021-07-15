@@ -644,10 +644,10 @@ define "Has Cancer Risk Factor":
   )
 
 define "Has Cardiovascular Disease Risk Factor":
-  Coalesce(
-    RiskFactors.CardiovascularDisease,
-    exists("All Active Conditions" C
-      where C.code in CC."Cardiovascular Disease Codes")
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+          where C.code in CC."Cardiovascular Disease Codes"),
+    RiskFactors.Cancer
   )
 
 define "Has Chronic Respiratory Disease Risk Factor":
