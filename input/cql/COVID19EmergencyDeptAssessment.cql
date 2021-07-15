@@ -687,30 +687,29 @@ define "Has Neurologic Disease Risk Factor":
   RiskFactors.NeurologicDisease
 
 define "Has Obstructive Sleep Apnea Risk Factor":
-  Coalesce(
-    RiskFactors.ObstructiveSleepApnea,
-    exists("All Active Conditions" C
-      where C.code in CC."Obstructive Sleep Apnea Codes")
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+      where C.code in CC."Obstructive Sleep Apnea Codes"),
+    RiskFactors.ObstructiveSleepApnea
   )
 
 define "Has Obesity Risk Factor":
-  Coalesce(
-    RiskFactors.Obesity,
-    (exists("All Active Conditions" C
+  HasConditionWithOverride(
+    ("All Active Conditions" C
       where (C.code in CC."Obesity SNOMED Codes"
-        or C.code in CC."Obesity ICD10CM Codes"))
-     or "Last BMI".value >= 35)
+        or C.code in CC."Obesity ICD10CM Codes")),
+    RiskFactors.Obesity
   )
 
 define "Has Pregnancy Risk Factor":
   RiskFactors.Pregnancy
 
 define "Has Renal Disease Risk Factor":
-  Coalesce(
-    RiskFactors.RenalDisease,
-    exists("All Active Conditions" C
+  HasConditionWithOverride(
+    ("All Active Conditions" C
       where (C.code in CC."Kidney Disease SNOMED Codes"
-        or C.code in CC."Kidney Disease ICD10CM Codes"))
+        or C.code in CC."Kidney Disease ICD10CM Codes")),
+    RiskFactors.RenalDisease
   )
 
 define "Has Steroid Usage Risk Factor":

@@ -111,6 +111,9 @@ describe('risk assessment score', () => {
             { conditionType: 'DiabetesType2', cqlExpression: 'Has Diabetes Type 2 Risk Factor', conditionBuilder: new ConditionBuilder("E08.3499", "Diabetes mellitus due to underlying condition with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye") },
             { conditionType: 'DownsSyndrome', cqlExpression: 'Has Downs Syndrome Risk Factor', conditionBuilder: new ConditionBuilder("724644005", "Myeloid leukaemia co-occurrent with Down syndrome") },
             { conditionType: 'Hypertension', cqlExpression: 'Has Hypertension Risk Factor', conditionBuilder: new ConditionBuilder("10725009", "Benign hypertension (disorder)") },
+            { conditionType: 'ObstructiveSleepApnea', cqlExpression: 'Has Obstructive Sleep Apnea Risk Factor', conditionBuilder: new ConditionBuilder("230493001", "Mixed sleep apnoea") },
+            { conditionType: 'Obesity', cqlExpression: 'Has Obesity Risk Factor', conditionBuilder: new ConditionBuilder("1076701000119104", "Hypertrophy of fat pad of right knee (disorder)") },
+            { conditionType: 'RenalDisease', cqlExpression: 'Has Renal Disease Risk Factor', conditionBuilder: new ConditionBuilder("104931000119100", "Chronic kidney disease due to hypertension (disorder)") },
         ].forEach(({conditionType, cqlExpression, conditionBuilder}) => {
             describe(conditionType, () => {
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
