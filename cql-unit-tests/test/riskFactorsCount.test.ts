@@ -67,8 +67,51 @@ describe('risk assessment score', () => {
         expect(results).toBe(13);
     });
 
+    describe('overriding original values with parameters', () => {
+        test.each`
+            hasCondition | conditionType                     | cqlExpression                        | cqlParameter | expected  | builder
+            ${`has`}     | ${`Cancer`}                       | ${`Has Cancer Risk Factor`}          | ${true}      | ${true}   | ${CancerBuilder}
+            ${`has`}     | ${`Cancer`}                       | ${`Has Cancer Risk Factor`}          | ${false}     | ${false}  | ${CancerBuilder}
+            ${`has`}     | ${`Cancer`}                       | ${`Has Cancer Risk Factor`}          | ${null}      | ${null}   | ${CancerBuilder}
+            ${`lacks`}   | ${`Cancer`}                       | ${`Has Cancer Risk Factor`}          | ${true}      | ${true}   | ${CancerBuilder}
+            ${`lacks`}   | ${`Cancer`}                       | ${`Has Cancer Risk Factor`}          | ${false}     | ${null}   | ${CancerBuilder}
+            ${`lacks`}   | ${`Cancer`}                       | ${`Has Cancer Risk Factor`}          | ${null}      | ${null}   | ${CancerBuilder}
+        `('When the patient $hasCondition at least one condition of type $conditionType and that risk factor parameter is $cqlParameter then the calculated risk factor is $expected',
+        ({ hasCondition, conditionType, cqlExpression, cqlParameter, expected, builder }) => {
+            const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
+                Cancer: null,
+                CardiovascularDisease: null,
+                ChronicRespiratoryDisease: null,
+                DiabetesType2: null,
+                DownsSyndrome: null,
+                Hypertension: null,
+                Immunosuppression: null,
+                NeurologicDisease: null,
+                Obesity: null,
+                ObstructiveSleepApnea: null,
+                Pregnancy: null,
+                RenalDisease: null,
+                SteroidUsage: null,
+                [conditionType]: cqlParameter,
+            };
+
+            const conditions: ICondition[] = hasCondition === 'has' ? [ new builder().build() ] : [];
+
+            const cqlParams: CQLExpressionParameters = {
+                ClinicalAssessments: null,
+                IgnoreFallbackResourceValues: true,
+                PatientData: null,
+                RiskFactors: riskAssessmentScoreParameters,
+            };
+
+            const results = executeAssessmentCQLExpression(cqlParams, cqlExpression, conditions);
+            expect(results).toEqual(expected);
+        });
+    });
+
     describe('Cancer', () => {
        describe('given that the patient has at least one condition with a code for the given condition type', () => {
+           // TODO: Still necessary?
            describe('when initially calculating their risk factor count', () => {
                test('then the calculated risk factor should be true', () => {
 
@@ -85,226 +128,6 @@ describe('risk assessment score', () => {
                    expect(results).toEqual(true);
                });
            });
-
-           describe('when the Cancer parameter is set to true', () => {
-               test('then the calculated risk factor should be true', () => {
-                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
-                       Cancer: true,
-                       CardiovascularDisease: null,
-                       ChronicRespiratoryDisease: null,
-                       DiabetesType2: null,
-                       DownsSyndrome: null,
-                       Hypertension: null,
-                       Immunosuppression: null,
-                       NeurologicDisease: null,
-                       Obesity: null,
-                       ObstructiveSleepApnea: null,
-                       Pregnancy: null,
-                       RenalDisease: null,
-                       SteroidUsage: null,
-                   };
-                   const conditions: ICondition[] = [
-                       new CancerBuilder().build()
-                   ];
-                   const cqlParams: CQLExpressionParameters = {
-                       ClinicalAssessments: null,
-                       IgnoreFallbackResourceValues: true,
-                       PatientData: null,
-                       RiskFactors: riskAssessmentScoreParameters,
-                   };
-                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor', conditions);
-                   expect(results).toEqual(true);
-               });
-           });
-
-           describe('when the Cancer parameter is set to false', () => {
-               test('then the calculated risk factor should be false', () => {
-                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
-                       Cancer: false,
-                       CardiovascularDisease: null,
-                       ChronicRespiratoryDisease: null,
-                       DiabetesType2: null,
-                       DownsSyndrome: null,
-                       Hypertension: null,
-                       Immunosuppression: null,
-                       NeurologicDisease: null,
-                       Obesity: null,
-                       ObstructiveSleepApnea: null,
-                       Pregnancy: null,
-                       RenalDisease: null,
-                       SteroidUsage: null,
-                   };
-                   const conditions: ICondition[] = [
-                       new CancerBuilder().build()
-                   ];
-                   const cqlParams: CQLExpressionParameters = {
-                       ClinicalAssessments: null,
-                       IgnoreFallbackResourceValues: true,
-                       PatientData: null,
-                       RiskFactors: riskAssessmentScoreParameters,
-                   };
-                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor', conditions);
-                   expect(results).toEqual(false);
-               });
-           });
-
-           describe('when the Cancer parameter is set to null', () => {
-               test('then the calculated risk factor should be null', () => {
-                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
-                       Cancer: null,
-                       CardiovascularDisease: null,
-                       ChronicRespiratoryDisease: null,
-                       DiabetesType2: null,
-                       DownsSyndrome: null,
-                       Hypertension: null,
-                       Immunosuppression: null,
-                       NeurologicDisease: null,
-                       Obesity: null,
-                       ObstructiveSleepApnea: null,
-                       Pregnancy: null,
-                       RenalDisease: null,
-                       SteroidUsage: null,
-                   };
-                   const conditions: ICondition[] = [
-                       new CancerBuilder().build()
-                   ];
-                   const cqlParams: CQLExpressionParameters = {
-                       ClinicalAssessments: null,
-                       IgnoreFallbackResourceValues: true,
-                       PatientData: null,
-                       RiskFactors: riskAssessmentScoreParameters,
-                   };
-                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor', conditions);
-                   expect(results).toEqual(null);
-               });
-           });
-       });
-
-       describe('given that the patient does not have any conditions with a code for the given condition type', () => {
-           describe('when the Cancer parameter is set to true', () => {
-               test('then the calculated risk factor should be true', () => {
-                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
-                       Cancer: true,
-                       CardiovascularDisease: null,
-                       ChronicRespiratoryDisease: null,
-                       DiabetesType2: null,
-                       DownsSyndrome: null,
-                       Hypertension: null,
-                       Immunosuppression: null,
-                       NeurologicDisease: null,
-                       Obesity: null,
-                       ObstructiveSleepApnea: null,
-                       Pregnancy: null,
-                       RenalDisease: null,
-                       SteroidUsage: null,
-                   };
-
-                   const cqlParams: CQLExpressionParameters = {
-                       ClinicalAssessments: null,
-                       IgnoreFallbackResourceValues: true,
-                       PatientData: null,
-                       RiskFactors: riskAssessmentScoreParameters
-                   };
-
-                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor');
-
-                   expect(results).toEqual(true);
-               });
-           });
-
-           describe('when the Cancer parameter is set to false', () => {
-               test('then the calculated risk factor should be null', () => {
-                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
-                       Cancer: false,
-                       CardiovascularDisease: null,
-                       ChronicRespiratoryDisease: null,
-                       DiabetesType2: null,
-                       DownsSyndrome: null,
-                       Hypertension: null,
-                       Immunosuppression: null,
-                       NeurologicDisease: null,
-                       Obesity: null,
-                       ObstructiveSleepApnea: null,
-                       Pregnancy: null,
-                       RenalDisease: null,
-                       SteroidUsage: null,
-                   };
-
-                   const cqlParams: CQLExpressionParameters = {
-                       ClinicalAssessments: null,
-                       IgnoreFallbackResourceValues: true,
-                       PatientData: null,
-                       RiskFactors: riskAssessmentScoreParameters
-                   };
-
-                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor');
-
-                   expect(results).toEqual(false);
-               });
-           });
-
-           describe('when the Cancer parameter is set to null', () => {
-               test('then the calculated risk factor should be null', () => {
-                   const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
-                       Cancer: null,
-                       CardiovascularDisease: null,
-                       ChronicRespiratoryDisease: null,
-                       DiabetesType2: null,
-                       DownsSyndrome: null,
-                       Hypertension: null,
-                       Immunosuppression: null,
-                       NeurologicDisease: null,
-                       Obesity: null,
-                       ObstructiveSleepApnea: null,
-                       Pregnancy: null,
-                       RenalDisease: null,
-                       SteroidUsage: null,
-                   };
-
-                   const cqlParams: CQLExpressionParameters = {
-                       ClinicalAssessments: null,
-                       IgnoreFallbackResourceValues: true,
-                       PatientData: null,
-                       RiskFactors: riskAssessmentScoreParameters
-                   };
-
-                   const results = executeAssessmentCQLExpression(cqlParams, 'Has Cancer Risk Factor');
-
-                   expect(results).toEqual(null);
-               });
-           });
        });
     });
-
-    // Given that the patient has a condition with a Cancer code
-    // When the score is calculated initially
-    // Then include Cancer when counting the risk factors
-
-    // Given that the patient does not have a condition with a Cancer code
-    // When the score is calculated initially
-    // Then do not include Cancer when counting the risk factors
-
-    // Given that the patient has a condition with a Cancer code
-    // When the clinician sets the Cancer parameter to true
-    // Then include Cancer when counting the risk factors
-
-    // Given that the patient has a condition with a Cancer code
-    // When the clinician sets the Cancer parameter to false
-    // Then do not include Cancer when counting the risk factors
-
-    // Given that the patient has a condition with a Cancer code
-    // When the clinician sets the Cancer parameter to null
-    // Then do not include Cancer when counting the risk factors
-
-    // Given that the patient does not have a condition with a Cancer code
-    // When the clinician sets the Cancer parameter to true
-    // Then include Cancer when counting the risk factors
-
-    // Given that the patient does not have a condition with a Cancer code
-    // When the clinician sets the Cancer parameter to false
-    // Then do not include Cancer when counting the risk factors
-
-    // Given that the patient does not have a condition with a Cancer code
-    // When the clinician sets the Cancer parameter to null
-    // Then do not include Cancer when counting the risk factors
 });
