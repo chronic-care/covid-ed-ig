@@ -666,18 +666,18 @@ define "Has Diabetes Type 2 Risk Factor":
   )
 
 define "Has Downs Syndrome Risk Factor":
-  Coalesce(
-    RiskFactors.DownsSyndrome,
-    exists("All Active Conditions" C
-      where C.code in CC."Downs Syndrome Codes")
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+      where C.code in CC."Downs Syndrome Codes"),
+    RiskFactors.DownsSyndrome
   )
 
 define "Has Hypertension Risk Factor":
-  Coalesce(
-    RiskFactors.Hypertension,
-    exists("All Active Conditions" C
+  HasConditionWithOverride(
+    ("All Active Conditions" C
       where (C.code in CC."Hypertension SNOMED Codes"
-        or C.code in CC."Hypertension ICD10CM Codes"))
+        or C.code in CC."Hypertension ICD10CM Codes")),
+    RiskFactors.Hypertension
   )
 
 define "Has Immunosuppression Risk Factor":
