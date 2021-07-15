@@ -106,24 +106,27 @@ describe('risk assessment score', () => {
     describe('overriding original values with parameters', () => {
         [
             { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', builder: CancerBuilder },
+            { conditionType: 'CardiovascularDisease', cqlExpression: 'Has Cardiovascular Disease Risk Factor', builder: CancerBuilder },
         ].forEach(({conditionType, cqlExpression, builder}) => {
-            test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
-                testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
-            });
-            test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
-                testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
-            });
-            test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
-                testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
-            });
-            test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
-                testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
-            });
-            test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
-                testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
-            });
-            test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
-                testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+            describe(conditionType, () => {
+                test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+                });
+                test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+                });
+                test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+                });
+                test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+                });
+                test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+                });
+                test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, builder);
+                });
             });
         });
     });
