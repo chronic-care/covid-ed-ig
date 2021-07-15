@@ -647,7 +647,7 @@ define "Has Cardiovascular Disease Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
           where C.code in CC."Cardiovascular Disease Codes"),
-    RiskFactors.Cancer
+    RiskFactors.CardiovascularDisease
   )
 
 define "Has Chronic Respiratory Disease Risk Factor":
