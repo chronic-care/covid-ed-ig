@@ -658,11 +658,11 @@ define "Has Chronic Respiratory Disease Risk Factor":
   )
 
 define "Has Diabetes Type 2 Risk Factor":
-  Coalesce(
-    RiskFactors.DiabetesType2,
-    exists("All Active Conditions" C
+  HasConditionWithOverride(
+    ("All Active Conditions" C
       where (C.code in CC."Diabetes SNOMED Codes"
-        or C.code in CC."Diabetes ICD10CM Codes"))
+        or C.code in CC."Diabetes ICD10CM Codes")),
+    RiskFactors.DiabetesType2
   )
 
 define "Has Downs Syndrome Risk Factor":
