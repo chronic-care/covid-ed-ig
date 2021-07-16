@@ -12,7 +12,7 @@ const testValueOverrideViaParameter = (hasCondition: boolean,
                                        cqlExpression: string,
                                        cqlParameter: boolean | null,
                                        expected: boolean | null,
-                                       conditionBuilder: ConditionBuilder) => {
+                                       conditions: ICondition[]) => {
     const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
         Cancer: null,
         CardiovascularDisease: null,
@@ -30,8 +30,6 @@ const testValueOverrideViaParameter = (hasCondition: boolean,
         [conditionType]: cqlParameter,
     };
 
-    const conditions: ICondition[] = hasCondition ? [ conditionBuilder.build() ] : [];
-
     const cqlParams: CQLExpressionParameters = {
         ClinicalAssessments: null,
         IgnoreFallbackResourceValues: true,
@@ -39,7 +37,7 @@ const testValueOverrideViaParameter = (hasCondition: boolean,
         RiskFactors: riskAssessmentScoreParameters,
     };
 
-    const results = executeAssessmentCQLExpression(cqlParams, cqlExpression, conditions);
+    const results = executeAssessmentCQLExpression(cqlParams, cqlExpression, hasCondition ? conditions : []);
     expect(results).toEqual(expected);
 };
 
@@ -105,34 +103,38 @@ describe('risk assessment score', () => {
 
     describe('overriding original values with parameters', () => {
         [
-            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', conditionBuilder: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)") },
-            { conditionType: 'CardiovascularDisease', cqlExpression: 'Has Cardiovascular Disease Risk Factor', conditionBuilder: new ConditionBuilder("722890004", "Heart disease co-occurrent and due to chronic Chagas disease") },
-            { conditionType: 'ChronicRespiratoryDisease', cqlExpression: 'Has Chronic Respiratory Disease Risk Factor', conditionBuilder: new ConditionBuilder("195798007", "Chronic adenotonsillitis") },
-            { conditionType: 'DiabetesType2', cqlExpression: 'Has Diabetes Type 2 Risk Factor', conditionBuilder: new ConditionBuilder("E08.3499", "Diabetes mellitus due to underlying condition with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye") },
-            { conditionType: 'DownsSyndrome', cqlExpression: 'Has Downs Syndrome Risk Factor', conditionBuilder: new ConditionBuilder("724644005", "Myeloid leukaemia co-occurrent with Down syndrome") },
-            { conditionType: 'Hypertension', cqlExpression: 'Has Hypertension Risk Factor', conditionBuilder: new ConditionBuilder("10725009", "Benign hypertension (disorder)") },
-            { conditionType: 'ObstructiveSleepApnea', cqlExpression: 'Has Obstructive Sleep Apnea Risk Factor', conditionBuilder: new ConditionBuilder("230493001", "Mixed sleep apnoea") },
-            { conditionType: 'Obesity', cqlExpression: 'Has Obesity Risk Factor', conditionBuilder: new ConditionBuilder("1076701000119104", "Hypertrophy of fat pad of right knee (disorder)") },
-            { conditionType: 'RenalDisease', cqlExpression: 'Has Renal Disease Risk Factor', conditionBuilder: new ConditionBuilder("104931000119100", "Chronic kidney disease due to hypertension (disorder)") },
-        ].forEach(({conditionType, cqlExpression, conditionBuilder}) => {
+            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', conditions: [new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)").build()] },
+            { conditionType: 'CardiovascularDisease', cqlExpression: 'Has Cardiovascular Disease Risk Factor', conditions: [new ConditionBuilder("722890004", "Heart disease co-occurrent and due to chronic Chagas disease").build()] },
+            { conditionType: 'ChronicRespiratoryDisease', cqlExpression: 'Has Chronic Respiratory Disease Risk Factor', conditions: [new ConditionBuilder("195798007", "Chronic adenotonsillitis").build()] },
+            { conditionType: 'DiabetesType2', cqlExpression: 'Has Diabetes Type 2 Risk Factor', conditions: [new ConditionBuilder("E08.3499", "Diabetes mellitus due to underlying condition with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye").build()] },
+            { conditionType: 'DownsSyndrome', cqlExpression: 'Has Downs Syndrome Risk Factor', conditions: [new ConditionBuilder("724644005", "Myeloid leukaemia co-occurrent with Down syndrome").build()] },
+            { conditionType: 'Hypertension', cqlExpression: 'Has Hypertension Risk Factor', conditions: [new ConditionBuilder("10725009", "Benign hypertension (disorder)").build()] },
+            { conditionType: 'ObstructiveSleepApnea', cqlExpression: 'Has Obstructive Sleep Apnea Risk Factor', conditions: [new ConditionBuilder("230493001", "Mixed sleep apnoea").build()] },
+            { conditionType: 'Obesity', cqlExpression: 'Has Obesity Risk Factor', conditions: [new ConditionBuilder("1076701000119104", "Hypertrophy of fat pad of right knee (disorder)").build()] },
+            { conditionType: 'RenalDisease', cqlExpression: 'Has Renal Disease Risk Factor', conditions: [new ConditionBuilder("104931000119100", "Chronic kidney disease due to hypertension (disorder)").build()] },
+            { conditionType: 'Immunosuppression', cqlExpression: 'Has Immunosuppression Risk Factor', conditions: [] },
+            { conditionType: 'NeurologicDisease', cqlExpression: 'Has Neurologic Disease Risk Factor', conditions: [] },
+            { conditionType: 'Pregnancy', cqlExpression: 'Has Pregnancy Risk Factor', conditions: [] },
+            { conditionType: 'SteroidUsage', cqlExpression: 'Has Steroid Usage Risk Factor', conditions: [] },
+        ].forEach(({conditionType, cqlExpression, conditions}) => {
             describe(conditionType, () => {
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
-                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, conditionBuilder);
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, true, true, conditions);
                 });
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
-                    testValueOverrideViaParameter(true, conditionType, cqlExpression, false, false, conditionBuilder);
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, false, false, conditions);
                 });
                 test(`Given that the patient has at least one condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
-                    testValueOverrideViaParameter(true, conditionType, cqlExpression, null, null, conditionBuilder);
+                    testValueOverrideViaParameter(true, conditionType, cqlExpression, null, null, conditions);
                 });
                 test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is true then the calculated risk factor is true`, () => {
-                    testValueOverrideViaParameter(false, conditionType, cqlExpression, true, true, conditionBuilder);
+                    testValueOverrideViaParameter(false, conditionType, cqlExpression, true, true, conditions);
                 });
                 test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is false then the calculated risk factor is false`, () => {
-                    testValueOverrideViaParameter(false, conditionType, cqlExpression, false, false, conditionBuilder);
+                    testValueOverrideViaParameter(false, conditionType, cqlExpression, false, false, conditions);
                 });
                 test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
-                    testValueOverrideViaParameter(false, conditionType, cqlExpression, null, null, conditionBuilder);
+                    testValueOverrideViaParameter(false, conditionType, cqlExpression, null, null, conditions);
                 });
             });
         });
