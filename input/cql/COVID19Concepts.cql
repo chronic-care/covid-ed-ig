@@ -22,6 +22,9 @@ valueset "Chronic Respiratory Disease Codes": 'http://fhir.org/guides/acep/Value
 valueset "Downs Syndrome Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome'
 valueset "Obstructive Sleep Apnea Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea'
 
+valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal-disease'
+valueset "Cancer Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cancer'
+
 valueset "Alertness Scale Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-obs-alertness'
 valueset "WHO Performance Status Codes": 'http://fhir.org/guides/acep/ValueSet/who-performance-status'
 

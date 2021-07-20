@@ -639,7 +639,8 @@ define "Has Cancer Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
           where (C.code in CC."Cancer SNOMED Codes"
-            or C.code in CC."Cancer ICD10CM Codes")),
+            or C.code in CC."Cancer ICD10CM Codes"
+            or C.code in CC."Cancer Codes")),
     RiskFactors.Cancer
   )
 
@@ -708,7 +709,8 @@ define "Has Renal Disease Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
       where (C.code in CC."Kidney Disease SNOMED Codes"
-        or C.code in CC."Kidney Disease ICD10CM Codes")),
+        or C.code in CC."Kidney Disease ICD10CM Codes"
+        or C.code in CC."Renal Disease Codes")),
     RiskFactors.RenalDisease
   )
 
