@@ -140,15 +140,21 @@ define ImagingResultList: {
 }
 
 define LabResultCount:
-  if (C19.ClinicalAssessments.ConcerningLabCount is not null and C19.ClinicalAssessments.ConcerningLabCount = 0) then 1
-  else if (C19.ClinicalAssessments.ConcerningLabCount is not null) then C19.ClinicalAssessments.ConcerningLabCount
-  /* else if not exists LabResultList then null */
-  else Count(LabResultList result where result is not null)
+  Message(
+
+    if (C19.ClinicalAssessments.ConcerningLabCount is not null and C19.ClinicalAssessments.ConcerningLabCount = 0) then 1
+    else if (C19.ClinicalAssessments.ConcerningLabCount is not null) then C19.ClinicalAssessments.ConcerningLabCount
+    /* else if not exists LabResultList then null */
+    else Count(LabResultList result where result is not null)
+
+  , true, 'Undefined', 'Trace', 'Calculating LabResultCount')
 
 define ImagingResultCount:
   /* if not exists ImagingResultList then null
   else  */
+  Message(
   Count(ImagingResultList result where result is not null)
+  , true, 'Undefined', 'Trace', 'Calculating ImagingResultCount')
 
 // TODO Always returns count of 0 or 1 in Javascript engine... Bug?
 /*
@@ -159,17 +165,21 @@ define ConcerningImagingCount:
 define ConcerningImagingCount:
   /* if not exists ImagingResultList then null
   else */
+  Message(
   (if C19.ClinicalAssessments.ChestXRayConcerning is true then 1 else 0)
     + (if C19.ClinicalAssessments.UltrasoundConcerning is true then 1 else 0)
     + (if C19.ClinicalAssessments.CTConcerning is true then 1 else 0)
+  , true, 'Undefined', 'Trace', 'Calculating ConcerningImagingCount')
 
 define ConcerningLabCount:
   /* if (not exists LabResultList and C19.ClinicalAssessments.ConcerningLabCount is null) then null
   else */
+  Message(
   Coalesce(
     C19.ClinicalAssessments.ConcerningLabCount,
     Count(LabResultList result where result.Flag is true)
   )
+  , true, 'Undefined', 'Trace', 'Calculating ConcerningLabCount')
 
 define ConcerningLabsOrImaging:
   ConcerningLabCount >= 1 or ConcerningImagingCount >= 1
@@ -241,7 +251,9 @@ define "Recommend Severe Admission":
   C19."Is Severe Severity"
 
 define "Recommend Critical Admission":
+  Message(
   C19."Is Critical Severity"
+  , true, 'Undefined', 'Trace', 'Calculating Recommend Critical Admission')
 
 /*
  * Treatment Recommendations

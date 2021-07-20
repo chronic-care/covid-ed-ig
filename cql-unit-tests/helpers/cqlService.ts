@@ -88,9 +88,20 @@ export const executeAssessmentNoParams = (expressionName: string, observations: 
 
 
 export const executeSummaryCQLExpression = (parameters: CQLExpressionParameters, expressionName: string): unknown => {
-    const expressionExecutor = new cql.Executor(summaryLibrary, codeService, parameters);
+    let finishTime;
 
+    const listener = {
+        onMessage: (source, code, severity, message) => {
+            finishTime = Date.now();
+        }
+    };
+
+    const expressionExecutor = new cql.Executor(summaryLibrary, codeService, parameters, listener);
+
+    const startTime = Date.now();
     const results = expressionExecutor.exec_expression(expressionName, createPatientSource([], []));
+
+    console.log('run time:', finishTime - startTime);
 
     const patientResults = Object.keys(results.patientResults);
     const firstPatientResult = patientResults[0];

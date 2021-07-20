@@ -382,11 +382,13 @@ define "Performance Status Code":
 */
 
 define "Severity Classification":
+  Message(
   if "Is Critical Severity" then 'CRITICAL'
   else if "Is Severe Severity" then 'SEVERE'
   else if "Is Moderate Severity" then 'MODERATE'
   else if "Is Mild Severity" then 'MILD'
   else null
+  , true, 'Undefined', 'Trace', 'Calculating Severity Classification')
 
 define "Is Critical Severity":
   if ClinicalAssessments.RespiratoryFailure
@@ -439,7 +441,9 @@ define "Risk Score Components": List {
 }
 
 define "Total Risk Score":
+  Message(
   Sum("Risk Score Components")
+  , true, 'Undefined', 'Trace', 'Calculating Total Risk Score')
 
 define "Risk Percent":
   "Total Risk Score" totalRiskScore

@@ -2,9 +2,8 @@
 publisher_jar=publisher.jar
 input_cache_path=./input-cache/
 echo Checking internet connection...
-curl -sSf tx.fhir.org > /dev/null
 
-if [ $? -eq 0 ]; then
+if [ $? -eq 1 ]; then
 	echo "Online"
 	txoption=""
 else
