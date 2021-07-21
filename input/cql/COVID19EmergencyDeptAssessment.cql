@@ -473,6 +473,7 @@ define "Risk Percent":
   end
 
 define "Respiratory Rate Risk Score":
+    Message(
   "Last Respiratory Rate value" respRate
     let value: Floor(Round(respRate))    // valid values should be Integer
   return case
@@ -483,8 +484,10 @@ define "Respiratory Rate Risk Score":
     when value > 24 then 3
     else null
   end
+    , true, 'Undefined', 'Trace', 'Calculating define "Respiratory Rate Risk Score"')
 
 define "O2 Saturation Risk Score":
+    Message(
   "Last O2 Saturation percent" o2Sat
     let value: Floor(Round(o2Sat))    // valid values should be Integer
   return case
@@ -494,8 +497,10 @@ define "O2 Saturation Risk Score":
     when value < 92 then 3
     else null
   end
+    , true, 'Undefined', 'Trace', 'Calculating define "O2 Saturation Risk Score"')
 
 define "Heart Rate Risk Score":
+    Message(
   "Last Heart Rate value" heartRate
     let value: Floor(Round(heartRate))    // valid values should be Integer
   return case
@@ -507,8 +512,10 @@ define "Heart Rate Risk Score":
     when value > 130 then 3
     else null
   end
+    , true, 'Undefined', 'Trace', 'Calculating define "Heart Rate Risk Score"')
 
 define "Systolic BP Risk Score":
+    Message(
   "Last SBP value" bp
     let value: Floor(Round(bp))    // valid values should be Integer
   return case
@@ -519,8 +526,10 @@ define "Systolic BP Risk Score":
     when value > 219 then 3
     else null
   end
+    , true, 'Undefined', 'Trace', 'Calculating define "Systolic BP Risk Score"')
 
 define "Temperature Risk Score":
+    Message(
   case
     when "Last Body Temperature value in C" between 36.1 and 38.0 then 0
     when "Last Body Temperature value in C" between 35.1 and 36.0 then 1
@@ -529,6 +538,7 @@ define "Temperature Risk Score":
     when "Last Body Temperature value in C" < 35.1 then 3
     else null
   end
+    , true, 'Undefined', 'Trace', 'Calculating define "Temperature Risk Score"')
 
 define "Sex Risk Score":
   if IgnoreFallbackResourceValues then
