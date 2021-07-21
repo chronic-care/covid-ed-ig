@@ -157,7 +157,7 @@ describe('risk assessment score', () => {
 
     describe('code maps to its expected condition', () => {
         [
-            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("703135009", "Anemia in malignant neoplastic disease (disorder) ").build()},
+            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("703135009", "Anemia in malignant neoplastic disease (disorder)").build()},
             { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)").build()},
             { conditionType: 'Renal Disease', cqlExpression: 'Has Renal Disease Risk Factor', condition: new ConditionBuilder("90708001", "Kidney disease (disorder)").build()},
         ].forEach(({conditionType, cqlExpression, condition}) => {
