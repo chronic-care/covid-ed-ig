@@ -31,13 +31,13 @@ define PatientSummary: {
 }
 
 define RiskSummary: {
-  SeverityClassification: C19."Severity Classification",
-  RiskScore: C19."Total Risk Score",
-  RiskPercent: C19."Risk Percent",
-  RiskFactorCount: C19."Risk Factors count",
-  DiagnosticInterpretation: DiagnosticInterpretation,
-  ConcerningLabCount: ConcerningLabCount,
-  ConcerningImagingCount: ConcerningImagingCount
+  SeverityClassification: Message(C19."Severity Classification", true, 'Undefined', 'Trace', 'Calculating C19."Severity Classification"'),
+  RiskScore: Message(C19."Total Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Total Risk Score"'),
+  RiskPercent: Message(C19."Risk Percent", true, 'Undefined', 'Trace', 'Calculating C19."Risk Percent"'),
+  RiskFactorCount: Message(C19."Risk Factors count", true, 'Undefined', 'Trace', 'Calculating C19."Risk Factors count"'),
+  DiagnosticInterpretation: Message(DiagnosticInterpretation, true, 'Undefined', 'Trace', 'Calculating DiagnosticInterpretation'),
+  ConcerningLabCount: Message(ConcerningLabCount, true, 'Undefined', 'Trace', 'Calculating ConcerningLabCount'),
+  ConcerningImagingCount: Message(ConcerningImagingCount, true, 'Undefined', 'Trace', 'Calculating ConcerningImagingCount')
 }
 
 define SmartPhrases: {
@@ -115,7 +115,7 @@ define DiagnosticSummary: {
   WBC: Message(ReportLabObservation(C19."Last Leukocyte Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Leukocyte Lab Result")'),
 
   // Not included in count of concerning labs; used for severity classification.
-  PaO2FiO2: C19."Last PaO2FiO2 Ratio Lab Result Less Than 300"
+  PaO2FiO2: Message(C19."Last PaO2FiO2 Ratio Lab Result Less Than 300", true, 'Undefined', 'Trace', 'Calculating C19."Last PaO2FiO2 Ratio Lab Result Less Than 300"')
 }
 
 define LabResultList: {

@@ -271,9 +271,11 @@ define "Last Respiratory Rate":
   C3F.MostRecent("Respiratory Rate Observations")
 
 define "Last Respiratory Rate value":
+  Message(
   if IgnoreFallbackResourceValues then ClinicalAssessments.RespiratoryRate
   else Coalesce(ClinicalAssessments.RespiratoryRate,
     C3F.QuantityValue("Last Respiratory Rate").value)
+  , true, 'Undefined', 'Trace', 'Calculating "Last Respiratory Rate value"')
 
 define "Respiratory Rate Observations":
   C3F.ObservationLookBack(
@@ -428,22 +430,22 @@ define "Is Mild Severity":
 */
 
 define "Risk Score Components": List {
-  "Respiratory Rate Risk Score",
-  "O2 Saturation Risk Score",
-  "Heart Rate Risk Score",
-  "Systolic BP Risk Score",
-  "Temperature Risk Score",
-  "Alertness Score",
-  "Inspired Oxygen Score",
-  "Sex Risk Score",
-  "Age Risk Score",
-  "Performance Status Score"
+  Message("Respiratory Rate Risk Score", true, 'Undefined', 'Trace', 'Calculating "Respiratory Rate Risk Score"'),
+  Message("O2 Saturation Risk Score", true, 'Undefined', 'Trace', 'Calculating "O2 Saturation Risk Score"'),
+  Message("Heart Rate Risk Score", true, 'Undefined', 'Trace', 'Calculating "Heart Rate Risk Score"'),
+  Message("Systolic BP Risk Score", true, 'Undefined', 'Trace', 'Calculating "Systolic BP Risk Score"'),
+  Message("Temperature Risk Score", true, 'Undefined', 'Trace', 'Calculating "Temperature Risk Score"'),
+  Message("Alertness Score", true, 'Undefined', 'Trace', 'Calculating "Alertness Score"'),
+  Message("Inspired Oxygen Score", true, 'Undefined', 'Trace', 'Calculating "Inspired Oxygen Score"'),
+  Message("Sex Risk Score", true, 'Undefined', 'Trace', 'Calculating "Sex Risk Score"'),
+  Message("Age Risk Score", true, 'Undefined', 'Trace', 'Calculating "Age Risk Score"'),
+  Message("Performance Status Score", true, 'Undefined', 'Trace', 'Calculating "Performance Status Score"')
 }
 
 define "Total Risk Score":
   Message(
   Sum("Risk Score Components")
-  , true, 'Undefined', 'Trace', 'Calculating Total Risk Score')
+  , true, 'Undefined', 'Trace', 'Calculating "Total Risk Score"')
 
 define "Risk Percent":
   "Total Risk Score" totalRiskScore
