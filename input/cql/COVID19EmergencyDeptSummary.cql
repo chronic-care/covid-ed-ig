@@ -101,18 +101,18 @@ define RiskFactorSummary: {
 }
 
 define DiagnosticSummary: {
-  ALT: ReportLabObservation(C19."Last ALT Lab Result"),
-  AST: ReportLabObservation(C19."Last AST Lab Result"),
-  Creatinine: ReportLabObservation(C19."Last Creatinine Lab Result"),
-  CRP: ReportLabObservation(C19."Last CRP Lab Result"),
-  DDimer: ReportLabObservation(C19."Last D-dimer Lab Result"),
-  Ferritin: ReportLabObservation(C19."Last Ferritin Lab Result"),
-  LDH: ReportLabObservation(C19."Last LDH Lab Result"),
-  Lymphopenia: ReportLabObservation(C19."Last Lymphocytes Lab Result"),
-  Neutrophils: ReportLabObservation(C19."Last Neutrophils Lab Result"),
-  Thrombocytopenia: ReportLabObservation(C19."Last Platelets Lab Result"),
-  Troponin: ReportLabObservation(C19."Last Troponin Lab Result"),
-  WBC: ReportLabObservation(C19."Last Leukocyte Lab Result"),
+  ALT: Message(ReportLabObservation(C19."Last ALT Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last ALT Lab Result")'),
+  AST: Message(ReportLabObservation(C19."Last AST Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last AST Lab Result")'),
+  Creatinine: Message(ReportLabObservation(C19."Last Creatinine Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Creatinine Lab Result")'),
+  CRP: Message(ReportLabObservation(C19."Last CRP Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last CRP Lab Result")'),
+  DDimer: Message(ReportLabObservation(C19."Last D-dimer Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last D-dimer Lab Result")'),
+  Ferritin: Message(ReportLabObservation(C19."Last Ferritin Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Ferritin Lab Result")'),
+  LDH: Message(ReportLabObservation(C19."Last LDH Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last LDH Lab Result")'),
+  Lymphopenia: Message(ReportLabObservation(C19."Last Lymphocytes Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Lymphocytes Lab Result")'),
+  Neutrophils: Message(ReportLabObservation(C19."Last Neutrophils Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Neutrophils Lab Result")'),
+  Thrombocytopenia: Message(ReportLabObservation(C19."Last Platelets Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Platelets Lab Result")'),
+  Troponin: Message(ReportLabObservation(C19."Last Troponin Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Troponin Lab Result")'),
+  WBC: Message(ReportLabObservation(C19."Last Leukocyte Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Leukocyte Lab Result")'),
 
   // Not included in count of concerning labs; used for severity classification.
   PaO2FiO2: C19."Last PaO2FiO2 Ratio Lab Result Less Than 300"
