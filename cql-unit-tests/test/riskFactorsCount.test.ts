@@ -41,6 +41,21 @@ const testValueOverrideViaParameter = (hasCondition: boolean,
     expect(results).toEqual(expected);
 };
 
+const testCodesMapToConditions = (cqlExpression: string,
+                                   expected: boolean | null,
+                                   condition: ICondition) => {
+
+    const cqlParams: CQLExpressionParameters = {
+        ClinicalAssessments: null,
+        IgnoreFallbackResourceValues: false,
+        PatientData: null,
+        RiskFactors: null,
+    };
+
+    const results = executeAssessmentCQLExpression(cqlParams, cqlExpression, [condition]);
+    expect(results).toEqual(expected);
+};
+
 describe('risk assessment score', () => {
     it('returns 0 when all inputs are null', () => {
         const riskAssessmentScoreParameters = buildAllNullRiskAssessmentScoreParameters();
@@ -135,6 +150,20 @@ describe('risk assessment score', () => {
                 });
                 test(`Given that the patient does not have any condition of type ${conditionType} and the risk factor parameter is null then the calculated risk factor is null`, () => {
                     testValueOverrideViaParameter(false, conditionType, cqlExpression, null, null, conditions);
+                });
+            });
+        });
+    });
+
+    describe('code maps to its expected condition', () => {
+        [
+            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("703135009", "Anemia in malignant neoplastic disease (disorder) ").build()},
+            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)").build()},
+            { conditionType: 'Renal Disease', cqlExpression: 'Has Renal Disease Risk Factor', condition: new ConditionBuilder("90708001", "Kidney disease (disorder)").build()},
+        ].forEach(({conditionType, cqlExpression, condition}) => {
+            describe(conditionType, () => {
+                test(`Given that the patient has codes associated with ${conditionType} then the '${cqlExpression}' should come back as true`, () => {
+                    testCodesMapToConditions(cqlExpression, true, condition);
                 });
             });
         });
