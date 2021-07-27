@@ -32,6 +32,7 @@ define PatientSummary: {
 
 define RiskSummary: {
   SeverityClassification: Message(C19."Severity Classification", true, 'Undefined', 'Trace', 'Calculating C19."Severity Classification"'),
+  BloodPressure: Message(C19."Systolic BP Risk Score", true, 'Undefined', 'Trace', 'Calculating "Systolic BP Risk Score"'),
   RiskScore: Message(C19."Total Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Total Risk Score"'),
   RiskPercent: Message(C19."Risk Percent", true, 'Undefined', 'Trace', 'Calculating C19."Risk Percent"'),
   RiskFactorCount: Message(C19."Risk Factors count", true, 'Undefined', 'Trace', 'Calculating C19."Risk Factors count"'),

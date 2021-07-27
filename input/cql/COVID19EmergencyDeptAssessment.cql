@@ -393,37 +393,37 @@ define "Severity Classification":
   , true, 'Undefined', 'Trace', 'Calculating Severity Classification')
 
 define "Is Critical Severity":
-  if ClinicalAssessments.RespiratoryFailure
+  Message(if ClinicalAssessments.RespiratoryFailure
     or ClinicalAssessments.SepticShock
     or ClinicalAssessments.MultiorganDysfunction
     then true
-  else false
+  else false, true, 'Undefined', 'Trace', 'Calculating Is Critical Severity')
 
 define "Is Severe Severity":
-  if not "Is Critical Severity"
+  Message(if not "Is Critical Severity"
     and (("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" < 94)
       or ("Last Respiratory Rate value" is not null and "Last Respiratory Rate value" > 30)
       or ("Last PaO2FiO2 Ratio Lab Result Less Than 300" is not null and "Last PaO2FiO2 Ratio Lab Result Less Than 300" is true)
       or ClinicalAssessments.LungInfiltratesOver50)
     then true
-  else false
+  else false, true, 'Undefined', 'Trace', 'Calculating Is Severe Severity')
 
 // TODO O2 Sat on room air (not Supplemental Oxygen)
 define "Is Moderate Severity":
-  if not "Is Severe Severity" and not "Is Critical Severity"
+  Message(if not "Is Severe Severity" and not "Is Critical Severity"
     and ("Last O2 Saturation percent" is not null and "Last O2 Saturation percent" >= 94)
     and (ClinicalAssessments.RespiratoryDiseaseSymptoms
         or ClinicalAssessments.RespiratoryDiseaseImagingEvidence)
     then true
-  else false
+  else false, true, 'Undefined', 'Trace', 'Calculating Is Moderate Severity')
 
 // TODO moved 3 parameters to Moderat as "evidence of lower respiratory disease"
 define "Is Mild Severity":
-  if not "Is Severe Severity" and not "Is Critical Severity" and not "Is Moderate Severity"
+  Message(if not "Is Severe Severity" and not "Is Critical Severity" and not "Is Moderate Severity"
     and ClinicalAssessments.AnyMildCOVIDSymptoms is true
     and ClinicalAssessments.RespiratoryDiseaseSymptoms is false
     then true
-  else false
+  else false, true, 'Undefined', 'Trace', 'Calculating Mild Severity')
 
 /*
 * Risk Prognostication
