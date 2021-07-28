@@ -32,6 +32,15 @@ define PatientSummary: {
 
 define RiskSummary: {
   SeverityClassification: Message(C19."Severity Classification", true, 'Undefined', 'Trace', 'Calculating C19."Severity Classification"'),
+  Saturation: Message(C19."O2 Saturation Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."O2 Saturation Risk Score"'),
+  HeartRate: Message(C19."Heart Rate Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Heart Rate Risk Score"'),
+  Respirtory: Message(C19."Respiratory Rate Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Respiratory Rate Risk Score"'),
+  Temperature: Message(C19."Temperature Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Temperature Risk Score"'),
+  Alertness: Message(C19."Alertness Score", true, 'Undefined', 'Trace', 'Calculating C19."Alertness Score"'),
+  Oxygen: Message(C19."Inspired Oxygen Score", true, 'Undefined', 'Trace', 'Calculating C19."Inspired Oxygen Score"'),
+  Sex: Message(C19."Sex Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Sex Risk Score"'),
+  Age: Message(C19."Age Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Age Risk Score"'),
+  PerformanceStatus: Message(C19."Performance Status Score", true, 'Undefined', 'Trace', 'Calculating C19."Performance Status Score"'),
   BloodPressure: Message(C19."Systolic BP Risk Score", true, 'Undefined', 'Trace', 'Calculating "Systolic BP Risk Score"'),
   RiskScore: Message(C19."Total Risk Score", true, 'Undefined', 'Trace', 'Calculating C19."Total Risk Score"'),
   RiskPercent: Message(C19."Risk Percent", true, 'Undefined', 'Trace', 'Calculating C19."Risk Percent"'),
