@@ -3374,6 +3374,18 @@
       }
     ]
   },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-vital-blood-pressure": {
+    "0.5.0": [
+      {
+        "code": "85354-9",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "55284-4",
+        "system": "http://loinc.org"
+      }
+    ]
+  },
   "http://fhir.org/guides/acep/ValueSet/covid-19-lab-platelets": {
     "0.5.0": [
       {

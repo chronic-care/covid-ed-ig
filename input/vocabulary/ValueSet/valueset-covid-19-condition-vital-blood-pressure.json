@@ -1,0 +1,25 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-condition-vital-blood-pressure",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-vital-blood-pressure",
+    "version": "0.5.0",
+    "name": "COVID19ConditionVitalBloodPressure",
+    "title": "COVID-19 Condition Vital Blood Pressure Value Set",
+    "description": "COVID-19 Condition Vital Blood Pressure Value Set",
+    "status": "active",
+    "expansion": {
+        "contains": [
+            {
+                "system": "http://loinc.org",
+                "code": "85354-9",
+                "display": "Blood pressure systolic and diastolic"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "55284-4",
+                "display": "Blood pressure systolic and diastolic"
+            }
+        ]
+    }
+}

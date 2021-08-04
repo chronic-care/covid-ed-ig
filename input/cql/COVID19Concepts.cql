@@ -80,6 +80,8 @@ code "Blood pressure, deprecated": '55284-4' from "LOINC" display 'Blood pressur
 code "Systolic blood pressure": '8480-6' from "LOINC" display 'Systolic blood pressure'
 code "Diastolic blood pressure": '8462-4' from "LOINC" display 'Diastolic blood pressure'
 
+valueset "Blood pressure codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-vital-blood-pressure'
+
 code "Heart rate": '8867-4' from "LOINC" display 'Heart rate'
 code "Oxygen saturation": '2708-6' from "LOINC" display 'Oxygen saturation'
 code "Pulse oximetry": '59408-5' from LOINC display 'Oxygen saturation in Arterial blood by Pulse oximetry'

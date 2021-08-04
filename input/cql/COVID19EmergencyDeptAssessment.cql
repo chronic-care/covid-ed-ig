@@ -180,7 +180,7 @@ define "Heart Rate Observations":
     VitalSignsLookbackPeriod)
 
 define "Last SBP":
-  Last("Blood Pressure Observations" o where o.Systolic is not null)
+  Last("Blood Pressure Observation Components" o where o.Systolic is not null)
 
 define "Last SBP value":
   if IgnoreFallbackResourceValues then ClinicalAssessments.SystolicBloodPressure
@@ -223,7 +223,7 @@ define function ComponentValue(Obs FHIR.Observation, code System.Code):
 // Use the following if Systolic and Diastolic are combined as components within one Observation.
 define "Blood Pressure Observation Components":
   (C3F.ObservationLookBack(C3F.Verified(
-        [Observation: CC."Blood pressure"] union [Observation: CC."Blood pressure, deprecated"]
+        [Observation: CC."Blood pressure codes"]
       ), VitalSignsLookbackPeriod)) bp
     let SystolicValue: Round(ComponentValue(bp, CC."Systolic blood pressure").value),
         DiastolicValue: Round(ComponentValue(bp, CC."Diastolic blood pressure").value)
