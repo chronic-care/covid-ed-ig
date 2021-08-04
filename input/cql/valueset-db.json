@@ -3463,6 +3463,14 @@
       {
         "code": "41040004",
         "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "254264002",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "371045000",
+        "system": "http://snomed.info/sct"
       }
     ]
   },
@@ -36419,6 +36427,14 @@
       },
       {
         "code": "78275009",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "101301000119106",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "971918681000119107",
         "system": "http://snomed.info/sct"
       }
     ]

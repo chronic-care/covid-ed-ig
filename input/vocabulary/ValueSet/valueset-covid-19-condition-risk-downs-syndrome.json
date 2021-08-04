@@ -11,7 +11,7 @@
     "expansion": {
         "identifier": "f3d77542-b753-48cd-81e8-42d201ca903b",
         "timestamp": "2021-02-20T05:22:21+10:00",
-        "total": 8,
+        "total": 10,
         "offset": 0,
         "parameter": [
             {
@@ -67,6 +67,16 @@
                 "system": "http://snomed.info/sct",
                 "code": "41040004",
                 "display": "Complete trisomy 21 syndrome"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "254264002",
+                "display": "Partial trisomy 21 in Down's syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "371045000",
+                "display": "Translocation Down syndrome (disorder)"
             }
         ]
     }
