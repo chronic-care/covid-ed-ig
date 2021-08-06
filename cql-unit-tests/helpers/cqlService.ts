@@ -87,21 +87,24 @@ export const executeAssessmentNoParams = (expressionName: string, observations: 
 }
 
 
-export const executeSummaryCQLExpression = (parameters: CQLExpressionParameters, expressionName: string): unknown => {
-    let finishTime;
+export const executeSummaryCQLExpression = (parameters: CQLExpressionParameters, expressionName: string, showBenchmark?: boolean): unknown => {
+    let previousExpressionFinishTime = 0;
 
-    const listener = {
-        onMessage: (source, code, severity, message) => {
-            finishTime = Date.now();
+    const benchmarkListener = {
+        onMessage: (_source, _code, _severity, _message) => {
+            previousExpressionFinishTime = Date.now();
         }
     };
 
-    const expressionExecutor = new cql.Executor(summaryLibrary, codeService, parameters, listener);
+    const expressionExecutor = new cql.Executor(summaryLibrary, codeService, parameters, benchmarkListener);
 
     const startTime = Date.now();
     const results = expressionExecutor.exec_expression(expressionName, createPatientSource([], []));
 
-    console.log('run time:', finishTime - startTime);
+    if (showBenchmark) {
+        const runtime = previousExpressionFinishTime - startTime;
+        console.log(`run time for "${expressionName}": ${runtime} ms`, );
+    }
 
     const patientResults = Object.keys(results.patientResults);
     const firstPatientResult = patientResults[0];
