@@ -179,13 +179,22 @@ define "Heart Rate Observations":
     C3F.Verified([Observation: CC."Heart rate"]),
     VitalSignsLookbackPeriod)
 
-define "Last SBP":
-  Last("Blood Pressure Observation Components" o where o.Systolic is not null)
+define "Last Blood Pressure":
+  (C3F.MostRecent(C3F.ObservationLookBack(C3F.Verified(
+        [Observation: CC."Blood pressure codes"]), VitalSignsLookbackPeriod))) bp
+    let SystolicValue: Round(ComponentValue(bp, CC."Systolic blood pressure").value),
+        DiastolicValue: Round(ComponentValue(bp, CC."Diastolic blood pressure").value)
+   return {
+     "Date": ToString(C3F.FindDate(bp)),
+     "Systolic": SystolicValue,
+     "Diastolic": DiastolicValue,
+     "Display": Coalesce(ToString(SystolicValue), '-') + '/' + Coalesce(ToString(DiastolicValue), '-')
+   }
 
 define "Last SBP value":
   if IgnoreFallbackResourceValues then ClinicalAssessments.SystolicBloodPressure
   else Coalesce(ClinicalAssessments.SystolicBloodPressure,
-    "Last SBP".Systolic)
+    "Last Blood Pressure".Systolic)
 
 define "Blood Pressure Observations":
  ("Blood Pressure Observation Components"
