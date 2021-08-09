@@ -21,6 +21,7 @@ valueset "Cardiovascular Disease Codes": 'http://fhir.org/guides/acep/ValueSet/c
 valueset "Chronic Respiratory Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-respiratory'
 valueset "Downs Syndrome Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome'
 valueset "Obstructive Sleep Apnea Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea'
+valueset "Immunosuppression Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression'
 
 valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal-disease'
 valueset "Cancer Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cancer'

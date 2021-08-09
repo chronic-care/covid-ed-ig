@@ -1,0 +1,105 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-condition-risk-immunosuppression",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression",
+    "version": "0.5.0",
+    "name": "COVID19ConditionRiskImmunosuppression",
+    "title": "COVID-19 Condition Risk Immunosuppression",
+    "description": "COVID-19 Condition Risk Immunosuppression",
+    "status": "active",
+    "expansion": {
+        "contains": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Q89.01",
+                "display": "Asplenia (congenital)"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Z90.81",
+                "display": "Acquired absence of spleen"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "17604001",
+                "display": "Bilateral right-sidedness sequence (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "300564004",
+                "display": "Spleen absent (finding)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "38096003",
+                "display": "Functional asplenia (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "707147002",
+                "display": "Asplenia (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "711407000",
+                "display": "Thrombocytopathy, asplenia and miosis (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "724639003",
+                "display": "Asplenia following surgical procedure (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "726708009",
+                "display": "Familial isolated congenital asplenia (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "93030006",
+                "display": "Congenital absence of spleen (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "1003551006",
+                "display": "Agenesis of spleen (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "702624008",
+                "display": "Aplasia of spleen (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "234511009",
+                "display": "Post-splenectomy disorder (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "234513007",
+                "display": "Post-splenectomy leukocytosis (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "700052007",
+                "display": "Post-splenectomy sepsis (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "234512002",
+                "display": "Post-splenectomy thrombocytosis (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "161626009",
+                "display": "History of splenectomy (situation)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "700051000",
+                "display": "Sepsis in asplenic subject (disorder)"
+            }
+        ]
+    }
+}

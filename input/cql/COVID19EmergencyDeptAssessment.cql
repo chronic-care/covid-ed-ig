@@ -698,7 +698,11 @@ define "Has Hypertension Risk Factor":
   )
 
 define "Has Immunosuppression Risk Factor":
-  RiskFactors.Immunosuppression
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+       where C.code in CC."Immunosuppression Codes"),
+    RiskFactors.Immunosuppression
+  )
 
 define "Has Neurologic Disease Risk Factor":
   RiskFactors.NeurologicDisease

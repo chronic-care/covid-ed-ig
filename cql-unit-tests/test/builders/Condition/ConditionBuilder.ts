@@ -5,10 +5,10 @@ class ConditionBuilder {
     displayName: string;
     codeSystem: string;
 
-    constructor(code: string, displayName: string) {
+    constructor(code: string, displayName: string, codeSystem="http://snomed.info/sct") {
         this.code = code;
         this.displayName = displayName;
-        this.codeSystem = "http://snomed.info/sct";
+        this.codeSystem = codeSystem;
     }
 
     public build(): ICondition {

@@ -160,6 +160,8 @@ describe('risk assessment score', () => {
             { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("703135009", "Anemia in malignant neoplastic disease (disorder)").build()},
             { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)").build()},
             { conditionType: 'Renal Disease', cqlExpression: 'Has Renal Disease Risk Factor', condition: new ConditionBuilder("90708001", "Kidney disease (disorder)").build()},
+            { conditionType: 'Immunosuppression', cqlExpression: 'Has Immunosuppression Risk Factor', condition: new ConditionBuilder("700051000", "Sepsis in asplenic subject (disorder)").build()},
+            { conditionType: 'Immunosuppression', cqlExpression: 'Has Immunosuppression Risk Factor', condition: new ConditionBuilder("Z90.81", "Acquired absence of spleen", "http://hl7.org/fhir/sid/icd-10-cm").build()}
         ].forEach(({conditionType, cqlExpression, condition}) => {
             describe(conditionType, () => {
                 test(`Given that the patient has codes associated with ${conditionType} then the '${cqlExpression}' should come back as true`, () => {
