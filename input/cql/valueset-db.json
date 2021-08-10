@@ -3486,6 +3486,74 @@
       }
     ]
   },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-snomed": {
+    "0.5.0": [
+      {
+        "code": "17604001",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "300564004",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "38096003",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "707147002",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "711407000",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "724639003",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "726708009",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "93030006",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "1003551006",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "702624008",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "234511009",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "234513007",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "700052007",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "234512002",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "161626009",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "700051000",
+        "system": "http://snomed.info/sct"
+      }
+    ]
+  },
   "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6100": {
     "20201222": [
       {
@@ -31351,7 +31419,7 @@
       }
     ]
   },
-  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression": {
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10": {
     "0.5.0": [
       {
         "code": "Q89.01",
@@ -31360,70 +31428,6 @@
       {
         "code": "Z90.81",
         "system": "http://hl7.org/fhir/sid/icd-10-cm"
-      },
-      {
-        "code": "17604001",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "300564004",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "38096003",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "707147002",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "711407000",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "724639003",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "726708009",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "93030006",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "1003551006",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "702624008",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "234511009",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "234513007",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "700052007",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "234512002",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "161626009",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "700051000",
-        "system": "http://snomed.info/sct"
       }
     ]
   },

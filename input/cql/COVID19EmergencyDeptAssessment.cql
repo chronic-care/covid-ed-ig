@@ -700,7 +700,8 @@ define "Has Hypertension Risk Factor":
 define "Has Immunosuppression Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
-       where C.code in CC."Immunosuppression Codes"),
+       where (C.code in CC."Immunosuppression SNOMED Codes"
+        or C.code in CC."Immunosuppression ICD10CM Codes")),
     RiskFactors.Immunosuppression
   )
 

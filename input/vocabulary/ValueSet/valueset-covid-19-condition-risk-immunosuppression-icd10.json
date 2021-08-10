@@ -1,0 +1,25 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-condition-risk-immunosuppression-icd10",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10",
+    "version": "0.5.0",
+    "name": "COVID19ICD10ConditionRiskImmunosuppression",
+    "title": "COVID-19 ICD10 Condition Risk Immunosuppression",
+    "description": "COVID-19 ICD10 Condition Risk Immunosuppression",
+    "status": "active",
+    "expansion": {
+        "contains": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Q89.01",
+                "display": "Asplenia (congenital)"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Z90.81",
+                "display": "Acquired absence of spleen"
+            }
+        ]
+    }
+}
