@@ -31419,6 +31419,18 @@
       }
     ]
   },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea-icd10": {
+    "0.5.0": [
+      {
+        "code": "G47.30",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "G47.33",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      }
+    ]
+  },
   "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10": {
     "0.5.0": [
       {
@@ -31428,6 +31440,46 @@
       {
         "code": "Z90.81",
         "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      }
+    ]
+  },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea-snomed": {
+    "0.5.0": [
+      {
+        "code": "16275741000119100",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "774068004",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "230493001",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "1091000119108",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "1101000119103",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "765751002",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "78275009",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "101301000119106",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "971918681000119107",
+        "system": "http://snomed.info/sct"
       }
     ]
   },
@@ -36488,46 +36540,6 @@
       {
         "code": "51619-5",
         "system": "http://loinc.org"
-      }
-    ]
-  },
-  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea": {
-    "0.5.0": [
-      {
-        "code": "16275741000119100",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "774068004",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "230493001",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "1091000119108",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "1101000119103",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "765751002",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "78275009",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "101301000119106",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "971918681000119107",
-        "system": "http://snomed.info/sct"
       }
     ]
   },

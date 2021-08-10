@@ -720,7 +720,8 @@ define "Has Neurologic Disease Risk Factor":
 define "Has Obstructive Sleep Apnea Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
-      where C.code in CC."Obstructive Sleep Apnea Codes"),
+      where (C.code in CC."Obstructive Sleep Apnea SNOMED Codes"
+        or C.code in CC."Obstructive Sleep Apnea ICD10CM Codes")),
     RiskFactors.ObstructiveSleepApnea
   )
 

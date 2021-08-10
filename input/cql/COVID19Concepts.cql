@@ -20,7 +20,8 @@ valueset "Race Category": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.11388
 valueset "Cardiovascular Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cardiovascular'
 valueset "Chronic Respiratory Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-respiratory'
 valueset "Downs Syndrome Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome'
-valueset "Obstructive Sleep Apnea Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea'
+valueset "Obstructive Sleep Apnea SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea-snomed'
+valueset "Obstructive Sleep Apnea ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea-icd10'
 valueset "Immunosuppression ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10'
 valueset "Immunosuppression SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-snomed'
 
