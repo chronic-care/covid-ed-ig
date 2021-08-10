@@ -85,7 +85,7 @@ define AssessmentSummary: {
   RespiratoryRate: C19."Last Respiratory Rate value",
   O2Saturation: C19."Last O2 Saturation percent",
   HeartRate: C19."Last Heart Rate value",
-  BloodPressure: Last(C19."Blood Pressure Observations").Display,
+  BloodPressure: C19."Last Blood Pressure".Display,
   SystolicBloodPressure: C19."Last SBP value",
   TemperatureC: C19."Last Body Temperature value in C",
   TemperatureF: C19."Last Body Temperature value in F",
