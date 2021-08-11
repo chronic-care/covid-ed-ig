@@ -694,7 +694,8 @@ define "Has Diabetes Type 2 Risk Factor":
 define "Has Downs Syndrome Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
-      where C.code in CC."Downs Syndrome Codes"),
+      where (C.code in CC."Downs Syndrome SNOMED Codes"
+        or C.code in CC."Downs Syndrome ICD10CM Codes")),
     RiskFactors.DownsSyndrome
   )
 

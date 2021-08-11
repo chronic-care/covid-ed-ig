@@ -164,7 +164,9 @@ describe('risk assessment score', () => {
             { conditionType: 'Immunosuppression', cqlExpression: 'Has Immunosuppression Risk Factor', condition: new ConditionBuilder("Z90.81", "Acquired absence of spleen", "http://hl7.org/fhir/sid/icd-10-cm").build()},
             { conditionType: 'Obstructive Sleep Apnea', cqlExpression: 'Has Obstructive Sleep Apnea Risk Factor', condition: new ConditionBuilder("G47.30", "Sleep apnea, unspecified", "http://hl7.org/fhir/sid/icd-10-cm").build()},
             { conditionType: 'Steroid Usage', cqlExpression: 'Has Steroid Usage Risk Factor', condition: new ConditionBuilder("T38.0X5A", "Adverse effect of glucocorticoids and synthetic analogues, initial encounter", "http://hl7.org/fhir/sid/icd-10-cm").build()},
-            { conditionType: 'Steroid Usage', cqlExpression: 'Has Steroid Usage Risk Factor', condition: new ConditionBuilder("95919007", "Dependence on corticoids (disorder)").build()}
+            { conditionType: 'Steroid Usage', cqlExpression: 'Has Steroid Usage Risk Factor', condition: new ConditionBuilder("95919007", "Dependence on corticoids (disorder)").build()},
+            { conditionType: 'Downs Syndrome', cqlExpression: 'Has Downs Syndrome Risk Factor', condition: new ConditionBuilder("Q90.0", "Trisomy 21, nonmosaicism (meiotic nondisjunction)", "http://hl7.org/fhir/sid/icd-10-cm").build()},
+            { conditionType: 'Downs Syndrome', cqlExpression: 'Has Downs Syndrome Risk Factor', condition: new ConditionBuilder("840505007", "Down syndrome co-occurrent with leukaemoid reaction associated transient neonatal pustulosis").build()}
         ].forEach(({conditionType, cqlExpression, condition}) => {
             describe(conditionType, () => {
                 test(`Given that the patient has codes associated with ${conditionType} then the '${cqlExpression}' should come back as true`, () => {

@@ -2905,6 +2905,22 @@
       }
     ]
   },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-icd10": {
+    "0.5.0": [
+      {
+        "code": "Q90.0",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "Q90.2",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "Q90.9",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      }
+    ]
+  },
   "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6064": {
     "20200710": [
       {
@@ -3334,6 +3350,50 @@
       }
     ]
   },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-snomed": {
+    "0.5.0": [
+      {
+        "code": "709469005",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "840505007",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "724644005",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "724643004",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "205615000",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "733194007",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "125501000119105",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "41040004",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "254264002",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "371045000",
+        "system": "http://snomed.info/sct"
+      }
+    ]
+  },
   "http://fhir.org/guides/acep/ValueSet/who-performance-status": {
     "0.5.0": [
       {
@@ -3451,50 +3511,6 @@
       {
         "code": "732-8",
         "system": "http://loinc.org"
-      }
-    ]
-  },
-  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome": {
-    "0.5.0": [
-      {
-        "code": "709469005",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "840505007",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "724644005",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "724643004",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "205615000",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "733194007",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "125501000119105",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "41040004",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "254264002",
-        "system": "http://snomed.info/sct"
-      },
-      {
-        "code": "371045000",
-        "system": "http://snomed.info/sct"
       }
     ]
   },

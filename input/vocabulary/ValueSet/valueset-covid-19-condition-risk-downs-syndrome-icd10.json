@@ -1,0 +1,30 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-condition-risk-downs-syndrome-icd10",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-icd10",
+    "version": "0.5.0",
+    "name": "COVID19ICD10RiskFactorDownsSyndrome",
+    "title": "COVID-19 ICD10 Risk Factor Downs Syndrome Conditions Value Set",
+    "description": "COVID-19 ICD10 Risk Factor Downs Syndrome Conditions Value Set",
+    "status": "active",
+    "expansion": {
+        "contains": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Q90.0",
+                "display": "Trisomy 21, nonmosaicism (meiotic nondisjunction)"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Q90.2",
+                "display": "Trisomy 21, translocation"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Q90.9",
+                "display": "Down syndrome, unspecified"
+            }
+        ]
+    }
+}

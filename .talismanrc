@@ -3,3 +3,5 @@ fileignoreconfig:
   checksum: 1abc3447c829e856923f3031986fadb76ca930f3686d268e1e46cb0b612802e0
 - filename: input/vocabulary/ValueSet/valueset-covid-19-condition-risk-obstructive-sleep-apnea-icd10.json
   checksum: 2387dad07ac00f6b5ecd0bd346088d5607484205945b2057b07f681692d2a531
+- filename: input/vocabulary/ValueSet/valueset-covid-19-condition-risk-downs-syndrome-icd10.json
+  checksum: 4cb0e0a2b14d4f37c02f10cf5dd4012f5f61cbb139d0edb5220a5a4f1e782a52
