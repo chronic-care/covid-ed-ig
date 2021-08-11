@@ -746,7 +746,12 @@ define "Has Renal Disease Risk Factor":
   )
 
 define "Has Steroid Usage Risk Factor":
-  RiskFactors.SteroidUsage
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+      where (C.code in CC."Steroid Usage SNOMED Codes"
+        or C.code in CC."Steroid Usage ICD10CM Codes")),
+    RiskFactors.SteroidUsage
+  )
 
 /*
  * Diagnostic Testing

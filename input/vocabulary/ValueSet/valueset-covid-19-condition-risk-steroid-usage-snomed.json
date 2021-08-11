@@ -1,0 +1,25 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-condition-risk-steroid-usage-snomed",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-snomed",
+    "version": "0.5.0",
+    "name": "COVID19SNOMEDConditionRiskSteroidUsage",
+    "title": "COVID-19 SNOMED Condition Risk Steroid Usage",
+    "description": "COVID-19 SNOMED Condition Risk Steroid Usage",
+    "status": "active",
+    "expansion": {
+        "contains": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "95919007",
+                "display": "Dependence on corticoids (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "103079001",
+                "display": "Immunodeficiency caused by corticosteroid (disorder)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,110 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-condition-risk-steroid-usage-icd10",
+    "language": "en",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-icd10",
+    "version": "0.5.0",
+    "name": "COVID19ICD10ConditionRiskSteroidUsage",
+    "title": "COVID-19 ICD10 Condition Risk Steroid Usage",
+    "description": "COVID-19 ICD10 Condition Risk Steroid Usage",
+    "status": "active",
+    "expansion": {
+        "contains": [
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X5A",
+                "display": "Adverse effect of glucocorticoids and synthetic analogues, initial encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X5S",
+                "display": "Adverse effect of glucocorticoids and synthetic analogues, sequela"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X5D",
+                "display": "Adverse effect of glucocorticoids and synthetic analogues, subsequent encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "Z79.52",
+                "display": "Long term (current) use of systemic steroids"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X1A",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, accidental (unintentional), initial encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X1S",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, accidental (unintentional), initial encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X1D",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, accidental (unintentional), subsequent encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X3A",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, assault, initial encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X3S",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, assault, sequela"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X3D",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, assault, subsequent encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X2A",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, intentional self-harm, initial encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X2S",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, intentional self-harm, sequela"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X2D",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, intentional self-harm, subsequent encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X6D",
+                "display": "Underdosing of glucocorticoids and synthetic analogues, subsequent encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X6S",
+                "display": "Underdosing of glucocorticoids and synthetic analogues, sequela"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X6A",
+                "display": "Underdosing of glucocorticoids and synthetic analogues, initial encounter encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X4D",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, undetermined, subsequent encounter"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X4S",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, undetermined, sequela"
+            },
+            {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "T38.0X4A",
+                "display": "Poisoning by glucocorticoids and synthetic analogues, undetermined, initial encounter"
+            }
+        ]
+    }
+}

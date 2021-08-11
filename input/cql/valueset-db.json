@@ -2893,6 +2893,18 @@
       }
     ]
   },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-snomed": {
+    "0.5.0": [
+      {
+        "code": "95919007",
+        "system": "http://snomed.info/sct"
+      },
+      {
+        "code": "103079001",
+        "system": "http://snomed.info/sct"
+      }
+    ]
+  },
   "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6064": {
     "20200710": [
       {
@@ -3551,6 +3563,86 @@
       {
         "code": "700051000",
         "system": "http://snomed.info/sct"
+      }
+    ]
+  },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-icd10": {
+    "0.5.0": [
+      {
+        "code": "T38.0X5A",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X5S",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X5D",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "Z79.52",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X1A",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X1S",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X1D",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X3A",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X3S",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X3D",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X2A",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X2S",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X2D",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X6D",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X6S",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X6A",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X4D",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X4S",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "code": "T38.0X4A",
+        "system": "http://hl7.org/fhir/sid/icd-10-cm"
       }
     ]
   },

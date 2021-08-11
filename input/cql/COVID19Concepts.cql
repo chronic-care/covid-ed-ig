@@ -24,6 +24,8 @@ valueset "Obstructive Sleep Apnea SNOMED Codes": 'http://fhir.org/guides/acep/Va
 valueset "Obstructive Sleep Apnea ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea-icd10'
 valueset "Immunosuppression ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10'
 valueset "Immunosuppression SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-snomed'
+valueset "Steroid Usage ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-icd10'
+valueset "Steroid Usage SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-snomed'
 
 valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal-disease'
 valueset "Cancer Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cancer'
