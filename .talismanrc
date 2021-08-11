@@ -7,3 +7,5 @@ fileignoreconfig:
   checksum: 4cb0e0a2b14d4f37c02f10cf5dd4012f5f61cbb139d0edb5220a5a4f1e782a52
 - filename: input/vocabulary/ValueSet/valueset-vsac-covid19-diabetes-snomed.json
   checksum: 9452adceb8d25afec1621ae487944be99f93c27ad2f1b2a1daa9a68402aa9591
+- filename: input/cql/valueset-db.json
+  checksum: fbba042ed60f0f2c80980e25a4b7ff6b569853431e3cce53686d7bddd20546b7
