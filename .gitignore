@@ -2,9 +2,10 @@
 #####################
 temp
 template
-output
+/output
 bundles
 input/tests/results
+src/main/resources/org/opencds/cqf/tooling/terminology/output
 
 # Don't commit this because it's so large #
 ###########################################
@@ -38,3 +39,10 @@ Thumbs.db
 .idea/
 .java-version
 .ruby-version
+
+valueset-creation/input/*.csv
+valueset-creation/output/*.json
+!valueset-creation/input/example-input.csv
+!valueset-creation/output/example-data.json
+
+venv
