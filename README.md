@@ -166,6 +166,13 @@ If new codes need to be added to a valueset, follow these steps to manually upda
 
 # CQL Development Resources
 
+## Getting Started with CQL
+
+* [CQL Author's Guide](https://cql.hl7.org/02-authorsguide.html) - high-level syntax of CQL
+* [CQL Developer's Guide](https://cql.hl7.org/03-developersguide.html) - in-depth syntax and advanced CQL topics
+* [CQL Reference Guide](https://cql.hl7.org/09-b-cqlreference.html) - complete semantics to all functions in CQL (companion to the above 2 guides)
+* [Zulip FHIR Community](https://chat.fhir.org/login/) - chat community to ask questions to people who use CQL every day and the creators
+
 ## Atom
 
 There are CQL plugins for the [Atom text editor](https://github.com/atom/atom):
