@@ -30,6 +30,10 @@
         "code": "752-6"
       }, {
         "code": "753-4"
+      }, {
+        "code": "20482-6"
+      }, {
+        "code": "19023-1"
       } ]
     } ]
   },
@@ -47,6 +51,12 @@
     }, {
       "system": "http://loinc.org",
       "code": "753-4"
-    } ]
+    }, {
+      "system": "http://loinc.org",
+      "code": "20482-6"
+    }, {
+      "system": "http://loinc.org",
+      "code": "19023-1"
+    }  ]
   }
 }
