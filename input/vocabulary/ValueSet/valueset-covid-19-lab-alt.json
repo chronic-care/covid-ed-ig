@@ -32,7 +32,9 @@
         "code": "1743-4"
       }, {
         "code": "44785-4"
-      } ]
+      }, {
+        "code": "25302-1"
+      }  ]
     } ]
   },
   "expansion": {
@@ -52,6 +54,9 @@
     }, {
       "system": "http://loinc.org",
       "code": "44785-4"
+    }, {
+      "system": "http://loinc.org",
+      "code": "25302-1"
     } ]
   }
 }
