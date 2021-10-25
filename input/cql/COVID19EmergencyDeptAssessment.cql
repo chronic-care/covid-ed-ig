@@ -628,21 +628,7 @@ define "Risk Factor Components": List {
     otherwise returns the count of non-null risk factors.
 */
 define "Risk Factors count":
-  /* if not exists "Risk Factor Components" then null
-  else */
-  (if "Has Cancer Risk Factor" then 1 else 0)
-    + (if "Has Cardiovascular Disease Risk Factor" then 1 else 0)
-    + (if "Has Chronic Respiratory Disease Risk Factor" then 1 else 0)
-    + (if "Has Diabetes Type 2 Risk Factor" then 1 else 0)
-    + (if "Has Downs Syndrome Risk Factor" then 1 else 0)
-    + (if "Has Hypertension Risk Factor" then 1 else 0)
-    + (if "Has Immunosuppression Risk Factor" then 1 else 0)
-    + (if "Has Neurologic Disease Risk Factor" then 1 else 0)
-    + (if "Has Obstructive Sleep Apnea Risk Factor" then 1 else 0)
-    + (if "Has Obesity Risk Factor" then 1 else 0)
-    + (if "Has Pregnancy Risk Factor" then 1 else 0)
-    + (if "Has Renal Disease Risk Factor" then 1 else 0)
-    + (if "Has Steroid Usage Risk Factor" then 1 else 0)
+    allRiskFactors("All Active Conditions")
 
 define function hasCancerRiskFactors(conditions List<Condition>):
   HasConditionWithOverride(
@@ -733,25 +719,19 @@ define function hasSteroidUsageRiskFactors(conditions List<Condition>):
     )
 
 define function allRiskFactors(conditions List<Condition>):
-  {
-    (if hasCancerRiskFactors(conditions) then 1 else 0),
-    (if hasCardiovascularDiseaseRiskFactors(conditions) then 1 else 0),
-    (if hasChronicRespiratoryDiseaseRiskFactors(conditions) then 1 else 0),
-    (if hasDiabetesRiskFactors(conditions) then 1 else 0),
-    (if hasDownsSyndromeRiskFactors(conditions) then 1 else 0),
-    (if hasHypertensionRiskFactors(conditions) then 1 else 0),
-    (if hasImmunosuppressionRiskFactors(conditions) then 1 else 0),
-    (if "Has Neurologic Disease Risk Factor" then 1 else 0),
-    (if hasObstructiveSleepApneaRiskFactors(conditions) then 1 else 0),
-    (if hasObesityRiskFactors(conditions) then 1 else 0),
-    (if "Has Pregnancy Risk Factor" then 1 else 0),
-    (if hasRenalDiseaseRiskFactors(conditions) then 1 else 0),
-    (if hasSteroidUsageRiskFactors(conditions) then 1 else 0)
-  }
-
-define function totalRiskFactorCount():
-  (allRiskFactors("All Active Conditions")) C
-    aggregate T: T + C
+    (if hasCancerRiskFactors(conditions) then 1 else 0)
+    + (if hasCardiovascularDiseaseRiskFactors(conditions) then 1 else 0)
+    + (if hasChronicRespiratoryDiseaseRiskFactors(conditions) then 1 else 0)
+    + (if hasDiabetesRiskFactors(conditions) then 1 else 0)
+    + (if hasDownsSyndromeRiskFactors(conditions) then 1 else 0)
+    + (if hasHypertensionRiskFactors(conditions) then 1 else 0)
+    + (if hasImmunosuppressionRiskFactors(conditions) then 1 else 0)
+    + (if "Has Neurologic Disease Risk Factor" then 1 else 0)
+    + (if hasObstructiveSleepApneaRiskFactors(conditions) then 1 else 0)
+    + (if hasObesityRiskFactors(conditions) then 1 else 0)
+    + (if "Has Pregnancy Risk Factor" then 1 else 0)
+    + (if hasRenalDiseaseRiskFactors(conditions) then 1 else 0)
+    + (if hasSteroidUsageRiskFactors(conditions) then 1 else 0)
 
 define "All Active Conditions":
   Message(C3F.ActiveOrRecurring([Condition]), true, 'Undefined', 'Trace', 'Calculating "All Active Conditions"')
