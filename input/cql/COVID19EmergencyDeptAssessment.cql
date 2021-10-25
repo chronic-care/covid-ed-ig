@@ -653,9 +653,100 @@ define function hasCancerRiskFactors(conditions List<Condition>):
     RiskFactors.Cancer
   )
 
+define function hasChronicRespiratoryDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where C.code in CC."Chronic Respiratory Disease Codes"),
+        RiskFactors.ChronicRespiratoryDisease
+    )
+
+define function hasCardiovascularDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where C.code in CC."Cardiovascular Disease Codes"),
+        RiskFactors.CardiovascularDisease
+    )
+
+define function hasDiabetesRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Diabetes SNOMED Codes"
+            or C.code in CC."Diabetes ICD10CM Codes")),
+        RiskFactors.DiabetesType2
+    )
+
+define function hasDownsSyndromeRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Downs Syndrome SNOMED Codes"
+            or C.code in CC."Downs Syndrome ICD10CM Codes")),
+        RiskFactors.DownsSyndrome
+    )
+
+define function hasHypertensionRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Hypertension SNOMED Codes"
+            or C.code in CC."Hypertension ICD10CM Codes")),
+        RiskFactors.Hypertension
+    )
+
+define function hasImmunosuppressionRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Immunosuppression SNOMED Codes"
+            or C.code in CC."Immunosuppression ICD10CM Codes")),
+        RiskFactors.Immunosuppression
+    )
+
+define function hasObstructiveSleepApneaRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Obstructive Sleep Apnea SNOMED Codes"
+            or C.code in CC."Obstructive Sleep Apnea ICD10CM Codes")),
+        RiskFactors.ObstructiveSleepApnea
+    )
+
+define function hasObesityRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Obesity SNOMED Codes"
+            or C.code in CC."Obesity ICD10CM Codes")),
+        RiskFactors.Obesity
+    )
+
+define function hasRenalDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Kidney Disease SNOMED Codes"
+            or C.code in CC."Kidney Disease ICD10CM Codes"
+            or C.code in CC."Renal Disease Codes")),
+        RiskFactors.RenalDisease
+    )
+
+define function hasSteroidUsageRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Steroid Usage SNOMED Codes"
+            or C.code in CC."Steroid Usage ICD10CM Codes")),
+        RiskFactors.SteroidUsage
+    )
+
 define function allRiskFactors(conditions List<Condition>):
   {
-    (if hasCancerRiskFactors(conditions) then 1 else 0)
+    (if hasCancerRiskFactors(conditions) then 1 else 0),
+    (if hasCardiovascularDiseaseRiskFactors(conditions) then 1 else 0),
+    (if hasChronicRespiratoryDiseaseRiskFactors(conditions) then 1 else 0),
+    (if hasDiabetesRiskFactors(conditions) then 1 else 0),
+    (if hasDownsSyndromeRiskFactors(conditions) then 1 else 0),
+    (if hasHypertensionRiskFactors(conditions) then 1 else 0),
+    (if hasImmunosuppressionRiskFactors(conditions) then 1 else 0),
+    (if "Has Neurologic Disease Risk Factor" then 1 else 0),
+    (if hasObstructiveSleepApneaRiskFactors(conditions) then 1 else 0),
+    (if hasObesityRiskFactors(conditions) then 1 else 0),
+    (if "Has Pregnancy Risk Factor" then 1 else 0),
+    (if hasRenalDiseaseRiskFactors(conditions) then 1 else 0),
+    (if hasSteroidUsageRiskFactors(conditions) then 1 else 0)
   }
 
 define function totalRiskFactorCount():
