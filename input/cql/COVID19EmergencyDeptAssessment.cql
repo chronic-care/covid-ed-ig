@@ -644,8 +644,26 @@ define "Risk Factors count":
     + (if "Has Renal Disease Risk Factor" then 1 else 0)
     + (if "Has Steroid Usage Risk Factor" then 1 else 0)
 
+define function hasCancerRiskFactors(conditions List<Condition>):
+  HasConditionWithOverride(
+    (conditions C
+          where (C.code in CC."Cancer SNOMED Codes"
+          or C.code in CC."Cancer ICD10CM Codes"
+          or C.code in CC."Cancer Codes")),
+    RiskFactors.Cancer
+  )
+
+define function allRiskFactors(conditions List<Condition>):
+  {
+    (if hasCancerRiskFactors(conditions) then 1 else 0)
+  }
+
+define function totalRiskFactorCount():
+  (allRiskFactors("All Active Conditions")) C
+    aggregate T: T + C
+
 define "All Active Conditions":
-  C3F.ActiveOrRecurring([Condition])
+  Message(C3F.ActiveOrRecurring([Condition]), true, 'Undefined', 'Trace', 'Calculating "All Active Conditions"')
 
 define function DoesExistElseNull(CondList List<Condition>):
   if exists(CondList) then
