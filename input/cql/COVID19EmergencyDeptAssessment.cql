@@ -628,24 +628,113 @@ define "Risk Factor Components": List {
     otherwise returns the count of non-null risk factors.
 */
 define "Risk Factors count":
-  /* if not exists "Risk Factor Components" then null
-  else */
-  (if "Has Cancer Risk Factor" then 1 else 0)
-    + (if "Has Cardiovascular Disease Risk Factor" then 1 else 0)
-    + (if "Has Chronic Respiratory Disease Risk Factor" then 1 else 0)
-    + (if "Has Diabetes Type 2 Risk Factor" then 1 else 0)
-    + (if "Has Downs Syndrome Risk Factor" then 1 else 0)
-    + (if "Has Hypertension Risk Factor" then 1 else 0)
-    + (if "Has Immunosuppression Risk Factor" then 1 else 0)
+    allRiskFactors("All Active Conditions")
+
+define function hasCancerRiskFactors(conditions List<Condition>):
+  HasConditionWithOverride(
+    (conditions C
+          where (C.code in CC."Cancer SNOMED Codes"
+          or C.code in CC."Cancer ICD10CM Codes"
+          or C.code in CC."Cancer Codes")),
+    RiskFactors.Cancer
+  )
+
+define function hasChronicRespiratoryDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where C.code in CC."Chronic Respiratory Disease Codes"),
+        RiskFactors.ChronicRespiratoryDisease
+    )
+
+define function hasCardiovascularDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where C.code in CC."Cardiovascular Disease Codes"),
+        RiskFactors.CardiovascularDisease
+    )
+
+define function hasDiabetesRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Diabetes SNOMED Codes"
+            or C.code in CC."Diabetes ICD10CM Codes")),
+        RiskFactors.DiabetesType2
+    )
+
+define function hasDownsSyndromeRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Downs Syndrome SNOMED Codes"
+            or C.code in CC."Downs Syndrome ICD10CM Codes")),
+        RiskFactors.DownsSyndrome
+    )
+
+define function hasHypertensionRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Hypertension SNOMED Codes"
+            or C.code in CC."Hypertension ICD10CM Codes")),
+        RiskFactors.Hypertension
+    )
+
+define function hasImmunosuppressionRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Immunosuppression SNOMED Codes"
+            or C.code in CC."Immunosuppression ICD10CM Codes")),
+        RiskFactors.Immunosuppression
+    )
+
+define function hasObstructiveSleepApneaRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Obstructive Sleep Apnea SNOMED Codes"
+            or C.code in CC."Obstructive Sleep Apnea ICD10CM Codes")),
+        RiskFactors.ObstructiveSleepApnea
+    )
+
+define function hasObesityRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Obesity SNOMED Codes"
+            or C.code in CC."Obesity ICD10CM Codes")),
+        RiskFactors.Obesity
+    )
+
+define function hasRenalDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Kidney Disease SNOMED Codes"
+            or C.code in CC."Kidney Disease ICD10CM Codes"
+            or C.code in CC."Renal Disease Codes")),
+        RiskFactors.RenalDisease
+    )
+
+define function hasSteroidUsageRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Steroid Usage SNOMED Codes"
+            or C.code in CC."Steroid Usage ICD10CM Codes")),
+        RiskFactors.SteroidUsage
+    )
+
+define function allRiskFactors(conditions List<Condition>):
+    (if hasCancerRiskFactors(conditions) then 1 else 0)
+    + (if hasCardiovascularDiseaseRiskFactors(conditions) then 1 else 0)
+    + (if hasChronicRespiratoryDiseaseRiskFactors(conditions) then 1 else 0)
+    + (if hasDiabetesRiskFactors(conditions) then 1 else 0)
+    + (if hasDownsSyndromeRiskFactors(conditions) then 1 else 0)
+    + (if hasHypertensionRiskFactors(conditions) then 1 else 0)
+    + (if hasImmunosuppressionRiskFactors(conditions) then 1 else 0)
     + (if "Has Neurologic Disease Risk Factor" then 1 else 0)
-    + (if "Has Obstructive Sleep Apnea Risk Factor" then 1 else 0)
-    + (if "Has Obesity Risk Factor" then 1 else 0)
+    + (if hasObstructiveSleepApneaRiskFactors(conditions) then 1 else 0)
+    + (if hasObesityRiskFactors(conditions) then 1 else 0)
     + (if "Has Pregnancy Risk Factor" then 1 else 0)
-    + (if "Has Renal Disease Risk Factor" then 1 else 0)
-    + (if "Has Steroid Usage Risk Factor" then 1 else 0)
+    + (if hasRenalDiseaseRiskFactors(conditions) then 1 else 0)
+    + (if hasSteroidUsageRiskFactors(conditions) then 1 else 0)
 
 define "All Active Conditions":
-  C3F.ActiveOrRecurring([Condition])
+  Message(C3F.ActiveOrRecurring([Condition]), true, 'Undefined', 'Trace', 'Calculating "All Active Conditions"')
 
 define function DoesExistElseNull(CondList List<Condition>):
   if exists(CondList) then
