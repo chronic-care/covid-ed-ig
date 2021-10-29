@@ -630,6 +630,79 @@ define "Risk Factor Components": List {
 define "Risk Factors count":
     allRiskFactors("All Active Conditions")
 
+define function TrueElseNull(Value Boolean):
+  if Value then
+    true
+  else
+    null
+
+define function HasConditionWithOverride2(
+  HasConditionFromVista Boolean,
+  HasConditionFromClinician Boolean
+):
+  if IgnoreFallbackResourceValues then HasConditionFromClinician
+  else TrueElseNull(HasConditionFromVista)
+
+define function RiskFactorsCountAggregate(): 
+  ("All Active Conditions") C
+  aggregate S starting ({
+    Cancer: null, 
+    CardiovascularDisease: null,
+    ChronicRespiratoryDisease: null, 
+    DiabetesType2: null, 
+    DownsSyndrome: null, 
+    Hypertension: null, 
+    Immunosuppression: null,
+    NeurologicDisease: null,
+    Obesity: null,
+    ObstructiveSleepApnea: null,
+    Pregnancy: null,
+    RenalDisease: null,
+    SteroidUsage: null
+  } as Tuple {
+    Cancer Boolean,
+    CardiovascularDisease Boolean,
+    ChronicRespiratoryDisease Boolean,
+    DiabetesType2 Boolean,
+    DownsSyndrome Boolean,
+    Hypertension Boolean,
+    Immunosuppression Boolean,
+    NeurologicDisease Boolean,
+    Obesity Boolean,
+    ObstructiveSleepApnea Boolean,
+    Pregnancy Boolean,
+    RenalDisease Boolean,
+    SteroidUsage Boolean
+  }):
+  case
+    when HasConditionWithOverride2((C.code in CC."Cancer SNOMED Codes" or C.code in CC."Cancer ICD10CM Codes" or C.code in CC."Cancer Codes"), RiskFactors.Cancer) then S.Cancer is true
+    when HasConditionWithOverride2((C.code in CC."Chronic Respiratory Disease Codes"), RiskFactors.ChronicRespiratoryDisease) then S.ChronicRespiratoryDisease is true
+    when HasConditionWithOverride2((C.code in CC."Cardiovascular Disease Codes"), RiskFactors.CardiovascularDisease) then S.CardiovascularDisease is true
+    when HasConditionWithOverride2((C.code in CC."Diabetes SNOMED Codes" or C.code in CC."Diabetes ICD10CM Codes"), RiskFactors.DiabetesType2) then S.DiabetesType2 is true
+    when HasConditionWithOverride2((C.code in CC."Downs Syndrome SNOMED Codes" or C.code in CC."Downs Syndrome ICD10CM Codes"), RiskFactors.DownsSyndrome) then S.DownsSyndrome is true
+    when HasConditionWithOverride2((C.code in CC."Hypertension SNOMED Codes" or C.code in CC."Hypertension ICD10CM Codes"), RiskFactors.Hypertension) then S.Hypertension is true
+    when HasConditionWithOverride2((C.code in CC."Immunosuppression SNOMED Codes" or C.code in CC."Immunosuppression ICD10CM Codes"), RiskFactors.Immunosuppression) then S.Immunosuppression is true
+    when "Has Neurologic Disease Risk Factor" then S.NeurologicDisease is true
+    when HasConditionWithOverride2((C.code in CC."Obstructive Sleep Apnea SNOMED Codes" or C.code in CC."Obstructive Sleep Apnea ICD10CM Codes"), RiskFactors.ObstructiveSleepApnea) then S.ObstructiveSleepApnea is true
+    when HasConditionWithOverride2((C.code in CC."Obesity SNOMED Codes" or C.code in CC."Obesity ICD10CM Codes"), RiskFactors.Obesity) then S.Obesity is true
+    when "Has Pregnancy Risk Factor" then S.Pregnancy is true
+    when HasConditionWithOverride2((C.code in CC."Kidney Disease SNOMED Codes" or C.code in CC."Kidney Disease ICD10CM Codes" or C.code in CC."Renal Disease Codes"), RiskFactors.RenalDisease) then S.RenalDisease is true
+    when HasConditionWithOverride2((C.code in CC."Steroid Usage SNOMED Codes" or C.code in CC."Steroid Usage ICD10CM Codes"), RiskFactors.SteroidUsage) then S.SteroidUsage is true 
+    else S
+  end
+
+define function AggregateFunction(): 
+  (expand Interval[1, 4]) C
+  let A: null
+  aggregate S starting 0:
+  case
+    when (C > 1) then S + 1
+    when (C = 1) then S + 1
+    when (C < 1) then S + 1   
+    when (C = 0) then S + 1
+    else S
+  end
+
 define function hasCancerRiskFactors(conditions List<Condition>):
   HasConditionWithOverride(
     (conditions C
