@@ -5,7 +5,7 @@ dlurl=$pubsource$publisher_jar
 
 input_cache_path=$PWD/input-cache/
 
-scriptdlroot=https://raw.githubusercontent.com/FHIR/sample-ig/master
+scriptdlroot=https://raw.githubusercontent.com/HL7/ig-publisher-scripts/main
 update_bat_url=$scriptdlroot/_updatePublisher.bat
 gen_bat_url=$scriptdlroot/_genonce.bat
 gencont_bat_url=$scriptdlroot/_gencontinuous.bat
@@ -13,7 +13,6 @@ gencont_sh_url=$scriptdlroot/_gencontinuous.sh
 gen_sh_url=$scriptdlroot/_genonce.sh
 update_sh_url=$scriptdlroot/_updatePublisher.sh
 
-skipPing=false
 skipPrompts=false
 FORCE=false
 
@@ -24,7 +23,6 @@ fi
 
 while [ "$#" -gt 0 ]; do
     case $1 in
-    --skip-ping)  skipPing=true ;;
     -f|--force)  FORCE=true ;;
     -y|--yes)  skipPrompts=true ; FORCE=true ;;
     *)  echo "Unknown parameter passed: $1.  Exiting"; exit 1 ;;
@@ -32,18 +30,16 @@ while [ "$#" -gt 0 ]; do
     shift
 done
 
-if [[ $skipPing == false ]]; then
-  echo "Checking internet connection"
-  case "$OSTYPE" in
-    linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 30 >/dev/null ;;
-    darwin* )	ping tx.fhir.org -c 1 >/dev/null ;;
-    *) echo "unknown: $OSTYPE"; exit 1 ;;
-  esac
+echo "Checking internet connection"
+case "$OSTYPE" in
+	linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 1000 >/dev/null ;;
+  darwin* )	ping tx.fhir.org -c 1 >/dev/null ;;
+	*) echo "unknown: $OSTYPE"; exit 1 ;;
+esac
 
-  if [ $? -ne 0 ] ; then
-    echo "Offline (or the terminology server is down), unable to update.  Exiting"
-    exit 1
-  fi
+if [ $? -ne 0 ] ; then
+  echo "Offline (or the terminology server is down), unable to update.  Exiting"
+  exit 1
 fi
 
 if [ ! -d "$input_cache_path" ] ; then
