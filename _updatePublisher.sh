@@ -13,6 +13,7 @@ gencont_sh_url=$scriptdlroot/_gencontinuous.sh
 gen_sh_url=$scriptdlroot/_genonce.sh
 update_sh_url=$scriptdlroot/_updatePublisher.sh
 
+skipPing=false
 skipPrompts=false
 FORCE=false
 
@@ -23,6 +24,7 @@ fi
 
 while [ "$#" -gt 0 ]; do
     case $1 in
+    --skip-ping)  skipPing=true ;;
     -f|--force)  FORCE=true ;;
     -y|--yes)  skipPrompts=true ; FORCE=true ;;
     *)  echo "Unknown parameter passed: $1.  Exiting"; exit 1 ;;
@@ -30,16 +32,18 @@ while [ "$#" -gt 0 ]; do
     shift
 done
 
-echo "Checking internet connection"
-case "$OSTYPE" in
-	linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 1000 >/dev/null ;;
-  darwin* )	ping tx.fhir.org -c 1 >/dev/null ;;
-	*) echo "unknown: $OSTYPE"; exit 1 ;;
-esac
+if [[ $skipPing == false ]]; then
+  echo "Checking internet connection"
+  case "$OSTYPE" in
+    linux-gnu* ) ping tx.fhir.org -4 -c 1 -w 30 >/dev/null ;;
+    darwin* )	ping tx.fhir.org -c 1 >/dev/null ;;
+    *) echo "unknown: $OSTYPE"; exit 1 ;;
+  esac
 
-if [ $? -ne 0 ] ; then
-  echo "Offline (or the terminology server is down), unable to update.  Exiting"
-  exit 1
+  if [ $? -ne 0 ] ; then
+    echo "Offline (or the terminology server is down), unable to update.  Exiting"
+    exit 1
+  fi
 fi
 
 if [ ! -d "$input_cache_path" ] ; then
