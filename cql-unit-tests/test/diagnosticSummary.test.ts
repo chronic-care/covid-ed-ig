@@ -2,14 +2,15 @@ import { LabResultBuilder } from "./builders/Observation/LabResult";
 import { Diagnostic, DiagnosticSummary } from "../types/summary";
 import { executeSummaryNoParams } from "../helpers/cqlService";
 
+const yesterday = new Date().getTime() - 24 * 60 * 60 * 1000;
+const tenSeconds = 10 * 1000;
+const twentySeconds = 20 * 1000;
+
 describe('diagnostic summary with fhir resources', () => {
     test('obtains latest ALT Lab Result in Diagnostic Summary Section', () => {
-
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
         const oldestLabResult = new LabResultBuilder()
             .withId('oldie')
@@ -59,12 +60,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest AST Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const referenceRange = [{
             "low" : {
                 "code" : "U/L",
@@ -141,12 +140,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest Creatinine Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const referenceRange = [
             {
                 "low" : {
@@ -237,12 +234,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest CRP Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -299,12 +294,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest DDimer Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -361,12 +354,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest Ferritin Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -423,12 +414,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest LDH Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -485,12 +474,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest Lymphopenia Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -547,12 +534,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest Neutrophils Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -609,12 +594,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest Thrombocytopenia Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -671,12 +654,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest Troponin Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
@@ -733,12 +714,10 @@ describe('diagnostic summary with fhir resources', () => {
     });
 
     test('obtains latest WBC Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
 
-        const oldestSeconds = 10;
-
-        const oldestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds);
-        const middleDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 10);
-        const newestDate = new Date(2020, 10, 10, 1, 30, oldestSeconds + 20);
         const coding = [
             {
                 "system": "http://loinc.org",
