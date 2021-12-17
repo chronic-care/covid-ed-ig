@@ -160,9 +160,7 @@ There are a couple of ways to test the CQL.
 ## Updating Valuesets
 If new codes need to be added to a valueset, follow these steps to manually update the JSON and regenerate the `valueset-db.json` file:
 1. Add new codes to the relevant JSON files in `input/vocabulary/valueset`. For labs, add to both the `compose` and `expansion` objects.
-2. Run `./_updateCQFTooling.sh` script, which updates the [CQF Tooling](https://github.com/cqframework/cqf-tooling) and downloads the `jar` file into `input-cache` directory.
-3. Run `java -jar input-cache/tooling-1.3.1-SNAPSHOT-jar-with-dependencies.jar -ToJsonValueSetDb -path="input/vocabulary/valueset"` (note: this is the path to the entire valueset folder)
-4. The new `valueset-db.json` can be found in `src/main/resources/org/opencds/cqf/tooling/terminology/output`. Copy this over into the `input/cql` directory to replace it.
+2. Run `./_updateValueSet.sh`. This updates the CQF tooling, generates the new valueset, copies it to the `./input/cql` folder and then updates `healthCodes.js` with the new codes as well.
 
 # CQL Development Resources
 
