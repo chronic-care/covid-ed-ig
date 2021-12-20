@@ -8,9 +8,9 @@ Object.values(valueSetDB).forEach((v) => {
    });
 });
 
-fs.writeFile('./input/cql/healthCodes.js', 'export const healthCodes = '+JSON.stringify(healthCodes), function(err) {
+fs.writeFile('./input/cql/healthCodes.json', `{ "healthCodes": ${JSON.stringify(healthCodes)}}`, function(err) {
     if(err) {
         return console.log(err);
     }
-    console.log(`Saved ${healthCodes.length} healthCodes to ./input/cql/healthCodes.js`);
+    console.log(`Saved ${healthCodes.length} healthCodes to ./input/cql/healthCodes.json`);
 });
