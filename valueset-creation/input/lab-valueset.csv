@@ -1,0 +1,54 @@
+Raw Data Element  Unique ID for CPM,Raw data element name,Coding System,Code,Code Title
+RDE0028,Arterial partial pressure of oxygen,LOINC,2703-7,Oxygen
+RDE0028,Arterial partial pressure of oxygen,LOINC,19255-9,Oxygen
+RDE0028,Arterial partial pressure of oxygen,LOINC,19214-6,Oxygen
+RDE0094,Blood interleukin-1 results,LOINC,34407-7,Interleukin 1
+RDE0094,Blood interleukin-1 results,LOINC,4650-8,Interleukin 1
+RDE0094,Blood interleukin-1 results,LOINC,33821-0,Interleukin 1
+RDE0094,Blood interleukin-1 results,LOINC,13629-1,Interleukin 1
+RDE0094,Blood interleukin-1 results,LOINC,55926-0,Interleukin 1
+RDE0094,Blood interleukin-1 results,LOINC,55927-8,Interleukin 1
+RDE0094,Blood interleukin-1 results,LOINC,17022-5,Interleukin 1
+RDE0095,Blood interleukin-6 results,LOINC,26881-3,Interleukin 6
+RDE0095,Blood interleukin-6 results,LOINC,44322-6,Interleukin 6
+RDE0095,Blood interleukin-6 results,LOINC,4655-7,Interleukin 6
+RDE0096,Blood interleukin-8 results,LOINC,33211-4,Interleukin 8
+RDE0030,Blood lymphocytes absolute count results,LOINC,26474-7,Lymphocytes
+RDE0030,Blood lymphocytes absolute count results,LOINC,731-0,Lymphocytes
+RDE0030,Blood lymphocytes absolute count results,LOINC,30364-4,Lymphocytes
+RDE0030,Blood lymphocytes absolute count results,LOINC,732-8,Lymphocytes
+RDE0031,Blood neutrophils absolute count results,LOINC,26499-4,Neutrophils
+RDE0031,Blood neutrophils absolute count results,LOINC,751-8,Neutrophils
+RDE0031,Blood neutrophils absolute count results,LOINC,752-6,Neutrophils
+RDE0031,Blood neutrophils absolute count results,LOINC,753-4,Neutrophils
+RDE0097,Blood procalcitonin results,LOINC,33959-8,Procalcitonin
+RDE0097,Blood procalcitonin results,LOINC,75241-0,Procalcitonin
+RDE0093,Blood tumor necrosis factor-alpha results,LOINC,13900-6,Tumor necrosis
+RDE0093,Blood tumor necrosis factor-alpha results,LOINC,3074-2,Tumor necrosis
+RDE0093,Blood tumor necrosis factor-alpha results,LOINC,34939-9,Tumor necrosis
+RDE0033,Plasma D-dimer results,LOINC,91556-1,Fibrin
+RDE0033,Plasma D-dimer results,LOINC,48066-5,Fibrin
+RDE0033,Plasma D-dimer results,LOINC,48058-2,Fibrin
+RDE0033,Plasma D-dimer results,LOINC,71427-9,Fibrin
+RDE0033,Plasma D-dimer results,LOINC,48065-7,Fibrin
+RDE0033,Plasma D-dimer results,LOINC,48067-3,Fibrin
+RDE0034,Serum ALT results,LOINC,77144-4,Alanine aminotransferase
+RDE0034,Serum ALT results,LOINC,1742-6,Alanine aminotransferase
+RDE0034,Serum ALT results,LOINC,1744-2,Alanine aminotransferase
+RDE0034,Serum ALT results,LOINC,1743-4,Alanine aminotransferase
+RDE0034,Serum ALT results,LOINC,44785-4,Alanine aminotransferase
+RDE0035,Serum AST results,LOINC,1920-8,Aspartate aminotransferase
+RDE0035,Serum AST results,LOINC,88112-8,Aspartate aminotransferase
+RDE0035,Serum AST results,LOINC,30239-8,Aspartate aminotransferase
+RDE0035,Serum AST results,LOINC,44786-2,Aspartate aminotransferase
+RDE0036,Serum C-Reactive Protein results,LOINC,1988-5,C reactive protein
+RDE0036,Serum C-Reactive Protein results,LOINC,30522-7,C reactive protein
+RDE0036,Serum C-Reactive Protein results,LOINC,76485-2,C reactive protein
+RDE0036,Serum C-Reactive Protein results,LOINC,76486-0,C reactive protein
+RDE0038,Serum ferritin results,LOINC,2276-4,Ferritin
+RDE0038,Serum ferritin results,LOINC,20567-4,Ferritin
+RDE0038,Serum ferritin results,LOINC,35209-6,Ferritin
+RDE0038,Serum ferritin results,LOINC,14723-1,Ferritin
+RDE0039,Serum LDH results,LOINC,2532-0,Lactate dehydrogenase
+RDE0039,Serum LDH results,LOINC,14804-9,Lactate dehydrogenase
+RDE0039,Serum LDH results,LOINC,14805-6,Lactate dehydrogenase

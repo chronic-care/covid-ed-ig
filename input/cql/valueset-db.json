@@ -3350,26 +3350,6 @@
       }
     ]
   },
-  "http://fhir.org/guides/acep/ValueSet/covid-19-lab-ferritin": {
-    "0.5.0": [
-      {
-        "code": "2276-4",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "20567-4",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "35209-6",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "14723-1",
-        "system": "http://loinc.org"
-      }
-    ]
-  },
   "http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-snomed": {
     "0.5.0": [
       {
@@ -3498,6 +3478,26 @@
       },
       {
         "code": "778-1",
+        "system": "http://loinc.org"
+      }
+    ]
+  },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-lab-ferritin": {
+    "0.5.0": [
+      {
+        "code": "2276-4",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "20567-4",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "35209-6",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "14723-1",
         "system": "http://loinc.org"
       }
     ]
