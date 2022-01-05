@@ -1,5 +1,6 @@
 ## Valueset Creation
-This little python program takes in a csv of codes and code titles and outputs a json file with the codes in the valueset format. 
+
+1) `program.py` scripts takes in a csv of codes and code titles and outputs a json file with the codes in the valueset format. 
 
 #### Example Input (csv format)
 ```
@@ -24,6 +25,20 @@ Code,Code Title
     }
     ...
 ]
+```
+2) `createLabValuesetFile.py` reads a csv of value-set lab result file and outputs new lab value-set json file for each raw data elements (`RDEs`).
+
+#### Example Input file headers (csv format)
+```
+Raw Data Element Unique ID for CPM, Raw data element name, Coding System, Code, Code Title
+```
+The script group the data by raw data element (`Raw Data Element Unique ID for CPM`) column and create new json file for each RDEs.
+The script use `Code Title` column of the input cvs file to name and create the json files, so make sure to update `Code Title` values as required.
+
+#### Usage
+```renderscript
+cd valuesset-creation
+python3 createLabValuesetFile.py 
 ```
 
 ### Developer Setup
