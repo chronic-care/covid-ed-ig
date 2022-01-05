@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import sys
 
 
 def read_input(path_to_input):
@@ -55,7 +56,7 @@ def create_lab_value_set_file(df):
        
         group = grouped.get_group(g);
         #Read lab valueset file template
-        f = open("input/template-valueset-lab.json", "r");
+        f = open("valueset-creation/input/template-valueset-lab.json", "r");
         data = json.load(f)
         
         #Create lab file for each group
@@ -64,10 +65,21 @@ def create_lab_value_set_file(df):
         
          #Write file   
         json_object = json.dumps(data, indent = 4)
-        file_name = "output/valueset-covid-19-lab-"+file['name']+".json"
+        file_name = "valueset-creation/output/valueset-covid-19-lab-"+file['name']+".json"
         with open(file_name, "w") as outfile:
             outfile.write(json_object)
     
 if __name__ == "__main__":
-    df = read_input("input/lab-valueset.csv")
+    try:
+        lab_valuset_file_path = sys.argv[1]
+    except IndexError:
+        print(f'Usage: {sys.argv[0]} <path to lab RDE file>')
+        exit(1)
+   
+    df = read_input(lab_valuset_file_path)
     create_lab_value_set_file(df)
+    print("find the files at valueset-creation/output/")
+
+
+
+
