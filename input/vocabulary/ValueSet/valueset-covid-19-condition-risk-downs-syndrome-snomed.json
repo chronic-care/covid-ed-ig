@@ -30,43 +30,23 @@
         "contains": [
             {
                 "system": "http://snomed.info/sct",
-                "code": "709469005",
-                "display": "Periodontitis co-occurrent with Down syndrome"
-            },
-            {
-                "system": "http://snomed.info/sct",
-                "code": "840505007",
-                "display": "Down syndrome co-occurrent with leukaemoid reaction associated transient neonatal pustulosis"
-            },
-            {
-                "system": "http://snomed.info/sct",
-                "code": "724644005",
-                "display": "Myeloid leukaemia co-occurrent with Down syndrome"
-            },
-            {
-                "system": "http://snomed.info/sct",
-                "code": "724643004",
-                "display": "Transient abnormal myelopoiesis co-occurrent with Down syndrome"
-            },
-            {
-                "system": "http://snomed.info/sct",
-                "code": "205615000",
-                "display": "Trisomy 21- meiotic nondisjunction"
+                "code": "41040004",
+                "display": "Complete trisomy 21 syndrome (disorder)"
             },
             {
                 "system": "http://snomed.info/sct",
                 "code": "733194007",
-                "display": "Dementia co-occurrent and due to Down syndrome"
+                "display": "Dementia co-occurrent and due to Down syndrome (disorder)"
             },
             {
                 "system": "http://snomed.info/sct",
-                "code": "125501000119105",
-                "display": "Fetal trisomy 21, Down syndrome"
+                "code": "840505007",
+                "display": "Down syndrome co-occurrent with leukemoid reaction associated transient neonatal pustulosis (disorder)"
             },
             {
                 "system": "http://snomed.info/sct",
-                "code": "41040004",
-                "display": "Complete trisomy 21 syndrome"
+                "code": "724644005",
+                "display": "Myeloid leukemia co-occurrent with Down syndrome (disorder)"
             },
             {
                 "system": "http://snomed.info/sct",
@@ -75,8 +55,23 @@
             },
             {
                 "system": "http://snomed.info/sct",
+                "code": "709469005",
+                "display": "Periodontitis co-occurrent with Down syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "724643004",
+                "display": "Transient abnormal myelopoiesis co-occurrent with Down syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
                 "code": "371045000",
                 "display": "Translocation Down syndrome (disorder)"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "code": "205615000",
+                "display": "Trisomy 21- meiotic nondisjunction (disorder)"
             }
         ]
     }

@@ -16,20 +16,7 @@ codesystem "LOCAL": 'http://fhir.org/guides/acep'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.2074.1.1.3/expansion)
 valueset "Race Category": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.2074.1.1.3'
 
-// Value sets not available in VSAC, included via expanded FHIR ValueSet resources
-valueset "Cardiovascular Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cardiovascular'
-valueset "Chronic Respiratory Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-respiratory'
-valueset "Downs Syndrome SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-snomed'
-valueset "Downs Syndrome ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-icd10'
-valueset "Obstructive Sleep Apnea SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea-snomed'
-valueset "Obstructive Sleep Apnea ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-obstructive-sleep-apnea-icd10'
-valueset "Immunosuppression ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10'
-valueset "Immunosuppression SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-snomed'
-valueset "Steroid Usage ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-icd10'
-valueset "Steroid Usage SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-snomed'
 
-valueset "Renal Disease Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-renal-disease'
-valueset "Cancer Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-cancer'
 
 valueset "Alertness Scale Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-obs-alertness'
 valueset "WHO Performance Status Codes": 'http://fhir.org/guides/acep/ValueSet/who-performance-status'
@@ -49,17 +36,18 @@ valueset "PaO2FiO2 Ratio Lab Results": 'http://fhir.org/guides/acep/ValueSet/cov
 valueset "Platelets Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-platelets'
 valueset "Troponin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-troponin'
 
-// Value sets from VSAC
-valueset "Cancer ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3028'
-valueset "Cancer SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6048'
+
+//Value sets for risk factor 
+valueset "Corticosteroids Usage ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-icd10'
+valueset "Corticosteroids Usage SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-steroid-usage-snomed'
+// Value sets not available in VSAC, included via expanded FHIR ValueSet resources
 valueset "Diabetes ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3153'
 valueset "Diabetes SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6100'
-valueset "Hypertension ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3174'
-valueset "Hypertension SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6152'
-valueset "Kidney Disease ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3102'
-valueset "Kidney Disease SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6064'
-valueset "Obesity ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3091'
-valueset "Obesity SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6203'
+valueset "Downs Syndrome SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-snomed'
+valueset "Downs Syndrome ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-icd10'
+valueset "Immune Deficiencies ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10'
+valueset "Immune Deficiencies SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-snomed'
+
 
 // ## Individual codes ##
 

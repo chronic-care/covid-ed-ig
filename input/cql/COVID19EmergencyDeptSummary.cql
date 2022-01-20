@@ -95,19 +95,39 @@ define AssessmentSummary: {
 }
 
 define RiskFactorSummary: {
-  Cancer: C19."Has Cancer Risk Factor",
-  CardiovascularDisease: C19."Has Cardiovascular Disease Risk Factor",
-  ChronicRespiratoryDisease: C19."Has Chronic Respiratory Disease Risk Factor",
-  DiabetesType2: C19."Has Diabetes Type 2 Risk Factor",
-  DownsSyndrome: C19."Has Downs Syndrome Risk Factor",
-  Hypertension: C19."Has Hypertension Risk Factor",
-  Immunosuppression: C19."Has Immunosuppression Risk Factor",
-  NeurologicDisease: C19."Has Neurologic Disease Risk Factor",
-  Obesity: C19."Has Obesity Risk Factor",
-  ObstructiveSleepApnea: C19."Has Obstructive Sleep Apnea Risk Factor",
-  Pregnancy: C19."Has Pregnancy Risk Factor",
-  RenalDisease: C19."Has Renal Disease Risk Factor",
-  SteroidUsage: C19."Has Steroid Usage Risk Factor"
+  {
+    Bronchiectasis: C19."Has Bronchiectasis Risk Factor",
+    BronchopulmonaryDysplasia: C19."Has Bronchopulmonary Dysplasia Risk Factor",
+    PulmonaryHypertension: C19."Has Pulmonary Hypertension Risk Factor",
+    Cancer: C19."Has Cancer Risk Factor",
+    CerebrovascularDisease: C19."Has Cerebrovascular Disease Risk Factor",
+    ChronicKidneyDisease: C19."Has Chronic Kidney Disease Risk Factor",
+    ChronicLiverDisease: C19."Has Chronic Liver Disease Risk Factor",
+    COPD: C19."Has COPD Risk Factor",
+    DiabetesMellitus: C19."Has Diabetes Mellitus Risk Factor",
+    HeartConditions: C19."Has Heart Conditions Risk Factor",
+    InterstitialLungDisease: C19."Has Interstitial Lung Disease Risk Factor",
+    CurrentAndFormerSmoking: C19."Has Current And Former Smoking Risk Factor",
+    Tuberculosis: C19."Has Tuberculosis Risk Factor",
+    Obesity: C19."Has Obesity Risk Factor",
+    PregnancyAndRecentPregnancy: C19."Has Pregnancy And Recent Pregnancy Risk Factor",
+    MentalHealthDisorders: C19."Has Mental Health Disorders Risk Factor",
+    ChildrenWithCertainUnderlyingConditions: C19."Has Children With Certain Underlying Conditions Risk Factor",
+    DownSyndrome: C19."Has Down Syndrome Risk Factor",
+    HIV: C19."Has HIV Risk Factor",
+    NeurologicConditions: C19."Has Neurologic Conditions Risk Factor",
+    Overweight: C19."Has Overweight Risk Factor",
+    SickleCellDisease: C19."Has Sickle Cell Disease Risk Factor",
+    SolidOrganOrBloodStemTransplantation: C19."Has Solid Organ Or Blood Stem Transplantation Risk Factor",
+    SubstanceUseDisorders: C19."Has Substance Use Disorders Risk Factor",
+    Corticosteroids: C19."Has Corticosteroids Usage Risk Factor",
+    ImmunosuppressiveMedications: C19."Has Immunosuppressive Medications Risk Factor",
+    CysticFibrosis: C19."Has Cystic Fibrosis Risk Factor",
+    Thalassemia: C19."Has Thalassemia Risk Factor",
+    Asthma: C19."Has Asthma Risk Factor",
+    Hypertension: C19."Has Hypertension Risk Factor",
+    ImmuneDeficiencies: C19."Has Immune deficiencies Risk Factor"
+    }
 }
 
 define DiagnosticSummary: {
