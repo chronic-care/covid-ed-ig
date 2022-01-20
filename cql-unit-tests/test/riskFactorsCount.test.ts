@@ -184,10 +184,10 @@ describe('risk assessment score', () => {
             { conditionType: 'Hypertension', cqlExpression: 'Has Hypertension Risk Factor', conditions:[] },
             { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', conditions:[] },
             { conditionType: 'ChronicKidneyDisease', cqlExpression: 'Has Chronic Kidney Disease Risk Factor', conditions:[] },
-            //{ conditionType: 'Immunosuppression', cqlExpression: 'Has Immune deficiencies Risk Factor', conditions: new ConditionBuilder("700051000", "Sepsis in asplenic subject (disorder)").build()},
-            //{ conditionType: 'SteroidUsage', cqlExpression: 'Has Corticosteroids Usage Risk Factor', conditions: new ConditionBuilder("T38.0X5A", "Adverse effect of glucocorticoids and synthetic analogues, initial encounter", "http://hl7.org/fhir/sid/icd-10-cm").build()},
-            //{ conditionType: 'DownsSyndrome', cqlExpression: 'Has Down Syndrome Risk Factor', conditions: new ConditionBuilder("Q90.0", "Trisomy 21, nonmosaicism (meiotic nondisjunction)", "http://hl7.org/fhir/sid/icd-10-cm").build()},
-            //{ conditionType: 'DiabetesType2', cqlExpression: 'Has Diabetes Mellitus Risk Factor', conditions: [new ConditionBuilder("E08.3499", "Diabetes mellitus due to underlying condition with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye").build()] },
+            { conditionType: 'ImmuneDeficiencies', cqlExpression: 'Has Immune deficiencies Risk Factor', conditions: [new ConditionBuilder("700051000", "Sepsis in asplenic subject (disorder)").build()]},
+            { conditionType: 'Corticosteroids', cqlExpression: 'Has Corticosteroids Usage Risk Factor', conditions: [new ConditionBuilder("T38.0X5A", "Adverse effect of glucocorticoids and synthetic analogues, initial encounter", "http://hl7.org/fhir/sid/icd-10-cm").build()]},
+            { conditionType: 'DownSyndrome', cqlExpression: 'Has Down Syndrome Risk Factor', conditions: [new ConditionBuilder("Q90.0", "Trisomy 21, nonmosaicism (meiotic nondisjunction)", "http://hl7.org/fhir/sid/icd-10-cm").build()]},
+            { conditionType: 'DiabetesMellitus', cqlExpression: 'Has Diabetes Mellitus Risk Factor', conditions: [new ConditionBuilder("E08.3499", "Diabetes mellitus due to underlying condition with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye").build()] },
           
         ].forEach(({conditionType, cqlExpression, conditions}) => {
             describe(conditionType, () => {
