@@ -1,0 +1,90 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-interleukin-1",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset"
+        ]
+    },
+    "language": "en",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+            "valueCode": "executable"
+        },
+        {
+            "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+            "valueCode": "executable"
+        }
+    ],
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin-1",
+    "version": "0.5.0",
+    "name": "COVID19LabInterleukin1",
+    "title": "COVID-19 Laboratory Value Set for Interleukin 1",
+    "status": "active",
+    "date": "2022-01-04T20:00:00+00:00",
+    "description": "COVID-19 Laboratory Value Set for Interleukin 1",
+    "compose": {
+        "include": [
+            {
+                "system": "http://loinc.org",
+                "concept": [
+                    {
+                        "code": "34407-7"
+                    },
+                    {
+                        "code": "4650-8"
+                    },
+                    {
+                        "code": "33821-0"
+                    },
+                    {
+                        "code": "13629-1"
+                    },
+                    {
+                        "code": "55926-0"
+                    },
+                    {
+                        "code": "55927-8"
+                    },
+                    {
+                        "code": "17022-5"
+                    }
+                ]
+            }
+        ]
+    },
+    "expansion": {
+        "timestamp": "2021-03-14T21:43:10-06:00",
+        "contains": [
+            {
+                "system": "http://loinc.org",
+                "code": "34407-7"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "4650-8"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "33821-0"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "13629-1"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "55926-0"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "55927-8"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "17022-5"
+            }
+        ]
+    }
+}

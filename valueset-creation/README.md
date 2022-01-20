@@ -1,5 +1,6 @@
 ## Valueset Creation
-This little python program takes in a csv of codes and code titles and outputs a json file with the codes in the valueset format. 
+
+`program.py` scripts takes in a csv of codes and code titles and outputs a json file with the codes in the valueset format. 
 
 #### Example Input (csv format)
 ```
@@ -75,3 +76,28 @@ pip3 install -r requirements.txt
 
 ##### Note:
 This program hard-codes the `"system"` value in the output to `"http://snomed.info/sct"` but it can be updated on line 13 of `program.py`
+
+### Create lab value-set files.
+
+Whenever we have an ACEP update we might need to create new lab value-set files. 
+
+`createLabValuesetFile.py` reads a file as an input argument and outputs a new lab value-set json file(s) for each raw data elements (`RDEs`).
+The script groups the data by RDEs (`Raw Data Element Unique ID for CPM`) column and creates new json file for each unique RDEs. It uses `Code Title` column
+of the input file to name and create the json files, so make sure to update `Code Title` column values as required.
+
+#### Sample Lab Value-Set File.
+```
+Raw Data Element  Unique ID for CPM,Raw data element name,Coding System,Code,Code Title
+RDE0028,Arterial partial pressure of oxygen,LOINC,2703-7,Oxygen
+```
+
+#### Steps
+
+1) Get the latest raw data elements lab file (CPM value set-Laboratory Results) from [here](https://github.com/department-of-veterans-affairs/covid-patient-manager/tree/main/docs/terminology-project-documents).
+2) Convert the file to CSV.
+3) Run the below command. Replace `path_to_file.csv` with the path of the downloaded file. The new files generated can be found in the [output](output/) folder. You may then copy the generate files to the [ValueSet](../input/vocabulary/ValueSet) folder.
+
+
+```renderscript
+python3 ./valuesset-creation/createLabValuesetFile.py  <path_to_file.csv> 
+```
