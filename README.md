@@ -43,11 +43,22 @@ Documentation for the IG-Publisher is available at [https://confluence.hl7.org/d
 
 #### Ruby / Jekyll
 
-Jekyll requires Ruby version 2.1 or greater. Depending on your operating system, you may already have Ruby bundled with it. Otherwise, or if you need a newer version, go to [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/) for directions.
+FIRST, Install Ruby through a Ruby version manager (rvm/rbenv/chruby) and then install Jekyll.
+`brew install rbenv`
+`rbnev init`
+add `eval "$(rbenv init - zsh)"` to `~/.zshrc` or where your profile settings are.
+`rbenv install 3.1.0`
+`rbenv global 3.1.0`
 
-Jekyll
+Jekyll requires Ruby version 2.1 or greater. 
+`ruby -v`
 
-Go to [https://jekyllrb.com](https://jekyllrb.com) and follow the instructions there, for example gem install jekyll bundler. The end result of this should be that the binary "jekyll" is now in your path.
+Jekyll `gem install --user-install bundler jekyll`
+If `jekyll -v` doesn't work, add `export PATH="/Users/<your-username>/.gem/ruby/3.1.0/bin:$PATH"` to your `~/.zshrc` or where your profile settings are.
+
+If installing on a macOS: [https://jekyllrb.com/docs/installation/macos/](https://jekyllrb.com/docs/installation/macos/)
+
+Go to [https://jekyllrb.com](https://jekyllrb.com) for more information.
 
 ### Build
 
