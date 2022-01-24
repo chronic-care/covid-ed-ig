@@ -672,6 +672,22 @@ define "Risk Factors count":
 
 // Risk Factors
 
+define function hasCancerRiskFactors(conditions List<Condition>):
+  HasConditionWithOverride(
+    (conditions C
+          where (C.code in CC."Cancer SNOMED Codes"
+          or C.code in CC."Cancer ICD10CM Codes")),
+    RiskFactors.Cancer
+  )
+
+define function hasChronicKidneyDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Kidney Disease SNOMED Codes"
+            or C.code in CC."Kidney Disease ICD10CM Codes")),
+        RiskFactors.ChronicKidneyDisease
+    )
+
 define function hasDiabetesMellitusRiskFactor(conditions List<Condition>):
   HasConditionWithOverride(
     (conditions C
@@ -712,9 +728,9 @@ define function allRiskFactors(conditions List<Condition>):
 +(if "Has Bronchopulmonary Dysplasia Risk Factor" then 1 else 0)
 +(if "Has Pulmonary Hypertension Risk Factor" then 1 else 0)
 +(if "Has Pulmonary Embolism Risk Factor" then 1 else 0)
-+(if "Has Cancer Risk Factor" then 1 else 0)
++(if hasCancerRiskFactors(conditions) then 1 else 0)
 +(if "Has Cerebrovascular Disease Risk Factor" then 1 else 0)
-+(if "Has Chronic Kidney Disease Risk Factor" then 1 else 0)
++(if hasChronicKidneyDiseaseRiskFactors(conditions) then 1 else 0)
 +(if "Has Chronic Liver Disease Risk Factor" then 1 else 0)
 +(if "Has COPD Risk Factor" then 1 else 0)
 +(if hasDiabetesMellitusRiskFactor(conditions) then 1 else 0)
@@ -771,14 +787,23 @@ define "Has Pulmonary Embolism Risk Factor":
   RiskFactors.PulmonaryEmbolism
 
 define "Has Cancer Risk Factor":
-  RiskFactors.Cancer
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+          where (C.code in CC."Cancer SNOMED Codes"
+            or C.code in CC."Cancer ICD10CM Codes")),
+    RiskFactors.Cancer
+  )
 
 define "Has Cerebrovascular Disease Risk Factor":
   RiskFactors.CerebrovascularDisease
 
 define "Has Chronic Kidney Disease Risk Factor":
-  RiskFactors.ChronicKidneyDisease
-
+  HasConditionWithOverride(
+    ("All Active Conditions" C
+      where (C.code in CC."Kidney Disease SNOMED Codes"
+        or C.code in CC."Kidney Disease ICD10CM Codes")),
+    RiskFactors.ChronicKidneyDisease
+  )
 
 define "Has Chronic Liver Disease Risk Factor":
   RiskFactors.ChronicLiverDisease

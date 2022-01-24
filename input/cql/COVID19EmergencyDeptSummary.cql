@@ -95,10 +95,10 @@ define AssessmentSummary: {
 }
 
 define RiskFactorSummary: {
-  {
     Bronchiectasis: C19."Has Bronchiectasis Risk Factor",
     BronchopulmonaryDysplasia: C19."Has Bronchopulmonary Dysplasia Risk Factor",
     PulmonaryHypertension: C19."Has Pulmonary Hypertension Risk Factor",
+    PulmonaryEmbolism: C19."Has Pulmonary Embolism Risk Factor",
     Cancer: C19."Has Cancer Risk Factor",
     CerebrovascularDisease: C19."Has Cerebrovascular Disease Risk Factor",
     ChronicKidneyDisease: C19."Has Chronic Kidney Disease Risk Factor",
@@ -127,7 +127,6 @@ define RiskFactorSummary: {
     Asthma: C19."Has Asthma Risk Factor",
     Hypertension: C19."Has Hypertension Risk Factor",
     ImmuneDeficiencies: C19."Has Immune deficiencies Risk Factor"
-    }
 }
 
 define DiagnosticSummary: {

@@ -47,6 +47,10 @@ valueset "Downs Syndrome SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/co
 valueset "Downs Syndrome ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-downs-syndrome-icd10'
 valueset "Immune Deficiencies ICD10CM Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-icd10'
 valueset "Immune Deficiencies SNOMED Codes": 'http://fhir.org/guides/acep/ValueSet/covid-19-condition-risk-immunosuppression-snomed'
+valueset "Cancer ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3028'
+valueset "Cancer SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6048'
+valueset "Kidney Disease ICD10CM Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.3102'
+valueset "Kidney Disease SNOMED Codes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3616.200.110.102.6064'
 
 
 // ## Individual codes ##
