@@ -223,6 +223,8 @@ describe('risk assessment score', () => {
             { conditionType: 'Downs Syndrome', cqlExpression: 'Has Down Syndrome Risk Factor', condition: new ConditionBuilder("840505007", "Down syndrome co-occurrent with leukaemoid reaction associated transient neonatal pustulosis").build()},
             { conditionType: 'Diabetes', cqlExpression: 'Has Diabetes Mellitus Risk Factor', condition: new ConditionBuilder("E08.11", "Diabetes mellitus due to underlying condition with hyperosmolarity with coma", "http://hl7.org/fhir/sid/icd-10-cm").build()},
             { conditionType: 'Diabetes', cqlExpression: 'Has Diabetes Mellitus Risk Factor', condition:new ConditionBuilder("712882000", "Autonomic neuropathy co-occurrent and due to type 1 diabetes mellitus (disorder)").build() },
+            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)").build()},
+            { conditionType: 'Chronic Kidney Disease', cqlExpression: 'Has Chronic Kidney Disease Risk Factor', condition: new ConditionBuilder("104931000119100", "Chronic kidney disease due to hypertension (disorder)").build()},
 
         ].forEach(({conditionType, cqlExpression, condition}) => {
             describe(conditionType, () => {
@@ -261,10 +263,7 @@ describe('risk assessment score', () => {
             { conditionType: 'Cystic Fibrosis', cqlExpression: 'Has Cystic Fibrosis Risk Factor', condition: null },
             { conditionType: 'Thalassemia', cqlExpression: 'Has Thalassemia Risk Factor', condition: null },
             { conditionType: 'Asthma', cqlExpression: 'Has Asthma Risk Factor', condition: null },
-            { conditionType: 'Hypertension', cqlExpression: 'Has Hypertension Risk Factor', condition: null },
-            { conditionType: 'Cancer', cqlExpression: 'Has Cancer Risk Factor', condition: new ConditionBuilder("100721000119109", "High grade astrocytoma of brain (disorder)").build()},
-            { conditionType: 'Chronic Kidney Disease', cqlExpression: 'Has Chronic Kidney Disease Risk Factor', condition: new ConditionBuilder("90708001", "Kidney disease (disorder)").build()},
-          
+            { conditionType: 'Hypertension', cqlExpression: 'Has Hypertension Risk Factor', condition: null },          
         ].forEach(({conditionType, cqlExpression, condition}) => {
             describe(conditionType, () => {
                 test(`Given that the patient has codes associated with ${conditionType} then the '${cqlExpression}' should come back as null`, () => {
