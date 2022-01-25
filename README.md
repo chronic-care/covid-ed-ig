@@ -55,6 +55,7 @@ Jekyll requires Ruby version 2.1 or greater.
 
 Jekyll `gem install --user-install bundler jekyll`
 If `jekyll -v` doesn't work, add `export PATH="/Users/<your-username>/.gem/ruby/3.1.0/bin:$PATH"` to your `~/.zshrc` or where your profile settings are.
+Try `bundle exec jekyll -v` if `jekyll -v` still doesn't work.
 
 If installing on a macOS: [https://jekyllrb.com/docs/installation/macos/](https://jekyllrb.com/docs/installation/macos/)
 
