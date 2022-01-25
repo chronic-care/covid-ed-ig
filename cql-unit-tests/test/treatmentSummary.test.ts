@@ -11,11 +11,9 @@ import { buildAllNullRiskAssessmentScoreParameters } from '../helpers/builders';
 describe('treatment summary', () => {
     it.each([
         ['Recommend Non-Pharmacologic Treatment'],
-        ['Recommend Antibodies Treatment'],
-        ['Recommend Anticoagulation Treatment'],
-        ['Recommend Steroids Treatment'],
-        ['Recommend Remdesivir Treatment'],
-        ['Recommend SteroidsAndOrRemdesivir Treatment'],
+        ['Recommend Mild Severity Treatment'],
+        ['Recommend Moderate Severity Treatment'],
+        ['Recommend Severe and Critical Severity Treatment'],
         ])( '%p returns null when all inputs are null', (expressionName: string ) => {
         const cqlExpressionParameters = buildCQLExpressionParameters({}, buildAllNullRiskAssessmentScoreParameters());
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, expressionName);
@@ -53,14 +51,14 @@ describe('treatment summary', () => {
 
     it.each([
             ['mild', 'use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
-            ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['moderate', null, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
             ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Antibodies Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
-        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Antibodies Treatment');
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Mild Severity Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 
