@@ -74,9 +74,9 @@ define DispositionSummary: {
 // Value: use, do-not-use, insufficient-evidence, null
 define TreatmentSummary: {
   NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
-  MildPharmacologicTreatment: "Recommend Mild Severity Treatment",
-  ModeratePharmacologicTreatment: "Recommend Moderate Severity Treatment",
-  SevereCriticalPharmacologicTreatment: "Recommend Severe and Critical Severity Treatment"
+  DischargedTreatment: "Recommend Discharged Treatment",
+  AdmissionTreatment: "Recommend Admission Treatment",
+  SteroidsTreatment: "Recommend Steroids Treatment"
 }
 
 define AssessmentSummary: {
@@ -298,19 +298,22 @@ define "Recommend Non-Pharmacologic Treatment":
   else 'use'
 
 // Pharmacologic Treatment
-define "Recommend Mild Severity Treatment":
+// Recommand discharge from emergency department treamtment for mild and moderate severity.
+define "Recommend Discharged Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity") then 'use'
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'use'
   else null
 
-define "Recommend Moderate Severity Treatment":
+// Recommand admission to emergency department treamtment for moderate, severe and critical severity.
+define "Recommend Admission Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Moderate Severity") then 'use'
+  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
   else null
 
-define "Recommend Severe and Critical Severity Treatment":
+//Do not use steriods for mild and moderate severity
+define "Recommend Steroids Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'do-not-use'
   else null
 
 /*
