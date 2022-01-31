@@ -37,10 +37,10 @@ describe('treatment summary', () => {
     });
 
     it.each([
-          ['mild', 'use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
-          ['moderate', 'use', new ClinicalAssessmentBuilder().withConcerningLab(1).withMildSeverity().build()],
-          ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
-          ['critical', 'use', new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
+          ['mild', true, new ClinicalAssessmentBuilder().withMildSeverity().build()],
+          ['moderate', true, new ClinicalAssessmentBuilder().withConcerningLab(1).withMildSeverity().build()],
+          ['severe', true, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+          ['critical', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
           ['none', null, {}],
         ]
     )('For %p severity, Recommend Non-Pharmacologic Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
@@ -50,8 +50,8 @@ describe('treatment summary', () => {
     });
 
     it.each([
-            ['mild', 'use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
-            ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['mild', true, new ClinicalAssessmentBuilder().withMildSeverity().build()],
+            ['moderate', true, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
             ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
@@ -64,9 +64,9 @@ describe('treatment summary', () => {
 
     it.each([
             ['mild', null, new ClinicalAssessmentBuilder().withMildSeverity().build()],
-            ['moderate', 'use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
-            ['severe', 'use', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
-            ['critical', 'use', new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
+            ['moderate', true, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['severe', true, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+            ['critical', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
     )('For %p severity, Recommend Addmission Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
@@ -76,8 +76,8 @@ describe('treatment summary', () => {
     });
 
     it.each([
-            ['mild', 'do-not-use', new ClinicalAssessmentBuilder().withMildSeverity().build()],
-            ['moderate', 'do-not-use', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+            ['mild', false, new ClinicalAssessmentBuilder().withMildSeverity().build()],
+            ['moderate', false, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
             ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
             ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],

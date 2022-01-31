@@ -73,10 +73,10 @@ define DispositionSummary: {
 
 // Value: use, do-not-use, insufficient-evidence, null
 define TreatmentSummary: {
-  NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
-  DischargedTreatment: "Recommend Discharged Treatment",
-  AdmissionTreatment: "Recommend Admission Treatment",
-  SteroidsTreatment: "Recommend Steroids Treatment"
+    NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
+    Discharge: "Recommend Discharged Treatment",
+    Admission: "Recommend Admission Treatment",
+    Steroids: "Recommend Steroids Treatment"
 }
 
 define AssessmentSummary: {
@@ -295,25 +295,25 @@ define HasAdmissionOrDischargeRecommendation:
 
 define "Recommend Non-Pharmacologic Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else 'use'
+  else true
 
 // Pharmacologic Treatment
-// Recommand discharge from emergency department treamtment for mild and moderate severity.
+// Recommend discharge from emergency department treamtment for mild and moderate severity.
 define "Recommend Discharged Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'use'
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then true
   else null
 
-// Recommand admission to emergency department treamtment for moderate, severe and critical severity.
+// Recommend admission to emergency department treamtment for moderate, severe and critical severity.
 define "Recommend Admission Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
+  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then true
   else null
 
 //Do not use steriods for mild and moderate severity
 define "Recommend Steroids Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'do-not-use'
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then false
   else null
 
 /*
