@@ -71,14 +71,12 @@ define DispositionSummary: {
   CriticalAdmission: "Recommend Critical Admission"
 }
 
-// Value: use, do-not-use, insufficient-evidence, null
+// Value: true and false, null
 define TreatmentSummary: {
-  NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
-  Antibodies: "Recommend Antibodies Treatment",
-  Anticoagulation: "Recommend Anticoagulation Treatment",
-  Remdesivir: "Recommend Remdesivir Treatment",
-  Steroids: "Recommend Steroids Treatment",
-  SteroidsAndOrRemdesivir: "Recommend SteroidsAndOrRemdesivir Treatment"
+    NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
+    Discharge: "Recommend Discharge Treatment",
+    Admission: "Recommend Admission Treatment",
+    Steroids: "Recommend Steroids Treatment"
 }
 
 define AssessmentSummary: {
@@ -297,31 +295,25 @@ define HasAdmissionOrDischargeRecommendation:
 
 define "Recommend Non-Pharmacologic Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else 'use'
+  else true
 
-define "Recommend Antibodies Treatment":
+// Pharmacologic Treatment
+// Recommend discharge from emergency department treamtment for mild and moderate severity.
+define "Recommend Discharge Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'use'
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then true
   else null
 
-define "Recommend Anticoagulation Treatment":
+// Recommend admission to emergency department treamtment for moderate, severe and critical severity.
+define "Recommend Admission Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
+  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then true
   else null
 
+//Do not use steriods for mild and moderate severity
 define "Recommend Steroids Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'do-not-use'
-  else null
-
-define "Recommend Remdesivir Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if C19."Is Mild Severity" or C19."Is Moderate Severity" then 'insufficient-evidence'
-  else null
-
-define "Recommend SteroidsAndOrRemdesivir Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then false
   else null
 
 /*
