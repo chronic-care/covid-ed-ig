@@ -12,7 +12,7 @@ describe('treatment summary', () => {
     it.each([
         ['Recommend Non-Pharmacologic Treatment'],
         ['Recommend Admission Treatment'],
-        ['Recommend Discharged Treatment'],
+        ['Recommend Discharge Treatment'],
         ['Recommend Steroids Treatment']
         ])( '%p returns null when all inputs are null', (expressionName: string ) => {
         const cqlExpressionParameters = buildCQLExpressionParameters({}, buildAllNullRiskAssessmentScoreParameters());
@@ -58,7 +58,7 @@ describe('treatment summary', () => {
         ]
     )('For %p severity, Recommend DischargeHome Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
-        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Discharged Treatment');
+        const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Discharge Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
 

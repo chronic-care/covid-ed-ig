@@ -71,10 +71,10 @@ define DispositionSummary: {
   CriticalAdmission: "Recommend Critical Admission"
 }
 
-// Value: use, do-not-use, insufficient-evidence, null
+// Value: true and false, null
 define TreatmentSummary: {
     NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
-    Discharge: "Recommend Discharged Treatment",
+    Discharge: "Recommend Discharge Treatment",
     Admission: "Recommend Admission Treatment",
     Steroids: "Recommend Steroids Treatment"
 }
@@ -299,7 +299,7 @@ define "Recommend Non-Pharmacologic Treatment":
 
 // Pharmacologic Treatment
 // Recommend discharge from emergency department treamtment for mild and moderate severity.
-define "Recommend Discharged Treatment":
+define "Recommend Discharge Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
   else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then true
   else null
