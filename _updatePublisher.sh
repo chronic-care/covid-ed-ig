@@ -1,5 +1,5 @@
 #!/bin/bash
-pubsource=https://github.com/HL7/fhir-ig-publisher/releases/latest/download/
+pubsource=https://github.com/HL7/fhir-ig-publisher/releases/download/1.1.97/
 publisher_jar=publisher.jar
 dlurl=$pubsource$publisher_jar
 
@@ -119,11 +119,11 @@ if [[ $skipPrompts == true ]] || [[ $response =~ ^[yY].*$ ]]; then
   cp /tmp/_gencontinuous.new _gencontinuous.sh
   rm /tmp/_gencontinuous.new
 
-  curl -L $gen_sh_url -o /tmp/_genonce.new
-  cp /tmp/_genonce.new _genonce.sh
-  rm  /tmp/_genonce.new
+  #curl -L $gen_sh_url -o /tmp/_genonce.new
+  #cp /tmp/_genonce.new _genonce.sh
+  #rm  /tmp/_genonce.new
 
-  curl -L $update_sh_url -o /tmp/_updatePublisher.new
-  cp /tmp/_updatePublisher.new _updatePublisher.sh
-  rm /tmp/_updatePublisher.new
+  #curl -L $update_sh_url -o /tmp/_updatePublisher.new
+  #cp /tmp/_updatePublisher.new _updatePublisher.sh
+  #rm /tmp/_updatePublisher.new
 fi
