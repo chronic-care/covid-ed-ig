@@ -39,7 +39,7 @@ jobs:
           bundle install
 
       - name: Update Publisher executable
-        run: bash _updatePublisher.sh --force --yes
+        run: bash _updatePublisher.sh --force --yes --skip-ping
 
       - name: Generate Implementation Guide (IG)
         run: bash _genonce.sh
