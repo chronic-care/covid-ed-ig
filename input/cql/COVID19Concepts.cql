@@ -25,16 +25,18 @@ valueset "WHO Performance Status Codes": 'http://fhir.org/guides/acep/ValueSet/w
 valueset "ALT Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-alt'
 valueset "AST Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ast'
 valueset "CRP Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-crp'
-valueset "Creatinine Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-creatinine'
 valueset "D-dimer Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ddimer'
 valueset "Ferritin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ferritin'
 valueset "LDH Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-ldh'
-valueset "Leukocyte Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-leukocyte'
 valueset "Lymphocytes Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-lymphocytes'
 valueset "Neutrophils Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-neutrophils'
 valueset "PaO2FiO2 Ratio Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
-valueset "Platelets Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-platelets'
-valueset "Troponin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-troponin'
+valueset "PCT Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
+valueset "Interleukin-1 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
+valueset "Interleukin-6 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
+valueset "Interleukin-8 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
+
+
 
 
 //Value sets for risk factor 
