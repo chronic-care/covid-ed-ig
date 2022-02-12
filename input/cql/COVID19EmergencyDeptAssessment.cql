@@ -968,7 +968,7 @@ define "Last Lymphocytes Lab Result":
   define "Last Interleukin Lab Result":
   C3F.MostRecent(
     C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Interleukin-1 Lab Results"]),
+      C3F.Verified([Observation: CC."Interleukin Lab Results"]),
       LabResultsLookbackPeriod)
   )
 

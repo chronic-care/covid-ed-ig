@@ -31,12 +31,8 @@ valueset "LDH Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-l
 valueset "Lymphocytes Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-lymphocytes'
 valueset "Neutrophils Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-neutrophils'
 valueset "PaO2FiO2 Ratio Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
-valueset "PCT Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
-valueset "Interleukin-1 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
-valueset "Interleukin-6 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
-valueset "Interleukin-8 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
-
-
+valueset "PCT Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-procalcitonin'
+valueset "Interleukin Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin-1'
 
 
 //Value sets for risk factor 
