@@ -139,100 +139,7 @@ describe('diagnostic summary with fhir resources', () => {
         expect(Date.parse(retrievedAst!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
-    test('obtains latest Creatinine Lab Result in Diagnostic Summary Section', () => {
-        const oldestDate = new Date(yesterday);
-        const middleDate = new Date(yesterday + tenSeconds);
-        const newestDate = new Date(yesterday + twentySeconds);
-
-        const referenceRange = [
-            {
-                "low" : {
-                    "code" : "mg/dL",
-                    "value" : 0.7,
-                    "system" : "http://unitsofmeasure.org",
-                    "unit" : "mg/dL"
-                },
-                "high" : {
-                    "code" : "mg/dL",
-                    "value" : 1.25,
-                    "system" : "http://unitsofmeasure.org",
-                    "unit" : "mg/dL"
-                }
-            }
-        ];
-        const coding = [
-            {
-                "system": "http://loinc.org",
-                "display" : "CREATININE",
-                "code" : "2160-0"
-            }
-        ]
-
-        const oldestLabResult = new LabResultBuilder()
-            .withId('oldie')
-            .withCoding(coding)
-            .withEffectiveDateTime(oldestDate.toISOString())
-            .withValueQuantity({
-                "value" : 1.5,
-                "unit" : "mg/dL"
-            })
-            .withReferenceRanges(referenceRange)
-            .build();
-
-        const middleLabResult = new LabResultBuilder()
-            .withId('middle')
-            .withCoding(coding)
-            .withValueQuantity({
-                "value" : 1.37,
-                "unit" : "mg/dL"
-            })
-            .withEffectiveDateTime(middleDate.toISOString())
-            .withReferenceRanges(referenceRange)
-            .build();
-
-        const newestLabResult = new LabResultBuilder()
-            .withId('newer')
-            .withCoding(coding)
-            .withValueQuantity({
-                "value" : 1.1,
-                "unit" : "mg/dL"
-            })
-            .withEffectiveDateTime(newestDate.toISOString())
-            .withReferenceRanges(referenceRange)
-            .build();
-
-        const expectedLabResult: Diagnostic = {
-            Date: newestDate.toISOString(),
-            Flag: false,
-            Interpretation: null,
-            Name: newestLabResult.code.coding![0].display!,
-            ReferenceRange: "0.7 - 1.25",
-            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.valueQuantity!.unit!,
-            ResultValue: newestLabResult.valueQuantity!.value!
-        }
-
-        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
-                oldestLabResult,
-                middleLabResult,
-                newestLabResult,
-            ]
-        ) as DiagnosticSummary;
-
-
-        const retrievedCreatinine = diagnosticSummary.Creatinine;
-
-        expect(retrievedCreatinine).not.toBeNull();
-        expect(retrievedCreatinine!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedCreatinine!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedCreatinine!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedCreatinine!.ReferenceRange).toEqual(expectedLabResult.ReferenceRange);
-        expect(retrievedCreatinine!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(retrievedCreatinine!.ResultUnits).toEqual(expectedLabResult.ResultUnits);
-        expect(retrievedCreatinine!.ResultValue).toEqual(expectedLabResult.ResultValue);
-        expect(Date.parse(retrievedCreatinine!.Date)).toEqual(Date.parse(expectedLabResult.Date));
-    });
-
+   
     test('obtains latest CRP Lab Result in Diagnostic Summary Section', () => {
         const oldestDate = new Date(yesterday);
         const middleDate = new Date(yesterday + tenSeconds);
@@ -302,7 +209,7 @@ describe('diagnostic summary with fhir resources', () => {
             {
                 "system": "http://loinc.org",
                 "display" : "DDIMER",
-                "code": "7799-0"
+                "code": "48066-5"
             }
         ]
 
@@ -593,7 +500,8 @@ describe('diagnostic summary with fhir resources', () => {
         expect(Date.parse(retrievedNeutrophils!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
-    test('obtains latest Thrombocytopenia Lab Result in Diagnostic Summary Section', () => {
+    
+    test('obtains latest Procalcitonin Lab Result in Diagnostic Summary Section', () => {
         const oldestDate = new Date(yesterday);
         const middleDate = new Date(yesterday + tenSeconds);
         const newestDate = new Date(yesterday + twentySeconds);
@@ -601,8 +509,8 @@ describe('diagnostic summary with fhir resources', () => {
         const coding = [
             {
                 "system": "http://loinc.org",
-                "display" : "PLATELET COUNT",
-                "code" : "777-3"
+                "display" : "PCT",
+                "code" : "33959-8"
             }
         ]
 
@@ -643,17 +551,17 @@ describe('diagnostic summary with fhir resources', () => {
         ) as DiagnosticSummary;
 
 
-        const retrievedThrombocytopenia = diagnosticSummary.Thrombocytopenia;
+        const retrievedPCT = diagnosticSummary.PCT;
 
-        expect(retrievedThrombocytopenia).not.toBeNull();
-        expect(retrievedThrombocytopenia!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedThrombocytopenia!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedThrombocytopenia!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedThrombocytopenia!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(Date.parse(retrievedThrombocytopenia!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+        expect(retrievedPCT).not.toBeNull();
+        expect(retrievedPCT!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedPCT!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedPCT!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedPCT!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedPCT!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
-    test('obtains latest Troponin Lab Result in Diagnostic Summary Section', () => {
+    test('obtains latest Immune dysregulation Lab Result in Diagnostic Summary Section', () => {
         const oldestDate = new Date(yesterday);
         const middleDate = new Date(yesterday + tenSeconds);
         const newestDate = new Date(yesterday + twentySeconds);
@@ -661,8 +569,8 @@ describe('diagnostic summary with fhir resources', () => {
         const coding = [
             {
                 "system": "http://loinc.org",
-                "display" : "TROPONIN",
-                "code" : "16255-2"
+                "display" : "Immunedysregulation",
+                "code" : "34407-7"
             }
         ]
 
@@ -703,73 +611,13 @@ describe('diagnostic summary with fhir resources', () => {
         ) as DiagnosticSummary;
 
 
-        const retrievedTroponin = diagnosticSummary.Troponin;
+        const retrievedImmuneDysregulation = diagnosticSummary.ImmuneDysregulation;
 
-        expect(retrievedTroponin).not.toBeNull();
-        expect(retrievedTroponin!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedTroponin!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedTroponin!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedTroponin!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(Date.parse(retrievedTroponin!.Date)).toEqual(Date.parse(expectedLabResult.Date));
-    });
-
-    test('obtains latest WBC Lab Result in Diagnostic Summary Section', () => {
-        const oldestDate = new Date(yesterday);
-        const middleDate = new Date(yesterday + tenSeconds);
-        const newestDate = new Date(yesterday + twentySeconds);
-
-        const coding = [
-            {
-                "system": "http://loinc.org",
-                "display" : "LEUKOCYTE",
-                "code" : "26464-8"
-            }
-        ]
-
-        const oldestLabResult = new LabResultBuilder()
-            .withId('oldie')
-            .withCoding(coding)
-            .withEffectiveDateTime(oldestDate.toISOString())
-            .build();
-
-        const middleLabResult = new LabResultBuilder()
-            .withId('middle')
-            .withCoding(coding)
-            .withEffectiveDateTime(middleDate.toISOString())
-            .build();
-
-        const newestLabResult = new LabResultBuilder()
-            .withId('newer')
-            .withCoding(coding)
-            .withEffectiveDateTime(newestDate.toISOString())
-            .build();
-
-        const expectedLabResult: Diagnostic = {
-            Date: newestDate.toISOString(),
-            Flag: false,
-            Interpretation: null,
-            Name: newestLabResult.code.coding![0].display!,
-            ReferenceRange: "",
-            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
-            ResultUnits: newestLabResult.valueQuantity!.unit!,
-            ResultValue: newestLabResult.valueQuantity!.value!
-        }
-
-        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
-                oldestLabResult,
-                middleLabResult,
-                newestLabResult,
-            ]
-        ) as DiagnosticSummary;
-
-
-        const retrievedWbc = diagnosticSummary.WBC;
-
-        expect(retrievedWbc).not.toBeNull();
-        expect(retrievedWbc!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedWbc!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedWbc!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedWbc!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(Date.parse(retrievedWbc!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+        expect(retrievedImmuneDysregulation).not.toBeNull();
+        expect(retrievedImmuneDysregulation!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedImmuneDysregulation!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedImmuneDysregulation!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedImmuneDysregulation!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedImmuneDysregulation!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 });

@@ -928,12 +928,6 @@ define "Last CRP Lab Result":
       LabResultsLookbackPeriod)
   )
 
-define "Last Creatinine Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Creatinine Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
 
 define "Last D-dimer Lab Result":
   C3F.MostRecent(
@@ -949,12 +943,6 @@ define "Last Neutrophils Lab Result":
       LabResultsLookbackPeriod)
   )
 
-define "Last Leukocyte Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Leukocyte Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
 
 define "Last Ferritin Lab Result":
   C3F.MostRecent(
@@ -970,6 +958,21 @@ define "Last Lymphocytes Lab Result":
       LabResultsLookbackPeriod)
   )
 
+  define "Last PCT Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."PCT Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+ // We are adding all the valuesets related to Serum levels of pro inflammatory cytokines and chemokines here.
+  define "Last Immune Dysregulation Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Immune Dysregulation Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
 define "Last PaO2FiO2 Ratio Lab Result":
   C3F.MostRecent(
     C3F.ObservationLookBack(
@@ -982,12 +985,6 @@ define "Last PaO2FiO2 Ratio Lab Result Less Than 300":
     ("Last PaO2FiO2 Ratio Lab Result".value as FHIR.Quantity).value < 300
   )
 
-define "Last Platelets Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Platelets Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
 
 define "Last LDH Lab Result":
   C3F.MostRecent(
@@ -996,9 +993,4 @@ define "Last LDH Lab Result":
       LabResultsLookbackPeriod)
   )
 
-define "Last Troponin Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Troponin Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
+

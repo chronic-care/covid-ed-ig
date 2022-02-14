@@ -1,52 +1,69 @@
 {
-  "resourceType": "ValueSet",
-  "id": "covid-19-lab-lymphocytes",
-  "meta": {
-    "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset" ]
-  },
-  "language": "en",
-  "extension": [ {
-    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
-    "valueCode": "executable"
-  }, {
-    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
-    "valueCode": "executable"
-  } ],
-  "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-lymphocytes",
-  "version": "0.5.0",
-  "name": "COVID19LabLymphocytes",
-  "title": "COVID-19 Laboratory Value Set for Lymphocytes",
-  "status": "active",
-  "date": "2021-02-26T20:00:00+00:00",
-  "description": "COVID-19 Laboratory Value Set for Lymphocytes",
-  "compose": {
-    "include": [ {
-      "system": "http://loinc.org",
-      "concept": [ {
-        "code": "26474-7"
-      }, {
-        "code": "731-0"
-      }, {
-        "code": "30364-4"
-      }, {
-        "code": "732-8"
-      } ]
-    } ]
-  },
-  "expansion": {
-    "timestamp": "2021-03-14T21:43:10-06:00",
-    "contains": [ {
-      "system": "http://loinc.org",
-      "code": "26474-7"
-    }, {
-      "system": "http://loinc.org",
-      "code": "731-0"
-    }, {
-      "system": "http://loinc.org",
-      "code": "30364-4"
-    }, {
-      "system": "http://loinc.org",
-      "code": "732-8"
-    } ]
-  }
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-lymphocytes",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset"
+        ]
+    },
+    "language": "en",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+            "valueCode": "executable"
+        },
+        {
+            "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+            "valueCode": "executable"
+        }
+    ],
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-lymphocytes",
+    "version": "0.5.0",
+    "name": "COVID19LabLymphocytes",
+    "title": "COVID-19 Laboratory Value Set for Lymphocytes",
+    "status": "active",
+    "date": "2022-01-04T20:00:00+00:00",
+    "description": "COVID-19 Laboratory Value Set for Lymphocytes",
+    "compose": {
+        "include": [
+            {
+                "system": "http://loinc.org",
+                "concept": [
+                    {
+                        "code": "26474-7"
+                    },
+                    {
+                        "code": "731-0"
+                    },
+                    {
+                        "code": "30364-4"
+                    },
+                    {
+                        "code": "732-8"
+                    }
+                ]
+            }
+        ]
+    },
+    "expansion": {
+        "timestamp": "2021-03-14T21:43:10-06:00",
+        "contains": [
+            {
+                "system": "http://loinc.org",
+                "code": "26474-7"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "731-0"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "30364-4"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "732-8"
+            }
+        ]
+    }
 }

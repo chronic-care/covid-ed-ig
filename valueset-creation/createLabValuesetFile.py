@@ -8,7 +8,7 @@ def read_input(path_to_input):
 
 
 def create_file(group, data):
-    name = group['Code Title'].tolist()[0];
+    name = group['Name'].tolist()[0];
     print("creating file for "+name);
     dashed_name = name.lower().replace(" ", "-");
     names = name.split(" ");
