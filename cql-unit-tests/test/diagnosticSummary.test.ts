@@ -449,7 +449,7 @@ describe('diagnostic summary with fhir resources', () => {
             {
                 "system": "http://loinc.org",
                 "code": "751-8",
-                "display": "Ne"
+                "display": "Neutrophils [#/volume] in Blood by Automated count"
             }
         ]
 
