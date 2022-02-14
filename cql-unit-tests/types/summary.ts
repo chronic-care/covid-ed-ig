@@ -8,7 +8,7 @@ export interface DiagnosticSummary {
     Lymphopenia: Diagnostic | null,
     Neutrophils: Diagnostic | null,
     PaO2FiO2LessThan300: boolean | null,
-    Interleukin: boolean | null,
+    ImmuneDysregulation: boolean | null,
     PCT: boolean | null
 }
 

@@ -209,7 +209,7 @@ describe('diagnostic summary with fhir resources', () => {
             {
                 "system": "http://loinc.org",
                 "display" : "DDIMER",
-                "code": "7799-0"
+                "code": "48066-5"
             }
         ]
 
@@ -552,7 +552,6 @@ describe('diagnostic summary with fhir resources', () => {
 
 
         const retrievedPCT = diagnosticSummary.PCT;
-        console.log(`************retrievedPCT*************${JSON.stringify(retrievedPCT)}`);
 
         expect(retrievedPCT).not.toBeNull();
         expect(retrievedPCT!.Flag).toEqual(expectedLabResult.Flag);
@@ -562,7 +561,7 @@ describe('diagnostic summary with fhir resources', () => {
         expect(Date.parse(retrievedPCT!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
-    test('obtains latest Interlukin Lab Result in Diagnostic Summary Section', () => {
+    test('obtains latest Immune dysregulation Lab Result in Diagnostic Summary Section', () => {
         const oldestDate = new Date(yesterday);
         const middleDate = new Date(yesterday + tenSeconds);
         const newestDate = new Date(yesterday + twentySeconds);
@@ -570,7 +569,7 @@ describe('diagnostic summary with fhir resources', () => {
         const coding = [
             {
                 "system": "http://loinc.org",
-                "display" : "Interlukin",
+                "display" : "Immunedysregulation",
                 "code" : "34407-7"
             }
         ]
@@ -612,13 +611,13 @@ describe('diagnostic summary with fhir resources', () => {
         ) as DiagnosticSummary;
 
 
-        const retrievedWbc = diagnosticSummary.Interleukin;
+        const retrievedImmuneDysregulation = diagnosticSummary.ImmuneDysregulation;
 
-        expect(retrievedWbc).not.toBeNull();
-        expect(retrievedWbc!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedWbc!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedWbc!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedWbc!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(Date.parse(retrievedWbc!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+        expect(retrievedImmuneDysregulation).not.toBeNull();
+        expect(retrievedImmuneDysregulation!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedImmuneDysregulation!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedImmuneDysregulation!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedImmuneDysregulation!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedImmuneDysregulation!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 });

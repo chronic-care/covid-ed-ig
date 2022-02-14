@@ -137,7 +137,7 @@ define DiagnosticSummary: {
   Lymphopenia: Message(ReportLabObservation(C19."Last Lymphocytes Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Lymphocytes Lab Result")'),
   Neutrophils: Message(ReportLabObservation(C19."Last Neutrophils Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Neutrophils Lab Result")'),
   PCT: Message(ReportLabObservation(C19."Last PCT Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last PCT Lab Result")'),
-  Interleukin: Message(ReportLabObservation(C19."Last Interleukin Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Interleukin Lab Result")'),
+  ImmuneDysregulation: Message(ReportLabObservation(C19."Last Immune Dysregulation Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Interleukin Lab Result")'),
   // Not included in count of concerning labs; used for severity classification.
   PaO2FiO2: Message(C19."Last PaO2FiO2 Ratio Lab Result Less Than 300", true, 'Undefined', 'Trace', 'Calculating C19."Last PaO2FiO2 Ratio Lab Result Less Than 300"')
 }
@@ -152,7 +152,7 @@ define LabResultList: {
   DiagnosticSummary.Lymphopenia,
   DiagnosticSummary.Neutrophils,
   DiagnosticSummary.PCT,
-  DiagnosticSummary.Interleukin
+  DiagnosticSummary.ImmuneDysregulation
 }
 
 
