@@ -1,0 +1,62 @@
+{
+    "resourceType": "ValueSet",
+    "id": "covid-19-lab-interleukin6",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset"
+        ]
+    },
+    "language": "en",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+            "valueCode": "executable"
+        },
+        {
+            "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+            "valueCode": "executable"
+        }
+    ],
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin6",
+    "version": "0.5.0",
+    "name": "COVID19LabInterleukin6",
+    "title": "COVID-19 Laboratory Value Set for Interleukin6",
+    "status": "active",
+    "date": "2022-01-04T20:00:00+00:00",
+    "description": "COVID-19 Laboratory Value Set for Interleukin6",
+    "compose": {
+        "include": [
+            {
+                "system": "http://loinc.org",
+                "concept": [
+                    {
+                        "code": "26881-3"
+                    },
+                    {
+                        "code": "44322-6"
+                    },
+                    {
+                        "code": "4655-7"
+                    }
+                ]
+            }
+        ]
+    },
+    "expansion": {
+        "timestamp": "2021-03-14T21:43:10-06:00",
+        "contains": [
+            {
+                "system": "http://loinc.org",
+                "code": "26881-3"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "44322-6"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "4655-7"
+            }
+        ]
+    }
+}

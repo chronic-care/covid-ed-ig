@@ -965,14 +965,34 @@ define "Last Lymphocytes Lab Result":
       LabResultsLookbackPeriod)
   )
 
- // We are adding all the valuesets related to Serum levels of pro inflammatory cytokines and chemokines here.
-  define "Last Immune Dysregulation Lab Result":
+define "Last Interleukin 1 Lab Result":
   C3F.MostRecent(
     C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Immune Dysregulation Lab Results"]),
+      C3F.Verified([Observation: CC."Interleukin 1 Lab Results"]),
       LabResultsLookbackPeriod)
   )
 
+define "Last Interleukin 6 Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Interleukin 6 Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Interleukin 8 Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Interleukin 8 Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Tumor Necrosis Factor Alpha Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Tumor Necrosis Factor Alpha Lab Results"]),
+      LabResultsLookbackPeriod)
+  )    
+  
 define "Last PaO2FiO2 Ratio Lab Result":
   C3F.MostRecent(
     C3F.ObservationLookBack(
