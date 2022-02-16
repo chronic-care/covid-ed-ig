@@ -2704,6 +2704,18 @@
       }
     ]
   },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-lab-tnfalpha": {
+    "0.5.0": [
+      {
+        "code": "13900-6",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "3074-2",
+        "system": "http://loinc.org"
+      }
+    ]
+  },
   "http://fhir.org/guides/acep/ValueSet/covid-19-lab-procalcitonin": {
     "0.5.0": [
       {
@@ -2781,6 +2793,14 @@
       {
         "code": "700051000",
         "system": "http://snomed.info/sct"
+      }
+    ]
+  },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin8": {
+    "0.5.0": [
+      {
+        "code": "33211-4",
+        "system": "http://loinc.org"
       }
     ]
   },
@@ -5776,36 +5796,8 @@
       }
     ]
   },
-  "http://fhir.org/guides/acep/ValueSet/covid-19-lab-immunedysregulation": {
+  "http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin6": {
     "0.5.0": [
-      {
-        "code": "34407-7",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "4650-8",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "33821-0",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "13629-1",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "55926-0",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "55927-8",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "17022-5",
-        "system": "http://loinc.org"
-      },
       {
         "code": "26881-3",
         "system": "http://loinc.org"
@@ -5816,22 +5808,6 @@
       },
       {
         "code": "4655-7",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "33211-4",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "13900-6",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "3074-2",
-        "system": "http://loinc.org"
-      },
-      {
-        "code": "34939-9",
         "system": "http://loinc.org"
       }
     ]
@@ -16096,6 +16072,42 @@
       },
       {
         "code": "67151-1",
+        "system": "http://loinc.org"
+      }
+    ]
+  },
+  "http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin1": {
+    "0.5.0": [
+      {
+        "code": "34407-7",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "4650-8",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "33821-0",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "13629-1",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "55926-0",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "55927-8",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "17022-5",
+        "system": "http://loinc.org"
+      },
+      {
+        "code": "34939-9",
         "system": "http://loinc.org"
       }
     ]

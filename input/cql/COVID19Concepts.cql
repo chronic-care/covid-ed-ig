@@ -32,7 +32,11 @@ valueset "Lymphocytes Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-
 valueset "Neutrophils Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-neutrophils'
 valueset "PaO2FiO2 Ratio Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-pao2fio2'
 valueset "PCT Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-procalcitonin'
-valueset "Immune Dysregulation Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-immunedysregulation'
+valueset "Interleukin 1 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin1'
+valueset "Interleukin 6 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin6'
+valueset "Interleukin 8 Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-interleukin8'
+valueset "Tumor Necrosis Factor Alpha Lab Results": 'http://fhir.org/guides/acep/ValueSet/covid-19-lab-tnfalpha'
+
 
 
 //Value sets for risk factor 

@@ -561,7 +561,7 @@ describe('diagnostic summary with fhir resources', () => {
         expect(Date.parse(retrievedPCT!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 
-    test('obtains latest Immune dysregulation Lab Result in Diagnostic Summary Section', () => {
+    test('obtains latest Tumor Necrosis Factor Alpha Lab Result in Diagnostic Summary Section', () => {
         const oldestDate = new Date(yesterday);
         const middleDate = new Date(yesterday + tenSeconds);
         const newestDate = new Date(yesterday + twentySeconds);
@@ -569,7 +569,67 @@ describe('diagnostic summary with fhir resources', () => {
         const coding = [
             {
                 "system": "http://loinc.org",
-                "display" : "Immunedysregulation",
+                "display" : "TumorNecrosisFactorAlpha",
+                "code" : "13900-6"
+            }
+        ]
+
+        const oldestLabResult = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.code.coding![0].display!,
+            ReferenceRange: "",
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedTumorNecrosisFactorAlpha = diagnosticSummary.TumorNecrosisFactorAlpha;
+
+        expect(retrievedTumorNecrosisFactorAlpha).not.toBeNull();
+        expect(retrievedTumorNecrosisFactorAlpha!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedTumorNecrosisFactorAlpha!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedTumorNecrosisFactorAlpha!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedTumorNecrosisFactorAlpha!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedTumorNecrosisFactorAlpha!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+
+    test('obtains latest Interleukin 1 Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
+
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "display" : "Interleukin1",
                 "code" : "34407-7"
             }
         ]
@@ -611,13 +671,134 @@ describe('diagnostic summary with fhir resources', () => {
         ) as DiagnosticSummary;
 
 
-        const retrievedImmuneDysregulation = diagnosticSummary.ImmuneDysregulation;
+        const retrievedIInterleukin1 = diagnosticSummary.Interleukin1;
 
-        expect(retrievedImmuneDysregulation).not.toBeNull();
-        expect(retrievedImmuneDysregulation!.Flag).toEqual(expectedLabResult.Flag);
-        expect(retrievedImmuneDysregulation!.Interpretation).toEqual(expectedLabResult.Interpretation);
-        expect(retrievedImmuneDysregulation!.Name).toEqual(expectedLabResult.Name);
-        expect(retrievedImmuneDysregulation!.ResultText).toEqual(expectedLabResult.ResultText);
-        expect(Date.parse(retrievedImmuneDysregulation!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+        expect(retrievedIInterleukin1).not.toBeNull();
+        expect(retrievedIInterleukin1!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedIInterleukin1!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedIInterleukin1!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedIInterleukin1!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedIInterleukin1!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+
+
+    test('obtains latest Interleukin 6 Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
+
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "display" : "Interleukin6",
+                "code" : "26881-3"
+            }
+        ]
+
+        const oldestLabResult = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.code.coding![0].display!,
+            ReferenceRange: "",
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedInterleukin6 = diagnosticSummary.Interleukin6;
+
+        expect(retrievedInterleukin6).not.toBeNull();
+        expect(retrievedInterleukin6!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedInterleukin6!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedInterleukin6!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedInterleukin6!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedInterleukin6!.Date)).toEqual(Date.parse(expectedLabResult.Date));
+    });
+
+    test('obtains latest Interleukin 8 Lab Result in Diagnostic Summary Section', () => {
+        const oldestDate = new Date(yesterday);
+        const middleDate = new Date(yesterday + tenSeconds);
+        const newestDate = new Date(yesterday + twentySeconds);
+
+        const coding = [
+            {
+                "system": "http://loinc.org",
+                "display" : "Interleukin 8",
+                "code" : "33211-4"
+            }
+        ]
+
+        const oldestLabResult = new LabResultBuilder()
+            .withId('oldie')
+            .withCoding(coding)
+            .withEffectiveDateTime(oldestDate.toISOString())
+            .build();
+
+        const middleLabResult = new LabResultBuilder()
+            .withId('middle')
+            .withCoding(coding)
+            .withEffectiveDateTime(middleDate.toISOString())
+            .build();
+
+        const newestLabResult = new LabResultBuilder()
+            .withId('newer')
+            .withCoding(coding)
+            .withEffectiveDateTime(newestDate.toISOString())
+            .build();
+
+        const expectedLabResult: Diagnostic = {
+            Date: newestDate.toISOString(),
+            Flag: false,
+            Interpretation: null,
+            Name: newestLabResult.code.coding![0].display!,
+            ReferenceRange: "",
+            ResultText: `${newestLabResult.valueQuantity!.value} ${newestLabResult.valueQuantity!.unit}`,
+            ResultUnits: newestLabResult.valueQuantity!.unit!,
+            ResultValue: newestLabResult.valueQuantity!.value!
+        }
+
+        const diagnosticSummary: DiagnosticSummary = executeSummaryNoParams('DiagnosticSummary', [
+                oldestLabResult,
+                middleLabResult,
+                newestLabResult,
+            ]
+        ) as DiagnosticSummary;
+
+
+        const retrievedInterleukin8 = diagnosticSummary.Interleukin8;
+
+        expect(retrievedInterleukin8).not.toBeNull();
+        expect(retrievedInterleukin8!.Flag).toEqual(expectedLabResult.Flag);
+        expect(retrievedInterleukin8!.Interpretation).toEqual(expectedLabResult.Interpretation);
+        expect(retrievedInterleukin8!.Name).toEqual(expectedLabResult.Name);
+        expect(retrievedInterleukin8!.ResultText).toEqual(expectedLabResult.ResultText);
+        expect(Date.parse(retrievedInterleukin8!.Date)).toEqual(Date.parse(expectedLabResult.Date));
     });
 });
