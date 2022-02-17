@@ -94,8 +94,9 @@ RDE0028,Arterial partial pressure of oxygen,LOINC,2703-7,Oxygen
 #### Steps
 
 1) Get the latest raw data elements lab file (CPM value set-Laboratory Results) from [here](https://github.com/department-of-veterans-affairs/covid-patient-manager/tree/main/docs/terminology-project-documents).
-2) Convert the file to CSV.
-3) Run the below command. Replace `path_to_file.csv` with the path of the downloaded file. The new files generated can be found in the [output](output/) folder. You may then copy the generate files to the [ValueSet](../input/vocabulary/ValueSet) folder.
+2) Add a `Name` column which will contain the name of the lab observation. This name is used inside the template which creates the valueset json file.
+3) Convert the file to CSV.
+4) Run the below command. Replace `path_to_file.csv` with the path of the downloaded file. The new files generated can be found in the [output](output/) folder. You may then copy the generate files to the [ValueSet](../input/vocabulary/ValueSet) folder.
 
 
 ```renderscript
