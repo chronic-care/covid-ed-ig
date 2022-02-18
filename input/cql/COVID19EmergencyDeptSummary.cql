@@ -303,7 +303,7 @@ define "Recommend Non-Pharmacologic Treatment":
 // Recommend discharge from emergency department treamtment for mild and moderate severity.
 define "Recommend Discharge Treatment":
   if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then true
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity" or C19."Is Severe Severity" ) then true
   else null
 
 // Recommend admission to emergency department treamtment for moderate, severe and critical severity.

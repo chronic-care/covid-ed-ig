@@ -52,7 +52,7 @@ describe('treatment summary', () => {
     it.each([
             ['mild', true, new ClinicalAssessmentBuilder().withMildSeverity().build()],
             ['moderate', true, new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
-            ['severe', null, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+            ['severe', true, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
             ['critical', null, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
             ['none', null, {}],
         ]
