@@ -75,47 +75,47 @@ define DispositionSummary: {
 define TreatmentSummary: 
   if ( C19."Is Severe Severity" ) then  
     {
-    {
-      TreatmentType: 'NonPharmacologic',
-      DisplayOrder: 0,
-      Recommend: "Recommend Non-Pharmacologic Treatment"
-    },
-    {
-      TreatmentType: 'Admission',
-      DisplayOrder: 1,
-      Recommend: "Recommend Admission Treatment"
-    },
-    {
-      TreatmentType: 'Discharge',
-      DisplayOrder: 2,
-      Recommend: "Recommend Discharge Treatment"
-    },
-    {
-      TreatmentType: 'Steroids',
-      DisplayOrder: 3,
-      Recommend: "Recommend Steroids Treatment"
-    }
+      {
+        TreatmentType: 'NonPharmacologic',
+        PriorityOrder: 0,
+        Recommend: "Recommend Non-Pharmacologic Treatment"
+      },
+      {
+        TreatmentType: 'Admission',
+        PriorityOrder: 1,
+        Recommend: "Recommend Admission Treatment"
+      },
+      {
+        TreatmentType: 'Discharge',
+        PriorityOrder: 2,
+        Recommend: "Recommend Discharge Treatment"
+      },
+      {
+        TreatmentType: 'Steroids',
+        PriorityOrder: 3,
+        Recommend: "Recommend Steroids Treatment"
+      }
  }
   else
   {
     {
       TreatmentType: 'NonPharmacologic',
-      DisplayOrder: 0,
+      PriorityOrder: 0,
       Recommend: "Recommend Non-Pharmacologic Treatment"
     },
     {
       TreatmentType: 'Discharge',
-      DisplayOrder: 1,
+      PriorityOrder: 1,
       Recommend: "Recommend Discharge Treatment"
     },
     {
       TreatmentType: 'Admission',
-      DisplayOrder: 2,
+      PriorityOrder: 2,
       Recommend: "Recommend Admission Treatment"
     },
     {
       TreatmentType: 'Steroids',
-      DisplayOrder: 3,
+      PriorityOrder: 3,
       Recommend: "Recommend Steroids Treatment"
     }
   }

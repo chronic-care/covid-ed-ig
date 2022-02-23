@@ -25,11 +25,11 @@ describe('treatment summary', () => {
         ['Moderate', 'Admission', 2, new ClinicalAssessmentBuilder().withModerateSeverity().build() ],
         ['Severe', 'Admission', 1, new ClinicalAssessmentBuilder().withSevereSeverity().build() ],
         ['Severe',  'Discharge', 2 , new ClinicalAssessmentBuilder().withSevereSeverity().build() ]
-        ])( 'For %p severity display order for %p is %p ', (expressionName: string, treatmentType: string, displayOrder: number, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters> ) => {
+        ])( 'For %p severity display order for %p is %p ', (expressionName: string, treatmentType: string, priorityOrder: number, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters> ) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, buildAllNullRiskAssessmentScoreParameters());
         const treatmentSummaryList = executeSummaryCQLExpression(cqlExpressionParameters, 'TreatmentSummary');
         const treatment = treatmentSummaryList.filter((t) => t.TreatmentType === treatmentType);
-        expect(treatment[0].DisplayOrder).toBe(displayOrder);
+        expect(treatment[0].PriorityOrder).toBe(priorityOrder);
     
     })
 
