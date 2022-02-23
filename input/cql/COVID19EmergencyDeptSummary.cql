@@ -72,12 +72,55 @@ define DispositionSummary: {
 }
 
 // Value: true and false, null
-define TreatmentSummary: {
-    NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
-    Discharge: "Recommend Discharge Treatment",
-    Admission: "Recommend Admission Treatment",
-    Steroids: "Recommend Steroids Treatment"
-}
+define TreatmentSummary: 
+  if ( C19."Is Severe Severity" ) then  
+    {
+      {
+        TreatmentType: 'NonPharmacologic',
+        PriorityOrder: 0,
+        Recommend: "Recommend Non-Pharmacologic Treatment"
+      },
+      {
+        TreatmentType: 'Admission',
+        PriorityOrder: 1,
+        Recommend: "Recommend Admission Treatment"
+      },
+      {
+        TreatmentType: 'Discharge',
+        PriorityOrder: 2,
+        Recommend: "Recommend Discharge Treatment"
+      },
+      {
+        TreatmentType: 'Steroids',
+        PriorityOrder: 3,
+        Recommend: "Recommend Steroids Treatment"
+      }
+ }
+  else
+  {
+    {
+      TreatmentType: 'NonPharmacologic',
+      PriorityOrder: 0,
+      Recommend: "Recommend Non-Pharmacologic Treatment"
+    },
+    {
+      TreatmentType: 'Discharge',
+      PriorityOrder: 1,
+      Recommend: "Recommend Discharge Treatment"
+    },
+    {
+      TreatmentType: 'Admission',
+      PriorityOrder: 2,
+      Recommend: "Recommend Admission Treatment"
+    },
+    {
+      TreatmentType: 'Steroids',
+      PriorityOrder: 3,
+      Recommend: "Recommend Steroids Treatment"
+    }
+  }
+
+
 
 define AssessmentSummary: {
   RespiratoryRate: C19."Last Respiratory Rate value",
