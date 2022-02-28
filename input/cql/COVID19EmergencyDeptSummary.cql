@@ -76,22 +76,23 @@ define TreatmentSummary:
   if ( C19."Is Severe Severity" ) then  
     {
       {
-        TreatmentType: 'NonPharmacologic',
+        TreatmentId: "Non-Pharmacologic Treatment Id",
         PriorityOrder: 0,
         Recommend: "Recommend Non-Pharmacologic Treatment"
       },
       {
-        TreatmentType: 'Admission',
+        TreatmentId: 'Admission',
         PriorityOrder: 1,
         Recommend: "Recommend Admission Treatment"
+      
       },
       {
-        TreatmentType: 'Discharge',
+        TreatmentId: 'Discharge',
         PriorityOrder: 2,
         Recommend: "Recommend Discharge Treatment"
       },
       {
-        TreatmentType: 'Steroids',
+        TreatmentId: 'Steroids',
         PriorityOrder: 3,
         Recommend: "Recommend Steroids Treatment"
       }
@@ -99,22 +100,22 @@ define TreatmentSummary:
   else
   {
     {
-      TreatmentType: 'NonPharmacologic',
-      PriorityOrder: 0,
-      Recommend: "Recommend Non-Pharmacologic Treatment"
+        TreatmentId: "Non-Pharmacologic Treatment Id",
+        PriorityOrder: 0,
+        Recommend: "Recommend Non-Pharmacologic Treatment"
     },
     {
-      TreatmentType: 'Discharge',
+      TreatmentId: 'Discharge',
       PriorityOrder: 1,
       Recommend: "Recommend Discharge Treatment"
     },
     {
-      TreatmentType: 'Admission',
+      TreatmentId: 'Admission',
       PriorityOrder: 2,
       Recommend: "Recommend Admission Treatment"
     },
     {
-      TreatmentType: 'Steroids',
+      TreatmentId: 'Steroids',
       PriorityOrder: 3,
       Recommend: "Recommend Steroids Treatment"
     }
@@ -338,28 +339,36 @@ define HasAdmissionOrDischargeRecommendation:
   DispositionSummary.ConsiderAdmission or DispositionSummary.SevereAdmission or DispositionSummary.CriticalAdmission
   or DispositionSummary.DischargeHome or DispositionSummary.ConsiderDischargingHome or DispositionSummary.DischargeHomeElevatedRisk
 
+
 define "Recommend Non-Pharmacologic Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else true
+  if HasAdmissionOrDischargeRecommendation is false then false
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then true
+  else false
+
+define "Non-Pharmacologic Treatment Id":
+ if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'NonPharmaMildModerate'
+ else if (C19."Is Severe Severity")  then 'NonPharmaSevere'
+ else if (C19."Is Critical Severity") then 'NonPharmaCritical'
+ else 'invalid'
 
 // Pharmacologic Treatment
 // Recommend discharge from emergency department treamtment for mild and moderate severity.
 define "Recommend Discharge Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
+  if HasAdmissionOrDischargeRecommendation is false then false
   else if (C19."Is Mild Severity" or C19."Is Moderate Severity" or C19."Is Severe Severity" ) then true
-  else null
+  else false
 
 // Recommend admission to emergency department treamtment for moderate, severe and critical severity.
 define "Recommend Admission Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
+  if HasAdmissionOrDischargeRecommendation is false then false
   else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then true
-  else null
+  else false
 
 //Do not use steriods for mild and moderate severity
 define "Recommend Steroids Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then false
-  else null
+  if HasAdmissionOrDischargeRecommendation is false then false
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then true
+  else false
 
 /*
  * Helper functions for summary reporting.
