@@ -10,9 +10,7 @@ import { buildAllNullRiskAssessmentScoreParameters } from '../helpers/builders';
 
 describe('treatment summary', () => {
     it.each([
-        ['Recommend MildAndModerate Non-Pharmacologic Treatment'],
-        ['Recommend Severe Non-Pharmacologic Treatment'],
-        ['Recommend Critical Non-Pharmacologic Treatment'],
+        ['Recommend Non-Pharmacologic Treatment'],
         ['Recommend Admission Treatment'],
         ['Recommend Discharge Treatment'],
         ['Recommend Steroids Treatment']
@@ -27,10 +25,10 @@ describe('treatment summary', () => {
         ['Moderate', 'Admission', 2, new ClinicalAssessmentBuilder().withModerateSeverity().build() ],
         ['Severe', 'Admission', 1, new ClinicalAssessmentBuilder().withSevereSeverity().build() ],
         ['Severe',  'Discharge', 2 , new ClinicalAssessmentBuilder().withSevereSeverity().build() ]
-        ])( 'For %p severity display order for %p is %p ', (expressionName: string, treatmentType: string, priorityOrder: number, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters> ) => {
+        ])( 'For %p severity display order for %p is %p ', (expressionName: string, treatmentId: string, priorityOrder: number, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters> ) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides, buildAllNullRiskAssessmentScoreParameters());
         const treatmentSummaryList = executeSummaryCQLExpression(cqlExpressionParameters, 'TreatmentSummary');
-        const treatment = treatmentSummaryList.filter((t) => t.TreatmentType === treatmentType);
+        const treatment = treatmentSummaryList.filter((t) => t.TreatmentId === treatmentId);
         expect(treatment[0].PriorityOrder).toBe(priorityOrder);
     
     })
@@ -53,13 +51,13 @@ describe('treatment summary', () => {
     });
 
     it.each([
-          ['mild', 'Recommend MildAndModerate Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withMildSeverity().build()],
-          ['moderate','Recommend MildAndModerate Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withConcerningLab(1).withMildSeverity().build()],
-          ['severe', 'Recommend Severe Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
-          ['critical', 'Recommend Critical Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
-          ['none', 'Recommend MildAndModerate Non-Pharmacologic Treatment', false, {}],
-          ['none', 'Recommend Severe Non-Pharmacologic Treatment', false, {}],
-          ['none', 'Recommend Critical Non-Pharmacologic Treatment', false, {}],
+          ['mild', 'Recommend Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withMildSeverity().build()],
+          ['moderate','Recommend Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withConcerningLab(1).withMildSeverity().build()],
+          ['severe', 'Recommend Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+          ['critical', 'Recommend Non-Pharmacologic Treatment', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
+          ['none', 'Recommend Non-Pharmacologic Treatment', false, {}],
+          ['none', 'Recommend Non-Pharmacologic Treatment', false, {}],
+          ['none', 'Recommend Non-Pharmacologic Treatment', false, {}],
         ]
     )('For %p severity, %p is %p', (severityType: string, treatment: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
