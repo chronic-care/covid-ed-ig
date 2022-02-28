@@ -347,7 +347,7 @@ define "Recommend Non-Pharmacologic Treatment":
 
 define "Non-Pharmacologic Treatment Id":
  if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'NonPharmaMildModerate'
- else if (C19."Is Severe Severity")  then 'NonPharmaMildSevere'
+ else if (C19."Is Severe Severity")  then 'NonPharmaSevere'
  else if (C19."Is Critical Severity") then 'NonPharmaCritical'
  else 'invalid'
 

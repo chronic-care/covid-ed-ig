@@ -101,4 +101,18 @@ describe('treatment summary', () => {
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Steroids Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
     });
+
+    it.each([
+        ['mild', 'NonPharmaMildModerate', new ClinicalAssessmentBuilder().withMildSeverity().build()],
+        ['moderate', 'NonPharmaMildModerate', new ClinicalAssessmentBuilder().withModerateSeverity().withConcerningLab(1).build()],
+        ['severe', 'NonPharmaSevere', new ClinicalAssessmentBuilder().withSevereSeverity().build()],
+        ['critical', 'NonPharmaCritical', new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
+        ['none', "invalid", {}],
+    ]
+    )('For %p severity, Non-Pharmacologic Treatment Id is %p', (severityType: string, treatmentId: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
+        const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
+        const treatment_id = executeSummaryCQLExpression(cqlExpressionParameters, 'Non-Pharmacologic Treatment Id');
+        expect(treatment_id).toEqual(treatmentId);
+    });
+    
 });
