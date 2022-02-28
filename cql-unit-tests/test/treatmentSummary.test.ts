@@ -57,7 +57,7 @@ describe('treatment summary', () => {
           ['critical', true, new ClinicalAssessmentBuilder().withCriticalSeverity().build()],
           ['none', false, {}]
         ]
-    )('For %p severity, %p is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
+    )('For %p severity, Recommend Non-Pharmacologic Treatment is %p', (severityType: string, expectedRecommendation: string, clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>) => {
         const cqlExpressionParameters = buildCQLExpressionParameters(clinicalAssessmentOverrides);
         const recommendNonPharma = executeSummaryCQLExpression(cqlExpressionParameters, 'Recommend Non-Pharmacologic Treatment');
         expect(recommendNonPharma).toEqual(expectedRecommendation);
