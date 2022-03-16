@@ -214,7 +214,9 @@ define ImagingResultList: {
 
 define LabResultCount:
   Message(
-   if (C19.ClinicalAssessments.ConcerningLabCount is not null) then C19.ClinicalAssessments.ConcerningLabCount
+   // 0 means labs exist but were not concerning so obtain diagnosis does not need to show
+   if (C19.ClinicalAssessments.ConcerningLabCount is not null and C19.ClinicalAssessments.ConcerningLabCount = 0) then 1
+    else if (C19.ClinicalAssessments.ConcerningLabCount is not null) then C19.ClinicalAssessments.ConcerningLabCount
     else Count(LabResultList result where result is not null)
 
   , true, 'Undefined', 'Trace', 'Calculating LabResultCount')
