@@ -669,7 +669,6 @@ define "Risk Factors count":
   if "All Risk Factors Are Null" then  null else
   allRiskFactors("All Active Conditions") 
 
-
 define "All Risk Factors Are Null":
   if "Risk Factor Components" contains false
   or "Risk Factor Components" contains true then false
