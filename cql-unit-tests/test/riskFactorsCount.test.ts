@@ -76,7 +76,7 @@ const testCodesMapToConditions = (cqlExpression: string,
 };
 
 describe('risk assessment score', () => {
-    it('returns 0 when all inputs are null', () => {
+    it('returns null when all inputs are null', () => {
         const riskAssessmentScoreParameters = buildAllNullRiskAssessmentScoreParameters();
 
         const cqlParams: CQLExpressionParameters = {
@@ -88,7 +88,7 @@ describe('risk assessment score', () => {
 
         const results = executeAssessmentCQLExpression(cqlParams, 'Risk Factors count');
 
-        expect(results).toBe(0);
+        expect(results).toBe(null);
     });
 
     it('returns 0 as the risk assessment score when all values are false', () => {
