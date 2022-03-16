@@ -478,7 +478,6 @@ define "Total Risk Score":
 define "Risk Percent":
   "Total Risk Score" totalRiskScore
     let riskScore: totalRiskScore as Integer
-
   return case
     when riskScore is null then null
     when riskScore = 0 then 1
