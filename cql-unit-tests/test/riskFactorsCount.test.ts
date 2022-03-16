@@ -76,7 +76,7 @@ const testCodesMapToConditions = (cqlExpression: string,
 };
 
 describe('risk assessment score', () => {
-    it('returns 0 when all inputs are null', () => {
+    it('returns null when all inputs are null', () => {
         const riskAssessmentScoreParameters = buildAllNullRiskAssessmentScoreParameters();
 
         const cqlParams: CQLExpressionParameters = {
@@ -87,8 +87,7 @@ describe('risk assessment score', () => {
         };
 
         const results = executeAssessmentCQLExpression(cqlParams, 'Risk Factors count');
-
-        expect(results).toBe(0);
+        expect(results).toBe(null);
     });
 
     it('returns 0 as the risk assessment score when all values are false', () => {
@@ -102,44 +101,43 @@ describe('risk assessment score', () => {
         };
 
         const results = executeAssessmentCQLExpression(cqlParams, 'Risk Factors count');
-
         expect(results).toBe(0);
     });
 
-    it('returns 32 as the risk assessment score when all values are true', () => {
+    it('returns total risk factors as the risk assessment score when values are a mix of true, false and null', () => {
         const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
             Bronchiectasis: true,
-            BronchopulmonaryDysplasia: true,
-            PulmonaryHypertension: true,
+            BronchopulmonaryDysplasia: false,
+            PulmonaryHypertension: null,
             PulmonaryEmbolism: true,
-            Cancer: true,
-            CerebrovascularDisease: true,
+            Cancer: false,
+            CerebrovascularDisease: null,
             ChronicKidneyDisease: true,
-            ChronicLiverDisease: true,
-            COPD: true,
+            ChronicLiverDisease: false,
+            COPD: null,
             DiabetesMellitus: true,
-            HeartConditions: true,
-            InterstitialLungDisease: true,
-            CurrentAndFormerSmoking: true,
-            Tuberculosis: true,
-            Obesity: true,
-            PregnancyAndRecentPregnancy: true,
-            MentalHealthDisorders: true,
-            ChildrenWithCertainUnderlyingConditions: true,
-            DownSyndrome: true,
-            HIV: true,
-            NeurologicConditions: true,
-            Overweight: true,
-            SickleCellDisease: true,
-            SolidOrganOrBloodStemTransplantation: true,
-            SubstanceUseDisorders: true,
-            Corticosteroids: true,
-            ImmunosuppressiveMedications: true,
-            CysticFibrosis: true,
-            Thalassemia: true,
-            Asthma: true,
-            Hypertension: true,
-            ImmuneDeficiencies: true
+            HeartConditions: false,
+            InterstitialLungDisease: null,
+            CurrentAndFormerSmoking: null,
+            Tuberculosis: null,
+            Obesity: null,
+            PregnancyAndRecentPregnancy: null,
+            MentalHealthDisorders: null,
+            ChildrenWithCertainUnderlyingConditions: null,
+            DownSyndrome: null,
+            HIV: null,
+            NeurologicConditions: null,
+            Overweight: null,
+            SickleCellDisease: null,
+            SolidOrganOrBloodStemTransplantation: null,
+            SubstanceUseDisorders: null,
+            Corticosteroids: null,
+            ImmunosuppressiveMedications: null,
+            CysticFibrosis: null,
+            Thalassemia: null,
+            Asthma: null,
+            Hypertension: null,
+            ImmuneDeficiencies: null
         };
 
         const cqlParams: CQLExpressionParameters = {
@@ -150,8 +148,7 @@ describe('risk assessment score', () => {
         };
 
         const results = executeAssessmentCQLExpression(cqlParams, 'Risk Factors count');
-
-        expect(results).toBe(32);
+        expect(results).toBe(4);
     });
 
     describe('overriding original values with parameters', () => {
@@ -234,7 +231,6 @@ describe('risk assessment score', () => {
             });
         });
     });
-
 
     describe('Irrespective of the condition code maps to its null for manual entry', () => {
         [

@@ -666,9 +666,13 @@ define "Risk Factor Components": List {
     otherwise returns the count of non-null risk factors.
 */
 define "Risk Factors count":
-    allRiskFactors("All Active Conditions")
+  if "All Risk Factors Are Null" then  null else
+  allRiskFactors("All Active Conditions") 
 
-
+define "All Risk Factors Are Null":
+  if "Risk Factor Components" contains false
+  or "Risk Factor Components" contains true then false
+  else true
 
 // Risk Factors
 
