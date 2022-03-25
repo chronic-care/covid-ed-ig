@@ -151,6 +151,53 @@ describe('risk assessment score', () => {
         expect(results).toBe(4);
     });
 
+    it('returns total risk factors as the risk assessment score when values are a mix of true, false and null', () => {
+        const riskAssessmentScoreParameters: RiskAssessmentScoreParameters = {
+            Bronchiectasis: true,
+            BronchopulmonaryDysplasia: true,
+            PulmonaryHypertension: true,
+            PulmonaryEmbolism: true,
+            Cancer: true,
+            CerebrovascularDisease: true,
+            ChronicKidneyDisease: true,
+            ChronicLiverDisease: true,
+            COPD: true,
+            DiabetesMellitus: true,
+            HeartConditions: true,
+            InterstitialLungDisease: true,
+            CurrentAndFormerSmoking: true,
+            Tuberculosis: true,
+            Obesity: true,
+            PregnancyAndRecentPregnancy: true,
+            MentalHealthDisorders: true,
+            ChildrenWithCertainUnderlyingConditions: true,
+            DownSyndrome: true,
+            HIV: true,
+            NeurologicConditions: true,
+            Overweight: true,
+            SickleCellDisease: true,
+            SolidOrganOrBloodStemTransplantation: true,
+            SubstanceUseDisorders: true,
+            Corticosteroids: true,
+            ImmunosuppressiveMedications: true,
+            CysticFibrosis: true,
+            Thalassemia: true,
+            Asthma: true,
+            Hypertension: true,
+            ImmuneDeficiencies: true
+        };
+
+        const cqlParams: CQLExpressionParameters = {
+            ClinicalAssessments: null,
+            IgnoreFallbackResourceValues: true,
+            PatientData: null,
+            RiskFactors: riskAssessmentScoreParameters
+        };
+
+        const results = executeAssessmentCQLExpression(cqlParams, 'Risk Factors count');
+        expect(results).toBe(32);
+    });
+
     describe('overriding original values with parameters', () => {
         [
             { conditionType: 'COPD', cqlExpression: 'Has COPD Risk Factor', conditions:[] },
