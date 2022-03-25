@@ -631,7 +631,7 @@ define "Risk Factor Components": List {
   "Has Bronchiectasis Risk Factor",
   "Has Bronchopulmonary Dysplasia Risk Factor",
   "Has Pulmonary Hypertension Risk Factor",
-  "Has Pulmonary Embolism Risk Factor"
+  "Has Pulmonary Embolism Risk Factor",
   "Has Cancer Risk Factor",
   "Has Cerebrovascular Disease Risk Factor",
   "Has Chronic Kidney Disease Risk Factor",
