@@ -194,9 +194,7 @@ define "Last Heart Rate value":
     C3F.QuantityValue("Last Heart Rate").value)
 
 define "Heart Rate Observations":
-  C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Heart rate"]),
-    VitalSignsLookbackPeriod)
+  C3F.Verified([Observation: CC."Heart rate"])
 
 define "Last Blood Pressure":
   (C3F.MostRecent(C3F.ObservationLookBack(C3F.Verified(
@@ -221,9 +219,7 @@ define "Blood Pressure Observations":
 
 // Use when Systolic BP is reported as an independent Observation (not recommended)
 define "Systolic Blood Pressure Observations":
-  (C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Systolic blood pressure"]),
-    VitalSignsLookbackPeriod)) bp
+  (C3F.Verified([Observation: CC."Systolic blood pressure"])) bp
       let SystolicValue: Round((bp.value as FHIR.Quantity).value),
           DiastolicValue: Round((MatchingDiastolic(bp).value as FHIR.Quantity).value)
     return {
@@ -237,9 +233,7 @@ define "Systolic Blood Pressure Observations":
 
 define function MatchingDiastolic(SystolicBP FHIR.Observation):
   First(
-  (C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Diastolic blood pressure"]),
-    VitalSignsLookbackPeriod)) bp
+  (C3F.Verified([Observation: CC."Diastolic blood pressure"])) bp
       where (bp.effective as FHIR.dateTime) = (SystolicBP.effective as FHIR.dateTime)
   )
 
@@ -276,11 +270,9 @@ define "Last O2 Saturation percent":
   else null
 
 define "O2 Saturation Observations":
-  C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Oxygen saturation"]), VitalSignsLookbackPeriod)
+  C3F.Verified([Observation: CC."Oxygen saturation"])
   union
-  C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Pulse oximetry"]), VitalSignsLookbackPeriod)
+    C3F.Verified([Observation: CC."Pulse oximetry"])
 
 define "Has Supplemental Oxygen":
   if IgnoreFallbackResourceValues then ClinicalAssessments.SupplementalOxygen
@@ -291,9 +283,7 @@ define "Last Inhaled Oxygen Flow Rate":
   C3F.MostRecent("Inhaled Oxygen Flow Rate Observations")
 
 define "Inhaled Oxygen Flow Rate Observations":
-  C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Inhaled oxygen flow rate"]),
-    VitalSignsLookbackPeriod)
+    C3F.Verified([Observation: CC."Inhaled oxygen flow rate"])
 
 define "Last Respiratory Rate":
   C3F.MostRecent("Respiratory Rate Observations")
@@ -306,9 +296,7 @@ define "Last Respiratory Rate value":
   , true, 'Undefined', 'Trace', 'Calculating "Last Respiratory Rate value"')
 
 define "Respiratory Rate Observations":
-  C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Respiratory rate"]),
-    VitalSignsLookbackPeriod)
+    C3F.Verified([Observation: CC."Respiratory rate"])
 
 define "Last Body Temperature":
   C3F.MostRecent("Body Temperature Observations")
@@ -328,22 +316,16 @@ define "Last Body Temperature value in F":
     TemperatureInF("Last Body Temperature".value).value)
 
 define "Body Temperature Observations":
-  C3F.ObservationLookBack(
-    C3F.Verified([Observation: CC."Body temperature"]),
-    VitalSignsLookbackPeriod)
+    C3F.Verified([Observation: CC."Body temperature"])
 
 define "Last Body Weight value":
   ToMetric(C3F.QuantityValue(C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Body weight"]),
-      VitalSignsLookbackPeriod)
+      C3F.Verified([Observation: CC."Body weight"])
   ))).value
 
 define "Last Body Height value":
   ToMetric(C3F.QuantityValue(C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Body height"]),
-      VitalSignsLookbackPeriod)
+      C3F.Verified([Observation: CC."Body height"])
   ))).value
 
 define "Last BMI":
