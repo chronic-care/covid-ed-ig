@@ -71,15 +71,57 @@ define DispositionSummary: {
   CriticalAdmission: "Recommend Critical Admission"
 }
 
-// Value: use, do-not-use, insufficient-evidence, null
-define TreatmentSummary: {
-  NonPharmacologic: "Recommend Non-Pharmacologic Treatment",
-  Antibodies: "Recommend Antibodies Treatment",
-  Anticoagulation: "Recommend Anticoagulation Treatment",
-  Remdesivir: "Recommend Remdesivir Treatment",
-  Steroids: "Recommend Steroids Treatment",
-  SteroidsAndOrRemdesivir: "Recommend SteroidsAndOrRemdesivir Treatment"
-}
+// Value: true and false, null
+define TreatmentSummary: 
+  if ( C19."Is Severe Severity" ) then  
+    {
+      {
+        TreatmentId: "Non-Pharmacologic Treatment Id",
+        PriorityOrder: 0,
+        Recommend: "Recommend Non-Pharmacologic Treatment"
+      },
+      {
+        TreatmentId: 'Admission',
+        PriorityOrder: 1,
+        Recommend: "Recommend Admission Treatment"
+      
+      },
+      {
+        TreatmentId: 'Discharge',
+        PriorityOrder: 2,
+        Recommend: "Recommend Discharge Treatment"
+      },
+      {
+        TreatmentId: 'Steroids',
+        PriorityOrder: 3,
+        Recommend: "Recommend Steroids Treatment"
+      }
+ }
+  else
+  {
+    {
+        TreatmentId: "Non-Pharmacologic Treatment Id",
+        PriorityOrder: 0,
+        Recommend: "Recommend Non-Pharmacologic Treatment"
+    },
+    {
+      TreatmentId: 'Discharge',
+      PriorityOrder: 1,
+      Recommend: "Recommend Discharge Treatment"
+    },
+    {
+      TreatmentId: 'Admission',
+      PriorityOrder: 2,
+      Recommend: "Recommend Admission Treatment"
+    },
+    {
+      TreatmentId: 'Steroids',
+      PriorityOrder: 3,
+      Recommend: "Recommend Steroids Treatment"
+    }
+  }
+
+
 
 define AssessmentSummary: {
   RespiratoryRate: C19."Last Respiratory Rate value",
@@ -95,35 +137,54 @@ define AssessmentSummary: {
 }
 
 define RiskFactorSummary: {
-  Cancer: C19."Has Cancer Risk Factor",
-  CardiovascularDisease: C19."Has Cardiovascular Disease Risk Factor",
-  ChronicRespiratoryDisease: C19."Has Chronic Respiratory Disease Risk Factor",
-  DiabetesType2: C19."Has Diabetes Type 2 Risk Factor",
-  DownsSyndrome: C19."Has Downs Syndrome Risk Factor",
-  Hypertension: C19."Has Hypertension Risk Factor",
-  Immunosuppression: C19."Has Immunosuppression Risk Factor",
-  NeurologicDisease: C19."Has Neurologic Disease Risk Factor",
-  Obesity: C19."Has Obesity Risk Factor",
-  ObstructiveSleepApnea: C19."Has Obstructive Sleep Apnea Risk Factor",
-  Pregnancy: C19."Has Pregnancy Risk Factor",
-  RenalDisease: C19."Has Renal Disease Risk Factor",
-  SteroidUsage: C19."Has Steroid Usage Risk Factor"
+    Bronchiectasis: C19."Has Bronchiectasis Risk Factor",
+    BronchopulmonaryDysplasia: C19."Has Bronchopulmonary Dysplasia Risk Factor",
+    PulmonaryHypertension: C19."Has Pulmonary Hypertension Risk Factor",
+    PulmonaryEmbolism: C19."Has Pulmonary Embolism Risk Factor",
+    Cancer: C19."Has Cancer Risk Factor",
+    CerebrovascularDisease: C19."Has Cerebrovascular Disease Risk Factor",
+    ChronicKidneyDisease: C19."Has Chronic Kidney Disease Risk Factor",
+    ChronicLiverDisease: C19."Has Chronic Liver Disease Risk Factor",
+    COPD: C19."Has COPD Risk Factor",
+    DiabetesMellitus: C19."Has Diabetes Mellitus Risk Factor",
+    HeartConditions: C19."Has Heart Conditions Risk Factor",
+    InterstitialLungDisease: C19."Has Interstitial Lung Disease Risk Factor",
+    CurrentAndFormerSmoking: C19."Has Current And Former Smoking Risk Factor",
+    Tuberculosis: C19."Has Tuberculosis Risk Factor",
+    Obesity: C19."Has Obesity Risk Factor",
+    PregnancyAndRecentPregnancy: C19."Has Pregnancy And Recent Pregnancy Risk Factor",
+    MentalHealthDisorders: C19."Has Mental Health Disorders Risk Factor",
+    ChildrenWithCertainUnderlyingConditions: C19."Has Children With Certain Underlying Conditions Risk Factor",
+    DownSyndrome: C19."Has Down Syndrome Risk Factor",
+    HIV: C19."Has HIV Risk Factor",
+    NeurologicConditions: C19."Has Neurologic Conditions Risk Factor",
+    Overweight: C19."Has Overweight Risk Factor",
+    SickleCellDisease: C19."Has Sickle Cell Disease Risk Factor",
+    SolidOrganOrBloodStemTransplantation: C19."Has Solid Organ Or Blood Stem Transplantation Risk Factor",
+    SubstanceUseDisorders: C19."Has Substance Use Disorders Risk Factor",
+    Corticosteroids: C19."Has Corticosteroids Usage Risk Factor",
+    ImmunosuppressiveMedications: C19."Has Immunosuppressive Medications Risk Factor",
+    CysticFibrosis: C19."Has Cystic Fibrosis Risk Factor",
+    Thalassemia: C19."Has Thalassemia Risk Factor",
+    Asthma: C19."Has Asthma Risk Factor",
+    Hypertension: C19."Has Hypertension Risk Factor",
+    ImmuneDeficiencies: C19."Has Immune deficiencies Risk Factor"
 }
 
 define DiagnosticSummary: {
   ALT: Message(ReportLabObservation(C19."Last ALT Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last ALT Lab Result")'),
   AST: Message(ReportLabObservation(C19."Last AST Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last AST Lab Result")'),
-  Creatinine: Message(ReportLabObservation(C19."Last Creatinine Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Creatinine Lab Result")'),
   CRP: Message(ReportLabObservation(C19."Last CRP Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last CRP Lab Result")'),
   DDimer: Message(ReportLabObservation(C19."Last D-dimer Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last D-dimer Lab Result")'),
   Ferritin: Message(ReportLabObservation(C19."Last Ferritin Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Ferritin Lab Result")'),
   LDH: Message(ReportLabObservation(C19."Last LDH Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last LDH Lab Result")'),
   Lymphopenia: Message(ReportLabObservation(C19."Last Lymphocytes Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Lymphocytes Lab Result")'),
   Neutrophils: Message(ReportLabObservation(C19."Last Neutrophils Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Neutrophils Lab Result")'),
-  Thrombocytopenia: Message(ReportLabObservation(C19."Last Platelets Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Platelets Lab Result")'),
-  Troponin: Message(ReportLabObservation(C19."Last Troponin Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Troponin Lab Result")'),
-  WBC: Message(ReportLabObservation(C19."Last Leukocyte Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Leukocyte Lab Result")'),
-
+  PCT: Message(ReportLabObservation(C19."Last PCT Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last PCT Lab Result")'),
+  Interleukin1: Message(ReportLabObservation(C19."Last Interleukin 1 Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Interleukin 1 Lab Result")'),
+  Interleukin6: Message(ReportLabObservation(C19."Last Interleukin 6 Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Interleukin 6 Lab Result")'),
+  Interleukin8: Message(ReportLabObservation(C19."Last Interleukin 8 Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Interleukin 8 Lab Result")'),
+  TumorNecrosisFactorAlpha: Message(ReportLabObservation(C19."Last Tumor Necrosis Factor Alpha Lab Result"), true, 'Undefined', 'Trace', 'Calculating ReportLabObservation(C19."Last Tumor Necrosis Factor Alpha  Lab Result")'),
   // Not included in count of concerning labs; used for severity classification.
   PaO2FiO2: Message(C19."Last PaO2FiO2 Ratio Lab Result Less Than 300", true, 'Undefined', 'Trace', 'Calculating C19."Last PaO2FiO2 Ratio Lab Result Less Than 300"')
 }
@@ -131,17 +192,19 @@ define DiagnosticSummary: {
 define LabResultList: {
   DiagnosticSummary.ALT,
   DiagnosticSummary.AST,
-  DiagnosticSummary.Creatinine,
   DiagnosticSummary.CRP,
   DiagnosticSummary.DDimer,
   DiagnosticSummary.Ferritin,
   DiagnosticSummary.LDH,
   DiagnosticSummary.Lymphopenia,
   DiagnosticSummary.Neutrophils,
-  DiagnosticSummary.Thrombocytopenia,
-  DiagnosticSummary.Troponin,
-  DiagnosticSummary.WBC
+  DiagnosticSummary.PCT,
+  DiagnosticSummary.Interleukin1,
+  DiagnosticSummary.Interleukin6,
+  DiagnosticSummary.Interleukin8,
+  DiagnosticSummary.TumorNecrosisFactorAlpha
 }
+
 
 define ImagingResultList: {
   C19.ClinicalAssessments.ChestXRayConcerning,
@@ -151,17 +214,14 @@ define ImagingResultList: {
 
 define LabResultCount:
   Message(
-
-    if (C19.ClinicalAssessments.ConcerningLabCount is not null and C19.ClinicalAssessments.ConcerningLabCount = 0) then 1
+   // 0 means labs exist but were not concerning so obtain diagnosis does not need to show
+   if (C19.ClinicalAssessments.ConcerningLabCount is not null and C19.ClinicalAssessments.ConcerningLabCount = 0) then 1
     else if (C19.ClinicalAssessments.ConcerningLabCount is not null) then C19.ClinicalAssessments.ConcerningLabCount
-    /* else if not exists LabResultList then null */
     else Count(LabResultList result where result is not null)
 
   , true, 'Undefined', 'Trace', 'Calculating LabResultCount')
 
 define ImagingResultCount:
-  /* if not exists ImagingResultList then null
-  else  */
   Message(
   Count(ImagingResultList result where result is not null)
   , true, 'Undefined', 'Trace', 'Calculating ImagingResultCount')
@@ -276,34 +336,36 @@ define HasAdmissionOrDischargeRecommendation:
   DispositionSummary.ConsiderAdmission or DispositionSummary.SevereAdmission or DispositionSummary.CriticalAdmission
   or DispositionSummary.DischargeHome or DispositionSummary.ConsiderDischargingHome or DispositionSummary.DischargeHomeElevatedRisk
 
+
 define "Recommend Non-Pharmacologic Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else 'use'
+  if HasAdmissionOrDischargeRecommendation is false then false
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then true
+  else false
 
-define "Recommend Antibodies Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'use'
-  else null
+define "Non-Pharmacologic Treatment Id":
+ if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'NonPharmaMildModerate'
+ else if (C19."Is Severe Severity")  then 'NonPharmaSevere'
+ else if (C19."Is Critical Severity") then 'NonPharmaCritical'
+ else 'invalid'
 
-define "Recommend Anticoagulation Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
-  else null
+// Pharmacologic Treatment
+// Recommend discharge from emergency department treamtment for mild and moderate severity.
+define "Recommend Discharge Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then false
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity" or C19."Is Severe Severity" ) then true
+  else false
 
+// Recommend admission to emergency department treamtment for moderate, severe and critical severity.
+define "Recommend Admission Treatment":
+  if HasAdmissionOrDischargeRecommendation is false then false
+  else if (C19."Is Moderate Severity" or C19."Is Severe Severity" or C19."Is Critical Severity") then true
+  else false
+
+//Do not use steriods for mild and moderate severity
 define "Recommend Steroids Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then 'do-not-use'
-  else null
-
-define "Recommend Remdesivir Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if C19."Is Mild Severity" or C19."Is Moderate Severity" then 'insufficient-evidence'
-  else null
-
-define "Recommend SteroidsAndOrRemdesivir Treatment":
-  if HasAdmissionOrDischargeRecommendation is false then null
-  else if (C19."Is Severe Severity" or C19."Is Critical Severity") then 'use'
-  else null
+  if HasAdmissionOrDischargeRecommendation is false then false
+  else if (C19."Is Mild Severity" or C19."Is Moderate Severity") then true
+  else false
 
 /*
  * Helper functions for summary reporting.

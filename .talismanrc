@@ -1,11 +1,12 @@
 fileignoreconfig:
 - filename: cql-unit-tests/package-lock.json
-  checksum: 1abc3447c829e856923f3031986fadb76ca930f3686d268e1e46cb0b612802e0
-- filename: input/vocabulary/ValueSet/valueset-covid-19-condition-risk-obstructive-sleep-apnea-icd10.json
-  checksum: 2387dad07ac00f6b5ecd0bd346088d5607484205945b2057b07f681692d2a531
-- filename: input/vocabulary/ValueSet/valueset-covid-19-condition-risk-downs-syndrome-icd10.json
-  checksum: 4cb0e0a2b14d4f37c02f10cf5dd4012f5f61cbb139d0edb5220a5a4f1e782a52
-- filename: input/vocabulary/ValueSet/valueset-vsac-covid19-diabetes-snomed.json
-  checksum: 9452adceb8d25afec1621ae487944be99f93c27ad2f1b2a1daa9a68402aa9591
+  checksum: 7869cce478539463891fc26b8b1a94b64d02c988c2bbd43e8c80b2b19e596faa
 - filename: input/cql/valueset-db.json
   checksum: fbba042ed60f0f2c80980e25a4b7ff6b569853431e3cce53686d7bddd20546b7
+- filename: input/vocabulary/ValueSet/valueset-covid-19-condition-risk-downs-syndrome-icd10.json
+  checksum: 4cb0e0a2b14d4f37c02f10cf5dd4012f5f61cbb139d0edb5220a5a4f1e782a52
+- filename: input/vocabulary/ValueSet/valueset-covid-19-condition-risk-obstructive-sleep-apnea-icd10.json
+  checksum: 2387dad07ac00f6b5ecd0bd346088d5607484205945b2057b07f681692d2a531
+- filename: input/vocabulary/ValueSet/valueset-vsac-covid19-diabetes-snomed.json
+  checksum: 9452adceb8d25afec1621ae487944be99f93c27ad2f1b2a1daa9a68402aa9591
+version: "1.0"

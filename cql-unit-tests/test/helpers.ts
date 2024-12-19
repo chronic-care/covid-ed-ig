@@ -6,21 +6,21 @@ import {
 import { buildDefaultClinicalAssessmentParameters, buildDefaultRiskAssessmentScoreParameters } from "../helpers/builders";
 
 export const obtainDiagnosticsRiskAssessmentOverrides: Partial<RiskAssessmentScoreParameters> = {
-    SteroidUsage: true,
-    CardiovascularDisease: true,
+    Corticosteroids: true,
+    HeartConditions: true,
 }
 export const considerAdmissionRiskAssessmentOverrides: Partial<RiskAssessmentScoreParameters> = {
     Obesity: true,
-    RenalDisease: true,
+    ChronicKidneyDisease: true,
 }
 
 export const riskFactorsCountOfOne: Partial<RiskAssessmentScoreParameters> = {
-    CardiovascularDisease: true,
+    HeartConditions: true,
 }
 
 export const riskFactorsCountOfTwo: Partial<RiskAssessmentScoreParameters> = {
-    CardiovascularDisease: true,
-    DownsSyndrome: true,
+    HeartConditions: true,
+    DownSyndrome: true,
 }
 export const buildCQLExpressionParameters =
     (clinicalAssessmentOverrides: Partial<ClinicalAssessmentsParameters>, riskAssessmentOverrides?: Partial<RiskAssessmentScoreParameters> | {}):

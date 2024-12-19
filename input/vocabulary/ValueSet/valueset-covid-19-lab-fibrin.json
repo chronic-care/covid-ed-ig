@@ -1,6 +1,6 @@
 {
     "resourceType": "ValueSet",
-    "id": "covid-19-lab-ferritin",
+    "id": "covid-19-lab-fibrin",
     "meta": {
         "profile": [
             "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset"
@@ -17,29 +17,35 @@
             "valueCode": "executable"
         }
     ],
-    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-ferritin",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-fibrin",
     "version": "0.5.0",
-    "name": "COVID19LabFerritin",
-    "title": "COVID-19 Laboratory Value Set for Ferritin",
+    "name": "COVID19LabFibrin",
+    "title": "COVID-19 Laboratory Value Set for Fibrin",
     "status": "active",
     "date": "2022-01-04T20:00:00+00:00",
-    "description": "COVID-19 Laboratory Value Set for Ferritin",
+    "description": "COVID-19 Laboratory Value Set for Fibrin",
     "compose": {
         "include": [
             {
                 "system": "http://loinc.org",
                 "concept": [
                     {
-                        "code": "2276-4"
+                        "code": "91556-1"
                     },
                     {
-                        "code": "20567-4"
+                        "code": "48066-5"
                     },
                     {
-                        "code": "35209-6"
+                        "code": "48058-2"
                     },
                     {
-                        "code": "14723-1"
+                        "code": "71427-9"
+                    },
+                    {
+                        "code": "48065-7"
+                    },
+                    {
+                        "code": "48067-3"
                     }
                 ]
             }
@@ -50,19 +56,27 @@
         "contains": [
             {
                 "system": "http://loinc.org",
-                "code": "2276-4"
+                "code": "91556-1"
             },
             {
                 "system": "http://loinc.org",
-                "code": "20567-4"
+                "code": "48066-5"
             },
             {
                 "system": "http://loinc.org",
-                "code": "35209-6"
+                "code": "48058-2"
             },
             {
                 "system": "http://loinc.org",
-                "code": "14723-1"
+                "code": "71427-9"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "48065-7"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "48067-3"
             }
         ]
     }

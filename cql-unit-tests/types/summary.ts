@@ -1,17 +1,18 @@
 export interface DiagnosticSummary {
     ALT: Diagnostic | null,
     AST: Diagnostic | null,
-    Creatinine: Diagnostic | null,
     CRP: Diagnostic | null,
     DDimer: Diagnostic | null,
     Ferritin: Diagnostic | null
     LDH: Diagnostic | null,
     Lymphopenia: Diagnostic | null,
     Neutrophils: Diagnostic | null,
-    Thrombocytopenia: Diagnostic | null,
-    Troponin: Diagnostic | null,
-    WBC: Diagnostic | null,
-    PaO2FiO2LessThan300: boolean | null
+    PaO2FiO2LessThan300: boolean | null,
+    Interleukin1: boolean | null,
+    Interleukin6: boolean | null,
+    Interleukin8: boolean | null,
+    TumorNecrosisFactorAlpha: boolean | null,
+    PCT: boolean | null
 }
 
 export interface Diagnostic {

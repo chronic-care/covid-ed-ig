@@ -43,11 +43,23 @@ Documentation for the IG-Publisher is available at [https://confluence.hl7.org/d
 
 #### Ruby / Jekyll
 
-Jekyll requires Ruby version 2.1 or greater. Depending on your operating system, you may already have Ruby bundled with it. Otherwise, or if you need a newer version, go to [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/) for directions.
+FIRST, Install Ruby through a Ruby version manager (rvm/rbenv/chruby) and then install Jekyll.
+`brew install rbenv`
+`rbnev init`
+add `eval "$(rbenv init - zsh)"` to `~/.zshrc` or where your profile settings are.
+`rbenv install 3.1.0`
+`rbenv global 3.1.0`
 
-Jekyll
+Jekyll requires Ruby version 2.1 or greater. 
+`ruby -v`
 
-Go to [https://jekyllrb.com](https://jekyllrb.com) and follow the instructions there, for example gem install jekyll bundler. The end result of this should be that the binary "jekyll" is now in your path.
+Jekyll `gem install --user-install bundler jekyll`
+If `jekyll -v` doesn't work, add `export PATH="/Users/<your-username>/.gem/ruby/3.1.0/bin:$PATH"` to your `~/.zshrc` or where your profile settings are.
+Try `bundle exec jekyll -v` if `jekyll -v` still doesn't work.
+
+If installing on a macOS: [https://jekyllrb.com/docs/installation/macos/](https://jekyllrb.com/docs/installation/macos/)
+
+Go to [https://jekyllrb.com](https://jekyllrb.com) for more information.
 
 ### Build
 
@@ -160,9 +172,7 @@ There are a couple of ways to test the CQL.
 ## Updating Valuesets
 If new codes need to be added to a valueset, follow these steps to manually update the JSON and regenerate the `valueset-db.json` file:
 1. Add new codes to the relevant JSON files in `input/vocabulary/valueset`. For labs, add to both the `compose` and `expansion` objects.
-2. Run `./_updateCQFTooling.sh` script, which updates the [CQF Tooling](https://github.com/cqframework/cqf-tooling) and downloads the `jar` file into `input-cache` directory.
-3. Run `java -jar input-cache/tooling-1.3.1-SNAPSHOT-jar-with-dependencies.jar -ToJsonValueSetDb -path="input/vocabulary/valueset"` (note: this is the path to the entire valueset folder)
-4. The new `valueset-db.json` can be found in `src/main/resources/org/opencds/cqf/tooling/terminology/output`. Copy this over into the `input/cql` directory to replace it.
+2. Run `./_updateValueSet.sh`. This updates the CQF tooling, generates the new valueset, copies it to the `./input/cql` folder and then updates `healthCodes.json` with the new codes as well.
 
 # CQL Development Resources
 

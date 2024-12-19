@@ -88,7 +88,7 @@
             {
                 "system": "http://hl7.org/fhir/sid/icd-10-cm",
                 "code": "T38.0X6A",
-                "display": "Underdosing of glucocorticoids and synthetic analogues, initial encounter encounter"
+                "display": "Underdosing of glucocorticoids and synthetic analogues, initial encounter"
             },
             {
                 "system": "http://hl7.org/fhir/sid/icd-10-cm",

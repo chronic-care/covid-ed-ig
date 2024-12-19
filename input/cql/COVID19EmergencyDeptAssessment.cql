@@ -98,19 +98,38 @@ parameter ClinicalAssessments Tuple {
 
 // Risk Factors as specified by a clinical user, overrides Condition queries, if any.
 parameter RiskFactors Tuple {
+  Bronchiectasis Boolean,
+  BronchopulmonaryDysplasia Boolean,
+  PulmonaryHypertension Boolean,
+  PulmonaryEmbolism Boolean,
   Cancer Boolean,
-  CardiovascularDisease Boolean,
-  ChronicRespiratoryDisease Boolean,
-  DiabetesType2 Boolean,
-  DownsSyndrome Boolean,
-  Hypertension Boolean,
-  Immunosuppression Boolean,
-  NeurologicDisease Boolean,
+  CerebrovascularDisease Boolean,
+  ChronicKidneyDisease Boolean,
+  ChronicLiverDisease Boolean,
+  COPD Boolean,
+  DiabetesMellitus Boolean,
+  HeartConditions Boolean,
+  InterstitialLungDisease Boolean,
+  CurrentAndFormerSmoking Boolean,
+  Tuberculosis Boolean,
   Obesity Boolean,
-  ObstructiveSleepApnea Boolean,
-  Pregnancy Boolean,
-  RenalDisease Boolean,
-  SteroidUsage Boolean
+  PregnancyAndRecentPregnancy Boolean,
+  MentalHealthDisorders Boolean,
+  ChildrenWithCertainUnderlyingConditions Boolean,
+  DownSyndrome Boolean,
+  HIV Boolean,
+  NeurologicConditions Boolean,
+  Overweight Boolean,
+  SickleCellDisease Boolean,
+  SolidOrganOrBloodStemTransplantation Boolean,
+  SubstanceUseDisorders Boolean,
+  Corticosteroids Boolean,
+  ImmunosuppressiveMedications Boolean,
+  CysticFibrosis Boolean,
+  Thalassemia Boolean,
+  Asthma Boolean,
+  Hypertension Boolean,
+  ImmuneDeficiencies Boolean
 }
 
 parameter PatientData Tuple {
@@ -609,43 +628,141 @@ define "Inspired Oxygen Score":
  */
 
 define "Risk Factor Components": List {
+  "Has Bronchiectasis Risk Factor",
+  "Has Bronchopulmonary Dysplasia Risk Factor",
+  "Has Pulmonary Hypertension Risk Factor",
+  "Has Pulmonary Embolism Risk Factor",
   "Has Cancer Risk Factor",
-  "Has Cardiovascular Disease Risk Factor",
-  "Has Chronic Respiratory Disease Risk Factor",
-  "Has Diabetes Type 2 Risk Factor",
-  "Has Downs Syndrome Risk Factor",
-  "Has Hypertension Risk Factor",
-  "Has Immunosuppression Risk Factor",
-  "Has Neurologic Disease Risk Factor",
-  "Has Obstructive Sleep Apnea Risk Factor",
+  "Has Cerebrovascular Disease Risk Factor",
+  "Has Chronic Kidney Disease Risk Factor",
+  "Has Chronic Liver Disease Risk Factor",
+  "Has COPD Risk Factor",
+  "Has Diabetes Mellitus Risk Factor",
+  "Has Heart Conditions Risk Factor",
+  "Has Interstitial Lung Disease Risk Factor",
+  "Has Current And Former Smoking Risk Factor",
+  "Has Tuberculosis Risk Factor",
   "Has Obesity Risk Factor",
-  "Has Pregnancy Risk Factor",
-  "Has Renal Disease Risk Factor",
-  "Has Steroid Usage Risk Factor"
+  "Has Pregnancy And Recent Pregnancy Risk Factor",
+  "Has Mental Health Disorders Risk Factor",
+  "Has Children With Certain Underlying Conditions Risk Factor",
+  "Has Down Syndrome Risk Factor",
+  "Has HIV Risk Factor",
+  "Has Neurologic Conditions Risk Factor",
+  "Has Overweight Risk Factor",
+  "Has Sickle Cell Disease Risk Factor",
+  "Has Solid Organ Or Blood Stem Transplantation Risk Factor",
+  "Has Substance Use Disorders Risk Factor",
+  "Has Corticosteroids Usage Risk Factor",
+  "Has Immunosuppressive Medications Risk Factor",
+  "Has Cystic Fibrosis Risk Factor",
+  "Has Thalassemia Risk Factor",
+  "Has Asthma Risk Factor",
+  "Has Hypertension Risk Factor",
+  "Has Immune deficiencies Risk Factor"
 }
 
 /* The risk factors count is null if all components are null,
     otherwise returns the count of non-null risk factors.
 */
 define "Risk Factors count":
-  /* if not exists "Risk Factor Components" then null
-  else */
-  (if "Has Cancer Risk Factor" then 1 else 0)
-    + (if "Has Cardiovascular Disease Risk Factor" then 1 else 0)
-    + (if "Has Chronic Respiratory Disease Risk Factor" then 1 else 0)
-    + (if "Has Diabetes Type 2 Risk Factor" then 1 else 0)
-    + (if "Has Downs Syndrome Risk Factor" then 1 else 0)
-    + (if "Has Hypertension Risk Factor" then 1 else 0)
-    + (if "Has Immunosuppression Risk Factor" then 1 else 0)
-    + (if "Has Neurologic Disease Risk Factor" then 1 else 0)
-    + (if "Has Obstructive Sleep Apnea Risk Factor" then 1 else 0)
-    + (if "Has Obesity Risk Factor" then 1 else 0)
-    + (if "Has Pregnancy Risk Factor" then 1 else 0)
-    + (if "Has Renal Disease Risk Factor" then 1 else 0)
-    + (if "Has Steroid Usage Risk Factor" then 1 else 0)
+  if "All Risk Factors Are Null" then null else
+  allRiskFactors("All Active Conditions") 
+
+define "All Risk Factors Are Null":
+  if "Risk Factor Components" contains false
+  or "Risk Factor Components" contains true then false
+  else true
+
+// Risk Factors
+
+define function hasCancerRiskFactors(conditions List<Condition>):
+  HasConditionWithOverride(
+    (conditions C
+          where (C.code in CC."Cancer SNOMED Codes"
+          or C.code in CC."Cancer ICD10CM Codes")),
+    RiskFactors.Cancer
+  )
+
+define function hasChronicKidneyDiseaseRiskFactors(conditions List<Condition>):
+    HasConditionWithOverride(
+        (conditions C
+          where (C.code in CC."Kidney Disease SNOMED Codes"
+            or C.code in CC."Kidney Disease ICD10CM Codes")),
+        RiskFactors.ChronicKidneyDisease
+    )
+
+define function hasDiabetesMellitusRiskFactor(conditions List<Condition>):
+  HasConditionWithOverride(
+    (conditions C
+      where (C.code in CC."Diabetes ICD10CM Codes"
+        or C.code in CC."Diabetes SNOMED Codes")),
+    RiskFactors.DiabetesMellitus
+  )
+
+define function hasDownSyndromeRiskFactor(conditions List<Condition>):
+  HasConditionWithOverride(
+      (conditions C
+        where (C.code in CC."Downs Syndrome ICD10CM Codes"
+          or C.code in CC."Downs Syndrome SNOMED Codes")),
+      RiskFactors.DownSyndrome
+  )
+
+define function hasCorticosteroidsUsageRiskFactor(conditions List<Condition>):
+  HasConditionWithOverride(
+      (conditions C
+        where (C.code in CC."Corticosteroids Usage ICD10CM Codes"
+          or C.code in CC."Corticosteroids Usage SNOMED Codes")),
+      RiskFactors.Corticosteroids
+  )
+
+define function hasImmunedeficienciesRiskFactor(conditions List<Condition>):
+  HasConditionWithOverride(
+      (conditions C
+        where (C.code in CC."Immune Deficiencies ICD10CM Codes"
+          or C.code in CC."Immune Deficiencies SNOMED Codes")),
+      RiskFactors.ImmuneDeficiencies
+  )
+
+//----
+
+// Ruturns the sum of all the risk factors
+define function allRiskFactors(conditions List<Condition>):
+(if "Has Bronchiectasis Risk Factor" then 1 else 0)
++(if "Has Bronchopulmonary Dysplasia Risk Factor" then 1 else 0)
++(if "Has Pulmonary Hypertension Risk Factor" then 1 else 0)
++(if "Has Pulmonary Embolism Risk Factor" then 1 else 0)
++(if hasCancerRiskFactors(conditions) then 1 else 0)
++(if "Has Cerebrovascular Disease Risk Factor" then 1 else 0)
++(if hasChronicKidneyDiseaseRiskFactors(conditions) then 1 else 0)
++(if "Has Chronic Liver Disease Risk Factor" then 1 else 0)
++(if "Has COPD Risk Factor" then 1 else 0)
++(if hasDiabetesMellitusRiskFactor(conditions) then 1 else 0)
++(if "Has Heart Conditions Risk Factor" then 1 else 0)
++(if "Has Interstitial Lung Disease Risk Factor" then 1 else 0)
++(if "Has Current And Former Smoking Risk Factor" then 1 else 0)
++(if "Has Tuberculosis Risk Factor" then 1 else 0)
++(if "Has Obesity Risk Factor" then 1 else 0)
++(if "Has Pregnancy And Recent Pregnancy Risk Factor" then 1 else 0)
++(if "Has Mental Health Disorders Risk Factor" then 1 else 0)
++(if "Has Children With Certain Underlying Conditions Risk Factor" then 1 else 0)
++(if hasDownSyndromeRiskFactor(conditions) then 1 else 0)
++(if "Has HIV Risk Factor" then 1 else 0)
++(if "Has Neurologic Conditions Risk Factor" then 1 else 0)
++(if "Has Overweight Risk Factor" then 1 else 0)
++(if "Has Sickle Cell Disease Risk Factor" then 1 else 0)
++(if "Has Solid Organ Or Blood Stem Transplantation Risk Factor" then 1 else 0)
++(if "Has Substance Use Disorders Risk Factor" then 1 else 0)
++(if hasCorticosteroidsUsageRiskFactor(conditions) then 1 else 0)
++(if "Has Immunosuppressive Medications Risk Factor" then 1 else 0)
++(if "Has Cystic Fibrosis Risk Factor" then 1 else 0)
++(if "Has Thalassemia Risk Factor" then 1 else 0)
++(if "Has Asthma Risk Factor" then 1 else 0)
++(if "Has Hypertension Risk Factor" then 1 else 0)
++(if hasImmunedeficienciesRiskFactor(conditions) then 1 else 0)
 
 define "All Active Conditions":
-  C3F.ActiveOrRecurring([Condition])
+  Message(C3F.ActiveOrRecurring([Condition]), true, 'Undefined', 'Trace', 'Calculating "All Active Conditions"')
 
 define function DoesExistElseNull(CondList List<Condition>):
   if exists(CondList) then
@@ -660,99 +777,135 @@ define function HasConditionWithOverride(
   if IgnoreFallbackResourceValues then OverridingValue
   else DoesExistElseNull(CondList)
 
+// Define all the risk factors named expression
+define "Has Bronchiectasis Risk Factor":
+  RiskFactors.Bronchiectasis
+
+define "Has Bronchopulmonary Dysplasia Risk Factor":
+  RiskFactors.BronchopulmonaryDysplasia
+
+define "Has Pulmonary Hypertension Risk Factor":
+  RiskFactors.PulmonaryHypertension
+
+define "Has Pulmonary Embolism Risk Factor":
+  RiskFactors.PulmonaryEmbolism
+
 define "Has Cancer Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
           where (C.code in CC."Cancer SNOMED Codes"
-            or C.code in CC."Cancer ICD10CM Codes"
-            or C.code in CC."Cancer Codes")),
+            or C.code in CC."Cancer ICD10CM Codes")),
     RiskFactors.Cancer
   )
 
-define "Has Cardiovascular Disease Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-          where C.code in CC."Cardiovascular Disease Codes"),
-    RiskFactors.CardiovascularDisease
-  )
+define "Has Cerebrovascular Disease Risk Factor":
+  RiskFactors.CerebrovascularDisease
 
-define "Has Chronic Respiratory Disease Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-          where C.code in CC."Chronic Respiratory Disease Codes"),
-    RiskFactors.ChronicRespiratoryDisease
-  )
-
-define "Has Diabetes Type 2 Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-      where (C.code in CC."Diabetes SNOMED Codes"
-        or C.code in CC."Diabetes ICD10CM Codes")),
-    RiskFactors.DiabetesType2
-  )
-
-define "Has Downs Syndrome Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-      where (C.code in CC."Downs Syndrome SNOMED Codes"
-        or C.code in CC."Downs Syndrome ICD10CM Codes")),
-    RiskFactors.DownsSyndrome
-  )
-
-define "Has Hypertension Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-      where (C.code in CC."Hypertension SNOMED Codes"
-        or C.code in CC."Hypertension ICD10CM Codes")),
-    RiskFactors.Hypertension
-  )
-
-define "Has Immunosuppression Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-       where (C.code in CC."Immunosuppression SNOMED Codes"
-        or C.code in CC."Immunosuppression ICD10CM Codes")),
-    RiskFactors.Immunosuppression
-  )
-
-define "Has Neurologic Disease Risk Factor":
-  RiskFactors.NeurologicDisease
-
-define "Has Obstructive Sleep Apnea Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-      where (C.code in CC."Obstructive Sleep Apnea SNOMED Codes"
-        or C.code in CC."Obstructive Sleep Apnea ICD10CM Codes")),
-    RiskFactors.ObstructiveSleepApnea
-  )
-
-define "Has Obesity Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-      where (C.code in CC."Obesity SNOMED Codes"
-        or C.code in CC."Obesity ICD10CM Codes")),
-    RiskFactors.Obesity
-  )
-
-define "Has Pregnancy Risk Factor":
-  RiskFactors.Pregnancy
-
-define "Has Renal Disease Risk Factor":
+define "Has Chronic Kidney Disease Risk Factor":
   HasConditionWithOverride(
     ("All Active Conditions" C
       where (C.code in CC."Kidney Disease SNOMED Codes"
-        or C.code in CC."Kidney Disease ICD10CM Codes"
-        or C.code in CC."Renal Disease Codes")),
-    RiskFactors.RenalDisease
+        or C.code in CC."Kidney Disease ICD10CM Codes")),
+    RiskFactors.ChronicKidneyDisease
   )
 
-define "Has Steroid Usage Risk Factor":
-  HasConditionWithOverride(
-    ("All Active Conditions" C
-      where (C.code in CC."Steroid Usage SNOMED Codes"
-        or C.code in CC."Steroid Usage ICD10CM Codes")),
-    RiskFactors.SteroidUsage
-  )
+define "Has Chronic Liver Disease Risk Factor":
+  RiskFactors.ChronicLiverDisease
+
+define "Has COPD Risk Factor":
+  RiskFactors.COPD
+
+define "Has Diabetes Mellitus Risk Factor":
+HasConditionWithOverride(
+  ("All Active Conditions" C
+     where (C.code in CC."Diabetes ICD10CM Codes"
+      or C.code in CC."Diabetes SNOMED Codes")),
+  RiskFactors.DiabetesMellitus
+)
+
+define "Has Heart Conditions Risk Factor":
+  RiskFactors.HeartConditions
+
+define "Has Interstitial Lung Disease Risk Factor":
+  RiskFactors.InterstitialLungDisease
+
+define "Has Current And Former Smoking Risk Factor":
+  RiskFactors.CurrentAndFormerSmoking
+
+
+define "Has Tuberculosis Risk Factor":
+  RiskFactors.Tuberculosis
+
+define "Has Obesity Risk Factor":
+  RiskFactors.Obesity
+
+define "Has Pregnancy And Recent Pregnancy Risk Factor":
+  RiskFactors.PregnancyAndRecentPregnancy
+
+
+define "Has Mental Health Disorders Risk Factor":
+  RiskFactors.MentalHealthDisorders
+
+define "Has Children With Certain Underlying Conditions Risk Factor":
+  RiskFactors.ChildrenWithCertainUnderlyingConditions
+
+define "Has Down Syndrome Risk Factor":
+HasConditionWithOverride(
+  ("All Active Conditions" C
+     where (C.code in CC."Downs Syndrome ICD10CM Codes"
+      or C.code in CC."Downs Syndrome SNOMED Codes")),
+  RiskFactors.DownSyndrome
+)
+
+define "Has HIV Risk Factor":
+  RiskFactors.HIV
+
+define "Has Neurologic Conditions Risk Factor":
+  RiskFactors.NeurologicConditions
+
+define "Has Overweight Risk Factor":
+  RiskFactors.Overweight
+
+define "Has Sickle Cell Disease Risk Factor":
+  RiskFactors.SickleCellDisease
+
+define "Has Solid Organ Or Blood Stem Transplantation Risk Factor":
+  RiskFactors.SolidOrganOrBloodStemTransplantation
+
+define "Has Substance Use Disorders Risk Factor":
+  RiskFactors.SubstanceUseDisorders
+
+define "Has Corticosteroids Usage Risk Factor":
+HasConditionWithOverride(
+  ("All Active Conditions" C
+     where (C.code in CC."Corticosteroids Usage ICD10CM Codes"
+      or C.code in CC."Corticosteroids Usage SNOMED Codes")),
+  RiskFactors.Corticosteroids
+)
+
+define "Has Immunosuppressive Medications Risk Factor":
+  RiskFactors.ImmunosuppressiveMedications
+
+define "Has Cystic Fibrosis Risk Factor":
+  RiskFactors.CysticFibrosis
+
+define "Has Thalassemia Risk Factor":
+  RiskFactors.Thalassemia
+
+define "Has Asthma Risk Factor":
+  RiskFactors.Asthma
+
+define "Has Hypertension Risk Factor":
+  RiskFactors.Hypertension
+
+
+define "Has Immune deficiencies Risk Factor":
+HasConditionWithOverride(
+  ("All Active Conditions" C
+     where (C.code in CC."Immune Deficiencies ICD10CM Codes"
+      or C.code in CC."Immune Deficiencies SNOMED Codes")),
+  RiskFactors.ImmuneDeficiencies
+)
 
 /*
  * Diagnostic Testing
@@ -779,12 +932,6 @@ define "Last CRP Lab Result":
       LabResultsLookbackPeriod)
   )
 
-define "Last Creatinine Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Creatinine Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
 
 define "Last D-dimer Lab Result":
   C3F.MostRecent(
@@ -800,12 +947,6 @@ define "Last Neutrophils Lab Result":
       LabResultsLookbackPeriod)
   )
 
-define "Last Leukocyte Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Leukocyte Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
 
 define "Last Ferritin Lab Result":
   C3F.MostRecent(
@@ -821,6 +962,41 @@ define "Last Lymphocytes Lab Result":
       LabResultsLookbackPeriod)
   )
 
+  define "Last PCT Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."PCT Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Interleukin 1 Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Interleukin 1 Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Interleukin 6 Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Interleukin 6 Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Interleukin 8 Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Interleukin 8 Lab Results"]),
+      LabResultsLookbackPeriod)
+  )
+
+define "Last Tumor Necrosis Factor Alpha Lab Result":
+  C3F.MostRecent(
+    C3F.ObservationLookBack(
+      C3F.Verified([Observation: CC."Tumor Necrosis Factor Alpha Lab Results"]),
+      LabResultsLookbackPeriod)
+  )    
+  
 define "Last PaO2FiO2 Ratio Lab Result":
   C3F.MostRecent(
     C3F.ObservationLookBack(
@@ -833,12 +1009,6 @@ define "Last PaO2FiO2 Ratio Lab Result Less Than 300":
     ("Last PaO2FiO2 Ratio Lab Result".value as FHIR.Quantity).value < 300
   )
 
-define "Last Platelets Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Platelets Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
 
 define "Last LDH Lab Result":
   C3F.MostRecent(
@@ -847,9 +1017,4 @@ define "Last LDH Lab Result":
       LabResultsLookbackPeriod)
   )
 
-define "Last Troponin Lab Result":
-  C3F.MostRecent(
-    C3F.ObservationLookBack(
-      C3F.Verified([Observation: CC."Troponin Lab Results"]),
-      LabResultsLookbackPeriod)
-  )
+

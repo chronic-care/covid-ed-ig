@@ -1,6 +1,6 @@
 {
     "resourceType": "ValueSet",
-    "id": "covid-19-lab-ferritin",
+    "id": "covid-19-lab-tumor-necrosis",
     "meta": {
         "profile": [
             "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablevalueset"
@@ -17,29 +17,26 @@
             "valueCode": "executable"
         }
     ],
-    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-ferritin",
+    "url": "http://fhir.org/guides/acep/ValueSet/covid-19-lab-tumor-necrosis",
     "version": "0.5.0",
-    "name": "COVID19LabFerritin",
-    "title": "COVID-19 Laboratory Value Set for Ferritin",
+    "name": "COVID19LabTumorNecrosis",
+    "title": "COVID-19 Laboratory Value Set for Tumor Necrosis",
     "status": "active",
     "date": "2022-01-04T20:00:00+00:00",
-    "description": "COVID-19 Laboratory Value Set for Ferritin",
+    "description": "COVID-19 Laboratory Value Set for Tumor Necrosis",
     "compose": {
         "include": [
             {
                 "system": "http://loinc.org",
                 "concept": [
                     {
-                        "code": "2276-4"
+                        "code": "13900-6"
                     },
                     {
-                        "code": "20567-4"
+                        "code": "3074-2"
                     },
                     {
-                        "code": "35209-6"
-                    },
-                    {
-                        "code": "14723-1"
+                        "code": "34939-9"
                     }
                 ]
             }
@@ -50,19 +47,15 @@
         "contains": [
             {
                 "system": "http://loinc.org",
-                "code": "2276-4"
+                "code": "13900-6"
             },
             {
                 "system": "http://loinc.org",
-                "code": "20567-4"
+                "code": "3074-2"
             },
             {
                 "system": "http://loinc.org",
-                "code": "35209-6"
-            },
-            {
-                "system": "http://loinc.org",
-                "code": "14723-1"
+                "code": "34939-9"
             }
         ]
     }
